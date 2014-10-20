@@ -31,10 +31,10 @@
 \mainmatter  % start of an individual contribution
 
 % first the title is needed
-\title{}
+\title{It's time to stop: investigating termination conditions in games}
 
 % a short form should be given in case it is too long for the running head
-\titlerunning{Lecture Notes in Computer Science: Authors' Instructions}
+\titlerunning{It's time to stop}
 
 % the name(s) of the author(s) follow(s) next
 %
@@ -43,9 +43,9 @@
 % the running heads and the author index.
 %
 \author{Non A. Me%
-\thanks{}}
+\thanks{NoInstitute}}
 %
-\authorrunning{}
+\authorrunning{Me, N}
 % (feature abused for this document to repeat the title also on left hand pages)
 
 % the affiliations are given next; don't give your e-mail address
@@ -59,14 +59,12 @@
 % "llncs.dem" accompanies the document class "llncs.cls".
 %
 
-\toctitle{Lecture Notes in Computer Science}
-\tocauthor{Authors' Instructions}
 \maketitle
 
 
 \begin{abstract}
-\keywords{We would like to encourage you to list your keywords within
-the abstract section}
+Determining the end of the evolutionary process in the design of a game bot is not as easy as it would seem a priori. The first issue is that there is no optimum, because most games make sure that there is no optimum way of creating a bot that defeats all enemies. Then, in most games fitness is noisy, so that even if you use a certain level of fitness as a termination condition, this is going to change every generation it is evaluated. Finally, if you use external enemies and a certain level of victories over them the bots will be overfitted to those particular enemies. Even as any of these conditions is not perfect, there is the possibility of combining several of them as termination conditions so that bots that are as optimal as possible (and in as general a context as it is possible) are found; also, if possible, in a minimal amount of time and evaluations. In this paper we will examine several ways of determining the end of an evolutionary game bot design process, determining the capabilities of every one of them and, eventually, selecting one for future designs. We will use a game, Planet Wars, in which we already have some experience, but the conclusions to our study could, in principle, be extended to any RTS or even any game with non-deterministic match results.
+\keywords{Games, RTS, evolutionary algorithms, coevolution}
 \end{abstract}
 
 
