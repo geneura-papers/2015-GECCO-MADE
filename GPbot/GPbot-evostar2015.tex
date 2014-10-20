@@ -70,9 +70,9 @@ Determining the end of the evolutionary process in the design of a game bot is n
 
 \section{Introduction}
 
-The termination condition in Evolutionary Algorithms is a key factor in the experimental setups, as it ... Usual termination conditions are a fixed number of generations or evaluations, a fixed amount of time the best solution is not improved, or 
+The termination condition in Evolutionary Algorithms (EA) is a key factor in the experimental setups, as it affects the algorithm's performance in... Usual termination conditions are a fixed number of generations (or evaluations), a fixed amount of time where the best solution is not improved, or distance to the optimum, among others.
 
-In the scope of the noisy and combat-based problems...
+This issue is very evident in the scope of the noisy and combat-based problems for player generation. In this area there are no optimum, as the opponents are not known before the EA run. To solve this, usually previously-known opponents are used in the fitness function. However, this can generate over-fitted solutions to only beat the used enemy.
 
 The termination condition chosen can be applied to any game with stochastic behavior and combat-based results. In this paper, Planet Wars has been chosen in the experimental setup, as it is a simplified RTS game (only one type of resource, one type of attack and one type of unit).
 
