@@ -94,7 +94,7 @@ usual termination conditions are a fixed number of generations (or
 evaluations), which is related to a fixed {\em computing cycles}
 budget for doing the experiments or a fixed amount of generations in
 which the best solution is not improved, or distance to the optimum,
-among others.
+among others \cite{RocheTermination13}.
 
 Finding the optimal termination condition is optimal in the search for
 bots that fight in a particular setup. The usual solution is to give
@@ -115,7 +115,7 @@ fighting), as the opponents are not known before the EA is running. To
 solve this, usually previously-known opponents are used in the fitness
 function and an ``optimum'' is reached when a certain number of
 victories are obtained. However, this can generate over-fitted
-solutions that only beat the used enemy. % add references here.
+solutions that only beat the used enemy \cite{MoraNoisy12}. % add references here.
 
 
 
@@ -132,7 +132,7 @@ method, we will use the LOQUESEA as metric.
 
 
 The rest of the paper is organized as follows. Next section
-established the state of the art in the use of termination conditions
+establishes the state of the art in the use of termination conditions
 for this kind of evolutionary algorithms in which the optimum is not
 known and/or is noisy. Next in Section \ref{sec:met} we will present the different termination
 conditions we will be checking in this work and how they contribute to
