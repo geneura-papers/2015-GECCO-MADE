@@ -63,16 +63,61 @@
 
 
 \begin{abstract}
-Determining the end of the evolutionary process in the design of a game bot is not as easy as it would seem a priori. The first issue is that there is no optimum, because most games make sure that there is no optimum way of creating a bot that defeats all enemies. Then, in most games fitness is noisy, so that even if you use a certain level of fitness as a termination condition, this is going to change every generation it is evaluated. Finally, if you use external enemies and a certain level of victories over them the bots will be overfitted to those particular enemies. Even as any of these conditions is not perfect, there is the possibility of combining several of them as termination conditions so that bots that are as optimal as possible (and in as general a context as it is possible) are found; also, if possible, in a minimal amount of time and evaluations. In this paper we will examine several ways of determining the end of an evolutionary game bot design process, determining the capabilities of every one of them and, eventually, selecting one for future designs. We will use a game, Planet Wars, in which we already have some experience, but the conclusions to our study could, in principle, be extended to any RTS or even any game with non-deterministic match results.
+Determining the end of the evolutionary process in the design of a
+game bot is not as easy as it would seem a priori. The first issue is
+that there is no optimum, because most games make sure that there is
+no optimum way of creating a bot that defeats all enemies. Then, in
+most games fitness is noisy, so that even if you use a certain level
+of fitness as a termination condition, this is going to change every
+generation it is evaluated. Finally, if you use external enemies and a
+certain level of victories over them the bots will be overfitted to
+those particular enemies. Even as any of these conditions is not
+perfect, there is the possibility of combining several of them as
+termination conditions so that bots that are as optimal as possible
+(and in as general a context as it is possible) are found; also, if
+possible, in a minimal amount of time and evaluations. In this paper
+we will examine several ways of determining the end of an evolutionary
+game bot design process, determining the capabilities of every one of
+them and, eventually, selecting one for future designs. We will use a
+game, Planet Wars, in which we already have some experience, but the
+conclusions to our study could, in principle, be extended to any RTS
+or even any game with non-deterministic match results. 
 \keywords{Games, RTS, evolutionary algorithms, coevolution}
 \end{abstract}
 
-
 \section{Introduction}
 
-The termination condition in Evolutionary Algorithms (EA) is a key factor in the experimental setups, as it affects the algorithm's performance in... Usual termination conditions are a fixed number of generations (or evaluations), a fixed amount of time where the best solution is not improved, or distance to the optimum, among others.
+The termination condition in Evolutionary Algorithms (EA) is a key
+factor in the experimental setups since it affects the performance of
+the algorithm solution and the amount of resources devoted to it. The
+usual termination conditions are a fixed number of generations (or
+evaluations), which is related to a fixed {\em computing cycles}
+budget for doing the experiments or a fixed amount of generations in
+which the best solution is not improved, or distance to the optimum,
+among others.
 
-This issue is very evident in the scope of the noisy and combat-based problems for player generation. In this area there are no optimum, as the opponents are not known before the EA run. To solve this, usually previously-known opponents are used in the fitness function. However, this can generate over-fitted solutions to only beat the used enemy.
+Finding the optimal termination condition is optimal in the search for
+bots that fight in a particular setup. The usual solution is to give
+it as much as you have got, which is fair if you are designing a bot
+to participate in a competition. However, from a methodological point
+of view, if you want to compare different approaches to design a bot
+it has to be done in conditions that are as similar as possible, which
+might make {\em as much as you have got} a bit short on
+details. Methods that are going to be compared need to have an
+independent stopping criterium, since using for any method the same
+time or the same number of evaluations is not usually fair. 
+ 
+In the case of games, this issue is even more evident in the scope of
+the noisy and combat-based methods used for player generation. In this
+area there is no optimum (short from managing to obtain a bot that, as
+in Sun Tzu's ``Art of war'', is able to beat the oponent without
+fighting), as the opponents are not known before the EA is running. To
+solve this, usually previously-known opponents are used in the fitness
+function and an ``optimum'' is reached when a certain number of
+victories are obtained. However, this can generate over-fitted
+solutions that only beat the used enemy. % add references here.
+
+
 
 The termination condition chosen can be applied to any game with stochastic behavior and combat-based results. In this paper, Planet Wars has been chosen in the experimental setup, as it is a simplified RTS game (only one type of resource, one type of attack and one type of unit).
 
