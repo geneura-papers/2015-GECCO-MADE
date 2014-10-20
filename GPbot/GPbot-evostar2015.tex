@@ -92,25 +92,25 @@ factor in the experimental setups since it affects the performance of
 the algorithm solution and the amount of resources devoted to it. The
 usual termination conditions are a fixed number of generations (or
 evaluations), which is related to a fixed {\em computing cycles}
-budget for doing the experiments or a fixed amount of generations in
+budget for doing the experiments; or a fixed amount of generations in
 which the best solution is not improved, or distance to the optimum,
 among others \cite{RocheTermination13}.
 
 Finding the optimal termination condition is essential in the search for
-bots that fight in a particular setup. The usual solution is to give
+game AI's (also called \textit{bots}) that competes in a particular setup. The usual solution is to give
 it as much as you have got, which is fair if you are designing a bot % add some reference to former articles where we did this. - JJ
-to participate in a competition. However, from a methodological point
+to participate in a competition \cite{FernandezRTS11}. However, from a methodological point
 of view, if you want to compare different approaches to design a bot
 it has to be done in conditions that are as similar as possible, which
 might make {\em as much as you have got} a bit short on
 details. Methods that are going to be compared need to have an
-independent stopping criterium, since using for any method the same
+independent stopping criterion, since using for any method the same
 time or the same number of evaluations is not usually fair. 
  
 In the case of games, this issue is even more evident in the scope of
 the noisy and combat-based methods used for player generation. In this
 area there is no optimum (short from managing to obtain a bot that, as
-in Sun Tzu's ``Art of war'', is able to beat the oponent without
+in Sun Tzu's ``Art of war'', is able to beat the opponent without
 fighting), as the opponents are not known before the EA is running. To
 solve this, usually previously-known opponents are used in the fitness
 function and an ``optimum'' is reached when a certain number of
@@ -118,23 +118,25 @@ victories are obtained. However, this can generate over-fitted
 solutions that only beat the used enemy \cite{MoraNoisy12}. % add references here.
 
 
-The termination condition chosen can be applied to any game with
-stochastic behavior and combat-based results. In this paper, Planet
-Wars has been chosen in the experimental setup, as it is a simplified
-RTS game (only one type of resource, one type of attack and one type
-of unit).
+In this paper, we present a study on different termination conditions to 
+generate competitive bots for videogames using Genetic Programming (GP). The game Planet Wars has been chosen in 
+our experimental setup, as it is a simplified RTS (Real Time Simulator) 
+game (only one type of resource, one type of attack and one type
+of unit), and widely used in the literature \cite{MoraNoisy12,FernandezRTS11}. 
 
 Summarizing, our objective in this paper is to study different 
 termination conditions to find the method that converges to good 
 solutions (the best, if possible). To measure the quality of each 
-method, we will use the time needed to obtain a solution and the quality of that solution as metric.
+method, we will use the time needed to obtain a solution and the
+ quality of that solution as metric. The termination condition chosen could be applied to any game with
+stochastic behaviour and combat-based results.
 
 The rest of the paper is organized as follows. Next section
 establishes the state of the art in the use of termination conditions
 for this kind of evolutionary algorithms in which the optimum is not
 known and/or is noisy. Next in Section \ref{sec:met} we will present the different termination
 conditions we will be checking in this work and how they contribute to
-prove which one has better behavior in this context; we will also
+prove which one has better behaviour in this context; we will also
 sketch the problem we are using in this particular paper, evolution of
 bot for Planet Wars. Results will be presented in Section
 \ref{sec:met}, followed by the conclusions and a discussion of the
