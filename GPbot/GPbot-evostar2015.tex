@@ -99,7 +99,7 @@ among others \cite{RocheTermination13}.
 Finding the optimal termination condition is essential in the search for
 game AI's (also called \textit{bots}) that competes in a particular setup. The usual solution is to give
 it as much as you have got, which is fair if you are designing a bot % add some reference to former articles where we did this. - JJ
-to participate in a competition \cite{FernandezRTS11}. However, from a methodological point
+to participate in a competition \cite{DBLP:conf/cec/Fernandez-AresMGGF11}. However, from a methodological point
 of view, if you want to compare different approaches to design a bot
 it has to be done in conditions that are as similar as possible, which
 might make {\em as much as you have got} a bit short on
@@ -115,20 +115,22 @@ fighting), as the opponents are not known before the EA is running. To
 solve this, usually previously-known opponents are used in the fitness
 function and an ``optimum'' is reached when a certain number of
 victories are obtained. However, this can generate over-fitted
-solutions that only beat the used enemy \cite{MoraNoisy12}. % add references here.
+solutions that only beat the used enemy \cite{DBLP:journals/jcst/MoraFGGF12}. % add references here.
 
 
 In this paper, we present a study on different termination conditions to 
-generate competitive bots for videogames using Genetic Programming (GP). The game Planet Wars has been chosen in 
-our experimental setup, as it is a simplified RTS (Real Time Simulator) 
+generate competitive bots for videogames using Genetic Programming (GP). The game \textit{Planet Wars} has been chosen in 
+our experimental setup, as it is a simplified RTS (Real Time Simulator) combat-based
 game (only one type of resource, one type of attack and one type
-of unit), and widely used in the literature \cite{MoraNoisy12,FernandezRTS11}. 
+of unit), and also it has been widely used in the literature, using different generation methods and fitness functions 
+\cite{DBLP:journals/jcst/MoraFGGF12,DBLP:conf/cec/Fernandez-AresMGGF11,DBLP:journals/nc/Lara-CabreraCL14,NogueiraCoevolutionary14}. 
 
 Summarizing, our objective in this paper is to study different 
 termination conditions to find the method that converges to good 
 solutions (the best, if possible). To measure the quality of each 
 method, we will use the time needed to obtain a solution and the
- quality of that solution as metric. The termination condition chosen could be applied to any game with
+quality of that solution as metrics. In principle, the termination
+condition chosen could be extrapolated to any game with
 stochastic behaviour and combat-based results.
 
 The rest of the paper is organized as follows. Next section
