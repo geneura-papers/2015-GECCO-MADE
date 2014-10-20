@@ -144,6 +144,22 @@ implication of the obtained results.
 \section{Methodology and experimental setup}
 \label{sec:met}
 
+This section describes the different termination approaches to be tested in the paper. Everyone is commented and justified.
+Then, the parameter setup and the different experiments to be conducted are also presented and discussed. The aim is to analyse the differences in performance.
+
+\subsection{Termination Criteria}
+A set of three different algorithm stop criteria is going to be checked in the paper, namely:
+\begin{itemize}
+    \item \textit{Number of generations}: the classical termination criteria in evolutionary algorithms. 30, 50 and 100 will be considered, having in mind that the previous approach of GPBot [CITA EVO* 2014] used 50.
+    \item \textit{Age}: as the number of generations that the best individual has remained in the following population (in the next generation). Some limits have been set, based in the average obtained through systematic experimentation. These are 3, 5, and 10 of the number of generations.
+    \item \textit{Replacement rate}: if the number of individuals replaced by the offspring decreases under a threshold, then the search would be stagnated and the algorithm could stop. Three different rates have been tested, namely 10\%, 20\%, 30\%...
+\end{itemize}
+
+The first two criteria are based in the...
+
+The aim of the experiments is to test the set of termination criteria...
+
+
 \section{Results}
 \label{sec:res}
 
