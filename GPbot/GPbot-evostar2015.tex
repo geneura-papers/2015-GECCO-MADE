@@ -148,27 +148,32 @@ implication of the obtained results.
 %% TODO: esto está en redacción...
 
 Real world optimization problems often involve uncertain environment including noisy and/or dynamic environments \cite{Jin2005303,QianYZ13}.
-Optimization problems involving uncertain environments are challenging to evolutionary algorithms. 
-Moreover, if the original fitness function is too expensive or does not exist it is recommendable using imprecise fitness evaluations, that is computationally more efficient.
-However, noise interferes with the evaluation and the selection process of the EA, which can be seen as a challenge to EA optimization and might affect the algorithm performance.
-
 Basic strategies to handle noisy fitness functions include using a larger population size, averaging to filter out the noise (re-sampling) \cite{Branke98,Branke2001}, thresholding (employing a threshold value to be used in a selection operator for noisy fitness functions) \cite{Markon2001} or changing the selection criteria.
-Other authors propose complex methods such as including the multipopulation approach, special operators, case-based memory \cite{BhattacharyaIM14}. 
+Other authors propose complex methods such as including the multipopulation approach, special operators or case-based memory \cite{BhattacharyaIM14}. 
 
-Bhattacharya et al. \cite{BhattacharyaIM14} address optimization of functions with noisy fitness by dividing the search or solution space into multiple pseudo-populations and retains fitness information in them over a period. This approach works as a distributed population switching architecture and allows dissolving the pseudo-populations periodically do not have any adverse effect.
+%--- Took out reference to our own paper, which should be taken out to the intro. I don't think anything above this is really relevant, other than referencing a very general paper that deals with noise (or our own paper at IJCCCI) - JJ
 
 
-Neri and Makinen \cite{Neri2007} describes a hierarchical EA where the fitness of a population depends on the results from another population, which is noisy. Counter measures such as population sizing, sampling sizing and survivor selection are taken.
-
-In the ANN field, the evolution of the architecture without connection weights has the problem of noisy fitness evaluation \cite{Zhang2011} due to the random initialization of the weights and the training algorithm. However, this problem can be alleviated by simultaneously evolving the network architecture and the connection weights.
-
-% Took out reference to our own paper, which should be taken out to the intro. I don't think anything above this is really relevant, other than referencing a very general paper that deals with noise (or our own paper at IJCCCI) - JJ
+In \cite{MereloECTA2014}, Merelo et al. propose dealing with the problem of noisy fitness functions using two methods, the former based on re-evaluation of surviving individuals and the latter that uses a Wilcoxon test to compare a sample of individuals and partial-order them within the population.
 
 % TERMINATION CRITERIA
 
 Roche et al. \cite{RocheTermination13} propose terminating the evolution process by analyzing the EA population diversity. Thus, they presents a numeric approximation to steady states that can be used to detect the moment EA population has lost its diversity for EA termination.
 
-% This is the part that should be extended.
+
+Usually, the algorithm termination is decided based on a heuristic stopping criteria, such as the maximum number of evaluations or on reaching a performance level during the run. 
+When the algorithm converges, it is terminated in order to avoid wasting computational resources.
+Although these criteria are suitable for well defined benchmark problems (the optimum is known), they are not applicable to real world problems. 
+In these cases, more sophisticated heuristic stopping criteria have to be used \cite{NME2909,Wagner2009,Wagner2010}.
+
+In the last years some adaptive alternatives have been proposed  as termination conditions.
+In this sense, Safe et al. \cite{Safe2004} present a review of the state-of-the-art in the design of termination conditions and convergence analysis in GAs.
+The main problem is determining an accurate value for the number of generations, so that the GA convergence is guaranteed.
+Authors propose searching the minimum number of generations by means of a convergence analysis \cite{Rudolph1994}.
+
+
+Finally, as stated in Hart et al. \cite{Hart1996} when calculating metrics of parallel performance, it is incorrect to stop a parallel EA either after a fixed number of iterations or when the average fitness exhibits little variation. In this case, stopping rules based on the attainment of thresholds should be used, i.e. stopping the run when a solution that reaches this threshold is found \cite{Sena2001}. Nevertheless, threshold definition requires a good estimation of the optimum of the problem under study, which is unavailable in many cases \cite{Safe2004}.
+
 
 
 \section{Methodology and experimental setup}
