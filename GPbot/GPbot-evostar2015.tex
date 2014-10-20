@@ -31,7 +31,7 @@
 \mainmatter  % start of an individual contribution
 
 % first the title is needed
-\title{It's time to stop: investigating termination conditions in games}
+\title{It's time to stop: investigating termination conditions in evolution of game bots}
 
 % a short form should be given in case it is too long for the running head
 \titlerunning{It's time to stop}
@@ -96,9 +96,9 @@ budget for doing the experiments or a fixed amount of generations in
 which the best solution is not improved, or distance to the optimum,
 among others \cite{RocheTermination13}.
 
-Finding the optimal termination condition is optimal in the search for
+Finding the optimal termination condition is essential in the search for
 bots that fight in a particular setup. The usual solution is to give
-it as much as you have got, which is fair if you are designing a bot
+it as much as you have got, which is fair if you are designing a bot % add some reference to former articles where we did this. - JJ
 to participate in a competition. However, from a methodological point
 of view, if you want to compare different approaches to design a bot
 it has to be done in conditions that are as similar as possible, which
@@ -118,7 +118,6 @@ victories are obtained. However, this can generate over-fitted
 solutions that only beat the used enemy \cite{MoraNoisy12}. % add references here.
 
 
-
 The termination condition chosen can be applied to any game with
 stochastic behavior and combat-based results. In this paper, Planet
 Wars has been chosen in the experimental setup, as it is a simplified
@@ -128,8 +127,7 @@ of unit).
 Summarizing, our objective in this paper is to study different 
 termination conditions to find the method that converges to good 
 solutions (the best, if possible). To measure the quality of each 
-method, we will use the LOQUESEA as metric.
-
+method, we will use the time needed to obtain a solution and the quality of that solution as metric.
 
 The rest of the paper is organized as follows. Next section
 establishes the state of the art in the use of termination conditions
@@ -146,6 +144,22 @@ implication of the obtained results.
 
 \section{Methodology and experimental setup}
 \label{sec:met}
+
+This section describes the different termination approaches to be tested in the paper. Everyone is commented and justified.
+Then, the parameter setup and the different experiments to be conducted are also presented and discussed. The aim is to analyse the differences in performance.
+
+\subsection{Termination Criteria}
+A set of three different algorithm stop criteria is going to be checked in the paper, namely:
+\begin{itemize}
+    \item \textit{Number of generations}: the classical termination criteria in evolutionary algorithms. 30, 50 and 100 will be considered, having in mind that the previous approach of GPBot [CITA EVO* 2014] used 50.
+    \item \textit{Age}: as the number of generations that the best individual has remained in the following population (in the next generation). Some limits have been set, based in the average obtained through systematic experimentation. These are 3, 5, and 10 of the number of generations.
+    \item \textit{Replacement rate}: if the number of individuals replaced by the offspring decreases under a threshold, then the search would be stagnated and the algorithm could stop. Three different rates have been tested, namely 10\%, 20\%, 30\%...
+\end{itemize}
+
+The first two criteria are based in the...
+
+The aim of the experiments is to test the set of termination criteria...
+
 
 \section{Results}
 \label{sec:res}
