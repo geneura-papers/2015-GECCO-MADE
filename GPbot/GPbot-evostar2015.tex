@@ -137,7 +137,7 @@ the fitness \cite{DBLP:journals/jcst/MoraFGGF12}.
 Finally, there is noise which is inherent in most games, since the
 opponent bot, the game environment, the bot itself or all of them have
 a random component which might make the result of a match uncertain to
-a certain level and most ways of computing fitness *noisy* in the
+a certain level and most ways of computing fitness {\em noisy} in the
 sense that different values will be yielded every time it is
 measured. The fitness values follow a particular distribution
 \cite{merelo14:noisy}, but from the point of view of this paper the
@@ -181,7 +181,7 @@ Other authors propose complex methods such as including the multipopulation appr
 %--- Took out reference to our own paper, which should be taken out to the intro. I don't think anything above this is really relevant, other than referencing a very general paper that deals with noise (or our own paper at IJCCCI) - JJ
 
 
-In \cite{MereloECTA2014}, Merelo et al. propose dealing with the problem of noisy fitness functions using two methods, the former based on re-evaluation of surviving individuals and the latter that uses a Wilcoxon test to compare a sample of individuals and partial-order them within the population.
+In \cite{merelo14:noisy}, Merelo et al. propose dealing with the problem of noisy fitness functions using two methods, the former based on re-evaluation of surviving individuals and the latter that uses a Wilcoxon test to compare a sample of individuals and partial-order them within the population.
 
 % TERMINATION CRITERIA
 
@@ -202,7 +202,7 @@ Authors propose searching the minimum number of generations by means of a conver
 
 Finally, as stated in Hart et al. \cite{Hart1996} when calculating metrics of parallel performance, it is incorrect to stop a parallel EA either after a fixed number of iterations or when the average fitness exhibits little variation. In this case, stopping rules based on the attainment of thresholds should be used, i.e. stopping the run when a solution that reaches this threshold is found \cite{Sena2001}. Nevertheless, threshold definition requires a good estimation of the optimum of the problem under study, which is unavailable in many cases \cite{Safe2004}.
 
-
+% A conclusion should be added to this based on the last paragraph - JJ
 
 \section{Methodology and experimental setup}
 \label{sec:met}
@@ -213,16 +213,25 @@ Then, the parameter setup and the different experiments to be conducted are also
 \subsection{Termination Criteria}
 A set of three different algorithm stop criteria is going to be checked in the paper, namely:
 \begin{itemize}
-    \item \textit{Number of generations}: the classical termination criteria in evolutionary algorithms. 30, 50 and 100 will be considered, having in mind that the previous approach of GPBot [CITA EVO* 2014] used 50.
-    \item \textit{Age}: as the number of generations that the best individual has remained in the following population (in the next generation). Some limits have been set, based in the average obtained through systematic experimentation. These are 3, 5, and 10 of the number of generations.
-    \item \textit{Replacement rate}: if the number of individuals replaced by the offspring decreases under a threshold, then the search would be stagnated and the algorithm could stop. Three different rates have been tested, namely 10\%, 20\%, 30\%...
+    \item \textit{Number of generations}: the classical termination
+      criteria in evolutionary algorithms. 30, 50 and 100 will be
+      considered, having in mind that the previous approach of GPBot
+      [CITA EVO* 2014] used 50. As indicated in the previous section,
+      Hart  \cite{Hart1996} claims that this is not the right way to
+      compare different approaches; however, we include it here as a
+      baseline for comparison of the other approaches. 
+    \item \textit{Age}: number of generations that the best individual has remained in the following population (in the next generation). Some limits have been set, based in the average obtained through systematic experimentation. These are 3, 5, and 10 of the number of generations.
+    \item \textit{Replacement rate}: if the number of individuals
+      replaced by the offspring decreases under a threshold, then the
+      search would be stagnated and the algorithm could stop. Three
+      different rates have been tested, namely 10\%, 20\%, 30\%... % but this has to be combined with a steady state approach or something. By itself, it does not mean a thing. Please explain - JJ
 \end{itemize}
 
 The first two criteria are based in the...
 
 The aim of the experiments is to test the set of termination criteria...
 
-
+% 12 pages is the limit. 
 \section{Results}
 \label{sec:res}
 
