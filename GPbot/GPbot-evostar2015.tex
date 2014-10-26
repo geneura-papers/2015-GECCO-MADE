@@ -31,7 +31,7 @@
 \mainmatter  % start of an individual contribution
 
 % first the title is needed
-\title{It's time to stop: investigating termination conditions in evolution of game bots}
+\title{It's time to stop: investigating termination conditions in the evolution of game bots}
 
 % a short form should be given in case it is too long for the running head
 \titlerunning{It's time to stop}
@@ -64,24 +64,29 @@
 
 \begin{abstract}
 Determining the end of the evolutionary process in the design of a
-game bot is not as easy as it would seem a priori. The first issue is
-that there is no optimum, because most games make sure that there is
-no optimum way of creating a bot that defeats all enemies. Then, in
-most games fitness is noisy, so that even if you use a certain level
-of fitness as a termination condition, this is going to change every
-generation it is evaluated. Finally, if you use external enemies and a
-certain level of victories over them the bots will be overfitted to
+game bot is not as easy as it would a priori seem. The first issue is
+that there is no known optimum, because most games make sure that there is
+no single best way of creating a bot that defeats all enemies; once it
+is found, there is no challenge left. Then, in
+most games, fitness is noisy, so that even if you use reaching a certain level
+of fitness as a termination condition, there is no guarantee that the
+individual with that fitness is not going to change nexts
+generation it is evaluated. Some other possible termination
+conditions,  like using external enemies and a
+certain level of victories over them as a termination condition,
+present the problem that the bots will be overfitted to
 those particular enemies. Even as any of these conditions is not
 perfect, there is the possibility of combining several of them as
-termination conditions so that bots that are as optimal as possible
-(and in as general a context as it is possible) are found; also, if
+termination conditions so that bots that are as optimal as possible,
+and in as general a context as it is possible are found; also, if 
 possible, in a minimal amount of time and evaluations. In this paper
-we will examine several ways of determining the end of an evolutionary
+we will examine several ways of ending an evolutionary
 game bot design process, determining the capabilities of every one of
-them and, eventually, selecting one for future designs. We will use a
+them and, eventually, selecting one for future designs. We will use a particular
 game, Planet Wars, in which we already have some experience, but the
 conclusions to our study could, in principle, be extended to any RTS
-or even any game with non-deterministic match results. 
+or even any game with non-deterministic match results and with an
+unknown best solution.
 \keywords{Games, RTS, evolutionary algorithms, coevolution}
 \end{abstract}
 
