@@ -93,34 +93,56 @@ unknown best solution.
 \section{Introduction}
 
 The termination condition in Evolutionary Algorithms (EA) is a key
-factor in the experimental setups since it affects the performance of
+factor in algorithms and their experimental setups since it affects the performance of
 the algorithm solution and the amount of resources devoted to it. The
 usual termination conditions are a fixed number of generations (or
 evaluations), which is related to a fixed {\em computing cycles}
-budget for doing the experiments; or a fixed amount of generations in
+budget for doing the experiments or a fixed amount of generations in
 which the best solution is not improved, or distance to the optimum,
-among others \cite{RocheTermination13}.
+among others \cite{RocheTermination13}. However, neither one might be
+available in certain problems like the one that occupies us in this
+paper: games. 
 
-Finding the optimal termination condition is essential in the search for
-game AI's (also called \textit{bots}) that competes in a particular setup. The usual solution is to give
-it as much as you have got, which is fair if you are designing a bot % add some reference to former articles where we did this. - JJ
+The usual approach is using a fixed number of evaluations or time,
+usually given by the game or challenge conditions. That is obviously
+not the right approach for finding the best bot, or even one that is
+good enough to defeat existing ones. That is why finding the optimal termination condition is essential in the search for
+game AI's (also called \textit{bots}) that competes in a particular
+challenge. If there is not a fixed evaluation budget, the next usual solution is to give
+it as much as you have got, which is fair if you are designing a bot 
 to participate in a competition \cite{DBLP:conf/cec/Fernandez-AresMGGF11}. However, from a methodological point
 of view, if you want to compare different approaches to design a bot
-it has to be done in conditions that are as similar as possible, which
+it needs to be done in conditions that are as similar as possible, which
 might make {\em as much as you have got} a bit short on
 details. Methods that are going to be compared need to have an
 independent stopping criterion, since using for any method the same
-time or the same number of evaluations is not usually fair. 
+time or the same number of evaluations is not usually fair. This
+makes, from the methodological point of view, inadequate to use the
+number of computing cycles as a termination condition. 
  
-In the case of games, this issue is even more evident in the scope of
-the noisy and combat-based methods used for player generation. In this
-area there is no optimum (short from managing to obtain a bot that, as
-in Sun Tzu's ``Art of war'', is able to beat the opponent without
-fighting), as the opponents are not known before the EA is running. To
+This is a general problem for most kinds of games and many other
+problems without a fixed set of solutions. But this problem is
+composed in games due to
+the noisy and combat-based methods used for player generation because
+there is no single way to compute the fitness. Any way you choose, it
+is usually impossible to reach a global optimum short from managing to obtain a bot that, as
+in Sun Tzu's ``Art of war'' \cite{tzu2013art}, is able to beat the opponent without
+fighting, as the opponents are not known before the EA is running. To
 solve this, usually previously-known opponents are used in the fitness
 function and an ``optimum'' is reached when a certain number of
-victories are obtained. However, this can generate over-fitted
-solutions that only beat the used enemy \cite{DBLP:journals/jcst/MoraFGGF12}. % add references here.
+victories are obtained. However, this may generate over-fitted
+solutions that only beat the  enemies that have been used to compute
+the fitness \cite{DBLP:journals/jcst/MoraFGGF12}.
+
+Finally, there is noise which is inherent in most games, since the
+opponent bot, the game environment, the bot itself or all of them have
+a random component which might make the result of a match uncertain to
+a certain level and most ways of computing fitness *noisy* in the
+sense that different values will be yielded every time it is
+measured. The fitness values follow a particular distribution
+\cite{merelo14:noisy}, but from the point of view of this paper the
+problem is to use that fitness distribution as a termination
+condition. 
 
 
 In this paper, we present a study on different termination conditions to 
