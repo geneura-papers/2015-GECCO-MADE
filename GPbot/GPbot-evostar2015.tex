@@ -63,30 +63,29 @@
 
 
 \begin{abstract}
-Determining the end of the evolutionary process in the design of a
-game bot is not as easy as it would a priori seem. The first issue is
-that there is no known optimum, because most games make sure that there is
-no single best way of creating a bot that defeats all enemies; once it
-is found, there is no challenge left. Then, in
-most games, fitness is noisy, so that even if you use reaching a certain level
-of fitness as a termination condition, there is no guarantee that the
-individual with that fitness is not going to change next
-generation it is evaluated. Other possibilities, such as certain level
-of victories over external enemies as a termination condition,
-present the problem that the bots will be overfitted to
-those particular enemies. Even as any of these conditions is not
-perfect, there is the possibility of combining several of them as
-termination condition so that bots that are as optimal as possible,
-(and in as general a context as it is possible) are found; also,
-in a minimal amount of time and evaluations. In this paper
+Evolutionary Algorithms are frequently used as a mechanism for the off-line optimization of autonomous agents in games (bots).
+Determining the end of the evolutionary process in this stage is not as easy as it would a priori seem. 
+% Antonio - Yo introduciría el entorno del problema mejor. No todos los lectores sabrán qué quiere decir o e qué consiste 'the evolutionary process in the design of a game bot'... Lo he hecho con una frase al principio. ;)
+Usually running for a constant amount of generations is considered as an acceptable criteria, if the obtained bots are good enough. However this is not the best approach, so other options must be explored.
+% Antonio - he añadido el típico criterio de parada basado en generaciones
+The first issue is that there is no known optimum, because most games make sure
+% Antonio - 'make sure' es como si el juego se asegurase de eso. Al diseñar un juego no creo que se piense mucho en esta posibilidad. ;D
+ that there is no single best way of creating a bot that defeats all enemies; once it is found, there is no challenge left. 
+% Antonio - repito, esto no es algo de lo que los diseñadores del juego se preocupen
+Then, in most games, fitness is noisy, so that even if you consider reaching a certain level of fitness as a termination condition, there is no guarantee that the individual with that fitness is not going to turn into a worse one (regarding fitness) next generation it is evaluated. 
+% Antonio - he reescrito un poco esto. Los individuos no cambian, cambia su evaluación. Lo he dejado más o menos igual, aunque creo que mejor expresado en este sentido.
+Other possibilities, such as certain level of victories over external enemies as a termination condition, present the problem that the bots will be overfitted to
+those particular enemies. 
+% Antonio - De hecho, usar múltiples enemigos externos es la mejor forma de evaluación (si no es un co-evolutivo), ya que así se lucha contra la sobre-especialización. Usar una condición de parada basada en eso sería el mejor enfoque, que pero se necesitan muuuchos enemigos.
+Even as any of these conditions is not perfect, there is the possibility of combining several of them as termination condition so that bots that are as optimal as possible, (and in as general a context as it is possible) are found; also, in a minimal amount of time and evaluations. In this paper
 we will examine several ways of ending an evolutionary
 game bot design process, determining the capabilities of every one of
-them and, eventually, selecting one for future designs. We will use a particular
-game, Planet Wars, in which we already have some experience, but the
-conclusions to our study could, in principle, be extended to any RTS
-or even any game with non-deterministic match results and with an
+them and, eventually, selecting one for future designs. 
+We will use a particular game, Planet Wars, in which we already have some experience, but the conclusions to our study could, in principle, be extended to any RTS or even any game with non-deterministic match results and with an
 unknown best solution.
-\keywords{Games, RTS, evolutionary algorithms, coevolution}
+% Antonio - faltaría la última frase con las conclusiones que se alcancen, no?
+\keywords{Videogames, RTS, evolutionary algorithms, termination criteria}
+% Antonio - no hay co-evolución!!!
 \end{abstract}
 
 \section{Introduction}
