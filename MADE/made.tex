@@ -83,7 +83,38 @@ reduced computation budget, help you find an optimal world.
 
 In the very competitive cultural industry, writers rack their minds in
 order to generate interesting fictional worlds, mainly for the
-creation of richer environments in modern videogames.  
+creation of richer environments in modern videogames. In order to make
+generation of these fictional worlds and the stories within them truly efficient and massive,
+several methods have been proposed \cite{garcia14my,nairat:evolution}. One of them, called MADE
+\cite{garcia14my,nairat:evolution} finds ``interesting'' character stories by running
+an evolutionary algorithm that optimizes a fitness function designed
+from the archetypes that best describe the world the client wants.
+
+MADE works as follows: every individual in an evolutionary algorithm
+is described by a chromosome that represents one (or several kinds of)
+finite state automaton that are set to live in a simulated
+environment. The evolutionary algorithm was run with standard
+parameters and {\em sensible} default values were given to several
+non-evolutionary parameters such as the number of profiles needed to
+obtain the desired result and or the size of the simulated
+world. There was no attempt to optimize these parameters, since the
+main intention seemed to be to have a prototype that allowed the
+authors to have an acid test of their proposed approach.
+
+That paper hinted at the fact that parameters such as the number of
+{\em profiles} (different kind of finite state automaton present in
+the world) had a big influence on the outcome, to the point of making
+it possible or not. However, other parameters such as the number of
+simulated days the world is running might also have some influence.
+
+In this paper we will use that open source simulator and look at it
+from the evolutionary point of view so that we can check what kind of
+influence they have in the outcome. We will do a experimental setup
+that will test different parameters, and eventually find a series of
+rules that will help the users of that framework to set the best
+values for their simulation. 
+
+The rest of the paper is organized as follows...
 
 \section{State of the Art}
 
