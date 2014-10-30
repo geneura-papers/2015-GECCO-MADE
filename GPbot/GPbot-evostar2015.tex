@@ -61,7 +61,9 @@
 
 \maketitle
 
-
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   ABSTRACT   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
 \begin{abstract}
 Evolutionary Algorithms are frequently used as a mechanism for the off-line optimization of autonomous agents in games (bots).
 Determining the end of the evolutionary process in this stage is not as easy as it would a priori seem. 
@@ -88,6 +90,9 @@ unknown best solution.
 % Antonio - no hay co-evoluciï¿½n!!!
 \end{abstract}
 
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   INTRODUCTION   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
 \section{Introduction}
 
 The termination condition is a key factor in any algorithm and its experimental setup since it affects the algorithmic performance, with respect to the quality of the yielded solution, and also to the amount of resources devoted to the run. 
@@ -170,6 +175,9 @@ implication of the obtained results.
 %maribel: En realidad, este Ãºltimo pÃ¡rrafo lo simplifiquÃ© y reescribÃ­ entero tal y como os pongo aquÃ­ abajo
 %The rest of the paper is organized as follows. Next, section \ref{sec:SoA} establishes the state of the art related to termination conditions for evolutionary algorithms in which the optimum is not known and/or is noisy. Following, section \ref{sec:met} presents the set of termination conditions which have been checked in this paper and how they contribute to prove which one has better behaviour in this context; we also sketch the problem we have used in this particular paper, evolution of bot for Planet Wars. Results are presented in Section \ref{sec:met}, followed by the conclusions and a discussion of the implication of the obtained results.
 
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  STATE OF THE ART  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
 \section{State of the Art}
 \label{sec:SoA}
 
@@ -205,38 +213,77 @@ Finally, as stated in Hart et al. \cite{Hart1996} when calculating metrics of pa
 
 % A conclusion should be added to this based on the last paragraph - JJ
 
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  METHODOLOGY  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
 \section{Methodology and experimental setup}
 \label{sec:met}
 
 This section describes the different termination approaches to be tested in the paper. Everyone is commented and justified.
-Then, the parameter setup and the different experiments to be conducted are also presented and discussed. The aim is to analyse the differences in performance.
+Then, the parameter setup and the different experiments to be conducted are also presented and discussed. The aim is to analyse the differences in performance obtained with each configuration.
+
+% --------------------------------------------------------------
+
+\subsection{GA features}
+
+...\\
+
+We have considered a Generational approach [REF] in order to have a high level of diversity, which is better for checking some of the stop criteria to test. Specifically those population-based ones, which are normally more sensitive to diverse populations.
+
+In addition, a noise reduction approach have been adopted \cite{Genebot_JCST}. Thus, the evaluation of every individual will consist in a set of 30 matches against an expert rival. Namely we have considered, ExpGenebot \cite{Genebot_CIG2012} our best approach to date based on the evolutionary improvement of a human-defined bot. It is a bot able to adapt its behaviour doing an initial analysis of the battle map, and also during the combat depending on the forces balance (between it and the enemy), i.e. location of the fleets and amount of ships.
+This rival has been chosen due to its potential variety of behaviours, so 30 different representative maps have been chosen for each evaluation, in order to ensure that the bot behaves in a different way in every match.
+Thus, the fitness evaluation will be much more representative of the value of an individual.
+
+%***
+%TODO: Definir la función de SCORE
+%***
+
+% --------------------------------------------------------------
 
 \subsection{Termination Criteria}
+
 A set of three different algorithm stop criteria is going to be checked in the paper, namely:
 \begin{itemize}
     \item \textit{Number of generations}: the classical termination
       criteria in evolutionary algorithms. 30, 50 and 100 will be
       considered, having in mind that the previous approach of GPBot
       [CITA EVO* 2014] used 50. As indicated in the previous section,
-      Hart  \cite{Hart1996} claims that this is not the right way to
+      Hart \cite{Hart1996} claims that this is not the right way to
       compare different approaches; however, we include it here as a
-      baseline for comparison of the other approaches. 
-    \item \textit{Age}: number of generations that the best individual has remained in the following population (in the next generation). Some limits have been set, based in the average obtained through systematic experimentation. These are 3, 5, and 10 of the number of generations.
+      baseline for comparison with the other approaches. 
+    \item \textit{Age}: if the age of one individual is an outlier in the comparison with the rest of the population, then, it would be potentially an optimal solution and the algorithm can be stopped. The difference between the age of the outlier and the rest will be measured considering three factors: 1, 1.5 and 2 times the interquartile range (IQR).
+    \item \textit{Fitness threshold}: a maximum value to obtain in the evolution can be set considering the top limit of the score function, 45. Thus, three possible thresholds are defined,
+% After a phase of systematic experimentation?
+namely 37, 40, 43.
+    \item \textit{Fitness improvement}: in an ideal evolutionary process the fitness of the best individual must be improved during evolution (every generation). However, the noisy nature of the problem (or the noisy fitness function) makes this tendency oscillate. Thus, if the best fitness is not improved during a number of generations, the algorithm will stop. Again three possible values will be tested: 3, 7, 11.
     \item \textit{Replacement rate}: if the number of individuals
       replaced by the offspring decreases under a threshold, then the
       search would be stagnated and the algorithm could stop. Three
       different rates have been tested, namely 10\%, 20\%, 30\%... % but this has to be combined with a steady state approach or something. By itself, it does not mean a thing. Please explain - JJ
+% Antonio - en la descripción del algoritmo se habrá dicho que va a ser generacional (hecho), ya que en un estacionario la tasa de reemplazo estaría mucho más acotada. ;)
 \end{itemize}
 
 The first two criteria are based in the...
 
 The aim of the experiments is to test the set of termination criteria...
 
-% 12 pages is the limit. 
-\section{Results}
-\label{sec:res}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%  EXPERIMENTS AND RESULTS  %%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\section{Experiments and Results}
+\label{sec:results}
 
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CONCLUSIONS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
 \section{Conclusions}
+
+En las conclusiones no debemos olvidar sentar las bases de los tipos de problemas/algoritmos a los que se podrían extrapolar o generalizar los resultados.
+
+- fitness óptimo no conocido
+- ¿entorno ruidoso?
+- que se usen mecanismos para paliar la influencia del ruido es importante (podría ser requerido)
+
 
 \section*{Acknowledgements}
 
