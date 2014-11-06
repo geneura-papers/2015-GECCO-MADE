@@ -68,7 +68,7 @@ order to generate interesting fictional worlds, mainly for the
 creation of richer environments in modern videogames. In order to make
 generation of these fictional worlds and the stories within them truly efficient and massive,
 several methods have been proposed \cite{garcia14my,nairat:evolution}. One of them, called MADE
-\cite{garcia14my,nairat:evolution} finds ``interesting'' character stories by running
+\cite{garcia14my} finds ``interesting'' character stories by running
 an evolutionary algorithm that optimizes a fitness function designed
 from the archetypes that best describe the world the client wants.
 
@@ -104,17 +104,18 @@ present the conclusions reached in this paper.
 
 \section{State of the Art}
 
+The work of Nairat et al. \cite{nairat:evolution} ...
 
 \section{Methodology and experimental setup} %Issue #12
 \label{sec:met}
 
 In this section we will show how to systematize the different steps of the proposed method to generate a fictional world. Initially, the fitness should be decided considering the desired behaviour of the agents that populate the world (for example, a given quantity of some archetype). Also, the number of profiles is...  Then, the characteristics of this world are also decided taking into account the expected... For example, adding enough days to allow the archetypes generation. Finally, the interesting plot points are extracted from the log using... 
 
-As the usage of different number of profiles generate different individual sizes, and therefore, different convergence times... TERMINAR DE JUSTIFICAR CRITERIO DE PARADA
+As the usage of different number of profiles generate different individual sizes, and therefore, different convergence times... TERMINAR DE  JUSTIFICAR CRITERIO DE PARADA
 
 In this work, we propose three scenarios:
 \begin{itemize}
-\item Scenario A: CUENTO O LO QUE SEA Tiene 1 solo arquetipo
+\item Scenario A: The Villains. This scenario only requires one type of archetype: ``The villain''. This
 \item Scenario B: CUENTO O LO QUE SEA TIene 2 arquetipos
 \item Scenario C: Tiene 5 arquetipos
 \end{itemize}
@@ -125,9 +126,9 @@ The first step requires to develop a fitness function that takes into account th
 
 In this paper, three fitness will be studied, related with the previously explained scenarios:
 \begin{itemize}
-\item Function 1: for the scenario A...
-\item Function 2: for the scenario B...
-\item Function 3: for the scenario C...
+\item Function 1: for the scenario A . This function requires the maximization of the ``villain'' archetype, trying to maximise the number of villains in the world. 
+\item Function 2: for the scenario B. In this, case, the ``hero'' archetype...
+\item Function 3: for the scenario C... This function requires 5 different archetypes. These archetypes have some type of interdependence.
 \end{itemize}
 
 Number of profiles: the number of profiles affect the generated fitness as...
@@ -139,13 +140,35 @@ Once the fitness function has been decided, several parameters related with the 
 The parameters of the world affect  JUSTIFICAR ...
 
 
-Number of days: 128, 256, 512
+Number of days: 128, 256
 
 
 Finally, the parameters of the GA also affect the execution of... the population size ... 64, 128, 256 JUSTIFICAR
 
 The rest of the parameters will be the classic... 1/n... JUSTIFICAR 
 
+Table \ref{tab:parameters} summarizes all the configuration parameters that will be compared, and the rest of the (fixed) parameters of the algorithm.
+
+\begin{table*}
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+{\em Parameter} & {\em Values} \\\hline \hline
+\multicolumn{2}{c}{Parameters to study} \\
+Number of profiles & 1, 2, 4 and 8 \\\hline
+Number of virtual days &  128 and 256 \\ \hline
+World dimension &  5x5, 10x10 and 20x20 \\ \hline
+GA population size & 64, 128 and 256 \\ \hline
+\multicolumn{2}{c}{Fixed parameters} \\ \hline
+Crossover probability & 1/chromosome lenght \\ \hline
+Selection method & \\ \hline
+Replacement method & \\ \hline
+Stop condition & \\ \hline
+\end{tabular}
+\caption{Parameters used in the experiments.}
+\label{tab:parameters}
+\end{center}
+\end{table*}
 
 %\subsection{Converting logs to stories}
 
