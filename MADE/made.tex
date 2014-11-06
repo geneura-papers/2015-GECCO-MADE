@@ -109,31 +109,42 @@ The work of Nairat et al. \cite{nairat:evolution} ...
 \section{Methodology and experimental setup} %Issue #12
 \label{sec:met}
 
-In this section we will show how to systematize the different steps of the proposed method to generate a fictional world. Initially, the fitness should be decided considering the desired behaviour of the agents that populate the world (for example, a given quantity of some archetype). Also, the number of profiles is...  Then, the characteristics of this world are also decided taking into account the expected... For example, adding enough days to allow the archetypes generation. Finally, the interesting plot points are extracted from the log using... 
+In this section we will show how to systematize the different steps of the proposed method to generate a fictional world. Initially, the fitness should be decided considering the desired behaviour of the agents that populate the world (for example, a given quantity of some archetype). To facilitate the generation of different personalities different number of ``profile'' could be required. This concept, presented in \cite{}, describes the different sets of behaviour parameters of the agents in the world (the number of different FSMs). Therefore, a world with 3 profiles is composed by 3 different types of agents. However, and as will be probed in this paper, the number of profiles could be different of the number of desired archetypes.
 
-As the usage of different number of profiles generate different individual sizes, and therefore, different convergence times... TERMINAR DE  JUSTIFICAR CRITERIO DE PARADA
+Then, the characteristics of this world are also decided taking into account the expected... For example, adding enough days to allow the archetypes generation. Finally, the interesting plot points are extracted from the log using... 
+
+
 
 In this work, we propose three scenarios:
 \begin{itemize}
-\item Scenario A: The Villains. This scenario only requires one type of archetype: ``The villain''. This
-\item Scenario B: CUENTO O LO QUE SEA TIene 2 arquetipos
-\item Scenario C: Tiene 5 arquetipos
+\item Scenario A: The Villains. This scenario only requires one type of archetype: The ``villain''. This 
+\item Scenario B: The Hero. As in the classic stories, when a villain appears, a hero must rise. The ``hero'' archetype depend on the existence of a ``villain'' archetype. This scenario tries to generate worlds formed by archetypes that depend of anothers.
+\item Scenario C: The shakespearian story. As many of the great stories of The Bard, this world requires the existence of different and interdependant archetypes: The ``hero'' and ``villain'' are completed with the ``obstacle'' (QUE HACE QUE), the  ``mentor'' (QUE HACE QUE) and the ``avenger'' (this archetype does not depend on the others).
 \end{itemize}
 
 \subsection{Fitness deduction}
 
-The first step requires to develop a fitness function that takes into account the quantity of the desired archetypes. Three quantities will be defined: low, average, and...
+The first step requires to develop a fitness function that takes into account the quantity of the desired archetypes. This fitness function should facilitate the existence of diversity in the desired archetypes: that is, it is better that the world has 25\% of ``villains'' and 25\% of ``heroes'' than 50\% of ``villains'' and no ``heroes''. Thus, we propose the fitness using the next function:
 
-In this paper, three fitness will be studied, related with the previously explained scenarios:
+\sum _{i=1}^{P}\dfrac {\log \left( 1+10p_{i}\right) } {\log 1}
+
+where $P$ is the number of desired profiles, and $p_{i}$ is the percentage (from 0 to 1) of a specific profile in the world.
+
+In this paper, three fitness functions will be studied, related with the previously explained scenarios:
 \begin{itemize}
 \item Function 1: for the scenario A . This function requires the maximization of the ``villain'' archetype, trying to maximise the number of villains in the world. 
-\item Function 2: for the scenario B. In this, case, the ``hero'' archetype...
-\item Function 3: for the scenario C... This function requires 5 different archetypes. These archetypes have some type of interdependence.
+\item Function 2: for the scenario B. In this, case, the ``hero'' archetype... and villain ()
+\item Function 3: for the scenario C... This function requires 5 different archetypes. These archetypes have some type of interdependence. hero villano obstaculo mentor y vengativo (este no deènde de nadie)
 \end{itemize}
 
-Number of profiles: the number of profiles affect the generated fitness as...
+\subsection{Individual representation}
+
+The number of profiles has a direct relation with the desired fitness functions. It is expected that functions with only one kind of archetype (such as F1 and F2) only would require one profile. Furthermore, the number of profiles affect the generated fitness as the chromo
+
+
 
 \subsection{System optimization}
+
 
 Once the fitness function has been decided, several parameters related with the world and the GA will be studied
 
@@ -145,9 +156,9 @@ Number of days: 128, 256
 
 Finally, the parameters of the GA also affect the execution of... the population size ... 64, 128, 256 JUSTIFICAR
 
-The rest of the parameters will be the classic... 1/n... JUSTIFICAR 
+As the usage of different number of profiles generate different individual sizes, and therefore, different convergence times the stop criterion has been established in...TERMINA
 
-Table \ref{tab:parameters} summarizes all the configuration parameters that will be compared, and the rest of the (fixed) parameters of the algorithm.
+Table \ref{tab:parameters} summarizes all the configuration parameters that will be compared, and the rest of the (fixed) parameters of the algorithm. The fixed values of the parameters of the GA have been usually described by other authors as...
 
 \begin{table*}
 \begin{center}
@@ -160,10 +171,12 @@ Number of virtual days &  128 and 256 \\ \hline
 World dimension &  5x5, 10x10 and 20x20 \\ \hline
 GA population size & 64, 128 and 256 \\ \hline
 \multicolumn{2}{c}{Fixed parameters} \\ \hline
-Crossover probability & 1/chromosome lenght \\ \hline
-Selection method & \\ \hline
-Replacement method & \\ \hline
+Mutation probability & 1/12 per gene \\ \hline
+Parent pool size & Same as pool size \\ \hline
+Selection method & binary tournament plus 10\% of the fittest \\ \hline
+Replacement method & Generational\\ \hline
 Stop condition & \\ \hline
+Runs per configuration & 30 \\ \hline
 \end{tabular}
 \caption{Parameters used in the experiments.}
 \label{tab:parameters}
