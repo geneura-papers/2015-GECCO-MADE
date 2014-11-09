@@ -228,17 +228,32 @@ Then, the parameter setup and the different experiments to be conducted are also
 
 ...\\
 
-We have considered a Generational approach [REF] in order to have a high level of diversity, which is better for checking some of the stop criteria to test. 
+% Cada vez que Antonio usa considered, Dios mata a un gatito - JJ
+In this paper, we use a generational approach [REF] in order to have a high level of diversity, % justificarlo
+which is better for checking some of the stop criteria to test. % ¿por qué? - JJ
 Specifically those population-based ones, which are normally more sensitive to diverse populations.
 %maribel: Por qué es mejor tener diversidad para probar criterios de parada?, esto será mejor para algunos criterios, pero no para todos, de hecho los criterios de parada más utilizados, como el número de evaluaciones o el número de generaciones, no tienen nada que ver con la diversidad de la población. Sí es verdad que es importante para criterios basados en alguna metrica basada en la población, como el fitness medio en relación al mejor fitness, o criterios basados en algún tipo de distancia entre los individuos de la población, pero no para todos los criterios de parada en general, como parece que dice la frase anterior, así que creo que hay que justificar mejor el que el algoritmo sea generacional. Pongo a continuación una posible justificación a ver qué os parece.
 % Antonio - Pos eso es lo que habia puesto yo. XD 
 % Me has movido al frase en la que aclaraba eso mismo. Además de que desde el principio ponía 'some of the stop criteria'. ;D
+% Esta frase no tiene sentido. - JJ
 
 %The aim of this paper is to test which is the best way for stopping an evolutionary algorithm to find an autonomous and winner agent for playing a game. We have selected several stopping criteria, some of them, are controlled only by one or more evolutionary paremeter, but others by some features of the population. Due to this kind of stopping criteria, the diversity of the population should be preserved. For this reason, the generational approach is a good option for our test setup.  
 
 
-In addition, a noise reduction approach have been adopted \cite{Genebot_JCST}. Thus, the evaluation of every individual consist in a set of 30 matches against an expert rival. Namely we have considered, ExpGenebot \cite{Genebot_CIG2012} our best approach to date based on the evolutionary improvement of a human-defined bot. It is a bot able to adapt its behaviour doing an initial analysis of the battle map, and also during the combat depending on the forces balance (between it and the enemy), i.e. location of the fleets and amount of ships.
-This rival has been chosen due to its potential variety of behaviours, so 30 different representative maps have been chosen for each evaluation, to ensure the bot behaves in a different way in every match. Thus, the fitness evaluation enhances the value of an individual.
+In addition, we have tried to reduce the effects of the noisy
+evaluation \cite{Genebot_JCST} by computing fitness from the result of
+30 matches against an expert rival, ExpGenebot proposed in
+\cite{Genebot_CIG2012} and based on the improvement of the heuristics
+proposed by a human player and which is, for this particular game, the state
+of the art. ExpGenebot adapts its behaviour doing an initial analysis
+of the battle map and depending on the balance of forces between it and the enemy, i.e. location of the fleets and amount of ships.
+This rival has been chosen due to its potential variety of behaviours,
+so 30 different representative maps have been chosen for each
+evaluation, to ensure the bot behaves in a different way in every
+match. Thus, the fitness evaluation enhances the value of an
+individual. 
+% He anonimizado las referencias. Pero ¿son 30 batallas en 30 mapas o
+% sólo 30 batallas, cada una en un mapa?
 
 %***
 %TODO: Definir la función de SCORE
@@ -249,41 +264,44 @@ This rival has been chosen due to its potential variety of behaviours, so 30 dif
 \subsection{Termination Criteria}
 % Antonio - Maribel, criteria es el plural de criterion. ;)
 
-A set of five different algorithm stop criteria are going to be checked in the paper, namely:
+The traditional set of stopping criteria are either based on stagnation, checking for the exitence of a solution in the set and a fixed budget. Combining them we have designed a set of five different algorithm stop criteria are going to be checked in the paper, namely:
 
 \begin{itemize}
-    \item \textit{Number of generations}: the classical termination
-      criteria in evolutionary algorithms. 30, 50 and 100 will be
-      considered, having in mind that the previous approach of GPBot
-      [CITA EVO* 2014] used 50. As indicated in the previous section,
+    \item \textit{Number of generations} is the classical termination
+      criteria in evolutionary algorithms. We will consider 30, 50 and 100 generations since some papers
+      [CITA EVO* 2014] have mentioned the middle value. As indicated in the previous section,
       Hart \cite{Hart1996} claims that this is not the right way to
       compare different approaches; however, we include it here as a
-      baseline for comparison with the other approaches. 
+      baseline for comparison with the other approaches. % En ese caso yo creo que no habría que probar tantos valores diferentes.
 
-    \item \textit{Age of outliers}: if the age of one individual is an outlier in the comparison with the rest of the population, then, it would be potentially an optimal solution and the algorithm can be stopped. The difference between the age of the outlier and the rest of the population is measured considering three factors: 1, 1.5 and 2 times the interquartile range (IQR).
+    \item \textit{Age of outliers}: if the age of one individual is an outlier in the comparison with the rest of the population then it would be potentially an optimal solution % why?
+and the algorithm can be stopped. The difference between the age of the outlier and the rest of the population is measured considering three factors: 1, 1.5 and 2 times the interquartile range (IQR). %explain a bit. Does this mean that it will stop when it finds somebody that is two times as old as the average? - JJ
 
     \item \textit{Fitness threshold}: a maximum value to obtain in the evolution can be set considering the top limit of the score function, 45. Thus, three possible thresholds are defined,
 % After a phase of systematic experimentation?
-namely 30, 36, 42. These values have been set considering that the ideal fitness/score to obtain is 45, but this is not effectively reachable (the bot must win all the matches in just one turn).
+namely 30, 36, 42. These values have been set considering that the ideal fitness/score to obtain is 45, but this is not effectively reachable (the bot must win all the matches in just one turn). %Los valores son bastante arbitrarios, pero bueno. 
+In general, setting a fixed value that is a certain distance away to a known (and maybe unreachable) optimum is a compromise solution, since it is not known in advance whether this lower level will be even reached and, if it is, what would be the effort needed to go beyond that and whether a better solution (even including noise) could be found with a higher value. 
+%En este caso, ¿no se tiene en cuenta el ruido? - JJ
 
-    \item \textit{Fitness improvement}: in an ideal evolutionary process the fitness of the best individual must be improved during evolution every generation. However, the noisy nature of the problem (or the noisy fitness function) makes this tendency oscillate. Thus, if the best fitness is not improved during a number of generations, the algorithm stops. Again three possible values will be tested: 3, 7, 10. %maribel y por qué estos? está fijado antes en algún otro paper como el del número de gneraciones?
+    \item \textit{Fitness improvement}: in an ideal evolutionary process the fitness of the best individual must be improved during evolution every generation. However, the noisy nature of the problem (or the noisy fitness function) makes this difficult to measure. Thus, if the best fitness is not improved during a number of generations, the algorithm stops. Again three possible values will be tested: 3, 7 and 10 generations. %maribel y por qué estos? está fijado antes en algún otro paper como el del número de gneraciones?
 These values have been set after a dedicated systematic experimentation phase as they are minimum and maximum thresholds plus an intermediate value. 
-% Antonio - aclarado. Es la más difícil de justificar.
+% Antonio - aclarado. Es la más difícil de justificar. 
+% JJ - yo probaría más valores. En todo caso, el fitness variará cada generación si se vuelve a ejecutar, ¿no? 
 
-    \item \textit{Replacement rate}: if the number of individuals
-      replaced by the offspring decreases under a threshold, then the
-      search could be stagnated and the algorithm must stop. Three
+    \item \textit{Replacement rate}: when using an elitist strategy in which individuals are replaced only if the new generation is better, the fact that the population stops generating better individuals might be a sign of stagnation. Three
       different rates have been tested, namely 25\%, 12.5\%, 6.25\%... % but this has to be combined with a steady state approach or something. By itself, it does not mean a thing. Please explain - JJ
 % Antonio - en la descripción del algoritmo se habrá dicho que va a ser generacional (hecho), ya que en un estacionario la tasa de reemplazo estaría mucho más acotada. ;)
 % Maribel: En un algoritmo generacional clásico, se reemplaza toda la población con los hijos menos el mejor. Pero nosotros no estamos usando este reemplazo, así como así, sino que hacemos unión de los hijos y los padres y nos quedamos con los mejores N no? Si esto es así, sería una cosa a comentar en la sección de GA features.
 % Antonio - efectivamente, he intentado contarlo mejor debajo. En todo caso hay que aclararlo en la descripción del algoritmo. - TODO -
+% Aquí había que haber hecho una aclaración o referencia al mismo. Ya lo he aclarado - JJ
    The values are based in the maximum number of replacements per generation. Our model defines a maximum of n/2 (50\%) individuals to be potentially substituted by the offspring. Thus, the parameter values aim to test half of this probability, and half of the previous values, respectively.
 \end{itemize}
 
 The first stop criterion is based in an algorithmic parameter, so the algorithm stops when this parameter reaches a value. For this criterion, the population status does not matter. The rest of criteria are population-based ones, i.e. they consider some of its features to test if the algorithm must stop. The feature of the population leads the stop criteria and so leads the end of the algorithm. 
 
-The aim of the experiments is to test the set of termination criteria...
+The objective of these experiments % is to test the set of termination criteria... %el objetivo no es nunca ``probar'' esto. Es solucionar un problema. 
 
+% Habrá que decir qué se va a medir y por qué. ¿Qué se compara? ¿Por qué?
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%  EXPERIMENTS AND RESULTS  %%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -295,12 +313,12 @@ The aim of the experiments is to test the set of termination criteria...
 %
 \section{Conclusions}
 
-En las conclusiones no debemos olvidar sentar las bases de los tipos de problemas/algoritmos a los que se podrían extrapolar o generalizar los resultados.
+%% En las conclusiones no debemos olvidar sentar las bases de los tipos de problemas/algoritmos a los que se podrían extrapolar o generalizar los resultados.
 
-- fitness óptimo no conocido
-- ¿entorno ruidoso?
-- que se usen mecanismos para paliar la influencia del ruido es importante (podría ser requerido)
-
+%% - fitness óptimo no conocido
+%% - ¿entorno ruidoso?
+%% - que se usen mecanismos para paliar la influencia del ruido es importante (podría ser requerido)
+% No se usa ningún mecanismo para ``paliar'' el ruido. Sí se intenta trabajar con él.
 
 \section*{Acknowledgements}
 
