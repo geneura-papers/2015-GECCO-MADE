@@ -340,28 +340,28 @@ individual.
 The traditional set of stopping criteria are either based on stagnation, checking for the exitence of a solution in the set and a fixed budget. Combining them we have designed a set of five different algorithm stop criteria are going to be checked in the paper, namely:
 
 \begin{itemize}
-    \item \textit{Number of generations} is the classical termination
+    \item \texttt{[NG] Number of generations}  is the classical termination
       criteria in evolutionary algorithms. We will consider 30, 50 and 100 generations since some papers
       [CITA EVO* 2014] have mentioned the middle value. As indicated in the previous section,
       Hart \cite{Hart1996} claims that this is not the right way to
       compare different approaches; however, we include it here as a
       baseline for comparison with the other approaches. % En ese caso yo creo que no habría que probar tantos valores diferentes.
 
-    \item \textit{Age of outliers}: if the age of one individual is an outlier in the comparison with the rest of the population then it would be potentially an optimal solution % why?
+    \item \texttt{[AO] Age of outliers}: if the age of one individual is an outlier in the comparison with the rest of the population then it would be potentially an optimal solution % why?
 and the algorithm can be stopped. The difference between the age of the outlier and the rest of the population is measured considering three factors: 1, 1.5 and 2 times the interquartile range (IQR). %explain a bit. Does this mean that it will stop when it finds somebody that is two times as old as the average? - JJ
 
-    \item \textit{Fitness threshold}: a maximum value to obtain in the evolution can be set considering the top limit of the score function, 45. Thus, three possible thresholds are defined,
+    \item \texttt{[FT] Fitness threshold}: a maximum value to obtain in the evolution can be set considering the top limit of the score function, 45. Thus, three possible thresholds are defined,
 % After a phase of systematic experimentation?
 namely 30, 36, 42. These values have been set considering that the ideal fitness/score to obtain is 45, but this is not effectively reachable (the bot must win all the matches in just one turn). %Los valores son bastante arbitrarios, pero bueno. 
 In general, setting a fixed value that is a certain distance away to a known (and maybe unreachable) optimum is a compromise solution, since it is not known in advance whether this lower level will be even reached and, if it is, what would be the effort needed to go beyond that and whether a better solution (even including noise) could be found with a higher value. 
 %En este caso, ¿no se tiene en cuenta el ruido? - JJ
 
-    \item \textit{Fitness improvement}: in an ideal evolutionary process the fitness of the best individual must be improved during evolution every generation. However, the noisy nature of the problem (or the noisy fitness function) makes this difficult to measure. Thus, if the best fitness is not improved during a number of generations, the algorithm stops. Again three possible values will be tested: 3, 7 and 10 generations. %maribel y por qué estos? está fijado antes en algún otro paper como el del número de gneraciones?
+    \item \texttt{[FI] Fitness improvement}: in an ideal evolutionary process the fitness of the best individual must be improved during evolution every generation. However, the noisy nature of the problem (or the noisy fitness function) makes this difficult to measure. Thus, if the best fitness is not improved during a number of generations, the algorithm stops. Again three possible values will be tested: 3, 7 and 10 generations. %maribel y por qué estos? está fijado antes en algún otro paper como el del número de gneraciones?
 These values have been set after a dedicated systematic experimentation phase as they are minimum and maximum thresholds plus an intermediate value. 
 % Antonio - aclarado. Es la más difícil de justificar. 
 % JJ - yo probaría más valores. En todo caso, el fitness variará cada generación si se vuelve a ejecutar, ¿no? 
 
-    \item \textit{Replacement rate}: when using an elitist strategy in which individuals are replaced only if the new generation is better, the fact that the population stops generating better individuals might be a sign of stagnation. Three
+    \item \texttt{[RT] Replacement rate}: when using an elitist strategy in which individuals are replaced only if the new generation is better, the fact that the population stops generating better individuals might be a sign of stagnation. Three
       different rates have been tested, namely 25\%, 12.5\%, 6.25\%... % but this has to be combined with a steady state approach or something. By itself, it does not mean a thing. Please explain - JJ
 % Antonio - en la descripción del algoritmo se habrá dicho que va a ser generacional (hecho), ya que en un estacionario la tasa de reemplazo estaría mucho más acotada. ;)
 % Maribel: En un algoritmo generacional clásico, se reemplaza toda la población con los hijos menos el mejor. Pero nosotros no estamos usando este reemplazo, así como así, sino que hacemos unión de los hijos y los padres y nos quedamos con los mejores N no? Si esto es así, sería una cosa a comentar en la sección de GA features.

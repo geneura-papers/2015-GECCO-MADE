@@ -3,6 +3,7 @@
 \usepackage{amssymb}
 \setcounter{tocdepth}{3}
 \usepackage{graphicx}
+\usepackage{subfigure}
 
 \usepackage{url}
 \newcommand{\keywords}[1]{\par\addvspace\baselineskip
@@ -187,6 +188,7 @@ Mutation probability & 1/12 per gene \\ \hline
 Parent pool size & Same as pool size \\ \hline
 Selection method & Binary tournament \\ \hline 
 Elite & 10\%  \\ \hline
+% Cuando algo no compile lo arregláis, no lo borréis!!!! - JJ
 Replacement method & Generational\\ \hline
 Stop condition & \\ \hline %Stop condition? - JJ
 Runs per configuration & 30 \\ \hline
@@ -201,6 +203,102 @@ Runs per configuration & 30 \\ \hline
 % 12 pages is the limit. 
 \section{Results}
 \label{sec:res}
+
+
+In this paper, 9720 runs were carried out for each problem (30 times * 4 levels for \emph{P} * 2 levels for \emph{D} * 3 levels for \emph{W} * 3 levels for \emph{S} * 3 levels for \emph{F} that represent the possible combinations) to obtain the fitness for each combination.
+
+
+As the Kolmogorov-Smirnov test determines that the data we are using not follow a normal distribution a Kruskal–Wallis test have been performed. This test is a non-parametric test, which means that it does not assume that the data come from a normal distribution. 
+
+
+The application of Kruskal-Wallis consisted in running the EA optimization method using those parameter combinations to obtain the best fitness. 
+The response variable used to perform the statistical analysis is the fitness at the end of the run. The changes in the response variable are produced when a new combination of parameters is considered. Then, the {R} \footnote{{\tt http://www.r-project.org}} tool was used to obtain the Kruskal-Wallis tables as well as the tables of means and figures for each problem. 
+
+Obtained Kruskal-Wallis tables show for each factor, the  degrees of freedom (FD), the experimental value of the statistical F (F value) and its associated p-value.
+As previously stated, if the output is smaller than 0.05, then the factor effect is statistically significant at a $95\%$ confidence level (what indicates that different initial values of this parameter lead to significant differences on the fitness). 
+
+As a significant F-value only tells  that the effects are not all equal (i.e., reject the null hypothesis), post-hoc tests might be used to determine which effects or outputs are significantly different from which other.
+
+Results show that all the parameters considered have a significant impact in the generation of the agents.
+
+\begin{figure}
+        \centering
+        \subfigure[Profiles]{
+                \includegraphics[width=3.5cm]{imags/e1_p.png}
+                \label{fig:e1_p}
+        }
+        \subfigure[Days]{
+                \includegraphics[width=3.5cm]{imags/e1_d.png}
+                \label{fig:e1_d}
+        }
+        \subfigure[World Size]{
+                \includegraphics[width=3.5cm]{imags/e1_w.png}
+                \label{fig:e1_w}
+        }  
+        \subfigure[Food]{
+                \includegraphics[width=3.5cm]{imags/e1_f.png}
+                \label{fig:e1_f}
+        }
+        \subfigure[Population Size]{
+                \includegraphics[width=3.5cm]{imags/e1_s.png}
+                \label{fig:e1_s}
+        }
+
+        \caption{Boxplots for scenario E1}\label{fig:boxplotsE1}
+\end{figure}
+
+\begin{figure}
+        \centering
+        \subfigure[Profiles]{
+                \includegraphics[width=3.5cm]{imags/e2_p.png}
+                \label{fig:e2_p}
+        }
+        \subfigure[Days]{
+                \includegraphics[width=3.5cm]{imags/e2_d.png}
+                \label{fig:e2_d}
+        }
+        \subfigure[World Size]{
+                \includegraphics[width=3.5cm]{imags/e2_w.png}
+                \label{fig:e2_w}
+        }  
+        \subfigure[Food]{
+                \includegraphics[width=3.5cm]{imags/e2_f.png}
+                \label{fig:e2_f}
+        }
+        \subfigure[Population Size]{
+                \includegraphics[width=3.5cm]{imags/e2_s.png}
+                \label{fig:e2_s}
+        }
+
+        \caption{Boxplots for scenario E2}\label{fig:boxplotsE2}
+\end{figure}
+
+\begin{figure}
+        \centering
+        \subfigure[Profiles]{
+                \includegraphics[width=3.5cm]{imags/e5_p.png}
+                \label{fig:e5_p}
+        }
+        \subfigure[Days]{
+                \includegraphics[width=3.5cm]{imags/e5_d.png}
+                \label{fig:e5_d}
+        }
+        \subfigure[World Size]{
+                \includegraphics[width=3.5cm]{imags/e5_w.png}
+                \label{fig:e5_w}
+        }  
+        \subfigure[Food]{
+                \includegraphics[width=3.5cm]{imags/e5_f.png}
+                \label{fig:e5_f}
+        }
+        \subfigure[Population Size]{
+                \includegraphics[width=3.5cm]{imags/e5_s.png}
+                \label{fig:e5_s}
+        }
+
+        \caption{Boxplots for scenario E5}\label{fig:boxplotsE5}
+\end{figure}
+
 
 \section{Conclusions}
 
