@@ -31,7 +31,7 @@
 \mainmatter  % start of an individual contribution
 
 % first the title is needed
-\title{It's time to stop: investigating termination conditions in the evolution of game bots}
+\title{It's time to stop: A comparison of termination conditions in the evolution of game bots}
 
 % a short form should be given in case it is too long for the running head
 \titlerunning{It's time to stop}
@@ -65,25 +65,37 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   ABSTRACT   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 \begin{abstract}
-Evolutionary Algorithms are frequently used as a mechanism for the off-line optimization of autonomous agents in games (bots).
-Determining the end of the evolutionary process in this stage is not as easy as it would a priori seem. 
+Evolutionary Algorithms are frequently used as a mechanism for the optimization of autonomous agents in games (bots). % quitado offline que no se entiende en este contexto - JJ
+Determining the end of the optimization process in this stage is not as easy as it would a priori seem. 
 % Antonio - Yo introducirï¿½a el entorno del problema mejor. No todos los lectores sabrï¿½n quï¿½ quiere decir o e quï¿½ consiste 'the evolutionary process in the design of a game bot'... Lo he hecho con una frase al principio. ;)
-Usually running for a constant amount of generations is considered as an acceptable criteria, if the obtained bots are good enough. However this is not the best approach, so other options must be explored.
-% Antonio - he aï¿½adido el tï¿½pico criterio de parada basado en generaciones
 The first issue is that there is no known optimum, because most games make sure
 % Antonio - 'make sure' es como si el juego se asegurase de eso. Al diseï¿½ar un juego no creo que se piense mucho en esta posibilidad. ;D
  that there is no single best way of creating a bot that defeats all enemies; once it is found, there is no challenge left. 
 % Antonio - repito, esto no es algo de lo que los diseï¿½adores del juego se preocupen
-Then, in most games, fitness is noisy, so that even if you consider reaching a certain level of fitness as a termination condition, there is no guarantee that the individual with that fitness is not going to turn into a worse one (regarding fitness) next generation it is evaluated. 
+% y?
+Then, in most games, fitness is noisy and re-evaluated every generation, so that even if you consider reaching a certain level of fitness as a termination condition, there is no guarantee that the individual with that fitness will not fall below the threshold next generation it is evaluated, or, for that matter, that it is actually optimum. 
 % Antonio - he reescrito un poco esto. Los individuos no cambian, cambia su evaluaciï¿½n. Lo he dejado mï¿½s o menos igual, aunque creo que mejor expresado en este sentido.
+% Antonio: siempre que pongas ``regarding'', piénsatelo, porque siempre está mal. - JJ
+Usually running for a constant amount of generations is often considered as an acceptable criteria, if the obtained bots are good enough. However this is not necessarily the best approach, since further optimization could lie ahead, so other options must be explored. 
 Other possibilities, such as certain level of victories over external enemies as a termination condition, present the problem that the bots will be overfitted to
 those particular enemies. 
 % Antonio - De hecho, usar mï¿½ltiples enemigos externos es la mejor forma de evaluaciï¿½n (si no es un co-evolutivo), ya que asï¿½ se lucha contra la sobre-especializaciï¿½n. Usar una condiciï¿½n de parada basada en eso serï¿½a el mejor enfoque, que pero se necesitan muuuchos enemigos.
-Even as any of these conditions is not perfect, there is the possibility of combining several of them as termination condition so that bots that are as optimal as possible, (and in as general a context as it is possible) are found; also, in a minimal amount of time and evaluations. In this paper
+% Antonio - he aï¿½adido el tï¿½pico criterio de parada basado en generaciones
+Even as any of these conditions is not perfect, there is the
+possibility of combining several of them as termination condition so
+that bots that are as optimal as possible, (and in as general a
+context as it is possible) are found; also, in a minimal amount of
+time and evaluations. In this paper 
 we will examine several ways of ending an evolutionary
 game bot design process, determining the capabilities of every one of
-them and, eventually, selecting one for future designs. 
-We will use a particular game, Planet Wars, in which we already have some experience, but the conclusions to our study could, in principle, be extended to any RTS or even any game with non-deterministic match results and with an
+them and, eventually, selecting one for future designs. % Nos falta
+                                % qué criterio vamos a seguir para
+                                % seleccionar un criterio sobre
+                                % otro. ¿Simplemente el fitness? ¿Una
+                                % integral del fitness sobre las
+                                % generaciones? 
+We will use a particular game, Planet Wars, which has been studied
+extensively in the literature, but the conclusions to our study could, in principle, be extended to any RTS or even any game with non-deterministic match results and with an
 unknown best solution.
 % Antonio - faltarï¿½a la ï¿½ltima frase con las conclusiones que se alcancen, no?
 \keywords{Videogames, RTS, evolutionary algorithms, termination criteria}
@@ -95,51 +107,98 @@ unknown best solution.
 %
 \section{Introduction}
 
-The termination condition is a key factor in any algorithm and its experimental setup since it affects the algorithmic performance, with respect to the quality of the yielded solution, and also to the amount of resources devoted to the run. 
-In Evolutionary Algorithms (EAs)\cite{EAs_Back96} the usual termination condition is a constant number of generations (or evaluations), 
-%Maribel: el nÃºmero de generaciones y el nÃºmero de evaluaciÃ³nes estÃ¡n relacionadas sÃ³lo en poblaciones de tamaÃ±o fijo. Yo las tratarÃ­a como condiciones de parada en algunos Ã¡mbitos, aunque no sÃ© si nos interesa o no tratarlos separados o simplemente decir que en este caso son lo mismo aunque para otros entornos no tiene por quÃ© serlo.
+
+In this scope, Evolutionary Algorithms (EAS) are usually applied to find the best autonomous
+agent for playing the game, i.e. the best \textit{bot}
+\cite{Agent_Smith_CEC2009,Mora-Evo2010,Esparcia10FPS,FernandezAres2012adaptive}.
+And the termination condition is a key factor in any algorithm and its experimental setup since it affects the algorithmic performance, with respect to the quality of the yielded solution, and also to the amount of resources devoted to the run. 
+In EAs \cite{EAs_Back96} the usual termination condition is a constant number of generations (or evaluations), 
+%Maribel: el nÃºmero de generaciones y el nÃºmero de evaluaciÃ³nes
+%estÃ¡n relacionadas sÃ³lo en poblaciones de tamaÃ±o fijo. Yo las
+%tratarÃ­a como condiciones de parada en algunos Ã¡mbitos, aunque no
+%sÃ© si nos interesa o no tratarlos separados o simplemente decir que
+%en este caso son lo mismo aunque para otros entornos no tiene por
+%quÃ© serlo.
+% Maribel da exactamente igual. Lo importante es el número de
+% evaluaciones. - JJ
  which is normally related to a fixed {\em computing cycles budget}
 for doing the run or to a number of generations in
 which the best solution is not improved (distance to the optimum is not reduced), among others \cite{RocheTermination13}. However, neither of them might be useful in certain problems such as games, mainly due to the noisy nature of the fitness function \cite{merelo14:noisy,Mora2012Genebot}. 
 
-This \textit{noise} is inherent to most games, since the enemy, the game environment, the bot itself, or all of them, may have an stochastic component which might make the result of a match vary from one time to another. Thus, the evaluation results would be yielded every time the fitness is measured. 
+This \textit{noise} is inherent to most games, since the enemy behavior, the
+game environment, the bot itself, or all of them, may have an
+stochastic component which might make the result of a match vary from
+one run to the next. Thus, different values would be returned
+every time the fitness is measured.
 
-In this scope, EAs are usually applied to find the best autonomous agent for playing the game, i.e. the best \textit{bot} \cite{Agent_Smith_CEC2009,Mora-Evo2010,Esparcia10FPS,FernandezAres2012adaptive}.
-
-The usual approach in this scope is using a fixed number of evaluations or amount of time, usually given by the game or challenge conditions. 
-This is obviously not the right approach for finding the best autonomous agent, or even one that is good enough to defeat those of the state of the art. 
-
-That is why finding the optimal termination condition is essential in the search for game bots that competes in a particular challenge. If there is not a fixed evaluation budget, the next usual solution is to give it as much as you have got, 
-% Antonio - 'as you have got'??? En qué? A qué te refieres?
-which is fair if you are designing a bot %maribel, el got no se suele poner 
-to participate in a competition \cite{DBLP:conf/cec/Fernandez-AresMGGF11}. However, from a methodological point of view, if you want to compare different approaches to design a bot it needs to be done in conditions that are as similar as possible, which 
-%maribel sustituir "conditions that are as similar as possible" por "similar environments, "
-might make {\em as much as you have got} a bit short on
-details. 
-% Antonio - no entiendo esto de 'short on details'
-
-Whenever different methods are going to be compared, they need to have an %Maribel usar are going es si lo fueras a hacer ahora mismo, es presente continuo, yo no usarÃ­a ni ese tiempo ni por supuesto el futuro, a no ser que estÃ©s hablando de las lÃ­neas futuras del artÃ­culo. Yo pondrÃ­a "Compared methods need stop by the same independent stopping criteriun, since... 
-independent stopping criterion, since using any method for the same
-time or for the same number of evaluations is not usually fair. 
-% Antonio - Explicar por qué no es justo.
-This makes, from the methodological point of view, inadequate to use the
-number of computing cycles as a termination condition.
-% Antonio - 'computing cycles' no es lo mismo que 'number of evaluations'
- 
-This is a general problem for most kinds of games, as in many other
-problems without a known (or reachable) set of solutions. 
-This issue arises in games due to the noisy and combat-based methods used for the evolution of bots, because there is not a single way to compute the fitness. Any approach you choose, it is usually impossible to reach a global optimum short 
+This issue arises in games due to the noisy and combat-based methods
+used for the evolution of bots, because there is not a single,
+principles-based way to compute the fitness and end the algorithm. Besides, any approach you choose, it is usually impossible to reach a global optimum short 
 % Antonio - short???
-from managing to obtain a bot that, as in Sun Tzu's ``Art of war'' \cite{tzu2013art}, is able to beat the opponent without
+% short of - a menos que - JJ
+of managing to obtain a bot that, as in Sun Tzu's ``Art of war'' \cite{tzu2013art}, is able to beat the opponent without
 fighting, as the opponents are not known before the EA is running. 
 % Antonio - esta frase no se entiende
+% a menos que puedas ganar sin luchar, no puedes obtener el fitness
+% óptimo - JJ
 To solve this, usually previously-known opponents are used in the fitness
 function and an ``optimum'' is reached when a certain number of
 victories are achieved against them.
 %Maribel, achieved en vez de obtained. 
-However, this may lead to generate overfitted solutions that only beat the  enemies that have been used during the 'training' phase (to compute the fitness) \cite{DBLP:journals/jcst/MoraFGGF12}.
+However, using only one or a small number of opponents may lead to generate overfitted solutions that only beat the  enemies that have been used during the 'training' phase (to compute the fitness) \cite{DBLP:journals/jcst/MoraFGGF12}.
+ 
 
-In this paper, we present a study on different termination conditions to 
+However, these two issues are usually not taken into accout and the usual approach is
+using a fixed number of evaluations or amount of time, usually given
+by the game or challenge conditions. When this rule is not imposed by
+a challenge or some other condition, this is not the right
+approach for finding the best autonomous agent, or even one that is
+good enough to defeat those that constitute the state of the art.
+
+That is why finding the optimal termination condition is essential in the search for game bots that competes in a particular challenge. If there is not a fixed evaluation budget, the next usual solution is to give it as much as you have got, 
+% Antonio - 'as you have got'??? En qué? A qué te refieres?
+% ``darlo todo'' - JJ
+which is fair if you are designing a bot %maribel, el got no se suele
+                                %poner 
+% Es coloquial y correcto gramaticalmente - JJ
+to participate in a competition
+\cite{DBLP:conf/cec/Fernandez-AresMGGF11}. However, from a
+methodological point of view, if you want to compare different
+approaches to design a bot it needs to be done in conditions that are
+as similar as possible, which  
+%maribel sustituir "conditions that are as similar as possible" por
+%"similar environments, "
+% no son entornos similares, sino condiciones similares. 
+might make {\em as much as you have got} a bit short on
+details. 
+% Antonio - no entiendo esto de 'short on details'
+% que uno puede tener más o otro menos, con lo que simplemente
+% ejecutando más generaciones puedes obtener mejores resultados. Por
+% favor, cuando pongáis comentarios de algo que ha escrito otro poned
+% @esenick en el commit - JJ
+
+Whenever different methods are going to be compared, they need to have an %Maribel usar are going es si lo fueras a hacer ahora mismo, es presente continuo, yo no usarÃ­a ni ese tiempo ni por supuesto el futuro, a no ser que estÃ©s hablando de las lÃ­neas futuras del artÃ­culo. Yo pondrÃ­a "Compared methods need stop by the same independent stopping criteriun, since... 
+independent stopping criterion, since using any method for the same
+time or for the same number of evaluations is not usually fair,
+% Antonio - Explicar por qué no es justo.
+because the object of the process is to obtain a very good or
+near-optimal bot and some methods might need more evaluations, or more
+time, than others. 
+% explicado - JJ
+This makes, from the methodological point of view, inadequate to use the
+number of evaluations as a termination condition.
+% Antonio - 'computing cycles' no es lo mismo que 'number of
+% evaluations'
+% Cambiado a evaluations - JJ
+
+These three problems, two of them (noise and unkown optimum)
+algorithmic and one (fair comparison) methodological problems, are
+common for most kinds of games, as well as for many other
+problems without a known (or reachable) set of solutions. 
+
+In this paper, we intend to pursue these issues by introducing novel
+termination conditions and  comparing them with others and among
+themselves when trying to
 generate competitive bots for videogames using Genetic Programming (GP) \cite{GP_Koza92}, because this method has proved to be quite flexible and has obtained very good results in previous works [CITA GPBOT]. 
 % Antonio - poner cita del EVO* aunque sea 'To appear'
 The game \textit{Planet Wars}
@@ -149,13 +208,27 @@ The game \textit{Planet Wars}
 
 Summarizing, our objective in this study is to find the stop criteria that converges to good solutions (the optimal, if possible). %Maribel: Anadir al final de la frase, saving resources and time. 
 % Antonio - he puesto 'optimal', pero no sé se dejarlo como 'best'
-To measure the quality of every approach, we will %maribel: quitar el will
+To measure the quality of every approach, we will %maribel: quitar el
+                                %will
+%No, está bien - JJ
 consider the time needed to obtain the solution and the
-quality of that solution as metrics. In principle, the termination
+quality of that solution as metrics. 
+% a ver, esto lo tenemos que pensar. 
+% Vamos a poner un método como base: número fijo de evaluaciones, por
+% ejemplo. A partir de ahí yo consideraría el número de evaluaciones
+% adicionales y la mejora adicional al fitness. También el fitness
+% absoluto, claro. - JJ
+
+In principle, the termination
 condition chosen could be extrapolated to any game with
 stochastic behaviour and combat-based results.
 %maribel: Esta Ãºltima frase es bastante fuerte, decimos sin mÃ¡s que nuestros resultados se pueden extrapolar a un montÃ³n de cosas, sin probar nada, eso serÃ¡ asÃ­?
-% Antonio - Sí, esto hay que justificarlo mucho mejor. ¿por qué estamos convencidos de que se podrá extrapolar? Hay que fijar bien las características para que se pueda extrapolar efectivamente, etc.
+% Antonio - Sí, esto hay que justificarlo mucho mejor. ¿por qué
+% estamos convencidos de que se podrá extrapolar? Hay que fijar bien
+% las características para que se pueda extrapolar efectivamente, etc.
+In general, and as pointed above, it is possible that the conclusions
+could be extended to any problem solved via evolutionary algorithms
+with an unknown or unreachable optimum and noisy fitness. 
 
 The rest of the paper is organized as follows. Next section
 establishes the state of the art in the use of termination conditions
