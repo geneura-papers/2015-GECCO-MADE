@@ -119,16 +119,25 @@ In this work, we propose three scenarios:
 \begin{itemize}
 \item Scenario A: The Villains. This scenario only requires one type of archetype: The ``villain''. This 
 \item Scenario B: The Hero. As in the classic stories, when a villain appears, a hero must rise. The ``hero'' archetype depend on the existence of a ``villain'' archetype. This scenario tries to generate worlds formed by archetypes that depend of anothers.
-\item Scenario C: The shakespearian story. As many of the great stories of The Bard, this world requires the existence of different and interdependant archetypes: The ``hero'' and ``villain'' are completed with the ``obstacle'' (QUE HACE QUE), the  ``mentor'' (QUE HACE QUE) and the ``avenger'' (this archetype does not depend on the others).
+\item Scenario C: The Shakespearian story. As many of the great stories of The Bard, this world requires the existence of different and interdependant archetypes: The ``hero'' and ``villain'' are completed with the ``obstacle'' (QUE HACE QUE), the  ``mentor'' (QUE HACE QUE) and the ``avenger'' (this archetype does not depend on the others).
 \end{itemize}
 
-\subsection{Fitness deduction}
+\subsection{Designing a fitness function}
 
-The first step requires to develop a fitness function that takes into account the quantity of the desired archetypes. This fitness function should facilitate the existence of diversity in the desired archetypes: that is, it is better that the world has 25\% of ``villains'' and 25\% of ``heroes'' than 50\% of ``villains'' and no ``heroes''. Thus, we propose the fitness using the next function:
+The first step requires to develop a fitness function that takes into
+account the quantity of the desired archetypes. This fitness function
+should facilitate the existence of diversity in the desired
+archetypes: that is, it is better that the world has 25\% of
+``villains'' and 25\% of ``heroes'' than 50\% of ``villains'' and no
+``heroes''. Thus, we propose the following fitness function: 
 
-\sum _{i=1}^{P}\dfrac {\log \left( 1+10p_{i}\right) } {\log 1}
+\begin{equation}
+\sum _{i=1}^{P} {\log \left( 1+10p_{i}\right) } \over {\log 1}
+\end{equation}
 
-where $P$ is the number of desired profiles, and $p_{i}$ is the percentage (from 0 to 1) of a specific profile in the world.
+where $P$ is the number of desired profiles, and $p_{i}$ is the
+percentage (from 0 to 1) of a specific profile in the world. % Why
+                                % logs and all the rest? - JJ
 
 In this paper, three fitness functions will be studied, related with the previously explained scenarios:
 \begin{itemize}
@@ -140,7 +149,7 @@ In this paper, three fitness functions will be studied, related with the previou
 \subsection{Individual representation}
 
 The number of profiles has a direct relation with the desired fitness functions. It is expected that functions with only one kind of archetype (such as F1 and F2) only would require one profile. Furthermore, the number of profiles affect the generated fitness as the chromo
-
+% Chromo what?
 
 
 \subsection{System optimization}
@@ -148,15 +157,18 @@ The number of profiles has a direct relation with the desired fitness functions.
 
 Once the fitness function has been decided, several parameters related with the world and the GA will be studied
 
-The parameters of the world affect  JUSTIFICAR ...
+The parameters of the world affect  % JUSTIFICAR ...
 
 
 Number of days: 128, 256
 
 
-Finally, the parameters of the GA also affect the execution of... the population size ... 64, 128, 256 JUSTIFICAR
+Finally, the parameters of the GA also affect the execution of... the
+population size ... 64, 128, 256 % JUSTIFICAR
 
-As the usage of different number of profiles generate different individual sizes, and therefore, different convergence times the stop criterion has been established in...TERMINA
+As the usage of different number of profiles generate different
+individual sizes, and therefore, different convergence times the stop
+criterion has been established in... % TERMINA
 
 Table \ref{tab:parameters} summarizes all the configuration parameters that will be compared, and the rest of the (fixed) parameters of the algorithm. The fixed values of the parameters of the GA have been usually described by other authors as...
 
@@ -165,17 +177,18 @@ Table \ref{tab:parameters} summarizes all the configuration parameters that will
 \begin{tabular}{|c|c|}
 \hline
 {\em Parameter} & {\em Values} \\\hline \hline
-\multicolumn{2}{c}{Parameters to study} \\
+\multicolumn{2}{c}{Parameters under study} \\ \hline \hline
 Number of profiles & 1, 2, 4 and 8 \\\hline
 Number of virtual days &  128 and 256 \\ \hline
 World dimension &  5x5, 10x10 and 20x20 \\ \hline
 GA population size & 64, 128 and 256 \\ \hline
-\multicolumn{2}{c}{Fixed parameters} \\ \hline
+\multicolumn{2}{c}{Fixed parameters} \\ \hline \hline
 Mutation probability & 1/12 per gene \\ \hline
 Parent pool size & Same as pool size \\ \hline
-Selection method & binary tournament plus 10\% of the fittest \\ \hline
+Selection method & Binary tournament \\ \hline 
+Elite & 10\%  \\ \hline
 Replacement method & Generational\\ \hline
-Stop condition & \\ \hline
+Stop condition & \\ \hline %Stop condition? - JJ
 Runs per configuration & 30 \\ \hline
 \end{tabular}
 \caption{Parameters used in the experiments.}
