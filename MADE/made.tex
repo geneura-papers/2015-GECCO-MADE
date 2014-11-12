@@ -14,7 +14,7 @@
 \mainmatter  % start of an individual contribution
 
 % first the title is needed
-\title{World building: analysing the parameters that for massive generation of coherent backstories in fiction environments}
+\title{World building: analysing the parameters for massive generation of coherent backstories in fiction environments}
 
 % a short form should be given in case it is too long for the running head
 \titlerunning{World building}
@@ -130,9 +130,10 @@ Then, the characteristics of this world are also decided taking into account the
 
 In this work, we propose three scenarios:
 \begin{itemize}
-\item Scenario A: The Villains. This scenario only requires one type of archetype: The ``villain''. This  % don't leave me this way!!!
-\item Scenario B: The Hero. As in the classic stories, when a villain appears, a hero must rise. The ``hero'' archetype depend on the existence of a ``villain'' archetype. This scenario tries to generate worlds formed by archetypes that depend on others.
-\item Scenario C: The Shakespearian story. As many of the great stories by The Bard, this world requires the existence of different and interdependant archetypes: The ``hero'' and ``villain'' are completed with the ``obstacle'' (QUE HACE QUE), the  ``mentor'' (QUE HACE QUE) and the ``avenger'' (this archetype does not depend on the others).
+\item Scenario A: The Villains. This scenario only requires one type of archetype: The ``villain''. This % don't leave me this way!!!
+\item Scenario B: The Hero. As in the classic stories, when a villain appears, a hero must rise. The ``hero'' archetype depend on the existence of a ``villain'' archetype. This scenario tries to generate worlds formed by archetypes that depend of anothers.
+\item Scenario C: The Shakespearian story. As many of the great stories of The Bard, this world requires the existence of different and interdependent archetypes: The ``hero'' and ``villain'' are completed with the ``obstacle'' (QUE HACE QUE), the  ``mentor'' (QUE HACE QUE) and the ``avenger'' (this archetype does not depend on the others).
+
 \end{itemize}
 
 \subsection{Designing a fitness function}
@@ -146,65 +147,68 @@ archetypes: that is, it is better that the world has 25\% of
 ``heroes''. Thus, we propose the following fitness function: 
 
 \begin{equation}
-\sum _{i=1}^{P} {\log \left( 1+10p_{i}\right) } \over {\log 1}
+\sum _{i=1}^{A} {\log \left( 1+10p_{i}\right) } \over {\log 1}
 \end{equation}
 
-where $P$ is the number of desired profiles, and $p_{i}$ is the
-percentage (from 0 to 1) of a specific profile in the world. % Why
-                                % logs and all the rest? - JJ
+where $A$ is the number of desired archetypes, and $a_{i}$ is the
+percentage (from 0 to 1) of a specific archetype in the world. % Why
+                                % logs and all the rest? - JJ FERGU: TODO hablar de arquetipos
 
 In this paper, three fitness functions will be studied a different one
 for every previously explained scenarios:
 \begin{itemize}
 \item Function 1: for the scenario A . This function requires the maximization of the ``villain'' archetype, trying to maximise the number of villains in the world. 
 \item Function 2: for the scenario B. In this, case, the ``hero'' archetype... and villain ()
-\item Function 3: for the scenario C... This function requires 5 different archetypes. These archetypes have some type of interdependence. hero villano obstaculo mentor y vengativo (este no deènde de nadie)
+\item Function 3: for the scenario C... This function requires 5 different archetypes. These archetypes have some type of interdependence. hero villano obstaculo mentor y vengativo %(este no deènde de nadie)
 \end{itemize}
 
 \subsection{Individual representation}
 
-The number of profiles has a direct relation with the desired fitness functions. It is expected that functions with only one kind of archetype (such as F1 and F2) only would require one profile. Furthermore, the number of profiles affect the generated fitness as the chromo
-% Chromo what?
-% Jolines una cosa es dejarse las frases sin acabar y otra no acabar
-% ni las palabras - JJ
+
+An individual in the EA is a vector of parameters that model the behaviour of {\em all} the agents in the world (keep in mind that an individual of the EA is not equal to an agent in the world). These parameters have been presented in \cite{garcia14my}, and they define the transitions and states of a Finite State Machine that model the agent's behaviour. 
+
+This vector of parameters is composed by several {\em profiles}. The number of profiles has a direct relation with the desired fitness function. It is expected that functions with only one kind of archetype (such as F1) only would require one profile (or set of parameters). However, as explained in \cite{garcia14my}, to allow the existence of different personalities in the world, different sets of personalities (or profiles) can be evolved at the same time. Therefore, the number of profiles affect the generated fitness, as the chromosome will be larger. 
+% Chromo what? FERGU: arreglado
+
 
 \subsection{System optimization}
 
-Once the fitness function has been decided, several parameters related with the world and the GA will be studied
 
-The parameters of the world affect  % JUSTIFICAR ...
+Once the fitness function has been decided, several parameters related with the world and the GA will be studied. As explained before, the parameters that define a literary story are the time, the world, the characters and the object. In this paper, we use the elements defined in MADE: number of days (time), a grid (world), food (object) and rats (characters).
 
+%TODO rubén, que no se te olvide hablar de esto en la intro como viene en el issue y que esté relacionado con lo que pongo aquí. Por ejemplo, llamar al "object" de otra forma
 
-Number of days: 128, 256
+Different parameter values for each element will be studied to clarify their influence in the literary world generation. First, it is expected that the number of days will have a significant impact, as larger values will allow the generation of more backstories. The set of days to study will be 64, 128 and 256. The world size (size of the grid in this paper: 5x5, 10x10 or 20x20) can also influence in the execution of the story, as larger worlds could make the agents spent more time exploring before an event occurs. The food, or the element that condition the actions (attack, share and defend among others), also could have enough effect in the story generation: lower quantities of food may increase the attacks, creating more aggressive agents, and larger quantities may generate more generous agents. Different proportions of food depending of the world size will be studied (food placed in 1/2, 1/4 and 1/8 of the size of the map).
 
+Also, it is expected that the existence of different personalities (or number of profiles) in the world will have a significant effect in the runs, specially in functions that require more than one archetype. We will compare the usage of 1, 2, 4 and 8 profiles in each scenario. As the usage of different number of profiles generate different
+individual sizes, and therefore different convergence times, the stop
+condition will be established depending of the best fitness (30 generations without improvement), to do a fair comparison.
 
-Finally, the parameters of the GA also affect the execution of... the
-population size ... 64, 128, 256 % JUSTIFICAR
+Finally, the parameters of the GA also affect the generation of the desired world. In this paper, we study the population size, a parameter that has big effect in the execution of this kind of algorithms \cite{}, comparing populations of 64, 128 and 256 individuals. %TODO citar a un paper de tamaños de poblacion
 
-As the usage of different number of profiles generate different
-individual sizes, and therefore, different convergence times the stop
-criterion has been established in... % TERMINA
+Table \ref{tab:parameters} summarizes all the configuration parameters that will be compared (with their acronyms used in this paper), and the rest of the (fixed) parameters of the algorithm. The fixed values of the parameters of the GA have been usually described by other authors as...
 
-Table \ref{tab:parameters} summarizes all the configuration parameters that will be compared, and the rest of the (fixed) parameters of the algorithm. The fixed values of the parameters of the GA have been usually described by other authors as...
+The rest of the parameters of the MADE environment, such as the initial number of agents in the world, and the agent's parameters (such as the lifespan) are described in \cite{garcia14my}. In this paper we will use the default values presented in that work.
 
 \begin{table*}
 \begin{center}
 \begin{tabular}{|c|c|}
 \hline
 {\em Parameter} & {\em Values} \\\hline \hline
-\multicolumn{2}{c}{Parameters under study} \\ \hline \hline
-Number of profiles & 1, 2, 4 and 8 \\\hline
-Number of virtual days &  128 and 256 \\ \hline
-World dimension &  5x5, 10x10 and 20x20 \\ \hline
+\multicolumn{2}{|c|}{Parameters under study} \\ \hline \hline
+Number of profiles (P) & 1, 2, 4 and 8 \\\hline
+Number of virtual days (D) &  64, 128 and 256 \\ \hline
+World dimension (W) &  5x5, 10x10 and 20x20 \\ \hline
+Food (F) & 1/2, 1/4, 1/8 \\ \hline
 GA population size & 64, 128 and 256 \\ \hline
-\multicolumn{2}{c}{Fixed parameters} \\ \hline \hline
+\multicolumn{2}{|c|}{Fixed parameters} \\ \hline \hline
 Mutation probability & 1/12 per gene \\ \hline
 Parent pool size & Same as pool size \\ \hline
 Selection method & Binary tournament \\ \hline 
 Elite & 10\%  \\ \hline
-% Cuando algo no compile lo arregláis, no lo borréis!!!! - JJ
+% Cuando algo no compile lo arregláis, no lo borréis!!!! - JJ FERGU: ups, se me había pasado
 Replacement method & Generational\\ \hline
-Stop condition & \\ \hline %Stop condition? - JJ
+Stop condition & 300 gens. or 30 gens. without improvement \\ \hline %Stop condition? - JJ FERGU: puesta
 Runs per configuration & 30 \\ \hline
 \end{tabular}
 \caption{Parameters used in the experiments.}
