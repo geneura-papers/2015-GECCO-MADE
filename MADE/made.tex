@@ -56,7 +56,7 @@ optimize resources given to evolution and also have some guarantee
 that the final result will be close to optimal, we systematically
 study the values of different parameters to try and find a set of
 rules that will, once you have the fitness function, help you set a
-reduced range of values o even a single value that will, with a
+reduced range of values or even a single value that will, with a
 reduced computation budget, help you find an optimal world.
 
 \keywords{Games, Plot, evolutionary algorithms, content generation, literature}
@@ -104,7 +104,7 @@ article, whose results will be shown in Section \ref{sec:res}. Finally, we will
 present the conclusions reached in this paper.
 
 \section{State of the Art}
-
+%TODO @raiben
 The work of Nairat et al. \cite{nairat:evolution} ...
 
 \section{Methodology and experimental setup} %Issue #12
@@ -116,21 +116,21 @@ the proposed method to generate a fictional world. Initially, the
 fitness should be decided with the desired behaviour of the
 agents that populate the world (for example, a given quantity of some
 archetype) in mind. To enable the generation of different
-personalities % no uses facilitate!!!!! - JJ
+personalities % no uses facilitate!!!!! - JJ FERGU: ok, no sabía que estaba mal
 different number of ``profile'' could be required. This concept,
 presented in \cite{}, describes the different sets of behaviour
 parameters of the agents in the world (the number of different
 FSMs). Therefore, a world with three profiles is composed by three different
-types of agents. However, and as will be proved in this paper, the
+types of agents. However, and as demonstrated in \cite{garcia14my}, the
 number of profiles could be different of the number of desired
 archetypes. % Is this the main point of the paper? Wasn't this proved
-            % in the alife paper? - JJ
+            % in the alife paper? - JJ FERGU: you are right, changed
 
 Then, the characteristics of this world are also decided taking into account the expected... For example, adding enough days to allow the archetypes generation. Finally, the interesting plot points are extracted from the log using... % !!! Explain this!!! - JJ
 
 In this work, we propose three scenarios:
 \begin{itemize}
-\item Scenario A: The Villains. This scenario only requires one type of archetype: The ``villain''. This % don't leave me this way!!!
+\item Scenario A: The Villains. This scenario only requires one type of archetype: The ``villain''. This % don't leave me this way!!! FERGU: this has to be written by @raiben (TODO @raiben)
 \item Scenario B: The Hero. As in the classic stories, when a villain appears, a hero must rise. The ``hero'' archetype depend on the existence of a ``villain'' archetype. This scenario tries to generate worlds formed by archetypes that depend of anothers.
 \item Scenario C: The Shakespearian story. As many of the great stories of The Bard, this world requires the existence of different and interdependent archetypes: The ``hero'' and ``villain'' are completed with the ``obstacle'' (QUE HACE QUE), the  ``mentor'' (QUE HACE QUE) and the ``avenger'' (this archetype does not depend on the others).
 
@@ -138,7 +138,7 @@ In this work, we propose three scenarios:
 
 \subsection{Designing a fitness function}
 
-% Una vez más, no usáis ninguna metodología para hacer esto. Es un poco ``Se me ha ocurrido hacerlo así''. - JJ
+% Una vez más, no usáis ninguna metodología para hacer esto. Es un poco ``Se me ha ocurrido hacerlo así''. - JJ 
 The first step requires to develop a fitness function that takes into
 account the quantity of the desired archetypes. This fitness function
 should enable the existence of diversity in the desired
@@ -152,7 +152,7 @@ archetypes: that is, it is better that the world has 25\% of
 
 where $A$ is the number of desired archetypes, and $a_{i}$ is the
 percentage (from 0 to 1) of a specific archetype in the world. % Why
-                                % logs and all the rest? - JJ FERGU: TODO hablar de arquetipos
+                                % logs and all the rest? - JJ FERGU: TODO @raiben hablar de arquetipos y completar lo de abajo
 
 In this paper, three fitness functions will be studied a different one
 for every previously explained scenarios:
@@ -223,109 +223,115 @@ Runs per configuration & 30 \\ \hline
 \label{sec:res}
 
 
-In this paper, 9720 runs were carried out for each problem (30 times * 4 levels for \emph{P} * 2 levels for \emph{D} * 3 levels for \emph{W} * 3 levels for \emph{S} * 3 levels for \emph{F} that represent the possible combinations) to obtain the fitness for each combination.
+In this paper, 9720 runs were carried out for each problem/scenario (30 times * 4 levels for \emph{P} * 2 levels for \emph{D} * 3 levels for \emph{W} * 3 levels for \emph{S} * 3 levels for \emph{F} that represent the possible combinations) to obtain the fitness for each combination.
 
 Since the Kolmogorov-Smirnov test determines that the data we are using
-does not follow a normal distribution a Kruskal–Wallis test has been
-performed. This test is a non-parametric test, which means that it
-does not assume that the data come from a normal distribution.  % por
+does not follow a normal distribution a non-parametric test, the Kruskal–Wallis test, has been
+performed.  % por
                                 % favor, ¿podéis escribir esto EN
-                                % INGLÉS? - JJ
+                                % INGLÉS? - JJ FERGU: esto se ha extraido de un paper de ANOVA de hace tiempo, pero he quitado la última frase
 
 The application of Kruskal-Wallis consisted in running the EA optimization method using those parameter combinations to obtain the best fitness. 
-The response variable used to perform the statistical analysis is the fitness at the end of the run. The changes in the response variable are produced when a new combination of parameters is considered. Then, the {R} \footnote{{\tt http://www.r-project.org}} tool was used to obtain the Kruskal-Wallis tables as well as the tables of means and figures for each problem. 
+The response variable used to perform the statistical analysis is the fitness at the end of the run. The changes in the response variable are produced when a new combination of parameters is considered. Then, the {R} \footnote{{\tt http://www.r-project.org}} tool was used to obtain the Kruskal-Wallis tables as well as the tables of means and figures for each problem.
 
-The tables obtained by the Kruskal-Wallis analysis show for each factor the  degrees of freedom (FD), the experimental value of the statistical F (F value) and its associated p-value.
-As previously stated, if the output is smaller than 0.05, then the
+The tables obtained by the Kruskal-Wallis analysis show for each factor the  degrees of freedom (FD), the experimental value of the statistical F (F value) and its associated p-value. If the output is smaller than 0.05, then the
 effect of this factor is statistically significant at a $95\%$
 confidence level (which indicates that different initial values of
 this parameter lead to significant differences on the fitness).
 
-Since a significant F-value only tells  that the effects are not all
+We have obtained values lower than 0.05 for all parameters in all scenarios (generated p-values tables have been omitted due to space constraints). These results show that all the parameters considered have a significant
+impact in the generation of the agents behaviour. This confirm our hypothesis that the four elements that conform a story (time, characters, OBJECT and world) have a great repercussion in the generation of stories in the simulation environment.
+
+Since a significant p-value only tells  that the effects are not all
 equal (i.e., reject the null hypothesis), post-hoc tests might be used
 to determine which effects or outputs are significantly different from
-which other. % are we using them? - JJ
+which other. % are we using them? - JJ FERGU: yes, abajo.
 
-Results show that all the parameters considered have a significant
-impact in the generation of the agents. % which is interesting
-                                % because... - JJ
+Therefore, a Kruskal-Wallis multi-comparison test has also been performed, showing significant differences among all parameter values, except for number of profiles (only using 1 profile has significant difference with respect to use 2, 4 and 8), and GA population size (64-128 and 128-256), both values in scenarios Villain and Hero. This can be explained because only one profile is necessary in these scenarios (as the hero and villain archetypes are based in attacking other rats, and therefore, can be shared by the same agent).
+
+All the results have been also plotted to better understand their differences. Figure \ref{fig:boxplotsE1} shows the boxplots for the fitness grouped by parameter for the Villain scenario. As can be seen, the median for D, W and F is 0 (or almost 0) for several values. This can be explained for several reasons. First, a small amount of days (64) is not enough to allow the generation of any archetype, as there is no time to develop a story. This can also be related to the world dimension: larger worlds require more time to be explored, so the chances of an encounter that can trig an event (for example, a fight) is more difficult. Finally, the amount of food, the element that makes most actions appear, also need to be low enough to promote fightings (1/8 of the world size). Similar results are obtained for the scenario 2 (Hero), (see Figure \ref{fig:boxplotsE2}) as this archetype depends on the previous existence of the villain archetype, are based in attack other rats, and can be shared by an agent.
+
+With respect to the Shakespearian scenario %TODO @raiben
+
+% which is interesting
+                                % because... - JJ FERGU: explicado todo
 
 \begin{figure}
         \centering
         \subfigure[Profiles]{
-                \includegraphics[width=3.5cm]{imags/e1_p.png}
+                \includegraphics[width=3.5cm]{imags/boxplotz1P.eps}
                 \label{fig:e1_p}
         }
         \subfigure[Days]{
-                \includegraphics[width=3.5cm]{imags/e1_d.png}
+                \includegraphics[width=3.5cm]{imags/boxplotz1D.eps}
                 \label{fig:e1_d}
         }
         \subfigure[World Size]{
-                \includegraphics[width=3.5cm]{imags/e1_w.png}
+                \includegraphics[width=3.5cm]{imags/boxplotz1W.eps}
                 \label{fig:e1_w}
         }  
         \subfigure[Food]{
-                \includegraphics[width=3.5cm]{imags/e1_f.png}
+                \includegraphics[width=3.5cm]{imags/boxplotz1F.eps}
                 \label{fig:e1_f}
         }
-        \subfigure[Population Size]{
-                \includegraphics[width=3.5cm]{imags/e1_s.png}
+        \subfigure[GA Population Size]{
+                \includegraphics[width=3.5cm]{imags/boxplotz1S.eps}
                 \label{fig:e1_s}
         }
 
-        \caption{Boxplots for scenario E1}\label{fig:boxplotsE1}
+        \caption{Boxplots for scenario Villain (one archetype needed)}\label{fig:boxplotsE1}
 \end{figure}
 
 \begin{figure}
         \centering
         \subfigure[Profiles]{
-                \includegraphics[width=3.5cm]{imags/e2_p.png}
+                \includegraphics[width=3.5cm]{imags/boxplotz2P.eps}
                 \label{fig:e2_p}
         }
         \subfigure[Days]{
-                \includegraphics[width=3.5cm]{imags/e2_d.png}
+                \includegraphics[width=3.5cm]{imags/boxplotz2D.eps}
                 \label{fig:e2_d}
         }
         \subfigure[World Size]{
-                \includegraphics[width=3.5cm]{imags/e2_w.png}
+                \includegraphics[width=3.5cm]{imags/boxplotz2W.eps}
                 \label{fig:e2_w}
         }  
         \subfigure[Food]{
-                \includegraphics[width=3.5cm]{imags/e2_f.png}
+                \includegraphics[width=3.5cm]{imags/boxplotz2F.eps}
                 \label{fig:e2_f}
         }
-        \subfigure[Population Size]{
-                \includegraphics[width=3.5cm]{imags/e2_s.png}
+        \subfigure[GA Population Size]{
+                \includegraphics[width=3.5cm]{imags/boxplotz2S.eps}
                 \label{fig:e2_s}
         }
 
-        \caption{Boxplots for scenario E2}\label{fig:boxplotsE2}
+        \caption{Boxplots for scenario Hero (two archetypes needed)}\label{fig:boxplotsE2}
 \end{figure}
 
 \begin{figure}
         \centering
         \subfigure[Profiles]{
-                \includegraphics[width=3.5cm]{imags/e5_p.png}
+                \includegraphics[width=3.5cm]{imags/boxplotz5P.eps}
                 \label{fig:e5_p}
         }
         \subfigure[Days]{
-                \includegraphics[width=3.5cm]{imags/e5_d.png}
+                \includegraphics[width=3.5cm]{imags/boxplotz5D.eps}
                 \label{fig:e5_d}
         }
         \subfigure[World Size]{
-                \includegraphics[width=3.5cm]{imags/e5_w.png}
+                \includegraphics[width=3.5cm]{imags/boxplotz5W.eps}
                 \label{fig:e5_w}
         }  
         \subfigure[Food]{
-                \includegraphics[width=3.5cm]{imags/e5_f.png}
+                \includegraphics[width=3.5cm]{imags/boxplotz5F.eps}
                 \label{fig:e5_f}
         }
-        \subfigure[Population Size]{
-                \includegraphics[width=3.5cm]{imags/e5_s.png}
+        \subfigure[GA Population Size]{
+                \includegraphics[width=3.5cm]{imags/boxplotz5S.eps}
                 \label{fig:e5_s}
         }
 
-        \caption{Boxplots for scenario E5}\label{fig:boxplotsE5} % Always explain the scenarios, nobody needs to remember which one is which - JJ
+        \caption{Boxplots for scenario Shakespearian (five archetypes needed)}\label{fig:boxplotsE5} % Always explain the scenarios, nobody needs to remember which one is which - JJ FERGU: Added label and comment
 \end{figure}
 
 
