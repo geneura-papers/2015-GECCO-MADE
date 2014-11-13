@@ -6,9 +6,9 @@ directorioBoxplot <- paste(dir,"boxplot",sep="");
 directorioHist <- paste(dir,"histogramas",sep="");
 dir
 
-#z1 <- read.table("/home/mgarenas/inves/MADE/made_nov14/z1.csv", header=TRUE, sep=",", na.strings="NA", dec=".", strip.white=TRUE)
+z1 <- read.table("/home/mgarenas/inves/MADE/made_nov14/z1.csv", header=TRUE, sep=",", na.strings="NA", dec=".", strip.white=TRUE)
 #z1 <- read.table(paste(dir,"z1.csv",sep=""),header=TRUE, sep=",", na.strings="NA", dec=".", strip.white=TRUE)
-#z2 <- read.table(paste(dir,"z2.csv",sep=""),header=TRUE, sep=",", na.strings="NA", dec=".", strip.white=TRUE)
+z2 <- read.table(paste(dir,"z2.csv",sep=""),header=TRUE, sep=",", na.strings="NA", dec=".", strip.white=TRUE)
 z5 <- read.table(paste(dir,"z5.csv",sep=""),header=TRUE, sep=",", na.strings="NA", dec=".", strip.white=TRUE)
 
 #Cambiar aqui el conjunto de datos activo
@@ -22,11 +22,19 @@ dirTukey <- paste(directorioTukey,nombre,sep = "")
 dirMedias <-paste(directorioMedias,nombre,sep = "")
 dirBox <-paste(directorioBoxplot,nombre,sep = "")
 dirHist <-paste(directorioHist,nombre,sep = "")
-
-x11(width=10, height=10, xpos=0, pointsize=24)
-hist(datos$BEST_FITNESS, main="Histogram for Best Fitness", xlab="Best Fitness")
+x11(width=5, height=5, xpos=0)
+par(ylog=TRUE)
+par(ps = 20, cex = 1, cex.main = 1)
+par("ylog")
+par("mai")
+par("mar")
+par(mar=c(4,6,4,2))
+par("mar")
+hist.data = hist(datos$BEST_FITNESS, plot=F)
+hist.data$counts = log10(hist.data$counts)
+plot(hist.data, main="Histogram for Best Fitness", xlab="", ylab="Log10(Frecuency)")
 dir<-paste(dirHist,extension,sep= "")
-dev.copy2eps(file=dir, width=10.0, height=10.0, pointsize=24)
+dev.copy2eps(file=dir, width=5.0, height=5.0)
 
 tapply(datos$BEST_FITNESS, list(datos$P), mean)
 tapply(datos$BEST_FITNESS, list(datos$D), mean)
@@ -53,6 +61,7 @@ summary(aovW<-(aov(datos$BEST_FITNESS ~ W, data=datos)))
 summary(aovF<-(aov(datos$BEST_FITNESS ~ F, data=datos)))
 summary(aovS<-(aov(datos$BEST_FITNESS ~ S, data=datos)))
 
+kwt<-kruskal.test(BEST_FITNESS ~ P*D*W*F*S, data=datos)
 
 kwp<-kruskal.test(BEST_FITNESS ~ P, data=datos)
 kwp
@@ -82,59 +91,77 @@ nemeS<-posthoc.kruskal.nemenyi.test(datos$BEST_FITNESS, datos$S, "Chisq")
 nemeS
 
 
-plot(nemeS)
-type(nemeS)
+par(xlog = TRUE)
 
 plot(TukeyHSD(aovP, parametros[1], ordered = TRUE))
 dir<-paste(dirTukey,parametros[1], sep= "")
 dir<-paste(dir,extension,sep= "")
-dev.copy2eps(file=dir, width=10.0, height=10.0, pointsize=24)
+dev.copy2eps(file=dir, width=5.0, height=5.0, pointsize=40)
 
 plot(TukeyHSD(aovD, "D", ordered=TRUE))
 dir<-paste(dirTukey,parametros[2], sep= "")
 dir<-paste(dir,extension,sep= "")
-dev.copy2eps(file=dir, width=10.0, height=10.0, pointsize=24)
+dev.copy2eps(file=dir, width=5.0, height=5.0, pointsize=40)
 
 plot(TukeyHSD(aovW, "W", ordered=TRUE))
 dir<-paste(dirTukey,parametros[3], sep= "")
 dir<-paste(dir,extension,sep= "")
-dev.copy2eps(file=dir, width=10.0, height=10.0, pointsize=24)
+dev.copy2eps(file=dir, width=5.0, height=5.0, pointsize=40)
 
 plot(TukeyHSD(aovF, "F", ordered=TRUE))
 dir<-paste(dirTukey,parametros[4], sep= "")
 dir<-paste(dir,extension,sep= "")
-dev.copy2eps(file=dir, width=10.0, height=10.0, pointsize=24)
+dev.copy2eps(file=dir, width=5.0, height=5.0, pointsize=40)
 
 plot(TukeyHSD(aovS, "S", ordered=TRUE))
 dir<-paste(dirTukey,parametros[5], sep= "")
 dir<-paste(dir,extension,sep= "")
-dev.copy2eps(file=dir, width=10.0, height=10.0, pointsize=24)
+dev.copy2eps(file=dir, width=5.0, height=5.0, pointsize=40)
+
+#x11(width=5, height=5, xpos=0)
+par(ylog=FALSE)
+par(ps = 30, cex = 1, cex.main = 1)
+par("ylog")
+par("mai")
+par("mar")
+par(mar=c(4,6,4,2))
+par("mar")
+
+par(cex.lab=1.2)
+par(cex.axis=1.2)
 
 
-boxplot(BEST_FITNESS~P, ylab="Best Fitness", xlab="P", data=datos)
+x11(width=5, height=5, xpos=0)
+#boxplot(BEST_FITNESS~P, log="y", ylim=c(0.00000000001,10),data=datos)
+boxplot(BEST_FITNESS~P,  ylab="Best Fitness", xlab="", ps = 20, cex = 1, cex.main = 1.2, cex.lab=1.2, cex.axis=1,data=datos)
 dir<-paste(dirBox,parametros[1], sep= "")
 dir<-paste(dir,extension,sep= "")
-dev.copy2eps(file=dir, width=10.0, height=10.0, pointsize=24)
+dev.copy2eps(file=dir, width=5.0, height=5.0)
 
-boxplot(BEST_FITNESS~D, ylab="Best Fitness", xlab="D", data=datos)
+x11(width=5, height=5, xpos=0)
+#boxplot(BEST_FITNESS~D, log="y", ylim=c(0.00000000001,10),data=datos)
+boxplot(BEST_FITNESS~D,  ylab="Best Fitness", xlab="", ps = 20, cex = 1, cex.main = 1.2, cex.lab=1.2, cex.axis=1,data=datos)
 dir<-paste(dirBox,parametros[2], sep= "")
 dir<-paste(dir,extension,sep= "")
-dev.copy2eps(file=dir, width=10.0, height=10.0, pointsize=24)
+dev.copy2eps(file=dir, width=5.0, height=5.0)
 
-boxplot(BEST_FITNESS~W, ylab="Best Fitness", xlab="W", data=datos)
+x11(width=5, height=5, xpos=0)
+boxplot(BEST_FITNESS~W,  ylab="Best Fitness", xlab="", ps = 20, cex = 1, cex.main = 1.2, cex.lab=1.2, cex.axis=1,data=datos)
 dir<-paste(dirBox,parametros[3], sep= "")
 dir<-paste(dir,extension,sep= "")
-dev.copy2eps(file=dir, width=10.0, height=10.0, pointsize=24)
+dev.copy2eps(file=dir, width=5.0, height=5.0)
 
-boxplot(BEST_FITNESS~F, ylab="Best Fitness", xlab="F", data=datos)
+x11(width=5, height=5, xpos=0)
+boxplot(BEST_FITNESS~F,  ylab="Best Fitness", xlab="", ps = 50, cex = 1, cex.main = 1.2, cex.lab=1.2, cex.axis=1, data=datos)
 dir<-paste(dirBox,parametros[4], sep= "")
 dir<-paste(dir,extension,sep= "")
-dev.copy2eps(file=dir, width=10.0, height=10.0, pointsize=24)
+dev.copy2eps(file=dir, width=5.0, height=5.0)
 
-boxplot(BEST_FITNESS~S, ylab="Best Fitness", xlab="S", data=datos)
+x11(width=5, height=5, xpos=0)
+boxplot(BEST_FITNESS~S,  ylab="Best Fitness", xlab="", ps = 50, cex = 1, cex.main = 1.2, cex.lab=1.2, cex.axis=1,data=datos)
 dir<-paste(dirBox,parametros[5], sep= "")
 dir<-paste(dir,extension,sep= "")
-dev.copy2eps(file=dir, width=10.0, height=10.0, pointsize=24)
+dev.copy2eps(file=dir, width=5.0, height=5.0)
 
 
 shapiro.test(datos$BEST_FITNESS)
