@@ -184,7 +184,8 @@ Also, it is expected that the existence of different personalities (or number of
 individual sizes, and therefore different convergence times, the stop
 condition will be established depending of the best fitness (30 generations without improvement), to do a fair comparison.
 
-Finally, the parameters of the GA also affect the generation of the desired world. In this paper, we study the population size, a parameter that has big effect in the execution of this kind of algorithms \cite{}, comparing populations of 64, 128 and 256 individuals. %TODO citar a un paper de tamaños de poblacion
+Finally, the parameters of the GA also affect the values of the
+obtained world. In this paper, we study the population size, a parameter that has big effect in the execution of this kind of algorithms \cite{}, comparing populations of 64, 128 and 256 individuals. %TODO citar a un paper de tamaños de poblacion
 
 Table \ref{tab:parameters} summarizes all the configuration parameters that will be compared (with their acronyms used in this paper), and the rest of the (fixed) parameters of the algorithm. The fixed values of the parameters of the GA have been usually described by other authors as...
 
@@ -208,7 +209,10 @@ Selection method & Binary tournament \\ \hline
 Elite & 10\%  \\ \hline
 % Cuando algo no compile lo arregláis, no lo borréis!!!! - JJ FERGU: ups, se me había pasado
 Replacement method & Generational\\ \hline
-Stop condition & 300 gens. or 30 gens. without improvement \\ \hline %Stop condition? - JJ FERGU: puesta
+Stop condition & 300 gens. or 30 gens. without improvement \\ \hline
+%Stop condition? - JJ FERGU: puesta 
+% Without improvemente in what? It's noisy fitness... no change in the
+% best individual? - JJ
 Runs per configuration & 30 \\ \hline
 \end{tabular}
 \caption{Parameters used in the experiments.}
@@ -217,11 +221,11 @@ Runs per configuration & 30 \\ \hline
 \end{table*}
 
 %\subsection{Converting logs to stories}
+% This subsection is *very* important... and not there yet. - JJ
 
 % 12 pages is the limit.
 \section{Results}
 \label{sec:res}
-
 
 In this paper, 9720 runs were carried out for each problem/scenario (30 times * 4 levels for \emph{P} * 2 levels for \emph{D} * 3 levels for \emph{W} * 3 levels for \emph{S} * 3 levels for \emph{F} that represent the possible combinations) to obtain the fitness for each combination.
 
@@ -247,14 +251,44 @@ equal (i.e., reject the null hypothesis), post-hoc tests might be used
 to determine which effects or outputs are significantly different from
 which other. % are we using them? - JJ FERGU: yes, abajo.
 
-Therefore, a Kruskal-Wallis multi-comparison test has also been performed, showing significant differences among all parameter values, except for number of profiles (only using 1 profile has significant difference with respect to use 2, 4 and 8), and GA population size (64-128 and 128-256), both values in scenarios Villain and Hero. This can be explained because only one profile is necessary in these scenarios (as the hero and villain archetypes are based in attacking other rats, and therefore, can be shared by the same agent).
+Therefore, a Kruskal-Wallis multi-comparison test has also been
+performed, showing significant differences among all parameter values,
+except for number of profiles (only using 1 profile has significant
+difference with respect to use 2, 4 and 8), and GA population size
+(64-128 and 128-256), both values in scenarios Villain and Hero. This
+can be explained because only one profile is necessary in these
+scenarios (as the hero and villain archetypes are based in attacking
+other rats, and therefore, can be shared by the same agent).  % Yo no
+                                % lo explicaría en términos de lo que
+                                % nosotros nos imaginamos, sino en
+                                % términos del propio algoritmo y su
+                                % función de fitness.
 
-All the results have been also plotted to better understand their differences. Figure \ref{fig:boxplotsE1} shows the boxplots for the fitness grouped by parameter for the Villain scenario. As can be seen, the median for D, W and F is 0 (or almost 0) for several values. This can be explained for several reasons. First, a small amount of days (64) is not enough to allow the generation of any archetype, as there is no time to develop a story. This can also be related to the world dimension: larger worlds require more time to be explored, so the chances of an encounter that can trig an event (for example, a fight) is more difficult. Finally, the amount of food, the element that makes most actions appear, also need to be low enough to promote fightings (1/8 of the world size). Similar results are obtained for the scenario 2 (Hero), (see Figure \ref{fig:boxplotsE2}) as this archetype depends on the previous existence of the villain archetype, are based in attack other rats, and can be shared by an agent.
+% Deberías agruparlos por parámetro, no por escenario. No estás
+% comparando diferentes parámetros de un escenario, sino diferentes
+% niveles para un parámetro - JJ
+All the results have been also plotted in order to  understand better
+their differences. Figure \ref{fig:boxplotsE1} shows the boxplots for
+the fitness grouped by parameter for the Villain scenario. As can be
+seen, the median for D, W and F is 0 (or almost 0) for several
+values. This can be explained for several reasons. First, a small
+amount of days (64) is not enough to allow the generation of any
+archetype, as there is no time to develop a story. This can also be
+related to the world dimension: larger worlds require more time to be
+explored, so the chances of an encounter that can trig an event (for
+example, a fight) is more difficult. Finally, the amount of food, the
+element that makes most actions appear, also need to be low enough to
+promote fightings (1/8 of the world size). Similar results are
+obtained for the scenario 2 (Hero), (see Figure \ref{fig:boxplotsE2})
+as this archetype depends on the previous existence of the villain
+archetype, are based in attack other rats, and can be shared by an
+agent. 
 
 With respect to the Shakespearian scenario %TODO @raiben
 
 % which is interesting
-                                % because... - JJ FERGU: explicado todo
+% because... - JJ FERGU: explicado todo
+% Fergu: esto tendría que explicarlo @raiben...
 
 \begin{figure}
         \centering
