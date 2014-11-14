@@ -1,6 +1,6 @@
-2015
+Papers for EvoStar 2015 conference
 ====
 
-Papers to be published in Evostar 2015
-- RTS games
-- Storytelling
+Papers submitted  [Evostar 2015](http://evostar.org)
+- [RTS games](GPBot)
+- [Storytelling](MADE)
