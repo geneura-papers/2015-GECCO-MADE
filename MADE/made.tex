@@ -46,24 +46,24 @@
 \begin{abstract}
 Generating fictional worlds
 % <RH>expongo el problema concreto ya que en esta misma frase hablamos de fitnes
-using multi-agent system optimized by genetic algorithms
+	using multi-agent system optimized by genetic algorithms
 % </RH>
 according to some specific requisites
 %<RH>
-related to the desirable plots
+	related to the desirable plots
 %</RH>
 presents the problem that it is impossible to know in advance the optimum for the
 particular fitness function designed at the same time it creates a
 vast search space for the evolutionary algorithm
  % TODO: <RH> Y no solo evolutionary, pero se si liar más el abstract</RH>
 parameters that it
-needs. In this paper our purpose is to find a methodology for finding the
+needs. In this paper our purpose is to define a methodology for finding the
 best parameters of the evolutionary algorithm
 % TODO: <RH>Y no solo evolutionary, pero se si liar más el abstract</RH>
 in the design of
 fictional worlds. This evolutionary design includes running, to
-completion, a world represented as a chromosome and assigning a fitness to it, so it is a problem
-with a very complex fitness landscape.
+completion, a world simulation represented as a chromosome and assigning a fitness to it, therefore it
+presents a very complex fitness landscape.
 
 % <RH> reescribo esta oración
 	%That is why, in order to
@@ -117,7 +117,7 @@ from the evolutionary point of view so that we can check what kind of
 influence they have in the outcome. We will do a experimental setup
 that will test different parameters, and eventually find a series of
 rules that will help the users of that framework to set the best
-values for their simulation. 
+values for their simulation.
 
 The rest of the paper is organized as follows. Coming up next, we
 present the state of the art in parameter setting of simulated
@@ -126,12 +126,116 @@ article, whose results will be shown in Section \ref{sec:res}. Finally, we will
 present the conclusions reached in this paper.
 
 \section{State of the Art}
-%TODO @raiben (aunque he empezado yo, la vamos a hacer de forma histórica empezando por lo antiguo, diciendo qué cosas tomamos de cada uno y terminando en MADE y cómo lo mejoramos) No olvides citar a nairat:evolution y explicar lo que dijo Morrell
- 
 
-Literary content generation has been studied since the XXs ... First papers ...  Morrell \cite{MorrellFiction06} defines those elements as ...
+%TODO revisar toda la sección, de momento estoy poniendo la info más o menos redactada pero falta la coherencia
 
-Then...
+
+It's important to mark out the nature of the problem
+according to the taxonomy described by \cite{togelius2011search}.
+
+\begin{description}
+\item[PCG] The Massive generation of backstories using the methodology described in
+\cite{ALIFEV} lies in the creation of a whole world with its
+characters, relations and plots, so it can be classified as a
+it{procedural content generator} (for further references PGC).
+\item[Optional] The content itself (backstories) is \textit{optional} for the main
+plot but it contributes to the realism of the user experience.
+\item[Stochastic] The generation has to be \textit{stochastic} for each execution,
+enabling the reuse and replayability of the game.
+\item[Offline] Every optimization has to be performed during the game 
+development (\textit{offline}).
+\item[Search based] The system is optimized with a
+generate-and-test algorithm.
+\end{description}
+
+In this context different approaches has been carried out,
+following the survey by \cite{arinbjarnar2009critical}:
+
+In 1976 Tale-Spin \cite{meehan1976metanovel} were able to produce
+purely text-based fairy tales where semi-autonomous characters
+exposed emotions and relationships, with the 
+objection of creating very inconsistent plots.
+
+Then, different researches used the concept of goals and pre-defined
+stories to construct stories: In 1987, UNIVERSE \cite{lebowitz1985story}
+was used to create
+infinite soap opera style stories driven by goals provided by the author.
+It used fragments of stories to assign roles to stereotypical characters
+and so relying on the reader the assumption of the characters' motivations.
+In 1994, Minstrel \cite{turner2014creative} used case-based reasoning
+to generate stories about knights and ladies by replacing variables
+in existing stories and recombining them. It also used goals, in this case
+for the story and for each character.
+Afterwards, in 2008, more recent investigations \cite{riedl2008toward} used the same idea,
+conceptualizing a vignette as a small story assumed as ``interesting'' and
+a story as a sequence of vignettes.
+
+Other, researches were based in emerging plots from agents' interactions:
+In 2007, \cite{swartjes2007emergent} Virtual storyteller, used agents that improvise using
+techniques from improvisational theatre, a plot guide and a narrator.
+In 2011, \cite{nairat2011character} proposed a generative drama approach
+that integrates human creativity by using an agent-based system where
+the characters are developed using interactive evolution.
+
+
+
+%TODO Coherencia: mediante MAS
+
+
+
+
+%TODO Optimización de MAS mediante GAS (articulo Evolutionary computation and agent-based modeling: biologically-inspired approaches for understanding complex social systems)
+
+%Mencionar a \cite{cioffi2012evolutionary}.
+
+%``a combined EC-ABM approach illus-
+%trated through the RebeLand model of a simple but complete polity system. Results
+%highlight tax rates and frequency of public issue that stress society as significant fea-
+%tures in phase transitions between stable and unstable governance regimes. These ini-
+%tial results suggest further applications of EC to ABM in terms of multi-population
+%models with heterogeneous agents, multi-objective optimization, dynamic environ-
+%ments, and evolving executable objects for modeling social change.''
+%
+%``This paper demonstrated a combined EC-ABM approach to the challenge of un-
+%derstanding complex adaptive systems in social science. We illustrated our frame-
+%work through the RebeLand agent-based model of a simple but rather complete polity
+%system. Our results highlighted several variables as being more important than oth-
+%ers, such as tax rates and frequency of public issue that stress society. These variables
+%represent significant features in phase transitions between stable and unstable gover-
+%nance regimes.
+%These initial results obtained through evolutionary algorithmic analysis also sug-
+%gested further applications of EC to ABM. Multi-population models with hetero-
+%geneous agents, multi-objective optimization, dynamic environments, and evolving
+%executable objects for modeling social change provide additional EC approaches for
+%future research.''
+%
+%``a combined EC-ABM approach illus-
+%trated through the RebeLand model of a simple but complete polity system. Results
+%highlight tax rates and frequency of public issue that stress society as significant fea-
+%tures in phase transitions between stable and unstable governance regimes. These ini-
+%tial results suggest further applications of EC to ABM in terms of multi-population
+%models with heterogeneous agents, multi-objective optimization, dynamic environ-
+%ments, and evolving executable objects for modeling social change.''
+%
+%``This paper demonstrated a combined EC-ABM approach to the challenge of un-
+%derstanding complex adaptive systems in social science. We illustrated our frame-
+%work through the RebeLand agent-based model of a simple but rather complete polity
+%system. Our results highlighted several variables as being more important than oth-
+%ers, such as tax rates and frequency of public issue that stress society. These variables
+%represent significant features in phase transitions between stable and unstable gover-
+%nance regimes.
+%These initial results obtained through evolutionary algorithmic analysis also sug-
+%gested further applications of EC to ABM. Multi-population models with hetero-
+%geneous agents, multi-objective optimization, dynamic environments, and evolving
+%executable objects for modeling social change provide additional EC approaches for
+%future research.''
+
+%TODO Elementos básicos para generación de tramas: Enganchar con Morrell \cite{MorrellFiction06}
+
+
+
+%TODO 
+
 
 A methodology to systematise the generation of backstories in massive worlds 
 using GAs was presented by García-Ortega et al. in \cite{garcia14my}. In that
