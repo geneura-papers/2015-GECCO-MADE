@@ -44,21 +44,42 @@
 
 
 \begin{abstract}
-Generating fictional worlds according to some specific requisites
+Generating fictional worlds
+% <RH>expongo el problema concreto ya que en esta misma frase hablamos de fitnes
+using multi-agent system optimized by genetic algorithms
+% </RH>
+according to some specific requisites
+%<RH>
+related to the desirable plots
+%</RH>
 presents the problem that it is impossible to know in advance the optimum for the
 particular fitness function designed at the same time it creates a
-vast search space for the evolutionary algorithm parameters that it
-needs. In this paper our objective is to find a methodology for finding the
-best parameters of the evolutionary algorithm in the design of
+vast search space for the evolutionary algorithm
+ % TODO: <RH> Y no solo evolutionary, pero se si liar más el abstract</RH>
+parameters that it
+needs. In this paper our purpose is to find a methodology for finding the
+best parameters of the evolutionary algorithm
+% TODO: <RH>Y no solo evolutionary, pero se si liar más el abstract</RH>
+in the design of
 fictional worlds. This evolutionary design includes running, to
 completion, a world represented as a chromosome and assigning a fitness to it, so it is a problem
-with a very complex fitness landscape. That is why, in order to
-optimize resources given to evolution and also have some guarantee
-that the final result will be close to optimal, we systematically
-study the values of different parameters to try and find a set of
-rules that will, once you have the fitness function, help you set a
-reduced range of values or even a single value that will, with a
-reduced computation budget, help you find an optimal world.
+with a very complex fitness landscape.
+
+% <RH> reescribo esta oración
+	%That is why, in order to
+	%optimize resources given to evolution and also have some guarantee
+	%that the final result will be close to optimal, we systematically
+	%study the values of different parameters to try and find a set of
+	%rules that will, once you have the fitness function, help you set a
+	%reduced range of values or even a single value that will, with a
+	%reduced computation budget, help you find an optimal world.
+In order to optimize resources given to evolution and have some
+guarantee that the final result will be close to the optimum, we systematically
+study the values of different parameters, obtaining a set of
+generic rules. These rules applied to the plot requisites and the fitness function
+will lead to a reduced range of parameter values that will help the storyteller create optimal worlds with a
+reduced computation budget.
+% </RH>
 
 \keywords{Games, Plot, evolutionary algorithms, content generation, literature}
 \end{abstract}
