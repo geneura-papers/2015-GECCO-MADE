@@ -182,28 +182,59 @@ for every previously explained scenarios:
 
 \subsection{Individual representation}
 
-
-An individual in the EA is a vector of parameters that model the behaviour of {\em all} the agents in the world (keep in mind that an individual of the EA is not equal to an agent in the world). These parameters have been presented in \cite{garcia14my}, and they define the transitions and states of a Finite State Machine that model the agent's behaviour. 
+An individual in the EA is a vector of parameters that model the
+behaviour of {\em all} the agents in the world (keep in mind that an
+individual of the EA is not equal to an agent in the world). These
+parameters have been presented in \cite{garcia14my}, and they define
+the transitions and states of a Finite State Machine that model the
+agent's behaviour. % si lo citas mucho tendrás que anonimizarlo para
+                   % el doble blind - JJ
 
 This vector of parameters is composed by several {\em profiles}. The number of profiles has a direct relation with the desired fitness function. It is expected that functions with only one kind of archetype (such as F1) only would require one profile (or set of parameters). However, as explained in \cite{garcia14my}, to allow the existence of different personalities in the world, different sets of personalities (or profiles) can be evolved at the same time. Therefore, the number of profiles affect the generated fitness, as the chromosome will be larger. 
 % Chromo what? FERGU: arreglado
 
 
-\subsection{System optimization}
+\subsection{Exploring the parameters for MADE}
 
 
-Once the fitness function has been decided, several parameters related with the world and the GA will be studied. As explained before, the parameters that define a literary story are the time, the world, the characters and the object. In this paper, we use the elements defined in MADE: number of days (time), a grid (world), food (object) and rats (characters).
+Several parameters related with the world and the GA will be studied
+in this paper so that we can obtain some rule of thumbs on which
+values to use in future experiments, at least as a baseline. As
+explained before, the parameters that define a literary story are the
+time, the world, the characters and the object. In this paper, we use
+the elements defined in MADE: number of days (time), a grid (world),
+food (object) and rats (characters). 
 
-%TODO rubén, que no se te olvide hablar de esto en la intro como viene en el issue y que esté relacionado con lo que pongo aquí. Por ejemplo, llamar al "object" de otra forma
+%TODO rubén, que no se te olvide hablar de esto en la intro como viene
+%en el issue y que esté relacionado con lo que pongo aquí. Por
+%ejemplo, llamar al "object" de otra forma
 
-Different parameter values for each element will be studied to clarify their influence in the literary world generation. First, it is expected that the number of days will have a significant impact, as larger values will allow the generation of more backstories. The set of days to study will be 64, 128 and 256. The world size (size of the grid in this paper: 5x5, 10x10 or 20x20) can also influence in the execution of the story, as larger worlds could make the agents spent more time exploring before an event occurs. The food, or the element that condition the actions (attack, share and defend among others), also could have enough effect in the story generation: lower quantities of food may increase the attacks, creating more aggressive agents, and larger quantities may generate more generous agents. Different proportions of food depending of the world size will be studied (food placed in 1/2, 1/4 and 1/8 of the size of the map).
+Different parameter values for each element will be studied to clarify
+their influence in the literary world generation. First, it is
+expected that the number of days will have a significant impact, as
+larger values will allow the generation of more backstories. The set
+of days to study will be 64, 128 and 256. The world size (size of the
+grid in this paper: 5x5, 10x10 or 20x20) can also influence in the
+execution of the story, as larger worlds could make the agents spent
+more time exploring before an event occurs. The food, or the element
+that condition the actions (attack, share and defend among others),
+also could have enough effect in the story generation: lower
+quantities of food may increase the attacks, creating more aggressive
+agents, and larger quantities may generate more generous
+agents. Different proportions of food depending of the world size will
+be studied (food placed in 1/2, 1/4 and 1/8 of the size of the map). 
 
 Also, it is expected that the existence of different personalities (or number of profiles) in the world will have a significant effect in the runs, specially in functions that require more than one archetype. We will compare the usage of 1, 2, 4 and 8 profiles in each scenario. As the usage of different number of profiles generate different
 individual sizes, and therefore different convergence times, the stop
 condition will be established depending of the best fitness (30 generations without improvement), to do a fair comparison.
 
 Finally, the parameters of the GA also affect the values of the
-obtained world. In this paper, we study the population size, a parameter that has big effect in the execution of this kind of algorithms \cite{}, comparing populations of 64, 128 and 256 individuals. %TODO citar a un paper de tamaños de poblacion
+obtained world. In this paper, we study the population size, a
+parameter that has big effect in the execution of this kind of
+algorithms \cite{}, comparing populations of 64, 128 and 256
+individuals. %TODO citar a un paper de tamaños de poblacion
+% Explicar también los parámetros que *no* se prueban y por qué *no*
+% se hace. - JJ
 
 Table \ref{tab:parameters} summarizes all the configuration parameters that will be compared (with their acronyms used in this paper), and the rest of the (fixed) parameters of the algorithm. The fixed values of the parameters of the GA have been usually described by other authors as...
 
@@ -220,12 +251,12 @@ Number of virtual days (D) &  64, 128 and 256 \\ \hline
 World dimension (W) &  5x5, 10x10 and 20x20 \\ \hline
 Food (F) & 1/2, 1/4, 1/8 \\ \hline
 GA population size & 64, 128 and 256 \\ \hline
+% world population size? - JJ
 \multicolumn{2}{|c|}{Fixed parameters} \\ \hline \hline
 Mutation probability & 1/12 per gene \\ \hline
 Parent pool size & Same as pool size \\ \hline
 Selection method & Binary tournament \\ \hline 
 Elite & 10\%  \\ \hline
-% Cuando algo no compile lo arregláis, no lo borréis!!!! - JJ FERGU: ups, se me había pasado
 Replacement method & Generational\\ \hline
 Stop condition & 300 gens. or 30 gens. without improvement \\ \hline
 %Stop condition? - JJ FERGU: puesta 
@@ -252,9 +283,16 @@ does not follow a normal distribution a non-parametric test, the Kruskal–Walli
 performed.  % por
                                 % favor, ¿podéis escribir esto EN
                                 % INGLÉS? - JJ FERGU: esto se ha extraido de un paper de ANOVA de hace tiempo, pero he quitado la última frase
-
-The application of Kruskal-Wallis consisted in running the EA optimization method using those parameter combinations to obtain the best fitness. 
-The response variable used to perform the statistical analysis is the fitness at the end of the run. The changes in the response variable are produced when a new combination of parameters is considered. Then, the {R} \footnote{{\tt http://www.r-project.org}} tool was used to obtain the Kruskal-Wallis tables as well as the tables of means and figures for each problem.
+% ¿podéis NO EXTRAER FRASES MAL ESCRITAS DE PAPERS DE HACE TIEMPO? - JJ
+The application of Kruskal-Wallis consisted in running an evolutionary
+algorithms using that combination of parameters to obtain the best
+fitness. % ¿Quéeeee? - JJ 
+The response variable used to perform the statistical analysis is the
+fitness at the end of the run. The changes in the response variable
+are produced when a new combination of parameters is considered. Then,
+the {R} \footnote{{\tt http://www.r-project.org}} tool was used to
+obtain the Kruskal-Wallis tables as well as the tables of means and
+figures for each problem. 
 
 The tables obtained by the Kruskal-Wallis analysis show for each factor the  degrees of freedom (FD), the experimental value of the statistical F (F value) and its associated p-value. If the output is smaller than 0.05, then the
 effect of this factor is statistically significant at a $95\%$
@@ -286,30 +324,6 @@ the fitness function $F_1$ and $F_2$ only differs in counting the archetype of a
 % Deberías agruparlos por parámetro, no por escenario. No estás
 % comparando diferentes parámetros de un escenario, sino diferentes
 % niveles para un parámetro - JJ FERGU: tienes toda la razón, agrupado
-
-All the results have been also plotted in order to understand better
-their differences (in Figures \ref{fig:boxplotsP} to \ref{fig:boxplotsS}). At first glance, the median for D, W and F is 0 (or almost 0) for several
-values. This can be explained for different reasons. First, the number of profiles has enough impact in the results (Figure \ref{fig:boxplotsS}), as it was shown previously in \cite{garcia14my}. Although no executions achieved the maximum number of generations (300), the length of the chromosome have an effect in the convergence. %FERGU: @raiben habría que hacer lo que dice JJ de estudiar qué eventos se están produciendo. El problema es que habría que lanzar todo otra vez... Pienso que tampoco sería mala idea hacer un estudio respecto al parámetro GENERATION con los Kruskal-Wallis, para ver cuando paran los EAs y justificar mejor este párrafo.
-
-With respect to the parameter D it can be seen in Figure \ref{fig:boxplotsD} a small
-amount of days (64) is not enough to allow the generation of any
-archetype, as there is no time to develop a story in any of the scenarios. This can also be
-related to the world dimension (Figure \ref{fig:boxplotsW}): larger worlds require more time to be
-explored, so the chances of an encounter that can trig an event (for
-example, a fight) is more difficult. 
-
-Finally, the amount of food (Figure \ref{fig:boxplotsF}), the
-element that makes most actions appear, also need to be low enough to
-promote fightings (1/8 of the world size). 
-
-
-
-% which is interesting
-% because... - JJ FERGU: explicado todo
-
-
-
-
 \begin{figure}
         \centering
         \subfigure[\scriptsize{Scenario 1: Villain}]{
@@ -326,8 +340,31 @@ promote fightings (1/8 of the world size).
         }  
         \caption{Boxplots for parameter P (number of profiles)}\label{fig:boxplotsP}
 \end{figure}
-
-
+%
+All the results have also been plotted in order to better understand 
+their differences (in Figures \ref{fig:boxplotsP} to \ref{fig:boxplotsS}). At first glance, the median for D, W and F is 0 (or almost 0) for several
+values. This could have several possible explanations: First, the
+number of profiles has quite an impact in the results (Figure
+\ref{fig:boxplotsS}), as it was shown previously in
+\cite{garcia14my}. Although no executions achieved the maximum number
+of generations (300), % ¿Eso qué significa? - JJ
+ the length of the chromosome has an effect in the
+ convergence. %FERGU: @raiben habría que hacer lo que dice JJ de
+              %estudiar qué eventos se están produciendo. El problema
+              %es que habría que lanzar todo otra vez... Pienso que
+              %tampoco sería mala idea hacer un estudio respecto al
+              %parámetro GENERATION con los Kruskal-Wallis, para ver
+              %cuando paran los EAs y justificar mejor este párrafo. 
+% No hace falta lanzarlos todos, basta lanzar uno con los mismos
+% parámetros y visualizar los eventos - JJ
+Increasing the number of profiles means changing the search problem
+from finding a single finite state automaton whose behaviour
+eventually results in a world compatible with our search to finding
+two or more compatible with it and among themselves. This also happens
+independently of the situation and including complex ones, like the
+Shakespeare scenario, so for the time being we should conclude that a
+single profile, that is, having the description of a single FSM that
+describes the behavior of the agents in the world, is the best option for any scenario. 
 
 \begin{figure}
         \centering
@@ -343,8 +380,13 @@ promote fightings (1/8 of the world size).
                 \includegraphics[width=3.7cm]{imags/boxplotz5D.eps}
                 \label{fig:e3_d}
         }  
-        \caption{Boxplots for parameter D (number of days)}\label{fig:boxplotsD}
+        \caption{Boxplots for parameter D (number of
+          days)}\label{fig:boxplotsD} % Ponedlo al revés: for the
+                                % number of days (parameter D). Lo
+                                % INTERESANTE es el nombre del
+                                % parámetro, no el número.
 \end{figure}
+
 
 \begin{figure}
         \centering
@@ -380,6 +422,25 @@ promote fightings (1/8 of the world size).
         \caption{Boxplots for parameter F (Food amount)}\label{fig:boxplotsF}
 \end{figure}
 
+% ¿Por qué diablos decís parámetro D y no lo que hace el parámetro? ¿Y
+% por qué usáis with respect en vez de enlazarlo con el anterior?
+A similar result is obtained for the number of days, whose results in
+the three scenarios can be seen in Figure \ref{fig:boxplotsD}: A small
+amount of days (64) is not enough to allow the generation of any
+archetype, as there is no time to develop a story, or, in another
+words, for the events that we examine to compute fitness to occur, in
+most of the scenarios. This can also be said
+about the world dimension (Figure \ref{fig:boxplotsW}): larger worlds
+are more sparsely populated and have less interaction events, so the chances of an encounter that can trig an event (for
+example, a fight) is more difficult. % pero esto habría que probarlo
+                                % mirando el número de encuentros, la
+                                % densidad de población, y cosas así.
+% ¿Cuál es la densidad de población en el mundo 5x5? ¿Cómo evoluciona?
+From the study of these two parameters we can conclude that, at least
+for these scenarios and possibly for any scenario, the baseline number
+of days should be 256 and the world for this population should have a
+small size of 25 cells. 
+
 \begin{figure}
         \centering
         \subfigure[\scriptsize{Scenario 1: Villain}]{
@@ -397,6 +458,21 @@ promote fightings (1/8 of the world size).
         \caption{Boxplots for parameter S (GA population size)}\label{fig:boxplotsS}
 \end{figure}
 
+Finally, the amount of food (Figure \ref{fig:boxplotsF}), the
+element that has an influence on the occurrence of the actions that
+count for the fitness, such as % @raiben dilo aquí - JJ
+, also need to be low enough so that conflict appear, in this case 1/8
+of the world size. % Con un mundo de tamaño 25, ¿aparecen 3 piezas de
+                   % comida? - JJ 
+
+
+% which is interesting
+% because... - JJ FERGU: explicado todo
+
+
+
+
+
 
 
 
@@ -406,6 +482,8 @@ promote fightings (1/8 of the world size).
 
 
 \section{Conclusions}
+
+
 
 \section*{Acknowledgements}
 
