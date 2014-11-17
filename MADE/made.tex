@@ -55,17 +55,17 @@ according to some specific requisites
 presents the problem that it is impossible to know in advance the optimum for the
 particular fitness function designed at the same time it creates a
 vast search space for the evolutionary algorithm
- % TODO: <RH> Y no solo evolutionary, pero se si liar más el abstract</RH>
+ % TODO: <RH> Y no solo evolutionary, pero se si liar mas el abstract</RH>
 parameters that it
 needs. In this paper our purpose is to define a methodology for finding the
 best parameters of the evolutionary algorithm
-% TODO: <RH>Y no solo evolutionary, pero se si liar más el abstract</RH>
+% TODO: <RH>Y no solo evolutionary, pero se si liar mas el abstract</RH>
 in the design of
 fictional worlds. This evolutionary design includes running, to
 completion, a world simulation represented as a chromosome and assigning a fitness to it, therefore it
 presents a very complex fitness landscape.
 
-% <RH> reescribo esta oración
+% <RH> reescribo esta oracion
 	%That is why, in order to
 	%optimize resources given to evolution and also have some guarantee
 	%that the final result will be close to optimal, we systematically
@@ -127,7 +127,7 @@ present the conclusions reached in this paper.
 
 \section{State of the Art}
 
-%TODO revisar toda la sección, de momento estoy poniendo la info más o menos redactada pero falta la coherencia
+%TODO revisar toda la seccion, de momento estoy poniendo la info mas o menos redactada pero falta la coherencia
 
 
 It's important to mark out the nature of the problem
@@ -184,7 +184,7 @@ the characters are developed using interactive evolution.
 
 
 
-%TODO Optimización de MAS mediante GAS (articulo Evolutionary computation and agent-based modeling: biologically-inspired approaches for understanding complex social systems)
+%TODO Optimizacion de MAS mediante GAS (articulo Evolutionary computation and agent-based modeling: biologically-inspired approaches for understanding complex social systems)
 
 %Mencionar a \cite{cioffi2012evolutionary}.
 
@@ -230,7 +230,7 @@ the characters are developed using interactive evolution.
 %executable objects for modeling social change provide additional EC approaches for
 %future research.''
 
-%TODO Elementos básicos para generación de tramas: Enganchar con Morrell \cite{MorrellFiction06}
+%TODO Elementos basicos para generacion de tramas: Enganchar con Morrell \cite{MorrellFiction06}
 
 
 
@@ -280,7 +280,7 @@ In this work, we propose three scenarios:
 
 \subsection{Designing a fitness function}
 
-% Una vez más, no usáis ninguna metodología para hacer esto. Es un poco ``Se me ha ocurrido hacerlo así''. - JJ FERGU: ¿como podemos hacerlo?
+% Una vez mas, no usais ninguna metodologi�a para hacer esto. Es un poco ``Se me ha ocurrido hacerlo asi�''. - JJ FERGU: como podemos hacerlo?
 
 The first step requires to develop a fitness function that takes into
 account the quantity of the desired archetypes. This fitness function
@@ -302,7 +302,7 @@ for every previously explained scenarios:
 \begin{itemize}
 \item Function 1 ($F_1$): for the scenario A . This function requires the maximization of the ``villain'' archetype, trying to maximise the number of villains in the world. 
 \item Function 2 ($F_2$): for the scenario B. In this, case, the ``hero'' archetype... and villain ()
-\item Function 3 ($F_5$): for the scenario C... This function requires 5 different archetypes. These archetypes have some type of interdependence. hero villano obstaculo mentor y vengativo %(este no deènde de nadie)
+\item Function 3 ($F_5$): for the scenario C... This function requires 5 different archetypes. These archetypes have some type of interdependence. hero villano obstaculo mentor y vengativo %(este no depende de nadie)
 \end{itemize}
 
 \subsection{Individual representation}
@@ -312,7 +312,7 @@ behaviour of {\em all} the agents in the world (keep in mind that an
 individual of the EA is not equal to an agent in the world). These
 parameters have been presented in \cite{garcia14my}, and they define
 the transitions and states of a Finite State Machine that model the
-agent's behaviour. % si lo citas mucho tendrás que anonimizarlo para
+agent's behaviour. % si lo citas mucho tendria�s que anonimizarlo para
                    % el doble blind - JJ
 
 This vector of parameters is composed by several {\em profiles}. The number of profiles has a direct relation with the desired fitness function. It is expected that functions with only one kind of archetype (such as F1) only would require one profile (or set of parameters). However, as explained in \cite{garcia14my}, to allow the existence of different personalities in the world, different sets of personalities (or profiles) can be evolved at the same time. Therefore, the number of profiles affect the generated fitness, as the chromosome will be larger. 
@@ -330,8 +330,8 @@ time, the world, the characters and the object. In this paper, we use
 the elements defined in MADE: number of days (time), a grid (world),
 food (object) and rats (characters). 
 
-%TODO rubén, que no se te olvide hablar de esto en la intro como viene
-%en el issue y que esté relacionado con lo que pongo aquí. Por
+%TODO ruben, que no se te olvide hablar de esto en la intro como viene
+%en el issue y que esto relacionado con lo que pongo aqui�. Por
 %ejemplo, llamar al "object" de otra forma
 
 Different parameter values for each element will be studied to clarify
@@ -357,8 +357,8 @@ Finally, the parameters of the GA also affect the values of the
 obtained world. In this paper, we study the population size, a
 parameter that has big effect in the execution of this kind of
 algorithms \cite{}, comparing populations of 64, 128 and 256
-individuals. %TODO citar a un paper de tamaños de poblacion
-% Explicar también los parámetros que *no* se prueban y por qué *no*
+individuals. %TODO citar a un paper de tamagnos de poblacion
+% Explicar tambien los parametros que *no* se prueban y por que *no*
 % se hace. - JJ
 
 Table \ref{tab:parameters} summarizes all the configuration parameters that will be compared (with their acronyms used in this paper), and the rest of the (fixed) parameters of the algorithm. The fixed values of the parameters of the GA have been usually described by other authors as...
@@ -406,12 +406,12 @@ In this paper, 9720 runs were carried out for each problem/scenario (30 times * 
 Since the Kolmogorov-Smirnov test determines that the data we are using
 does not follow a normal distribution a non-parametric test, the Kruskal–Wallis test, has been
 performed.  % por
-                                % favor, ¿podéis escribir esto EN
-                                % INGLÉS? - JJ FERGU: esto se ha extraido de un paper de ANOVA de hace tiempo, pero he quitado la última frase
-% ¿podéis NO EXTRAER FRASES MAL ESCRITAS DE PAPERS DE HACE TIEMPO? - JJ
+                                % favor, Podriais escribir esto EN
+                                % INGLES? - JJ FERGU: esto se ha extraido de un paper de ANOVA de hace tiempo, pero he quitado la ultima frase
+% podeis NO EXTRAER FRASES MAL ESCRITAS DE PAPERS DE HACE TIEMPO? - JJ
 The application of Kruskal-Wallis consisted in running an evolutionary
 algorithms using that combination of parameters to obtain the best
-fitness. % ¿Quéeeee? - JJ 
+fitness. % Queeeee? - JJ 
 The response variable used to perform the statistical analysis is the
 fitness at the end of the run. The changes in the response variable
 are produced when a new combination of parameters is considered. Then,
@@ -441,14 +441,14 @@ can be explained because only one profile is necessary in these
 scenarios (as the hero and villain archetypes are based in attacking
 other rats, and therefore, can be shared by the same agent). Therefore, 
 the fitness function $F_1$ and $F_2$ only differs in counting the archetype of an ``attacking'' rat almost twice.  % Yo no
-                                % lo explicaría en términos de lo que
+                                % lo explicari�a en terminos de lo que
                                 % nosotros nos imaginamos, sino en
-                                % términos del propio algoritmo y su
-                                % función de fitness. FERGU: lo he intentado, pero no lo tengo muy claro @raiben, escribe tú
+                                % terminos del propio algoritmo y su
+                                % funcion de fitness. FERGU: lo he intentado, pero no lo tengo muy claro @raiben, escribe tu
 
-% Deberías agruparlos por parámetro, no por escenario. No estás
-% comparando diferentes parámetros de un escenario, sino diferentes
-% niveles para un parámetro - JJ FERGU: tienes toda la razón, agrupado
+% Deberias agruparlos por parametro, no por escenario. No estais
+% comparando diferentes para�metros de un escenario, sino diferentes
+% niveles para un parametro - JJ FERGU: tienes toda la razon, agrupado
 \begin{figure}
         \centering
         \subfigure[\scriptsize{Scenario 1: Villain}]{
@@ -472,16 +472,16 @@ values. This could have several possible explanations: First, the
 number of profiles has quite an impact in the results (Figure
 \ref{fig:boxplotsS}), as it was shown previously in
 \cite{garcia14my}. Although no executions achieved the maximum number
-of generations (300), % ¿Eso qué significa? - JJ
+of generations (300), % Eso que significa? - JJ
  the length of the chromosome has an effect in the
- convergence. %FERGU: @raiben habría que hacer lo que dice JJ de
-              %estudiar qué eventos se están produciendo. El problema
-              %es que habría que lanzar todo otra vez... Pienso que
-              %tampoco sería mala idea hacer un estudio respecto al
-              %parámetro GENERATION con los Kruskal-Wallis, para ver
-              %cuando paran los EAs y justificar mejor este párrafo. 
+ convergence. %FERGU: @raiben habra que hacer lo que dice JJ de
+              %estudiar que eventos se esten produciendo. El problema
+              %es que habr�a que lanzar todo otra vez... Pienso que
+              %tampoco sera mala idea hacer un estudio respecto al
+              %parametro GENERATION con los Kruskal-Wallis, para ver
+              %cuando paran los EAs y justificar mejor este parrafo. 
 % No hace falta lanzarlos todos, basta lanzar uno con los mismos
-% parámetros y visualizar los eventos - JJ
+% parametros y visualizar los eventos - JJ
 Increasing the number of profiles means changing the search problem
 from finding a single finite state automaton whose behaviour
 eventually results in a world compatible with our search to finding
@@ -506,10 +506,10 @@ describes the behavior of the agents in the world, is the best option for any sc
                 \label{fig:e3_d}
         }  
         \caption{Boxplots for parameter D (number of
-          days)}\label{fig:boxplotsD} % Ponedlo al revés: for the
+          days)}\label{fig:boxplotsD} % Ponedlo al reves: for the
                                 % number of days (parameter D). Lo
                                 % INTERESANTE es el nombre del
-                                % parámetro, no el número.
+                                % parametro, no el numero.
 \end{figure}
 
 
@@ -547,8 +547,8 @@ describes the behavior of the agents in the world, is the best option for any sc
         \caption{Boxplots for parameter F (Food amount)}\label{fig:boxplotsF}
 \end{figure}
 
-% ¿Por qué diablos decís parámetro D y no lo que hace el parámetro? ¿Y
-% por qué usáis with respect en vez de enlazarlo con el anterior?
+% Por que diablos deci�s parametro D y no lo que hace el parametro? Y
+% por que usais with respect en vez de enlazarlo con el anterior?
 A similar result is obtained for the number of days, whose results in
 the three scenarios can be seen in Figure \ref{fig:boxplotsD}: A small
 amount of days (64) is not enough to allow the generation of any
@@ -557,10 +557,10 @@ words, for the events that we examine to compute fitness to occur, in
 most of the scenarios. This can also be said
 about the world dimension (Figure \ref{fig:boxplotsW}): larger worlds
 are more sparsely populated and have less interaction events, so the chances of an encounter that can trig an event (for
-example, a fight) is more difficult. % pero esto habría que probarlo
-                                % mirando el número de encuentros, la
-                                % densidad de población, y cosas así.
-% ¿Cuál es la densidad de población en el mundo 5x5? ¿Cómo evoluciona?
+example, a fight) is more difficult. % pero esto habra que probarlo
+                                % mirando el numero de encuentros, la
+                                % densidad de poblacion, y cosas asi�.
+% Cual es la densidad de poblacion en el mundo 5x5? Como evoluciona?
 From the study of these two parameters we can conclude that, at least
 for these scenarios and possibly for any scenario, the baseline number
 of days should be 256 and the world for this population should have a
@@ -585,20 +585,14 @@ small size of 25 cells.
 
 Finally, the amount of food (Figure \ref{fig:boxplotsF}), the
 element that has an influence on the occurrence of the actions that
-count for the fitness, such as % @raiben dilo aquí - JJ
+count for the fitness, such as % @raiben dilo aqui� - JJ
 , also need to be low enough so that conflict appear, in this case 1/8
-of the world size. % Con un mundo de tamaño 25, ¿aparecen 3 piezas de
+of the world size. % Con un mundo de tamagno 25, Aparecen 3 piezas de
                    % comida? - JJ 
 
 
 % which is interesting
 % because... - JJ FERGU: explicado todo
-
-
-
-
-
-
 
 
 
