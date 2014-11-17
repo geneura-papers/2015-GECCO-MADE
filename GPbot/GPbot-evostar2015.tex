@@ -274,8 +274,6 @@ implication of the obtained results.
 \section{State of the Art}
 \label{sec:SoA}
 
-%% TODO: esto está en redacción...
-
 Real world optimization problems often involve uncertain environment including noisy and/or dynamic environments \cite{Jin2005303,QianYZ13}.
 Basic strategies to handle noisy fitness functions include using a larger population size, averaging to filter out the noise (re-sampling) \cite{Branke98,Branke2001}, thresholding (employing a threshold value to be used in a selection operator for noisy fitness functions) \cite{Markon2001} or changing the selection criteria.
 Other authors propose complex methods such as including the multipopulation approach, special operators or case-based memory \cite{BhattacharyaIM14}. 
@@ -305,6 +303,8 @@ Authors propose searching the minimum number of generations by means of a conver
 Finally, as stated in Hart et al. \cite{Hart1996} when calculating metrics of parallel performance, it is incorrect to stop a parallel EA either after a fixed number of iterations or when the average fitness exhibits little variation. In this case, stopping rules based on the attainment of thresholds should be used, i.e. stopping the run when a solution that reaches this threshold is found \cite{Sena2001}. Nevertheless, threshold definition requires a good estimation of the optimum of the problem under study, which is unavailable in many cases \cite{Safe2004}.
 
 % A conclusion should be added to this based on the last paragraph - JJ
+In this paper, several stopping criteria will be studied, considering the time needed to obtain the solution and the quality of that solution. 
+
 
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  METHODOLOGY  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
