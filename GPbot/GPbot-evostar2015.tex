@@ -108,9 +108,10 @@ unknown best solution.
 \section{Introduction}
 
 
-In this scope, Evolutionary Algorithms (EAS) are usually applied to find the best autonomous
+Evolutionary Algorithms (EAS) are one of the methods usually applied
+to find the best autonomous  
 agent for playing the game, i.e. the best \textit{bot}
-\cite{Agent_Smith_CEC2009,Mora-Evo2010,Esparcia10FPS,FernandezAres2012adaptive}.
+\cite{Agent_Smith_CEC2009,bots:evostar,unreal:gecco10,DBLP:conf/cig/Fernandez-AresGMG12}.
 And the termination condition is a key factor in any algorithm and its experimental setup since it affects the algorithmic performance, with respect to the quality of the yielded solution, and also to the amount of resources devoted to the run. 
 In EAs \cite{EAs_Back96} the usual termination condition is a constant number of generations (or evaluations), 
 %Maribel: el número de generaciones y el número de evaluaciónes
@@ -123,7 +124,7 @@ In EAs \cite{EAs_Back96} the usual termination condition is a constant number of
 % evaluaciones. - JJ
  which is normally related to a fixed {\em computing cycles budget}
 for doing the run or to a number of generations in
-which the best solution is not improved (distance to the optimum is not reduced), among others \cite{RocheTermination13}. However, neither of them might be useful in certain problems such as games, mainly due to the noisy nature of the fitness function \cite{merelo14:noisy,Mora2012Genebot}. 
+which the best solution is not improved (distance to the optimum is not reduced), among others \cite{RocheTermination13}. However, neither of them might be useful in certain problems such as games, mainly due to the noisy nature of the fitness function \cite{merelo14:noisy,bots:evostar}. 
 
 This \textit{noise} is inherent to most games, since the enemy behavior, the
 game environment, the bot itself, or all of them, may have an
