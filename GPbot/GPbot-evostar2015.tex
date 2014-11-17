@@ -65,18 +65,32 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   ABSTRACT   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 \begin{abstract}
-Evolutionary Algorithms are frequently used as a mechanism for the optimization of autonomous agents in games (bots). % quitado offline que no se entiende en este contexto - JJ
-Determining the end of the optimization process in this stage is not as easy as it would a priori seem. 
-% Antonio - Yo introducirï¿½a el entorno del problema mejor. No todos los lectores sabrï¿½n quï¿½ quiere decir o e quï¿½ consiste 'the evolutionary process in the design of a game bot'... Lo he hecho con una frase al principio. ;)
-The first issue is that there is no known optimum, because most games make sure
-% Antonio - 'make sure' es como si el juego se asegurase de eso. Al diseï¿½ar un juego no creo que se piense mucho en esta posibilidad. ;D
+Evolutionary Algorithms are frequently used as a mechanism for the
+optimization of autonomous agents in games (bots), but knowing when to
+stop evolving, that is, when the bots are good enough, is not as easy as it would a priori seem. 
+The first issue is that there is no known optimum, because most game
+rules ensure
+% Antonio - 'make sure' es como si el juego se asegurase de eso. Al
+% diseï¿½ar un juego no creo que se piense mucho en esta
+% posibilidad. ;D
+% de hecho, sí. Cuando se encuentra una estrategia óptima se suelen
+% cambiar las reglas. Cambiado de todas formas - JJ
  that there is no single best way of creating a bot that defeats all enemies; once it is found, there is no challenge left. 
 % Antonio - repito, esto no es algo de lo que los diseï¿½adores del juego se preocupen
-% y?
-Then, in most games, fitness is noisy and re-evaluated every generation, so that even if you consider reaching a certain level of fitness as a termination condition, there is no guarantee that the individual with that fitness will not fall below the threshold next generation it is evaluated, or, for that matter, that it is actually optimum. 
+% y?  JJ
+Then, in most games, fitness is noisy and (usually) re-evaluated every
+generation, so that even if you consider reaching a certain level of
+fitness as a termination condition, there is no guarantee that the
+individual with that fitness will not fall below the threshold next
+generation it is evaluated, or, for that matter, that it is actually
+optimum.  
 % Antonio - he reescrito un poco esto. Los individuos no cambian, cambia su evaluaciï¿½n. Lo he dejado mï¿½s o menos igual, aunque creo que mejor expresado en este sentido.
 % Antonio: siempre que pongas ``regarding'', piénsatelo, porque siempre está mal. - JJ
-Usually running for a constant amount of generations is often considered as an acceptable criteria, if the obtained bots are good enough. However this is not necessarily the best approach, since further optimization could lie ahead, so other options must be explored. 
+The termination strategies left are independent of the algorithm:
+running for a constant amount of generations is often considered as an
+acceptable criteria, if the obtained bots are good enough. However
+this is not necessarily the best approach, since further optimization
+could lie ahead, so other options must be explored.  
 Other possibilities, such as certain level of victories over external enemies as a termination condition, present the problem that the bots will be overfitted to
 those particular enemies. 
 % Antonio - De hecho, usar mï¿½ltiples enemigos externos es la mejor forma de evaluaciï¿½n (si no es un co-evolutivo), ya que asï¿½ se lucha contra la sobre-especializaciï¿½n. Usar una condiciï¿½n de parada basada en eso serï¿½a el mejor enfoque, que pero se necesitan muuuchos enemigos.
@@ -85,18 +99,16 @@ Even as any of these conditions is not perfect, there is the
 possibility of combining several of them as termination condition so
 that bots that are as optimal as possible, (and in as general a
 context as it is possible) are found; also, in a minimal amount of
-time and evaluations. In this paper 
+time and evaluations. Eventually, what we are trying to find is a
+termination condition that is able to find a good solution in a
+certain amount of time, and that allows researchers to compare between
+different evolutionary algorithms as fairly as possible, that is why in this paper 
 we will examine several ways of ending an evolutionary
 game bot design process, determining the capabilities of every one of
-them and, eventually, selecting one for future designs. % Nos falta
-                                % qué criterio vamos a seguir para
-                                % seleccionar un criterio sobre
-                                % otro. ¿Simplemente el fitness? ¿Una
-                                % integral del fitness sobre las
-                                % generaciones? 
+them and, eventually, selecting one for future designs.
 We will use a particular game, Planet Wars, which has been studied
 extensively in the literature, but the conclusions to our study could, in principle, be extended to any RTS or even any game with non-deterministic match results and with an
-unknown best solution.
+unknown best solution. 
 % Antonio - faltarï¿½a la ï¿½ltima frase con las conclusiones que se alcancen, no?
 \keywords{Videogames, RTS, evolutionary algorithms, termination criteria}
 % Antonio - no hay co-evoluciï¿½n!!!
@@ -111,7 +123,8 @@ unknown best solution.
 Evolutionary Algorithms (EAS) are one of the methods usually applied
 to find the best autonomous  
 agent for playing the game, i.e. the best \textit{bot}
-\cite{Agent_Smith_CEC2009,bots:evostar,unreal:gecco10,DBLP:conf/cig/Fernandez-AresGMG12}.
+\cite{Agent_Smith_CEC2009,bots:evostar,unreal:gecco10,DBLP:conf/cig/Fernandez-AresGMG12}
+through an evolutionary process.
 And the termination condition is a key factor in any algorithm and its experimental setup since it affects the algorithmic performance, with respect to the quality of the yielded solution, and also to the amount of resources devoted to the run. 
 In EAs \cite{EAs_Back96} the usual termination condition is a constant number of generations (or evaluations), 
 %Maribel: el nÃºmero de generaciones y el nÃºmero de evaluaciÃ³nes
@@ -314,7 +327,7 @@ Specifically those population-based ones, which are normally more sensitive to d
 %The aim of this paper is to test which is the best way for stopping an evolutionary algorithm to find an autonomous and winner agent for playing a game. We have selected several stopping criteria, some of them, are controlled only by one or more evolutionary paremeter, but others by some features of the population. Due to this kind of stopping criteria, the diversity of the population should be preserved. For this reason, the generational approach is a good option for our test setup.  
 
 
-In addition, we have tried to reduce the effects of the noisy
+In addition, certain researchers have tried to reduce the effects of the noisy
 evaluation \cite{Genebot_JCST} by computing fitness from the result of
 30 matches against an expert rival, ExpGenebot proposed in
 \cite{Genebot_CIG2012} and based on the improvement of the heuristics
