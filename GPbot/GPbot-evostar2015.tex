@@ -75,11 +75,18 @@ rules ensure
 % posibilidad. ;D
 % de hecho, sí. Cuando se encuentra una estrategia óptima se suelen
 % cambiar las reglas. Cambiado de todas formas - JJ
- that there is no single best way of creating a bot that defeats all enemies; once it is found, there is no challenge left. 
+ that there is no single best way of creating a bot that defeats all
+ enemies; once it is found, there is no challenge left since it is
+ just a matter of following the optimal strategy found by the bot. 
 % Antonio - repito, esto no es algo de lo que los diseï¿½adores del juego se preocupen
 % y?  JJ
 % Antonio - Pues que estaba escrito como si el juego se diseñase para eso.
-%           De todas formas esta frase no tiene mucho sentido: "las reglas aseguran que no haya una sola forma par crear el mejor bot; que si se encuentra, no hay más desafío"... ¿qué tiene que ver esto último con que no haya un óptimo conocido?
+%           De todas formas esta frase no tiene mucho sentido: "las
+%           reglas aseguran que no haya una sola forma par crear el
+%           mejor bot; que si se encuentra, no hay más
+%           desafío"... ¿qué tiene que ver esto último con que no haya
+%           un óptimo conocido?
+% ¿qué sentido tiene jugar contra el mejor jugador? - JJ
 Then, in most games, the fitness evaluation (normally based in playing the game) is noisy and (usually) re-evaluated every generation, so that even if you consider reaching a certain level of fitness as a termination condition, there is no guarantee that the individual with that fitness will not fall below the threshold next generation it is evaluated, or, for that matter, that it is actually optimum.  
 % Antonio - he reescrito un poco esto. Los individuos no cambian, cambia su evaluaciï¿½n. Lo he dejado mï¿½s o menos igual, aunque creo que mejor expresado en este sentido.
 % Antonio: siempre que pongas ``regarding'', piénsatelo, porque siempre está mal. - JJ
@@ -89,7 +96,9 @@ running for a constant amount of generations is often considered as an
 acceptable criteria, if the obtained bots are good enough. However
 this is not necessarily the best approach, since further optimization
 could lie ahead, so other options must be explored.  
-Other possibilities, such as certain level of victories (or fitness quality) over external enemies as a termination condition, present the problem that the bots will be overfitted to those particular enemies. 
+Other possibilities, such as certain level of victories (or fitness
+quality) over external enemies as a termination condition, present the
+problem that the bots will be overfitted to those particular enemies.  
 % Antonio - De hecho, usar múltiples enemigos externos es la mejor forma de evaluación (si no es un co-evolutivo), ya que así se lucha contra la sobre-especialización. Usar una condición de parada basada en eso sería el mejor enfoque, que pero se necesitan muuuchos enemigos.
 % Antonio - he añadido el típico criterio de parada basado en generaciones
 Even as any of these conditions is not perfect, there is the
@@ -101,7 +110,9 @@ The aim of this paper is to find is a termination condition that is able to yiel
 game bot design process, determining the capabilities of every one of
 them and, eventually, selecting one for future designs.
 We will use a particular game, Planet Wars, which has been studied
-extensively in the literature, but the conclusions to our study could, in principle, be extended to any RTS or even any game with non-deterministic match results and with an unknown best solution. 
+extensively in the literature, but the conclusions to our study could,
+in principle, be extended to any Real Time Strategy (RTS) or even any game with
+non-deterministic match results and with an unknown best solution.
 % Antonio - faltaría la última frase con las conclusiones que se alcancen, no?
 % Me reafirmo en esto
 \keywords{Videogames, RTS, evolutionary algorithms, termination criteria, noisy fitness, no-optimal solution}
@@ -142,18 +153,19 @@ every time the fitness is measured.
 This issue arises in games due to the noisy and combat-based methods
 used for the evolution of bots, because there is not a single,
 principles-based way to compute the fitness and end the algorithm. Besides, any approach you choose, it is usually impossible to reach a global optimum short 
-% Antonio - short???
-% short of - a menos que - JJ
 of managing to obtain a bot that, as in Sun Tzu's ``Art of war'' \cite{tzu2013art}, is able to beat the opponent without
 fighting, as the opponents are not known before the EA is running. 
 % Antonio - esta frase no se entiende
 % a menos que puedas ganar sin luchar, no puedes obtener el fitness
 % óptimo - JJ
-To solve this, usually previously-known opponents are used in the fitness
+To solve this, usually matches with previously-known opponents are used in the
+computation of the fitness
 function and an ``optimum'' is reached when a certain number of
 victories are achieved against them.
-%Maribel, achieved en vez de obtained. 
-However, using only one or a small number of opponents may lead to generate overfitted solutions that only beat the  enemies that have been used during the 'training' phase (to compute the fitness) \cite{DBLP:journals/jcst/MoraFGGF12}.
+However, using only one or a small number of opponents may lead to
+generate overfitted solutions that only beat the  enemies that have
+been used during the 'training' phase (to compute the fitness)
+\cite{DBLP:journals/jcst/MoraFGGF12}. 
  
 
 However, these two issues are usually not taken into accout and the usual approach is
@@ -262,8 +274,6 @@ implication of the obtained results.
 \section{State of the Art}
 \label{sec:SoA}
 
-%% TODO: esto estÃ¡ en redacciÃ³n...
-
 Real world optimization problems often involve uncertain environment including noisy and/or dynamic environments \cite{Jin2005303,QianYZ13}.
 Basic strategies to handle noisy fitness functions include using a larger population size, averaging to filter out the noise (re-sampling) \cite{Branke98,Branke2001}, thresholding (employing a threshold value to be used in a selection operator for noisy fitness functions) \cite{Markon2001} or changing the selection criteria.
 Other authors propose complex methods such as including the multipopulation approach, special operators or case-based memory \cite{BhattacharyaIM14}. 
@@ -293,6 +303,8 @@ Authors propose searching the minimum number of generations by means of a conver
 Finally, as stated in Hart et al. \cite{Hart1996} when calculating metrics of parallel performance, it is incorrect to stop a parallel EA either after a fixed number of iterations or when the average fitness exhibits little variation. In this case, stopping rules based on the attainment of thresholds should be used, i.e. stopping the run when a solution that reaches this threshold is found \cite{Sena2001}. Nevertheless, threshold definition requires a good estimation of the optimum of the problem under study, which is unavailable in many cases \cite{Safe2004}.
 
 % A conclusion should be added to this based on the last paragraph - JJ
+In this paper, several stopping criteria will be studied, considering the time needed to obtain the solution and the quality of that solution. 
+
 
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  METHODOLOGY  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
