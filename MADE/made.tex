@@ -3,6 +3,7 @@
 \usepackage{amssymb}
 \setcounter{tocdepth}{3}
 \usepackage{graphicx}
+\usepackage{subfigure}
 
 \usepackage{url}
 \newcommand{\keywords}[1]{\par\addvspace\baselineskip
@@ -13,10 +14,11 @@
 \mainmatter  % start of an individual contribution
 
 % first the title is needed
-\title{Creator of worlds: analysing the parameters that generate massive and coherent fiction environments}
+\title{World building: analysing the parameters for massive evolutive generation
+  of coherent backstories in fiction environments} 
 
 % a short form should be given in case it is too long for the running head
-\titlerunning{Short title}
+\titlerunning{World building}
 
 % the name(s) of the author(s) follow(s) next
 %
@@ -42,21 +44,42 @@
 
 
 \begin{abstract}
-Generating fictional worlds according to some specific requisites
+Generating fictional worlds
+% <RH>expongo el problema concreto ya que en esta misma frase hablamos de fitnes
+	using multi-agent system optimized by genetic algorithms
+% </RH>
+according to some specific requisites
+%<RH>
+	related to the desirable plots
+%</RH>
 presents the problem that it is impossible to know in advance the optimum for the
 particular fitness function designed at the same time it creates a
-vast search space for the evolutionary algorithm parameters that it
-needs. In this paper our objective is to find a methodology for finding the
-best parameters of the evolutionary algorithm in the design of
+vast search space for the evolutionary algorithm
+ % TODO: <RH> Y no solo evolutionary, pero se si liar mas el abstract</RH>
+parameters that it
+needs. In this paper our purpose is to define a methodology for finding the
+best parameters of the evolutionary algorithm
+% TODO: <RH>Y no solo evolutionary, pero se si liar mas el abstract</RH>
+in the design of
 fictional worlds. This evolutionary design includes running, to
-completion, a world represented as a chromosome and assigning a fitness to it, so it is a problem
-with a very complex fitness landscape. That is why, in order to
-optimize resources given to evolution and also have some guarantee
-that the final result will be close to optimal, we systematically
-study the values of different parameters to try and find a set of
-rules that will, once you have the fitness function, help you set a
-reduced range of values o even a single value that will, with a
-reduced computation budget, help you find an optimal world.
+completion, a world simulation represented as a chromosome and assigning a fitness to it, therefore it
+presents a very complex fitness landscape.
+
+% <RH> reescribo esta oracion
+	%That is why, in order to
+	%optimize resources given to evolution and also have some guarantee
+	%that the final result will be close to optimal, we systematically
+	%study the values of different parameters to try and find a set of
+	%rules that will, once you have the fitness function, help you set a
+	%reduced range of values or even a single value that will, with a
+	%reduced computation budget, help you find an optimal world.
+In order to optimize resources given to evolution and have some
+guarantee that the final result will be close to the optimum, we systematically
+study the values of different parameters, obtaining a set of
+generic rules. These rules applied to the plot requisites and the fitness function
+will lead to a reduced range of parameter values that will help the storyteller create optimal worlds with a
+reduced computation budget.
+% </RH>
 
 \keywords{Games, Plot, evolutionary algorithms, content generation, literature}
 \end{abstract}
@@ -94,7 +117,7 @@ from the evolutionary point of view so that we can check what kind of
 influence they have in the outcome. We will do a experimental setup
 that will test different parameters, and eventually find a series of
 rules that will help the users of that framework to set the best
-values for their simulation. 
+values for their simulation.
 
 The rest of the paper is organized as follows. Coming up next, we
 present the state of the art in parameter setting of simulated
@@ -104,78 +127,232 @@ present the conclusions reached in this paper.
 
 \section{State of the Art}
 
-The work of Nairat et al. \cite{nairat:evolution} ...
+%TODO revisar toda la seccion, de momento estoy poniendo la info mas o menos redactada pero falta la coherencia
+
+
+according to the taxonomy \cite{togelius2011search} described by Togelius et al.
+the problem of massively generating backstories for non-player characters present
+the following characteristics:
+
+
+\begin{description}
+\item[Procedural content generator] (for further references, PGC)
+The problema implies the automatic creation of a whole world with its
+characters, relations and plots.
+\item[Optional] The content (world, backstories) is not essential for the main
+plot but it contributes to the realism of the user experience.
+\item[Stochastic] The generation has to be stochastic for each execution,
+enabling the reuse of the tool and the replayability of the future game.
+\item[Offline] The optimizations has to be performed during the game 
+development, i.e. the phase used to design the plots.
+\item[Search based] The system is optimized with a generate-and-test algorithm
+that will start from a set of solutions and will test small improvements to reach to an
+optimum. For this purpose, a genetic algorithm will be used.
+\end{description}
+
+In this context (massive, non-interactive, goal-driven plots) different
+approaches has been carried out, following the survey
+\cite{arinbjarnar2009critical} by Arinbjarnar et al.:
+
+In 1976 Tale-Spin \cite{meehan1976metanovel} were able to produce
+purely text-based fairy tales where semi-autonomous characters
+exposed emotions and relationships, with the 
+objection of creating very inconsistent plots.
+Then, different researches used the concept of goals and pre-defined
+stories to construct stories: In 1987, UNIVERSE \cite{lebowitz1985story}
+was used to create infinite soap opera style stories driven by
+goals provided by the author. It used fragments of stories to assign
+roles to stereotypical characters, relying on the reader the assumption
+of the characters' motivations.
+In 1994, Minstrel \cite{turner2014creative} used case-based reasoning
+to generate stories about knights and ladies by replacing variables
+in existing stories and recombining them. It also used goals, in this case
+for the story and for each character. In 2008, Riedl and Leon
+ used in \cite{riedl2008toward} the same idea, conceptualizing a vignette
+as a small story assumed as ``interesting'' that form stories when
+exposed sequentially.
+The technique addressed in this paper can be understood as the evolution of
+these researches adapted to massive worlds, where coherence is provided by the use of
+Agent based model (ABM for further references).
+Instead of using ``vignettes'' to construct stories, this approach
+modifies the behaviour of the agents and finds ``archetypes'',
+behaviours and patterns universally accepted and present in the
+collective imaginary \cite{garry2005archetypes} that could be interpreted as
+generic ``vignettes''.
+
+The idea of emerging plots from agents' interactions (ABM) is not new:
+In 2007, Virtual storyteller \cite{swartjes2007emergent}, used agents that improvise using
+techniques from improvisational theatre, a plot guide and a narrator.
+Our technique uses the same approach but there is no plot guide agent. Instead, 
+a Genetic Algorithm will guide the mood of the backstories created by finding 
+``archetypes''.
+
+The search of a good plot can be addressed from the evolutionary computing point of view:
+In 2011, Nairat et al. proposed in \cite{nairat2011character} a generative drama approach
+that integrates human creativity by using an agent-based system where
+the characters are developed using interactive evolution. One year later, 
+Cioffi-Revilla et al. \cite{cioffi2012evolutionary} published a study that
+applies a combined EC-ABM approach to the challenge of understanding
+complex adaptive systems in social science. Their conclusions suggest
+``further applications of EC to ABM in terms of multi-population
+models with heterogeneous agents, multi-objective optimization, dynamic
+environments, and evolving executable objects for modeling social change''.
+Our technique relies on this idea by using a Genetic algorithm to 
+obtain the agent behaviour that best fits the goals describes by the author when 
+the world is generated.
+
+% TODO @raiben enganchar mejor este último párrafo
+
+The methodology to systematise the generation of backstories in massive worlds 
+using GAs was presented by García-Ortega et al. in \cite{garcia14my}. In that
+paper, the steps to define the elements of a complex world, and how to optimise 
+their character's behaviour using GAs to extract information, were presented. 
+Also, that work included a preliminary analysis of one parameter: the number of
+profiles. Results in that paper shown that this parameter have significant 
+difference in the archetype-based fitness attained. The open-source simulator 
+MADE, used here, was also presented in that work. However, the rest of 
+parameters that conform the fictional setting (defined in 
+\cite{MorrellFiction06}) were set as ad-hoc parameters. In this paper, we want 
+to extend that study testing the rest of the parameters that model a story: the
+time, the world, the characters and the leitmotif.
 
 \section{Methodology and experimental setup} %Issue #12
 \label{sec:met}
 
-In this section we will show how to systematize the different steps of the proposed method to generate a fictional world. Initially, the fitness should be decided considering the desired behaviour of the agents that populate the world (for example, a given quantity of some archetype). To facilitate the generation of different personalities different number of ``profile'' could be required. This concept, presented in \cite{}, describes the different sets of behaviour parameters of the agents in the world (the number of different FSMs). Therefore, a world with 3 profiles is composed by 3 different types of agents. However, and as will be probed in this paper, the number of profiles could be different of the number of desired archetypes.
+In this section we will show how to systematize the different steps
+of the proposed method to generate a fictional world. Initially, the
+fitness should be decided with the desired behaviour of the
+agents that populate the world (for example, a given quantity of some
+archetype) in mind. To enable the generation of different
+personalities different number of ``profiles'' could be required. This concept,
+presented in \cite{garcia14my}, describes the different sets of behaviour
+parameters of the agents in the world (the number of different
+FSMs). Therefore, a world with three profiles is composed by three different
+types of agents. However, and as demonstrated in \cite{garcia14my}, the
+number of profiles could be different of the number of desired
+archetypes, as some archetypes can be shared, or on the contrary, impossible to obtain with a certain number of profiles.
+That is the reason we will add this parameter in the experimental setup. % Is this the main point of the paper? Wasn't this proved
+            % in the alife paper? - JJ FERGU: you are right, changed
 
-Then, the characteristics of this world are also decided taking into account the expected... For example, adding enough days to allow the archetypes generation. Finally, the interesting plot points are extracted from the log using... 
-
-
+Then, the characteristics of this world are also decided taking into account the expected... For example, adding enough days to allow the archetypes generation. Finally, the interesting plot points are extracted from the log using... % !!! Explain this!!! - JJ TODO @raiben
 
 In this work, we propose three scenarios:
 \begin{itemize}
-\item Scenario A: The Villains. This scenario only requires one type of archetype: The ``villain''. This 
+\item Scenario A: The Villains. This scenario only requires one type of archetype: The ``villain''. This % don't leave me this way!!! FERGU: this has to be written by @raiben (TODO @raiben)
 \item Scenario B: The Hero. As in the classic stories, when a villain appears, a hero must rise. The ``hero'' archetype depend on the existence of a ``villain'' archetype. This scenario tries to generate worlds formed by archetypes that depend of anothers.
-\item Scenario C: The shakespearian story. As many of the great stories of The Bard, this world requires the existence of different and interdependant archetypes: The ``hero'' and ``villain'' are completed with the ``obstacle'' (QUE HACE QUE), the  ``mentor'' (QUE HACE QUE) and the ``avenger'' (this archetype does not depend on the others).
+\item Scenario C: The Shakespearian story. As many of the great stories of The Bard, this world requires the existence of different and interdependent archetypes: The ``hero'' and ``villain'' are completed with the ``obstacle'' (QUE HACE QUE), the  ``mentor'' (QUE HACE QUE) and the ``avenger'' (this archetype does not depend on the others).
+
 \end{itemize}
 
-\subsection{Fitness deduction}
+\subsection{Designing a fitness function}
 
-The first step requires to develop a fitness function that takes into account the quantity of the desired archetypes. This fitness function should facilitate the existence of diversity in the desired archetypes: that is, it is better that the world has 25\% of ``villains'' and 25\% of ``heroes'' than 50\% of ``villains'' and no ``heroes''. Thus, we propose the fitness using the next function:
+% Una vez mas, no usais ninguna metodologi­a para hacer esto. Es un poco ``Se me ha ocurrido hacerlo asi­''. - JJ FERGU: como podemos hacerlo?
 
-\sum _{i=1}^{P}\dfrac {\log \left( 1+10p_{i}\right) } {\log 1}
+The first step requires to develop a fitness function that takes into
+account the quantity of the desired archetypes. This fitness function
+should enable the existence of diversity in the desired
+archetypes: that is, it is better that the world has 25\% of
+``villains'' and 25\% of ``heroes'' than 50\% of ``villains'' and no
+``heroes''. Thus, we propose the following fitness function: 
 
-where $P$ is the number of desired profiles, and $p_{i}$ is the percentage (from 0 to 1) of a specific profile in the world.
+\begin{equation}
+F_A= {\sum _{i=1}^{A} {\log \left( 1+10p_{i}\right) } \over {\log 1}}
+\end{equation}
 
-In this paper, three fitness functions will be studied, related with the previously explained scenarios:
+where $A$ is the number of desired archetypes, and $a_{i}$ is the
+percentage (from 0 to 1) of a specific archetype in the world. % Why
+                                % logs and all the rest? - JJ FERGU: TODO @raiben hablar de arquetipos y completar lo de abajo
+
+In this paper, three fitness functions will be studied a different one
+for every previously explained scenarios:
 \begin{itemize}
-\item Function 1: for the scenario A . This function requires the maximization of the ``villain'' archetype, trying to maximise the number of villains in the world. 
-\item Function 2: for the scenario B. In this, case, the ``hero'' archetype... and villain ()
-\item Function 3: for the scenario C... This function requires 5 different archetypes. These archetypes have some type of interdependence. hero villano obstaculo mentor y vengativo (este no deÃ¨nde de nadie)
+\item Function 1 ($F_1$): for the scenario A . This function requires the maximization of the ``villain'' archetype, trying to maximise the number of villains in the world. 
+\item Function 2 ($F_2$): for the scenario B. In this, case, the ``hero'' archetype... and villain ()
+\item Function 3 ($F_5$): for the scenario C... This function requires 5 different archetypes. These archetypes have some type of interdependence. hero villano obstaculo mentor y vengativo %(este no depende de nadie)
 \end{itemize}
 
 \subsection{Individual representation}
 
-The number of profiles has a direct relation with the desired fitness functions. It is expected that functions with only one kind of archetype (such as F1 and F2) only would require one profile. Furthermore, the number of profiles affect the generated fitness as the chromo
+An individual in the EA is a vector of parameters that model the
+behaviour of {\em all} the agents in the world (keep in mind that an
+individual of the EA is not equal to an agent in the world). These
+parameters have been presented in \cite{garcia14my}, and they define
+the transitions and states of a Finite State Machine that model the
+agent's behaviour. % si lo citas mucho tendria¡s que anonimizarlo para
+                   % el doble blind - JJ
+
+This vector of parameters is composed by several {\em profiles}. The number of profiles has a direct relation with the desired fitness function. It is expected that functions with only one kind of archetype (such as F1) only would require one profile (or set of parameters). However, as explained in \cite{garcia14my}, to allow the existence of different personalities in the world, different sets of personalities (or profiles) can be evolved at the same time. Therefore, the number of profiles affect the generated fitness, as the chromosome will be larger. 
+% Chromo what? FERGU: arreglado
 
 
-
-\subsection{System optimization}
-
-
-Once the fitness function has been decided, several parameters related with the world and the GA will be studied
-
-The parameters of the world affect  JUSTIFICAR ...
+\subsection{Exploring the parameters for MADE}
 
 
-Number of days: 128, 256
+Several parameters related with the world and the GA will be studied
+in this paper so that we can obtain some rule of thumbs on which
+values to use in future experiments, at least as a baseline. As
+explained before, the parameters that define a literary story are the
+time, the world, the characters and the object. In this paper, we use
+the elements defined in MADE: number of days (time), a grid (world),
+food (object) and rats (characters). 
 
+%TODO ruben, que no se te olvide hablar de esto en la intro como viene
+%en el issue y que esto relacionado con lo que pongo aqui­. Por
+%ejemplo, llamar al "object" de otra forma
 
-Finally, the parameters of the GA also affect the execution of... the population size ... 64, 128, 256 JUSTIFICAR
+Different parameter values for each element will be studied to clarify
+their influence in the literary world generation. First, it is
+expected that the number of days will have a significant impact, as
+larger values will allow the generation of more backstories. The set
+of days to study will be 64, 128 and 256. The world size (size of the
+grid in this paper: 5x5, 10x10 or 20x20) can also influence in the
+execution of the story, as larger worlds could make the agents spent
+more time exploring before an event occurs. The food, or the element
+that condition the actions (attack, share and defend among others),
+also could have enough effect in the story generation: lower
+quantities of food may increase the attacks, creating more aggressive
+agents, and larger quantities may generate more generous
+agents. Different proportions of food depending of the world size will
+be studied (food placed in 1/2, 1/4 and 1/8 of the size of the map). 
 
-As the usage of different number of profiles generate different individual sizes, and therefore, different convergence times the stop criterion has been established in...TERMINA
+Also, it is expected that the existence of different personalities (or number of profiles) in the world will have a significant effect in the runs, specially in functions that require more than one archetype. We will compare the usage of 1, 2, 4 and 8 profiles in each scenario. As the usage of different number of profiles generate different
+individual sizes, and therefore different convergence times, the stop
+condition will be established depending of the best fitness (30 generations without improvement), to do a fair comparison.
 
-Table \ref{tab:parameters} summarizes all the configuration parameters that will be compared, and the rest of the (fixed) parameters of the algorithm. The fixed values of the parameters of the GA have been usually described by other authors as...
+Finally, the parameters of the GA also affect the values of the
+obtained world. In this paper, we study the population size, a
+parameter that has big effect in the execution of this kind of
+algorithms \cite{}, comparing populations of 64, 128 and 256
+individuals. %TODO citar a un paper de tamagnos de poblacion
+% Explicar tambien los parametros que *no* se prueban y por que *no*
+% se hace. - JJ
+
+Table \ref{tab:parameters} summarizes all the configuration parameters that will be compared (with their acronyms used in this paper), and the rest of the (fixed) parameters of the algorithm. The fixed values of the parameters of the GA have been usually described by other authors as...
+
+The rest of the parameters of the MADE environment, such as the initial number of agents in the world, and the agent's parameters (such as the lifespan) are described in \cite{garcia14my}. In this paper we will use the default values presented in that work.
 
 \begin{table*}
 \begin{center}
 \begin{tabular}{|c|c|}
 \hline
 {\em Parameter} & {\em Values} \\\hline \hline
-\multicolumn{2}{c}{Parameters to study} \\
-Number of profiles & 1, 2, 4 and 8 \\\hline
-Number of virtual days &  128 and 256 \\ \hline
-World dimension &  5x5, 10x10 and 20x20 \\ \hline
+\multicolumn{2}{|c|}{Parameters under study} \\ \hline \hline
+Number of profiles (P) & 1, 2, 4 and 8 \\\hline
+Number of virtual days (D) &  64, 128 and 256 \\ \hline
+World dimension (W) &  5x5, 10x10 and 20x20 \\ \hline
+Food (F) & 1/2, 1/4, 1/8 \\ \hline
 GA population size & 64, 128 and 256 \\ \hline
-\multicolumn{2}{c}{Fixed parameters} \\ \hline
+% world population size? - JJ
+\multicolumn{2}{|c|}{Fixed parameters} \\ \hline \hline
 Mutation probability & 1/12 per gene \\ \hline
 Parent pool size & Same as pool size \\ \hline
-Selection method & binary tournament plus 10\% of the fittest \\Â \hline
+Selection method & Binary tournament \\ \hline 
+Elite & 10\%  \\ \hline
 Replacement method & Generational\\ \hline
-Stop condition & \\ \hline
+Stop condition & 300 gens. or 30 gens. without improvement \\ \hline
+%Stop condition? - JJ FERGU: puesta 
+% Without improvemente in what? It's noisy fitness... no change in the
+% best individual? - JJ
 Runs per configuration & 30 \\ \hline
 \end{tabular}
 \caption{Parameters used in the experiments.}
@@ -184,12 +361,214 @@ Runs per configuration & 30 \\ \hline
 \end{table*}
 
 %\subsection{Converting logs to stories}
+% This subsection is *very* important... and not there yet. - JJ
 
-% 12 pages is the limit. 
+% 12 pages is the limit.
 \section{Results}
 \label{sec:res}
 
+In this paper, 9720 runs were carried out for each problem/scenario (30 times * 4 levels for \emph{P} * 2 levels for \emph{D} * 3 levels for \emph{W} * 3 levels for \emph{S} * 3 levels for \emph{F} that represent the possible combinations) to obtain the fitness for each combination.
+
+Since the Kolmogorov-Smirnov test determines that the data we are using
+does not follow a normal distribution a non-parametric test, the Kruskalâ€“Wallis test, has been
+performed.  % por
+                                % favor, Podriais escribir esto EN
+                                % INGLES? - JJ FERGU: esto se ha extraido de un paper de ANOVA de hace tiempo, pero he quitado la ultima frase
+% podeis NO EXTRAER FRASES MAL ESCRITAS DE PAPERS DE HACE TIEMPO? - JJ
+The application of Kruskal-Wallis consisted in running an evolutionary
+algorithms using that combination of parameters to obtain the best
+fitness. % Queeeee? - JJ 
+The response variable used to perform the statistical analysis is the
+fitness at the end of the run. The changes in the response variable
+are produced when a new combination of parameters is considered. Then,
+the {R} \footnote{{\tt http://www.r-project.org}} tool was used to
+obtain the Kruskal-Wallis tables as well as the tables of means and
+figures for each problem. 
+
+The tables obtained by the Kruskal-Wallis analysis show for each factor the  degrees of freedom (FD), the experimental value of the statistical F (F value) and its associated p-value. If the output is smaller than 0.05, then the
+effect of this factor is statistically significant at a $95\%$
+confidence level (which indicates that different initial values of
+this parameter lead to significant differences on the fitness).
+
+We have obtained values lower than 0.05 for all parameters in all scenarios (generated p-values tables have been omitted due to space constraints). These results show that all the parameters considered have a significant
+impact in the generation of the agents behaviour. This confirm our hypothesis that the four elements that conform a story (time, characters, OBJECT and world) have a great repercussion in the generation of stories in the simulation environment. %TODO @raiben poner el concepto del OBJECT que vamos a usar
+
+Since a significant p-value only tells  that the effects are not all
+equal (i.e., reject the null hypothesis), post-hoc tests might be used
+to determine which effects or outputs are significantly different from
+which other. % are we using them? - JJ FERGU: yes, abajo.
+
+Therefore, a Kruskal-Wallis multi-comparison test has also been
+performed, showing significant differences among all parameter values,
+except for number of profiles (only using 1 profile has significant
+difference with respect to use 2, 4 and 8), and GA population size
+(64-128 and 128-256), both values (number of profiles and GA population size) in the scenarios Villain and Hero. This
+can be explained because only one profile is necessary in these
+scenarios (as the hero and villain archetypes are based in attacking
+other rats, and therefore, can be shared by the same agent). Therefore, 
+the fitness function $F_1$ and $F_2$ only differs in counting the archetype of an ``attacking'' rat almost twice.  % Yo no
+                                % lo explicari­a en terminos de lo que
+                                % nosotros nos imaginamos, sino en
+                                % terminos del propio algoritmo y su
+                                % funcion de fitness. FERGU: lo he intentado, pero no lo tengo muy claro @raiben, escribe tu
+
+% Deberias agruparlos por parametro, no por escenario. No estais
+% comparando diferentes para¡metros de un escenario, sino diferentes
+% niveles para un parametro - JJ FERGU: tienes toda la razon, agrupado
+\begin{figure}
+        \centering
+        \subfigure[\scriptsize{Scenario 1: Villain}]{
+                \includegraphics[width=3.7cm]{imags/boxplotz1P.eps}
+                \label{fig:e1_p}
+        }
+        \subfigure[\scriptsize{Scenario 2: Hero}]{
+                \includegraphics[width=3.7cm]{imags/boxplotz2P.eps}
+                \label{fig:e2_p}
+        }
+        \subfigure[\scriptsize{Scenario 3: Shakespearian}]{
+                \includegraphics[width=3.7cm]{imags/boxplotz5P.eps}
+                \label{fig:e3_p}
+        }  
+        \caption{Boxplots for parameter P (number of profiles)}\label{fig:boxplotsP}
+\end{figure}
+%
+All the results have also been plotted in order to better understand 
+their differences (in Figures \ref{fig:boxplotsP} to \ref{fig:boxplotsS}). At first glance, the median for D, W and F is 0 (or almost 0) for several
+values. This could have several possible explanations: First, the
+number of profiles has quite an impact in the results (Figure
+\ref{fig:boxplotsS}), as it was shown previously in
+\cite{garcia14my}. Although no executions achieved the maximum number
+of generations (300), % Eso que significa? - JJ
+ the length of the chromosome has an effect in the
+ convergence. %FERGU: @raiben habra que hacer lo que dice JJ de
+              %estudiar que eventos se esten produciendo. El problema
+              %es que habr­a que lanzar todo otra vez... Pienso que
+              %tampoco sera mala idea hacer un estudio respecto al
+              %parametro GENERATION con los Kruskal-Wallis, para ver
+              %cuando paran los EAs y justificar mejor este parrafo. 
+% No hace falta lanzarlos todos, basta lanzar uno con los mismos
+% parametros y visualizar los eventos - JJ
+Increasing the number of profiles means changing the search problem
+from finding a single finite state automaton whose behaviour
+eventually results in a world compatible with our search to finding
+two or more compatible with it and among themselves. This also happens
+independently of the situation and including complex ones, like the
+Shakespeare scenario, so for the time being we should conclude that a
+single profile, that is, having the description of a single FSM that
+describes the behavior of the agents in the world, is the best option for any scenario. 
+
+\begin{figure}
+        \centering
+        \subfigure[\scriptsize{Scenario 1: Villain}]{
+                \includegraphics[width=3.7cm]{imags/boxplotz1D.eps}
+                \label{fig:e1_d}
+        }
+        \subfigure[\scriptsize{Scenario 2: Hero}]{
+                \includegraphics[width=3.7cm]{imags/boxplotz2D.eps}
+                \label{fig:e2_d}
+        }
+        \subfigure[\scriptsize{Scenario 3: Shakespearian}]{
+                \includegraphics[width=3.7cm]{imags/boxplotz5D.eps}
+                \label{fig:e3_d}
+        }  
+        \caption{Boxplots for parameter D (number of
+          days)}\label{fig:boxplotsD} % Ponedlo al reves: for the
+                                % number of days (parameter D). Lo
+                                % INTERESANTE es el nombre del
+                                % parametro, no el numero.
+\end{figure}
+
+
+\begin{figure}
+        \centering
+        \subfigure[\scriptsize{Scenario 1: Villain}]{
+                \includegraphics[width=3.7cm]{imags/boxplotz1W.eps}
+                \label{fig:e1_w}
+        }
+        \subfigure[\scriptsize{Scenario 2: Hero}]{
+                \includegraphics[width=3.7cm]{imags/boxplotz2W.eps}
+                \label{fig:e2_w}
+        }
+        \subfigure[\scriptsize{Scenario 3: Shakespearian}]{
+                \includegraphics[width=3.7cm]{imags/boxplotz5W.eps}
+                \label{fig:e3_w}
+        }  
+        \caption{Boxplots for parameter W (world size)}\label{fig:boxplotsW}
+\end{figure}
+
+\begin{figure}
+        \centering
+        \subfigure[\scriptsize{Scenario 1: Villain}]{
+                \includegraphics[width=3.7cm]{imags/boxplotz1F.eps}
+                \label{fig:e1_f}
+        }
+        \subfigure[\scriptsize{Scenario 2: Hero}]{
+                \includegraphics[width=3.7cm]{imags/boxplotz2F.eps}
+                \label{fig:e2_f}
+        }
+        \subfigure[\scriptsize{Scenario 3: Shakespearian}]{
+                \includegraphics[width=3.7cm]{imags/boxplotz5F.eps}
+                \label{fig:e3_f}
+        }  
+        \caption{Boxplots for parameter F (Food amount)}\label{fig:boxplotsF}
+\end{figure}
+
+% Por que diablos deci­s parametro D y no lo que hace el parametro? Y
+% por que usais with respect en vez de enlazarlo con el anterior?
+A similar result is obtained for the number of days, whose results in
+the three scenarios can be seen in Figure \ref{fig:boxplotsD}: A small
+amount of days (64) is not enough to allow the generation of any
+archetype, as there is no time to develop a story, or, in another
+words, for the events that we examine to compute fitness to occur, in
+most of the scenarios. This can also be said
+about the world dimension (Figure \ref{fig:boxplotsW}): larger worlds
+are more sparsely populated and have less interaction events, so the chances of an encounter that can trig an event (for
+example, a fight) is more difficult. % pero esto habra que probarlo
+                                % mirando el numero de encuentros, la
+                                % densidad de poblacion, y cosas asi­.
+% Cual es la densidad de poblacion en el mundo 5x5? Como evoluciona?
+From the study of these two parameters we can conclude that, at least
+for these scenarios and possibly for any scenario, the baseline number
+of days should be 256 and the world for this population should have a
+small size of 25 cells. 
+
+\begin{figure}
+        \centering
+        \subfigure[\scriptsize{Scenario 1: Villain}]{
+                \includegraphics[width=3.7cm]{imags/boxplotz1S.eps}
+                \label{fig:e1_s}
+        }
+        \subfigure[\scriptsize{Scenario 2: Hero}]{
+                \includegraphics[width=3.7cm]{imags/boxplotz2S.eps}
+                \label{fig:e2_s}
+        }
+        \subfigure[\scriptsize{Scenario 3: Shakespearian}]{
+                \includegraphics[width=3.7cm]{imags/boxplotz5S.eps}
+                \label{fig:e3_s}
+        }  
+        \caption{Boxplots for parameter S (GA population size)}\label{fig:boxplotsS}
+\end{figure}
+
+Finally, the amount of food (Figure \ref{fig:boxplotsF}), the
+element that has an influence on the occurrence of the actions that
+count for the fitness, such as % @raiben dilo aqui­ - JJ
+, also need to be low enough so that conflict appear, in this case 1/8
+of the world size. % Con un mundo de tamagno 25, Aparecen 3 piezas de
+                   % comida? - JJ 
+
+
+% which is interesting
+% because... - JJ FERGU: explicado todo
+
+
+
+
+
+
+
 \section{Conclusions}
+
+
 
 \section*{Acknowledgements}
 
