@@ -134,23 +134,36 @@ stochastic component which might make the result of a match vary from
 one run to the next. Thus, different values would be returned
 every time the fitness is measured by playing the game.
 
-This issue arises in games due to the noisy and combat-based methods
-used for the evolution of bots, because there is not a single,
-principles-based way to compute the fitness, and thus, end the algorithm. Besides, any approach you choose, it is usually impossible to reach a global optimum short of managing to obtain a bot that, as in Sun Tzu's ``Art of war'' \cite{tzu2013art}, is able to beat the opponent without
-fighting, as the opponents are not known before the EA is running. 
+%% This issue arises in games due to the noisy and combat-based methods
+%% used for the evolution of bots, because there is not a single,
+%% principles-based way to compute the fitness, and thus, end the
+%% algorithm.
+Besides, independently of the approach you choose, it is usually impossible to reach a global optimum short of managing to obtain a bot that, as in Sun Tzu's ``Art of war'' \cite{tzu2013art}, is able to beat the opponent without
+fighting, as the opponents are usually not known before the EA is running. 
 % Antonio - esta frase no se entiende
 % a menos que puedas ganar sin luchar, no puedes obtener el fitness
 % óptimo - JJ
-% Antonio - Yo esa cita la quitaría, aunque le dé un componente literario/gafapastiense al artículo. Tampoco veo por qué no se puede obtener un óptimo por no conocer al oponente antes de la evaluación. Si es un manta, le puedes ganar siempre...
+% Antonio - Yo esa cita la quitaría, aunque le dé un componente
+% literario/gafapastiense al artículo. Tampoco veo por qué no se puede
+% obtener un óptimo por no conocer al oponente antes de la
+% evaluación. Si es un manta, le puedes ganar siempre...
+% Afú. Es literario-gafapastiense-bromista. ¿Qué tiene de malo? - JJ
 To solve this, usually matches with previously-known opponents are used in the
 computation of the fitness function and an ``optimum'' is reached when a certain number of victories are achieved against them.
 However, using only one or a small number of opponents may lead to
 generate overfitted solutions that only beat the enemies that have
 been used during the `training' phase (to compute the fitness)
-\cite{DBLP:journals/jcst/MoraFGGF12}. 
- 
+\cite{DBLP:journals/jcst/MoraFGGF12}, and using more opponents might
+make evolution unwieldy consuming too many CPU cycles. 
 
-However, these two issues are normally not taken into account and the usual approach is taking a fixed number of evaluations or amount of time, usually given by the game or challenge constraints (if it is in a competition). When this rule is not imposed by a challenge or some other condition, this is not the right approach for finding the best autonomous agent, or even one that is
+However, these two issues (noisy and reachability of optimal fitness)
+are normally not taken into account when deciding when to end the
+evolution process. and the usual approach is taking a
+fixed number of evaluations or amount of time, usually given by the
+game or challenge constraints (if it is in a competition). When this
+rule is not imposed by a challenge or some other condition, this is
+not the right approach for finding the best autonomous agent, or even
+one that is 
 good enough to defeat those that constitute the state of the art.
 
 That is why finding the optimal termination condition is essential in the search for game bots that competes in a particular challenge. If there is not a fixed evaluation budget, the next usual solution is to give it as much as you have got, 
@@ -164,39 +177,24 @@ to participate in a competition
 methodological point of view, if you want to compare different
 approaches to design a bot it needs to be done in conditions that are
 as similar as possible, which  
-%maribel sustituir "conditions that are as similar as possible" por
-%"similar environments, "
-% no son entornos similares, sino condiciones similares. 
 might make {\em as much as you have got} a bit short on
-details. 
-% Antonio - no entiendo esto de 'short on details'
-% que uno puede tener más o otro menos, con lo que simplemente
-% ejecutando más generaciones puedes obtener mejores resultados. Por
-% favor, cuando pongáis comentarios de algo que ha escrito otro poned
-% @esenick en el commit - JJ
-
-Whenever different methods are going to be compared, they need to have an %Maribel usar are going es si lo fueras a hacer ahora mismo, es presente continuo, yo no usarÃ­a ni ese tiempo ni por supuesto el futuro, a no ser que estÃ©s hablando de las lÃ­neas futuras del artÃ­culo. Yo pondrÃ­a "Compared methods need stop by the same independent stopping criteriun, since... 
-independent stopping criterion, since using any method for the same
+details: a independent stopping criterion is needed, since using any method for the same
 time or for the same number of evaluations is not usually fair,
 % Antonio - Explicar por qué no es justo.
 because the object of the process is to obtain a very good or
 near-optimal bot and some methods might need more evaluations, or more
 time, than others. 
 % explicado - JJ
-This makes, from the methodological point of view, inadequate to use the
+This makes, from the methodological point of view, inadequate to simply use the
 number of evaluations as a termination condition.
-% Antonio - 'computing cycles' no es lo mismo que 'number of
-% evaluations'
-% Cambiado a evaluations - JJ
 
-These three problems, two of them (noise and unknown optimum)
-algorithmic and one (fair comparison) methodological problems, are
+These three problems, two of them (noise and unknown or unreachable optimum)
+algorithmic and one (fair comparison) methodological, are
 common for most kinds of games, as well as for many other
-problems without a known (or reachable) set of optimal solutions. 
-
-In this paper, we intend to pursue these issues by introducing novel
-termination conditions and comparing them with others (classical
-ones), and among themselves when trying to generate competitive bots
+problems without a known (or reachable) set of optimal solutions. In
+this paper, we intend to pursue these issues by introducing novel 
+termination conditions and comparing them with other classical
+ones, and among themselves when trying to generate competitive bots
 for videogames using Genetic Programming (GP) \cite{GP_Koza92},
 because this method has proved to be quite flexible and has obtained
 very good results in previous works \cite{EvoStar2014:GPBot}.% Este no
@@ -206,29 +204,36 @@ very good results in previous works \cite{EvoStar2014:GPBot}.% Este no
 The game \textit{Planet Wars}\footnote{http://planetwars.aichallenge.org/}
 % Antonio - poner una URL mejor que esta (la del campeonato), si se estima oportuno.
  has been chosen in our experimental setup, as it is a simple RTS (Real Time Simulator) combat-based game (only one type of resource, one type of attack and one type of unit), and also it has been widely used in the literature, using different generation methods and fitness functions 
-\cite{DBLP:journals/jcst/MoraFGGF12,DBLP:conf/cec/Fernandez-AresMGGF11,DBLP:journals/nc/Lara-CabreraCL14,NogueiraCoevolutionary14}. 
+\cite{DBLP:journals/jcst/MoraFGGF12,DBLP:conf/cec/Fernandez-AresMGGF11,DBLP:journals/nc/Lara-CabreraCL14,NogueiraCoevolutionary14}. This
+game fulfills the two conditions mentioned above; initial position of
+bots is random and the decisions are stochastic, although the result
+of the combat is deterministic. 
 
-Summarizing, our objective in this study is to find the stop criteria that converges to good solutions (the optimal, if possible). %Maribel: Anadir al final de la frase, saving resources and time. 
+Summarizing, our objective in this study is to find a stopping criteria that converges to good solutions (the optimal, if possible). %Maribel: Anadir al final de la frase, saving resources and time. 
 % Antonio - he puesto 'optimal', pero no sé se dejarlo como 'best'
-To measure the quality of every approach, we will %maribel: quitar el
-                                %will
-%No, está bien - JJ
-consider the time (or number of generations) needed to obtain the solution and the quality of that solution as metrics. 
+and that is independent of the method chosen. To measure the quality of every approach, we will 
+consider the time (or number of generations) needed to obtain the
+solution and the quality of that solution as metrics. 
 % a ver, esto lo tenemos que pensar. 
 % Vamos a poner un método como base: número fijo de evaluaciones, por
 % ejemplo. A partir de ahí yo consideraría el número de evaluaciones
 % adicionales y la mejora adicional al fitness. También el fitness
 % absoluto, claro. - JJ
-% Antonio - yo digo que el fitness (el usado durante la evolución)sea un mero indicador de lo buena que es cada solución, pero que eso se contraste con una evaluación final de los mejores individuos encontrados con cada criterio de parada. Es decir, cuando se tengan los mejores se ponen a luchar en muchos mapas contra muchos rivales, para decidir cuál de ellos es realmente bueno y cuál es, eventualmente o teóricamente, el mejor.
+% Antonio - yo digo que el fitness (el usado durante la evolución)sea
+% un mero indicador de lo buena que es cada solución, pero que eso se
+% contraste con una evaluación final de los mejores individuos
+% encontrados con cada criterio de parada. Es decir, cuando se tengan
+% los mejores se ponen a luchar en muchos mapas contra muchos rivales,
+% para decidir cuál de ellos es realmente bueno y cuál es,
+% eventualmente o teóricamente, el mejor.
+%Habrá que tener en cuenta también el tiempo, digo yo. - JJ
 
-In principle, the termination condition chosen could be extrapolated to any game with stochastic behaviour and combat-based results.
-%maribel: Esta Ãºltima frase es bastante fuerte, decimos sin mÃ¡s que nuestros resultados se pueden extrapolar a un montÃ³n de cosas, sin probar nada, eso serÃ¡ asÃ­?
-% Antonio - Sí, esto hay que justificarlo mucho mejor. ¿por qué
-% estamos convencidos de que se podrá extrapolar? Hay que fijar bien
-% las características para que se pueda extrapolar efectivamente, etc.
 In general, and as pointed above, it is possible that the conclusions
 could be extended to any problem solved via evolutionary algorithms
-with an unknown or unreachable optimum and noisy fitness. 
+with an unknown or unreachable optimum and noisy fitness, since the
+termination conditions chosen are independent of the game itself and
+just take into account evolutionary measures. In fact, they could be
+extended to any problem with the same characteristics.
 % Antonio - además de esto, que hay que hacerlo para dejar la frase, hay que demostrar de forma 'impepinable' (más o menos) que lo que se propone funciona.
 
 The rest of the paper is organized as follows. Next section
@@ -241,14 +246,14 @@ we will be checking in this work and how they contribute to
 prove which one has better behaviour in this context; we will also
 sketch the problem we are using in this particular paper, evolution of
 bot for Planet Wars. Results will be presented in Section
-\ref{sec:met}, followed by the conclusions and a discussion of the
+\ref{sec:res}, followed by the conclusions and a discussion of the
 implication of the obtained results.
 % Antonio - esto habría que reescribirlo mejor y con los contenidos reales. ;D
 
 
 %maribel: En realidad, este Ãºltimo pÃ¡rrafo lo simplifiquÃ© y reescribÃ­ entero tal y como os pongo aquÃ­ abajo
 %The rest of the paper is organized as follows. Next, section \ref{sec:SoA} establishes the state of the art related to termination conditions for evolutionary algorithms in which the optimum is not known and/or is noisy. Following, section \ref{sec:met} presents the set of termination conditions which have been checked in this paper and how they contribute to prove which one has better behaviour in this context; we also sketch the problem we have used in this particular paper, evolution of bot for Planet Wars. Results are presented in Section \ref{sec:met}, followed by the conclusions and a discussion of the implication of the obtained results.
-
+% se puede usar este si falta espacio - JJ
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  STATE OF THE ART  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -380,7 +385,7 @@ The objective of these experiments % is to test the set of termination criteria.
 %%%%%%%%%%%%%%%%%%%%%%%%%%  EXPERIMENTS AND RESULTS  %%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 \section{Experiments and Results}
-\label{sec:results}
+\label{sec:res}
 
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CONCLUSIONS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
