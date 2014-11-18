@@ -1,5 +1,6 @@
 \documentclass[runningheads,a4paper]{llncs}
 
+\usepackage[latin1]{inputenc}
 \usepackage{amssymb}
 \setcounter{tocdepth}{3}
 \usepackage{graphicx}
@@ -14,20 +15,28 @@
 \mainmatter  % start of an individual contribution
 
 % first the title is needed
-\title{World building: analysing the parameters for massive evolutive generation
-  of coherent backstories in fiction environments} 
+\title{World building: analysing the parameters for massive evolutionary generation of coherent backstories in fiction environments} 
+
+% Antonio - yo pondría 'evolutionary' en lugar de 'evolutive'. He
+% cambiado 'fiction' a 'fictional' que es adjetivo, creo que está
+% mejor. ;)
+% fiction = de ficción Fictional = ficticios. Pongo como
+% estaba. Evolutionary puede que sea mejor que evolutive, pero tampoco
+% hay tanta diferencia - JJ
 
 % a short form should be given in case it is too long for the running head
-\titlerunning{World building}
+\titlerunning{World building: analysing the influence of parameters}
 
 % the name(s) of the author(s) follow(s) next
 %
 %
-\author{Non A. Me%
-\thanks{NoInstitute}}
+\author{A. N. Onymouse%
+\thanks{Anonymous Institute}}
 %
-\authorrunning{Me, N}
+\authorrunning{Anonymous, A}
 % (feature abused for this document to repeat the title also on left hand pages)
+
+% Antonio - he cambiado el autor y demás para que no sea el mismo que el de GPBot. :D
 
 % the affiliations are given next; don't give your e-mail address
 % unless you accept that it will be published
@@ -44,26 +53,21 @@
 
 
 \begin{abstract}
-Generating fictional worlds
+Generating fictional worlds for a 
 % <RH>expongo el problema concreto ya que en esta misma frase hablamos de fitnes
-	using multi-agent system optimized by genetic algorithms
+	multi-agent system optimized by means of genetic algorithms
 % </RH>
-according to some specific requisites
+(with some specific requirements
 %<RH>
-	related to the desirable plots
+	related to the desirable plots),
 %</RH>
-presents the problem that it is impossible to know in advance the optimum for the
-particular fitness function designed at the same time it creates a
-vast search space for the evolutionary algorithm
+presents two main problems: first it is impossible to know in advance the optimal value for the particular designed fitness function, and at the same time, it creates a vast search space for the (evolutionary) 
  % TODO: <RH> Y no solo evolutionary, pero se si liar mas el abstract</RH>
 parameters that it
-needs. In this paper our purpose is to define a methodology for finding the
-best parameters of the evolutionary algorithm
+needs. The purpose of this paper is to define a methodology for finding the
+best parameter values for both, the evolutionary algorithm, and the own fictional world configuration ones.
 % TODO: <RH>Y no solo evolutionary, pero se si liar mas el abstract</RH>
-in the design of
-fictional worlds. This evolutionary design includes running, to
-completion, a world simulation represented as a chromosome and assigning a fitness to it, therefore it
-presents a very complex fitness landscape.
+This evolutionary design includes running, to completion, a world simulation represented as a chromosome, and assigning a fitness to it, thus composing a very complex fitness landscape.
 
 % <RH> reescribo esta oracion
 	%That is why, in order to
@@ -73,51 +77,54 @@ presents a very complex fitness landscape.
 	%rules that will, once you have the fitness function, help you set a
 	%reduced range of values or even a single value that will, with a
 	%reduced computation budget, help you find an optimal world.
-In order to optimize resources given to evolution and have some
-guarantee that the final result will be close to the optimum, we systematically
-study the values of different parameters, obtaining a set of
-generic rules. These rules applied to the plot requisites and the fitness function
-will lead to a reduced range of parameter values that will help the storyteller create optimal worlds with a
-reduced computation budget.
+In order to optimize the resources devoted to evolution and to have some
+guarantees that the final result will be close to the optimum, we systematically
+analyse a set of possible values of the most relevant parameters, obtaining a set of generic rules. 
+%FERGU: analyse es británico y el Evostar es europeo
+% Antonio - ¿a qué te refieres por regla?¿qué tipo de reglas?
+These rules, when applied to the plot requisites, and thus, to the fitness function, will lead to a reduced range of parameter values that will help the storyteller to create optimal worlds with a reduced computation budget.
 % </RH>
 
-\keywords{Games, Plot, evolutionary algorithms, content generation, literature}
+\keywords{Games, Plot, Content generation, Fictional world, Literature, Evolutionary algorithms}
 \end{abstract}
 
 \section{Introduction}
 
-In the very competitive cultural industry, writers rack their minds in
-order to generate interesting fictional worlds, mainly for the
-creation of richer environments in modern videogames. In order to make
-generation of these fictional worlds and the stories within them truly efficient and massive,
-several methods have been proposed \cite{garcia14my,nairat:evolution}. One of them, called MADE
-\cite{garcia14my} finds ``interesting'' character stories by running
-an evolutionary algorithm that optimizes a fitness function designed
-from the archetypes that best describe the world the client wants.
+In the very competitive cultural industry that includes videogaming, writers rack their minds in
+order to generate interesting fictional worlds.
+% Antonio - no creo que la mayoría de autores se centren en idear
+% mundos para videojuegos (por desgracia). :D
+% Antonio, por favor, si escribes algo escríbelo bien. "including for
+% the" está mal escrito. Si no está seguro, sugiere cambios - JJ
+In order to make the generation of these fictional worlds and the stories within them truly believable, efficient and massive, several automatic/autonomous methods have been proposed  \cite{garcia:anon,nairat2011character}. One of 
+% Antonio - He puesto la REF de Nairat. Comprobad que es la correcta. ;)
+them, called MADE 
+\cite{garcia:anon} finds ``interesting'' character stories by running
+% Antonio - creo que no hay una norma para usar comillas simples o dobles, pero lo que yo suelo ver es que si se habla de términos específicos se usan comillas simples y si es un texto (un string) se usan las dobles. Es sólo una propuesta. ;D
+an evolutionary algorithm that optimizes a fitness function designed to better fit with the archetypes which the user desires they emerge in the world that he/she is designing.
 
-MADE works as follows: every individual in an evolutionary algorithm
+MADE works as follows: every individual in the evolutionary algorithm
 is described by a chromosome that represents one (or several kinds of)
-finite state automaton that are set to live in a simulated
-environment. The evolutionary algorithm was run with standard
-parameters and {\em sensible} default values were given to several
-non-evolutionary parameters such as the number of profiles needed to
-obtain the desired result and or the size of the simulated
+finite state machine (FSM)\cite{FSM_Booth} that are set to `live' (interact) in a simulated environment. The evolutionary algorithm was run with a standard
+parameter configuration, meanwhile {\em sensible} non-evolutionary parameters were assigned default values. The latter are variables such as the number of profiles needed to obtain the desired result, or the size of the simulated
 world. There was no attempt to optimize these parameters, since the
 main intention seemed to be to have a prototype that allowed the
 authors to have an acid test of their proposed approach.
 
 That paper hinted at the fact that parameters such as the number of
-{\em profiles} (different kind of finite state automaton present in
+{\em profiles} (different types of finite state automaton present in
 the world) had a big influence on the outcome, to the point of making
 it possible or not. However, other parameters such as the number of
-simulated days the world is running might also have some influence.
+simulated days the world is running might also have influence, but the authors did not conclude to which level.
 
-In this paper we will use that open source simulator and look at it
-from the evolutionary point of view so that we can check what kind of
-influence they have in the outcome. We will do a experimental setup
-that will test different parameters, and eventually find a series of
-rules that will help the users of that framework to set the best
-values for their simulation.
+In this paper we will use that open source simulator 
+% Antonio - poner el enlace. Se supone que no es 'nuestro'. Vamos, que
+% no afecta al blind process. ;)
+\footnote{Which can be downloaded from Github at (hidden URL)}
+%hecho - JJ
+ and look at it from the evolutionary point of view so that we can check what kind of influence the configuration variables have in the outcome. We will do an experimental setup that will test different parameters (evolutionary and non-evolutionary), and eventually find a series of rules that will help the users of that framework to set the best values for their simulation (depending on their requirements or constraints).
+
+% Antonio - Le falta chicha a la intro. Propongo describir un poco mejor el proceso que se va a seguir para estudiar los parámetros y su influencia, así como para crear esas reglas.
 
 The rest of the paper is organized as follows. Coming up next, we
 present the state of the art in parameter setting of simulated
@@ -125,124 +132,136 @@ worlds. Next we will present the experimental setup we follow in this
 article, whose results will be shown in Section \ref{sec:res}. Finally, we will
 present the conclusions reached in this paper.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{State of the Art}
 
 %TODO revisar toda la seccion, de momento estoy poniendo la info mas o menos redactada pero falta la coherencia
 
+% Esto está copiado del de Alife y además, no viene muy a
+% cuento. Habría que hacer un resumen y decir "esto es un PCG de tal y
+% tal forma" y punto. - JJ
+According to the taxonomy described by Togelius et al. \cite{togelius2011search}
+the problem of massively generating backstories for non-player characters (NPCs) mainly has the following flavours:
 
-according to the taxonomy \cite{togelius2011search} described by Togelius et al.
-the problem of massively generating backstories for non-player characters present
-the following characteristics:
-
-
-\begin{description}
-\item[Procedural content generator] (for further references, PGC)
-The problema implies the automatic creation of a whole world with its
+\begin{itemize}
+\item{\textit{Procedural content generation (PCG)}}: 
+The problem implies the automatic creation of a whole world with its
 characters, relations and plots.
-\item[Optional] The content (world, backstories) is not essential for the main
-plot but it contributes to the realism of the user experience.
-\item[Stochastic] The generation has to be stochastic for each execution,
-enabling the reuse of the tool and the replayability of the future game.
-\item[Offline] The optimizations has to be performed during the game 
-development, i.e. the phase used to design the plots.
-\item[Search based] The system is optimized with a generate-and-test algorithm
-that will start from a set of solutions and will test small improvements to reach to an
-optimum. For this purpose, a genetic algorithm will be used.
-\end{description}
+\item{\textit{Stochastic}}: The generation is stochastic for every game run, enabling the reuse of the tool and the replayability of the game in the future.
+\item{\textit{Offline}}: The generation (and optimization) has to be performed during the game development, i.e. the phase used to design the plots.
+\item{\textit{Search-based}}: The system is optimized with a generate-and-test algorithm that will start from a set of solutions and will test small improvements to reach an optimum. For this purpose, a genetic algorithm is frequently used.
+\item{\textit{Optional}}:  The content (world, backstories) is not essential for the main plot but it contributes to the realism of the user experience.
+\end{itemize}
+% Antonio - esta taxonomía no me cuadra mucho. La PCG (apartado 1) puede hacerse mediante algoritmos de búsqueda u optimización, como los AEs (otro de los apartados). Por otra parte éstos podrán ser offline (otro apartado) y el contenido a crear podría ser opcional o completo...
+% Yo explicaría todo esto sin ponerlo a modo de taxonomía, sino comentando las distintas opciones de PCG: basada en algoritmos de búsqueda u optimización o de forma estocástica, que se puede hacer online u offline y que puede generar historias completas o parciales. Por ejemplo. ;D
 
-In this context (massive, non-interactive, goal-driven plots) different
-approaches has been carried out, following the survey
+% Antonio - creo que podríamos poner algunas citas a los tipos de PCGs, con algunos ejemplos de cada tipo (o uno, al menos). Así quedaría más completa la sección. ;)
+
+In this context (massive non-interactive goal-driven plots), different
+approaches has been proposed, following the survey
 \cite{arinbjarnar2009critical} by Arinbjarnar et al.:
 
-In 1976 Tale-Spin \cite{meehan1976metanovel} were able to produce
+% Antonio - todo esto son métodos automáticos, ¿no? 
+% Hechos mediante programas o algoritmos en computadores, ¿no? Dejadlo claro. ;)
+
+In 1976 the program called \textit{Tale-Spin} \cite{meehan1976metanovel} was able to produce
+% Antonio - Tale-Spin era un programa, ¿no?
 purely text-based fairy tales where semi-autonomous characters
-exposed emotions and relationships, with the 
-objection of creating very inconsistent plots.
-Then, different researches used the concept of goals and pre-defined
-stories to construct stories: In 1987, UNIVERSE \cite{lebowitz1985story}
+showed emotions and relationships, with the shortcoming of creating very inconsistent plots.
+Then, different researches used the concept of \textit{goals and pre-defined
+stories} to construct stories: In 1987, UNIVERSE \cite{lebowitz1985story}
 was used to create infinite soap opera style stories driven by
 goals provided by the author. It used fragments of stories to assign
 roles to stereotypical characters, relying on the reader the assumption
 of the characters' motivations.
-In 1994, Minstrel \cite{turner2014creative} used case-based reasoning
-to generate stories about knights and ladies by replacing variables
-in existing stories and recombining them. It also used goals, in this case
-for the story and for each character. In 2008, Riedl and Leon
+In 1994, Turner created Minstrel \cite{turner2014creative}, a program which used 
+% Antonio - Minstrel era un programa?
+case-based reasoning to generate stories about knights and ladies by replacing variables in existing stories and recombining them. It also used goals, in this case for the story and for every character. In 2008, Riedl and Leon
  used in \cite{riedl2008toward} the same idea, conceptualizing a vignette
-as a small story assumed as ``interesting'' that form stories when
-exposed sequentially.
-The technique addressed in this paper can be understood as the evolution of
-these researches adapted to massive worlds, where coherence is provided by the use of
-Agent based model (ABM for further references).
-Instead of using ``vignettes'' to construct stories, this approach
-modifies the behaviour of the agents and finds ``archetypes'',
-behaviours and patterns universally accepted and present in the
+as a small story assumed as ``interesting'', thus they can compose complete stories when exposed sequentially.
+
+The technique applied in this paper can be understood as the evolution of
+these researches adapted to massive worlds, where coherence is provided by the use of an Agent-Based Model (ABM for further references).
+Instead of using ``vignettes'' to construct stories, our approach
+modifies the behaviour of the agents and finds ``archetypes'', i.e. behaviours and patterns universally accepted and present in the
 collective imaginary \cite{garry2005archetypes} that could be interpreted as
 generic ``vignettes''.
 
-The idea of emerging plots from agents' interactions (ABM) is not new:
-In 2007, Virtual storyteller \cite{swartjes2007emergent}, used agents that improvise using
-techniques from improvisational theatre, a plot guide and a narrator.
-Our technique uses the same approach but there is no plot guide agent. Instead, 
-a Genetic Algorithm will guide the mood of the backstories created by finding 
-``archetypes''.
+The idea of emerging plots from agents' (ABMs) interactions is not new:
+In 2007, Virtual storyteller \cite{swartjes2007emergent}, used agents that improvise using techniques from improvisational theatre, a plot guide and a narrator. Our technique uses the same approach but there is no plot guide agent. Instead, a Genetic Algorithm will guide the mood of the backstories created by finding ``archetypes''.
+% Antonio - desired archetypes?
 
-The search of a good plot can be addressed from the evolutionary computing point of view:
-In 2011, Nairat et al. proposed in \cite{nairat2011character} a generative drama approach
+The search of a good plot can be addressed from the Evolutionary Computation (EC) point of view. To this aim in 2011, Nairat et al. proposed in \cite{nairat2011character} a generative drama approach
 that integrates human creativity by using an agent-based system where
 the characters are developed using interactive evolution. One year later, 
 Cioffi-Revilla et al. \cite{cioffi2012evolutionary} published a study that
 applies a combined EC-ABM approach to the challenge of understanding
-complex adaptive systems in social science. Their conclusions suggest
-``further applications of EC to ABM in terms of multi-population
-models with heterogeneous agents, multi-objective optimization, dynamic
-environments, and evolving executable objects for modeling social change''.
-Our technique relies on this idea by using a Genetic algorithm to 
-obtain the agent behaviour that best fits the goals describes by the author when 
-the world is generated.
+complex adaptive systems in social science. Their conclusions suggest further applications of EC to ABM in terms of multi-population models with heterogeneous agents, multi-objective optimization, dynamic environments, and evolving executable objects for modelling social change. %FERGU: modeling es americano
 
+Our approach relies on this idea by using a Genetic Algorithm (GA) to 
+obtain the agents' behaviour that better fits the goals described by the user/author before the world is generated.
 % TODO @raiben enganchar mejor este último párrafo
+% Antonio - hecho. ;D
+It follows the methodology presented by García-Ortega et al. in \cite{garcia:anon}. They systematized the generation of backstories in massive worlds by means of GAs. Thus, the steps to define the elements of a complex world, and how to optimise their character's behaviour using GAs to extract information, were presented.
+Moreover, that work included a preliminary analysis of one parameter: the number of profiles. 
+% Antonio - profiles generados? o qué profiles?
+Results in that paper shown that this parameter have a significant influence
+in the archetype-based fitness attained. The open-source simulator 
+MADE, 
+% Antonio - URL como nota al pie o algo FERGU: puesta
+% Quitado porque ya se ha puesto antes - JJ
+used in the present work, was also introduced in that paper. However, the rest of parameters that conform the fictional setting (defined in 
+\cite{morrell2006between}) were set as standard ad-hoc parameters. 
+% Antonio - He puesto la REF de Morrel. Comprobadla. ;)
 
-The methodology to systematise the generation of backstories in massive worlds 
-using GAs was presented by García-Ortega et al. in \cite{garcia14my}. In that
-paper, the steps to define the elements of a complex world, and how to optimise 
-their character's behaviour using GAs to extract information, were presented. 
-Also, that work included a preliminary analysis of one parameter: the number of
-profiles. Results in that paper shown that this parameter have significant 
-difference in the archetype-based fitness attained. The open-source simulator 
-MADE, used here, was also presented in that work. However, the rest of 
-parameters that conform the fictional setting (defined in 
-\cite{MorrellFiction06}) were set as ad-hoc parameters. In this paper, we want 
-to extend that study testing the rest of the parameters that model a story: the
-time, the world, the characters and the leitmotif.
+In this paper, we want to extend that study testing the rest of the parameters that model a story: the time, the world, the characters and the leitmotif.
+% Antonio - hay que darle muuucho más bombo a esto. La importancia de los parámetros, que los resultados pueden variar mucho con un cambio leve en ellos, que unos tienen mucha más influencia, que otros podrían resultar superfluos, que hace falta hacer este estudio para definir el algoritmo bien, que se va a hacer una definición de reglas de configuración, etc etc.
+% Este es el 'selling point' y hay que venderlo bien. De lo contrario puede parecer que esto es una mera excusa para publicar algo sin mucho esfuerzo (aunque lo conlleve, claro). ;D
+% Todo esto también habría que recalcarlo en la Intro. Incluso de forma más extensa que aquí. Si se hace en aquella sección, aquí sólo se nombraría lo que se va a hacer con una pequeña justificación. ;)
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \section{Methodology and experimental setup} %Issue #12
 \label{sec:met}
 
 In this section we will show how to systematize the different steps
-of the proposed method to generate a fictional world. Initially, the
-fitness should be decided with the desired behaviour of the
-agents that populate the world (for example, a given quantity of some
-archetype) in mind. To enable the generation of different
-personalities different number of ``profiles'' could be required. This concept,
-presented in \cite{garcia14my}, describes the different sets of behaviour
+of the proposed method to generate a valid fictional world. 
+% Antonio - Pero esta sección también habla de la configuración de los parámetros para los experimentos, ¿no? Si es así, se podría dividir en dos secciones.
+% Por cierto, la sección no hace esto que se dice, creo yo. No se explica una secuencia de pasos para sistematizar esto... :_(
+
+
+Initially, the fitness should be defined considering the desired behaviour for the agents that populate the world, for example, aiming to reach given quantity of some archetypes. Thus, in order to enable the generation of different
+personalities, different number of ``profiles'' would be required. This concept,
+presented in \cite{garcia:anon}, describes the different sets of behavioural
 parameters of the agents in the world (the number of different
 FSMs). Therefore, a world with three profiles is composed by three different
-types of agents. However, and as demonstrated in \cite{garcia14my}, the
+types of agents. However, as it was demonstrated in that work, the
 number of profiles could be different of the number of desired
-archetypes, as some archetypes can be shared, or on the contrary, impossible to obtain with a certain number of profiles.
-That is the reason we will add this parameter in the experimental setup. % Is this the main point of the paper? Wasn't this proved
-            % in the alife paper? - JJ FERGU: you are right, changed
+archetypes, as some archetypes can be shared, or on the contrary, impossible to obtain with a certain \textit{number of profiles}.
+For this reason we have added this parameter to the list to study in the present paper. 
 
-Then, the characteristics of this world are also decided taking into account the expected... For example, adding enough days to allow the archetypes generation. Finally, the interesting plot points are extracted from the log using... % !!! Explain this!!! - JJ TODO @raiben
+% Is this the main point of the paper? Wasn't this proved
+% in the alife paper? - JJ FERGU: you are right, changed
+
+Then, the features of this world are also decided taking into account the expected... For example, adding enough days to allow the generation of archetypes. Finally, the interesting plot points are extracted from the log using... % !!! Explain this!!! - JJ TODO @raiben
+% Antonio - Pos eso, hay que escribir esto. :D
+
 
 In this work, we propose three scenarios:
 \begin{itemize}
 \item Scenario A: The Villains. This scenario only requires one type of archetype: The ``villain''. This % don't leave me this way!!! FERGU: this has to be written by @raiben (TODO @raiben)
-\item Scenario B: The Hero. As in the classic stories, when a villain appears, a hero must rise. The ``hero'' archetype depend on the existence of a ``villain'' archetype. This scenario tries to generate worlds formed by archetypes that depend of anothers.
+\item Scenario B: The Hero. As in the classic stories, when a villain appears, a hero must rise. The ``hero'' archetype depend on the existence of a ``villain'' archetype. This scenario tries to generate worlds formed by archetypes that depend of others.
 \item Scenario C: The Shakespearian story. As many of the great stories of The Bard, this world requires the existence of different and interdependent archetypes: The ``hero'' and ``villain'' are completed with the ``obstacle'' (QUE HACE QUE), the  ``mentor'' (QUE HACE QUE) and the ``avenger'' (this archetype does not depend on the others).
 
 \end{itemize}
+% Antonio - Esto faltaría completarlo. ;D
+
+%------------------------------------------------------------------------------
 
 \subsection{Designing a fitness function}
 
@@ -271,22 +290,39 @@ for every previously explained scenarios:
 \item Function 3 ($F_5$): for the scenario C... This function requires 5 different archetypes. These archetypes have some type of interdependence. hero villano obstaculo mentor y vengativo %(este no depende de nadie)
 \end{itemize}
 
-\subsection{Individual representation}
+%-------------------------------------------------------------------------------
 
-An individual in the EA is a vector of parameters that model the
-behaviour of {\em all} the agents in the world (keep in mind that an
-individual of the EA is not equal to an agent in the world). These
-parameters have been presented in \cite{garcia14my}, and they define
+\subsection{Individual representation}
+% FERGU: Como dice Antonio, no sé si esto forma parte de la metodología de este 
+% paper (esto ya se explicó en el ALIFE). He añadido un párrafo para enlazar del 
+% caso general al nuestro concreto.
+
+As explained in the State of the Art, the agents of a massive world can be 
+modelled using different techniques, such as Neural Networks, Finite State 
+Machines or decision trees, among others. To be evolved they can be mapped 
+to a chromosome to be used in the EA.
+
+In this paper, an individual in the EA is a vector of parameters that model the
+the behaviour of {\em all} the agents in the world simulated by MADE (keep in mind that an
+individual of the EA is not equal to an agent in the world, but a set of values to parametrise them). These
+parameters have been presented in \cite{garcia:anon}, and they define
 the transitions and states of a Finite State Machine that model the
 agent's behaviour. % si lo citas mucho tendria¡s que anonimizarlo para
-                   % el doble blind - JJ
+                   % el doble blind - JJ FERGU: en principio no decimos 
+                   % en ningún momento "nuestro trabajo anterior" decimos
+                   % que lo usamos porque es libre"
 
-This vector of parameters is composed by several {\em profiles}. The number of profiles has a direct relation with the desired fitness function. It is expected that functions with only one kind of archetype (such as F1) only would require one profile (or set of parameters). However, as explained in \cite{garcia14my}, to allow the existence of different personalities in the world, different sets of personalities (or profiles) can be evolved at the same time. Therefore, the number of profiles affect the generated fitness, as the chromosome will be larger. 
+This vector of parameters is composed by several {\em profiles}. The number of profiles has a direct relation with the desired fitness function. It is expected that functions with only one kind of archetype (such as F1) only would require one profile (or set of parameters). However, as explained in \cite{garcia:anon}, to allow the existence of different personalities in the world, different sets of personalities (or profiles) can be evolved at the same time. Therefore, the number of profiles affect the generated fitness, as the chromosome will be larger. 
 % Chromo what? FERGU: arreglado
 
+%-------------------------------------------------------------------------------
 
-\subsection{Exploring the parameters for MADE}
+\subsection{Exploring the parameters}
 
+% FERGU: He quitado el "for MADE" del título, recordemos que estamos 
+% haciendo esto "en general" pero usando MADE como algo concreto.
+% De hecho "exploring the parameter" tampoco me gusta como título
+% de sección
 
 Several parameters related with the world and the GA will be studied
 in this paper so that we can obtain some rule of thumbs on which
@@ -322,14 +358,16 @@ condition will be established depending of the best fitness (30 generations with
 Finally, the parameters of the GA also affect the values of the
 obtained world. In this paper, we study the population size, a
 parameter that has big effect in the execution of this kind of
-algorithms \cite{}, comparing populations of 64, 128 and 256
+algorithms \cite{}, 
+% Antonio - CUIDADO! CITA VACÍA!
+comparing populations of 64, 128 and 256
 individuals. %TODO citar a un paper de tamagnos de poblacion
 % Explicar tambien los parametros que *no* se prueban y por que *no*
 % se hace. - JJ
 
 Table \ref{tab:parameters} summarizes all the configuration parameters that will be compared (with their acronyms used in this paper), and the rest of the (fixed) parameters of the algorithm. The fixed values of the parameters of the GA have been usually described by other authors as...
 
-The rest of the parameters of the MADE environment, such as the initial number of agents in the world, and the agent's parameters (such as the lifespan) are described in \cite{garcia14my}. In this paper we will use the default values presented in that work.
+The rest of the parameters of the MADE environment, such as the initial number of agents in the world, and the agent's parameters (such as the lifespan) are described in \cite{garcia:anon}. In this paper we will use the default values presented in that work.
 
 \begin{table*}
 \begin{center}
@@ -364,13 +402,17 @@ Runs per configuration & 30 \\ \hline
 % This subsection is *very* important... and not there yet. - JJ
 
 % 12 pages is the limit.
-\section{Results}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Experiments and Results}
 \label{sec:res}
 
 In this paper, 9720 runs were carried out for each problem/scenario (30 times * 4 levels for \emph{P} * 2 levels for \emph{D} * 3 levels for \emph{W} * 3 levels for \emph{S} * 3 levels for \emph{F} that represent the possible combinations) to obtain the fitness for each combination.
 
 Since the Kolmogorov-Smirnov test determines that the data we are using
-does not follow a normal distribution a non-parametric test, the Kruskalâ€“Wallis test, has been
+does not follow a normal distribution a non-parametric test, the Kruskal-Wallis test, has been
 performed.  % por
                                 % favor, Podriais escribir esto EN
                                 % INGLES? - JJ FERGU: esto se ha extraido de un paper de ANOVA de hace tiempo, pero he quitado la ultima frase
@@ -437,7 +479,7 @@ their differences (in Figures \ref{fig:boxplotsP} to \ref{fig:boxplotsS}). At fi
 values. This could have several possible explanations: First, the
 number of profiles has quite an impact in the results (Figure
 \ref{fig:boxplotsS}), as it was shown previously in
-\cite{garcia14my}. Although no executions achieved the maximum number
+\cite{garcia:anon}. Although no executions achieved the maximum number
 of generations (300), % Eso que significa? - JJ
  the length of the chromosome has an effect in the
  convergence. %FERGU: @raiben habra que hacer lo que dice JJ de
@@ -562,8 +604,8 @@ of the world size. % Con un mundo de tamagno 25, Aparecen 3 piezas de
 
 
 
-
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \section{Conclusions}
@@ -574,7 +616,7 @@ of the world size. % Con un mundo de tamagno 25, Aparecen 3 piezas de
 
 Hidden for double-blind review
 
-\bibliographystyle{unsrt}
+\bibliographystyle{splncs03}
 \bibliography{geneura,references}
 
 \end{document}
