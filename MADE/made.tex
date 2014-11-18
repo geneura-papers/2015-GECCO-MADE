@@ -97,8 +97,7 @@ an evolutionary algorithm that optimizes a fitness function designed to better f
 
 MADE works as follows: every individual in the evolutionary algorithm
 is described by a chromosome that represents one (or several kinds of)
-finite state automaton that are set to `live' (interact) in a simulated
-environment. The evolutionary algorithm was run with a standard
+finite state machine (FSM)\cite{FSM_Booth} that are set to `live' (interact) in a simulated environment. The evolutionary algorithm was run with a standard
 parameter configuration, meanwhile {\em sensible} non-evolutionary parameters were assigned default values. The latter are variables such as the number of profiles needed to obtain the desired result, or the size of the simulated
 world. There was no attempt to optimize these parameters, since the
 main intention seemed to be to have a prototype that allowed the
@@ -216,21 +215,26 @@ In this paper, we want to extend that study testing the rest of the parameters t
 \label{sec:met}
 
 In this section we will show how to systematize the different steps
-of the proposed method to generate a fictional world. Initially, the
-fitness should be decided with the desired behaviour of the
-agents that populate the world (for example, a given quantity of some
-archetype) in mind. To enable the generation of different
-personalities different number of ``profiles'' could be required. This concept,
-presented in \cite{garcia14my}, describes the different sets of behaviour
+of the proposed method to generate a valid fictional world. 
+% Antonio - Pero esta sección también habla de la configuración de los parámetros para los experimentos, ¿no? Si es así, se podría dividir en dos secciones.
+% Por cierto, la sección no hace esto que se dice, creo yo. No se explica una secuencia de pasos para sistematizar esto... :_(
+
+Initially, the fitness should be defined considering the desired behaviour for the agents that populate the world, for example, aiming to reach given quantity of some archetypes. Thus, in order to enable the generation of different
+personalities, different number of ``profiles'' would be required. This concept,
+presented in \cite{garcia14my}, describes the different sets of behavioural
 parameters of the agents in the world (the number of different
 FSMs). Therefore, a world with three profiles is composed by three different
-types of agents. However, and as demonstrated in \cite{garcia14my}, the
+types of agents. However, as it was demonstrated in that work, the
 number of profiles could be different of the number of desired
-archetypes, as some archetypes can be shared, or on the contrary, impossible to obtain with a certain number of profiles.
-That is the reason we will add this parameter in the experimental setup. % Is this the main point of the paper? Wasn't this proved
-            % in the alife paper? - JJ FERGU: you are right, changed
+archetypes, as some archetypes can be shared, or on the contrary, impossible to obtain with a certain \textit{number of profiles}.
+For this reason we have added this parameter to the list to study in the present paper. 
 
-Then, the characteristics of this world are also decided taking into account the expected... For example, adding enough days to allow the archetypes generation. Finally, the interesting plot points are extracted from the log using... % !!! Explain this!!! - JJ TODO @raiben
+% Is this the main point of the paper? Wasn't this proved
+% in the alife paper? - JJ FERGU: you are right, changed
+
+Then, the features of this world are also decided taking into account the expected... For example, adding enough days to allow the generation of archetypes. Finally, the interesting plot points are extracted from the log using... % !!! Explain this!!! - JJ TODO @raiben
+% Antonio - Pos eso, hay que escribir esto. :D
+
 
 In this work, we propose three scenarios:
 \begin{itemize}
@@ -239,6 +243,7 @@ In this work, we propose three scenarios:
 \item Scenario C: The Shakespearian story. As many of the great stories of The Bard, this world requires the existence of different and interdependent archetypes: The ``hero'' and ``villain'' are completed with the ``obstacle'' (QUE HACE QUE), the  ``mentor'' (QUE HACE QUE) and the ``avenger'' (this archetype does not depend on the others).
 
 \end{itemize}
+% Antonio - Esto faltaría completarlo. ;D
 
 %------------------------------------------------------------------------------
 
