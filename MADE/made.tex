@@ -15,9 +15,14 @@
 \mainmatter  % start of an individual contribution
 
 % first the title is needed
-\title{World building: analysing the parameters for massive evolutive generation of coherent backstories in fictional environments} 
+\title{World building: analysing the parameters for massive evolutionary generation of coherent backstories in fiction environments} 
 
-% Antonio - yo pondría 'evolutionary' en lugar de 'evolutive'. He cambiado 'fiction' a 'fictional' que es adjetivo, creo que está mejor. ;)
+% Antonio - yo pondría 'evolutionary' en lugar de 'evolutive'. He
+% cambiado 'fiction' a 'fictional' que es adjetivo, creo que está
+% mejor. ;)
+% fiction = de ficción Fictional = ficticios. Pongo como
+% estaba. Evolutionary puede que sea mejor que evolutive, pero tampoco
+% hay tanta diferencia - JJ
 
 % a short form should be given in case it is too long for the running head
 \titlerunning{World building: analysing the influence of parameters}
@@ -25,7 +30,7 @@
 % the name(s) of the author(s) follow(s) next
 %
 %
-\author{Anonymous%
+\author{A. N. Onymouse%
 \thanks{Anonymous Institute}}
 %
 \authorrunning{Anonymous, A}
@@ -85,14 +90,16 @@ These rules, when applied to the plot requisites, and thus, to the fitness funct
 
 \section{Introduction}
 
-In the very competitive cultural industry, writers rack their minds in
-order to generate interesting fictional worlds, including for the
-creation of richer environments in modern videogames. 
-% Antonio - no creo que la mayoría de autores se centren en idear mundos para videojuegos (por desgracia). :D
-In order to make the generation of these fictional worlds and the stories within them truly believable, efficient and massive, several automatic/autonomous methods have been proposed  \cite{garcia14my,nairat2011character}. One of 
+In the very competitive cultural industry that includes videogaming, writers rack their minds in
+order to generate interesting fictional worlds.
+% Antonio - no creo que la mayoría de autores se centren en idear
+% mundos para videojuegos (por desgracia). :D
+% Antonio, por favor, si escribes algo escríbelo bien. "including for
+% the" está mal escrito. Si no está seguro, sugiere cambios - JJ
+In order to make the generation of these fictional worlds and the stories within them truly believable, efficient and massive, several automatic/autonomous methods have been proposed  \cite{garcia:anon,nairat2011character}. One of 
 % Antonio - He puesto la REF de Nairat. Comprobad que es la correcta. ;)
-them, called MADE
-\cite{garcia14my} finds ``interesting'' character stories by running
+them, called MADE 
+\cite{garcia:anon} finds ``interesting'' character stories by running
 % Antonio - creo que no hay una norma para usar comillas simples o dobles, pero lo que yo suelo ver es que si se habla de términos específicos se usan comillas simples y si es un texto (un string) se usan las dobles. Es sólo una propuesta. ;D
 an evolutionary algorithm that optimizes a fitness function designed to better fit with the archetypes which the user desires they emerge in the world that he/she is designing.
 
@@ -191,7 +198,7 @@ Our approach relies on this idea by using a Genetic Algorithm (GA) to
 obtain the agents' behaviour that better fits the goals described by the user/author before the world is generated.
 % TODO @raiben enganchar mejor este último párrafo
 % Antonio - hecho. ;D
-It follows the methodology presented by García-Ortega et al. in \cite{garcia14my}. They systematized the generation of backstories in massive worlds by means of GAs. Thus, the steps to define the elements of a complex world, and how to optimise their character's behaviour using GAs to extract information, were presented.
+It follows the methodology presented by García-Ortega et al. in \cite{garcia:anon}. They systematized the generation of backstories in massive worlds by means of GAs. Thus, the steps to define the elements of a complex world, and how to optimise their character's behaviour using GAs to extract information, were presented.
 Moreover, that work included a preliminary analysis of one parameter: the number of profiles. 
 % Antonio - profiles generados? o qué profiles?
 Results in that paper shown that this parameter have a significant influence
@@ -223,7 +230,7 @@ of the proposed method to generate a valid fictional world.
 
 Initially, the fitness should be defined considering the desired behaviour for the agents that populate the world, for example, aiming to reach given quantity of some archetypes. Thus, in order to enable the generation of different
 personalities, different number of ``profiles'' would be required. This concept,
-presented in \cite{garcia14my}, describes the different sets of behavioural
+presented in \cite{garcia:anon}, describes the different sets of behavioural
 parameters of the agents in the world (the number of different
 FSMs). Therefore, a world with three profiles is composed by three different
 types of agents. However, as it was demonstrated in that work, the
@@ -291,14 +298,14 @@ to a chromosome to be used in the EA.
 In this paper, an individual in the EA is a vector of parameters that model the
 the behaviour of {\em all} the agents in the world simulated by MADE (keep in mind that an
 individual of the EA is not equal to an agent in the world, but a set of values to parametrise them). These
-parameters have been presented in \cite{garcia14my}, and they define
+parameters have been presented in \cite{garcia:anon}, and they define
 the transitions and states of a Finite State Machine that model the
 agent's behaviour. % si lo citas mucho tendria¡s que anonimizarlo para
                    % el doble blind - JJ FERGU: en principio no decimos 
                    % en ningún momento "nuestro trabajo anterior" decimos
                    % que lo usamos porque es libre"
 
-This vector of parameters is composed by several {\em profiles}. The number of profiles has a direct relation with the desired fitness function. It is expected that functions with only one kind of archetype (such as F1) only would require one profile (or set of parameters). However, as explained in \cite{garcia14my}, to allow the existence of different personalities in the world, different sets of personalities (or profiles) can be evolved at the same time. Therefore, the number of profiles affect the generated fitness, as the chromosome will be larger. 
+This vector of parameters is composed by several {\em profiles}. The number of profiles has a direct relation with the desired fitness function. It is expected that functions with only one kind of archetype (such as F1) only would require one profile (or set of parameters). However, as explained in \cite{garcia:anon}, to allow the existence of different personalities in the world, different sets of personalities (or profiles) can be evolved at the same time. Therefore, the number of profiles affect the generated fitness, as the chromosome will be larger. 
 % Chromo what? FERGU: arreglado
 
 %-------------------------------------------------------------------------------
@@ -353,7 +360,7 @@ individuals. %TODO citar a un paper de tamagnos de poblacion
 
 Table \ref{tab:parameters} summarizes all the configuration parameters that will be compared (with their acronyms used in this paper), and the rest of the (fixed) parameters of the algorithm. The fixed values of the parameters of the GA have been usually described by other authors as...
 
-The rest of the parameters of the MADE environment, such as the initial number of agents in the world, and the agent's parameters (such as the lifespan) are described in \cite{garcia14my}. In this paper we will use the default values presented in that work.
+The rest of the parameters of the MADE environment, such as the initial number of agents in the world, and the agent's parameters (such as the lifespan) are described in \cite{garcia:anon}. In this paper we will use the default values presented in that work.
 
 \begin{table*}
 \begin{center}
@@ -465,7 +472,7 @@ their differences (in Figures \ref{fig:boxplotsP} to \ref{fig:boxplotsS}). At fi
 values. This could have several possible explanations: First, the
 number of profiles has quite an impact in the results (Figure
 \ref{fig:boxplotsS}), as it was shown previously in
-\cite{garcia14my}. Although no executions achieved the maximum number
+\cite{garcia:anon}. Although no executions achieved the maximum number
 of generations (300), % Eso que significa? - JJ
  the length of the chromosome has an effect in the
  convergence. %FERGU: @raiben habra que hacer lo que dice JJ de
