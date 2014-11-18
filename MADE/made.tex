@@ -1,5 +1,6 @@
 \documentclass[runningheads,a4paper]{llncs}
 
+\usepackage[latin1]{inputenc}
 \usepackage{amssymb}
 \setcounter{tocdepth}{3}
 \usepackage{graphicx}
@@ -14,20 +15,23 @@
 \mainmatter  % start of an individual contribution
 
 % first the title is needed
-\title{World building: analysing the parameters for massive evolutive generation
-  of coherent backstories in fiction environments} 
+\title{World building: analysing the parameters for massive evolutive generation of coherent backstories in fictional environments} 
+
+% Antonio - yo pondría 'evolutionary' en lugar de 'evolutive'. He cambiado 'fiction' a 'fictional' que es adjetivo, creo que está mejor. ;)
 
 % a short form should be given in case it is too long for the running head
-\titlerunning{World building}
+\titlerunning{World building: analysing the influence of parameters}
 
 % the name(s) of the author(s) follow(s) next
 %
 %
-\author{Non A. Me%
-\thanks{NoInstitute}}
+\author{Anonymous%
+\thanks{Anonymous Institute}}
 %
-\authorrunning{Me, N}
+\authorrunning{Anonymous, A}
 % (feature abused for this document to repeat the title also on left hand pages)
+
+% Antonio - he cambiado el autor y demás para que no sea el mismo que el de GPBot. :D
 
 % the affiliations are given next; don't give your e-mail address
 % unless you accept that it will be published
@@ -44,26 +48,21 @@
 
 
 \begin{abstract}
-Generating fictional worlds
+Generating fictional worlds for a 
 % <RH>expongo el problema concreto ya que en esta misma frase hablamos de fitnes
-	using multi-agent system optimized by genetic algorithms
+	multi-agent system optimized by means of genetic algorithms
 % </RH>
-according to some specific requisites
+(with some specific requirements
 %<RH>
-	related to the desirable plots
+	related to the desirable plots),
 %</RH>
-presents the problem that it is impossible to know in advance the optimum for the
-particular fitness function designed at the same time it creates a
-vast search space for the evolutionary algorithm
+presents two main problems: first it is impossible to know in advance the optimal value for the particular designed fitness function, and at the same time, it creates a vast search space for the (evolutionary) 
  % TODO: <RH> Y no solo evolutionary, pero se si liar mas el abstract</RH>
 parameters that it
-needs. In this paper our purpose is to define a methodology for finding the
-best parameters of the evolutionary algorithm
+needs. The purpose of this paper is to define a methodology for finding the
+best parameter values for both, the evolutionary algorithm, and the own fictional world configuration ones.
 % TODO: <RH>Y no solo evolutionary, pero se si liar mas el abstract</RH>
-in the design of
-fictional worlds. This evolutionary design includes running, to
-completion, a world simulation represented as a chromosome and assigning a fitness to it, therefore it
-presents a very complex fitness landscape.
+This evolutionary design includes running, to completion, a world simulation represented as a chromosome, and assigning a fitness to it, thus composing a very complex fitness landscape.
 
 % <RH> reescribo esta oracion
 	%That is why, in order to
@@ -73,51 +72,49 @@ presents a very complex fitness landscape.
 	%rules that will, once you have the fitness function, help you set a
 	%reduced range of values or even a single value that will, with a
 	%reduced computation budget, help you find an optimal world.
-In order to optimize resources given to evolution and have some
-guarantee that the final result will be close to the optimum, we systematically
-study the values of different parameters, obtaining a set of
-generic rules. These rules applied to the plot requisites and the fitness function
-will lead to a reduced range of parameter values that will help the storyteller create optimal worlds with a
-reduced computation budget.
+In order to optimize the resources devoted to evolution and to have some
+guarantees that the final result will be close to the optimum, we systematically
+analyze a set of possible values of the most relevant parameters, obtaining a set of generic rules. 
+% Antonio - ¿a qué te refieres por regla?¿qué tipo de reglas?
+These rules, when applied to the plot requisites, and thus, to the fitness function, will lead to a reduced range of parameter values that will help the storyteller to create optimal worlds with a reduced computation budget.
 % </RH>
 
-\keywords{Games, Plot, evolutionary algorithms, content generation, literature}
+\keywords{Games, Plot, Content generation, Fictional world, Literature, Evolutionary algorithms}
 \end{abstract}
 
 \section{Introduction}
 
 In the very competitive cultural industry, writers rack their minds in
-order to generate interesting fictional worlds, mainly for the
-creation of richer environments in modern videogames. In order to make
-generation of these fictional worlds and the stories within them truly efficient and massive,
-several methods have been proposed \cite{garcia14my,nairat:evolution}. One of them, called MADE
+order to generate interesting fictional worlds, including for the
+creation of richer environments in modern videogames. 
+% Antonio - no creo que la mayoría de autores se centren en idear mundos para videojuegos (por desgracia). :D
+In order to make the generation of these fictional worlds and the stories within them truly believable, efficient and massive, several automatic/autonomous methods have been proposed  \cite{garcia14my,nairat2011character}. One of 
+% Antonio - He puesto la REF de Nairat. Comprobad que es la correcta. ;)
+them, called MADE
 \cite{garcia14my} finds ``interesting'' character stories by running
-an evolutionary algorithm that optimizes a fitness function designed
-from the archetypes that best describe the world the client wants.
+% Antonio - creo que no hay una norma para usar comillas simples o dobles, pero lo que yo suelo ver es que si se habla de términos específicos se usan comillas simples y si es un texto (un string) se usan las dobles. Es sólo una propuesta. ;D
+an evolutionary algorithm that optimizes a fitness function designed to better fit with the archetypes which the user desires they emerge in the world that he/she is designing.
 
-MADE works as follows: every individual in an evolutionary algorithm
+MADE works as follows: every individual in the evolutionary algorithm
 is described by a chromosome that represents one (or several kinds of)
-finite state automaton that are set to live in a simulated
-environment. The evolutionary algorithm was run with standard
-parameters and {\em sensible} default values were given to several
-non-evolutionary parameters such as the number of profiles needed to
-obtain the desired result and or the size of the simulated
+finite state automaton that are set to `live' (interact) in a simulated
+environment. The evolutionary algorithm was run with a standard
+parameter configuration, meanwhile {\em sensible} non-evolutionary parameters were assigned default values. The latter are variables such as the number of profiles needed to obtain the desired result, or the size of the simulated
 world. There was no attempt to optimize these parameters, since the
 main intention seemed to be to have a prototype that allowed the
 authors to have an acid test of their proposed approach.
 
 That paper hinted at the fact that parameters such as the number of
-{\em profiles} (different kind of finite state automaton present in
+{\em profiles} (different types of finite state automaton present in
 the world) had a big influence on the outcome, to the point of making
 it possible or not. However, other parameters such as the number of
-simulated days the world is running might also have some influence.
+simulated days the world is running might also have influence, but the authors did not conclude to which level.
 
-In this paper we will use that open source simulator and look at it
-from the evolutionary point of view so that we can check what kind of
-influence they have in the outcome. We will do a experimental setup
-that will test different parameters, and eventually find a series of
-rules that will help the users of that framework to set the best
-values for their simulation.
+In this paper we will use that open source simulator
+% Antonio - poner el enlace. Se supone que no es 'nuestro'. Vamos, que no afecta al blind process. ;)
+ and look at it from the evolutionary point of view so that we can check what kind of influence the configuration variables have in the outcome. We will do an experimental setup that will test different parameters (evolutionary and non-evolutionary), and eventually find a series of rules that will help the users of that framework to set the best values for their simulation (depending on their requirements or constraints).
+
+% Antonio - Le falta chicha a la intro. Propongo describir un poco mejor el proceso que se va a seguir para estudiar los parámetros y su influencia, así como para crear esas reglas.
 
 The rest of the paper is organized as follows. Coming up next, we
 present the state of the art in parameter setting of simulated
@@ -212,7 +209,8 @@ profiles. Results in that paper shown that this parameter have significant
 difference in the archetype-based fitness attained. The open-source simulator 
 MADE, used here, was also presented in that work. However, the rest of 
 parameters that conform the fictional setting (defined in 
-\cite{MorrellFiction06}) were set as ad-hoc parameters. In this paper, we want 
+\cite{morrell2006between}) were set as ad-hoc parameters. In this paper, we want 
+% Antonio - He puesto la REF de Morrel. Comprobadla. ;)
 to extend that study testing the rest of the parameters that model a story: the
 time, the world, the characters and the leitmotif.
 
@@ -239,7 +237,7 @@ Then, the characteristics of this world are also decided taking into account the
 In this work, we propose three scenarios:
 \begin{itemize}
 \item Scenario A: The Villains. This scenario only requires one type of archetype: The ``villain''. This % don't leave me this way!!! FERGU: this has to be written by @raiben (TODO @raiben)
-\item Scenario B: The Hero. As in the classic stories, when a villain appears, a hero must rise. The ``hero'' archetype depend on the existence of a ``villain'' archetype. This scenario tries to generate worlds formed by archetypes that depend of anothers.
+\item Scenario B: The Hero. As in the classic stories, when a villain appears, a hero must rise. The ``hero'' archetype depend on the existence of a ``villain'' archetype. This scenario tries to generate worlds formed by archetypes that depend of others.
 \item Scenario C: The Shakespearian story. As many of the great stories of The Bard, this world requires the existence of different and interdependent archetypes: The ``hero'' and ``villain'' are completed with the ``obstacle'' (QUE HACE QUE), the  ``mentor'' (QUE HACE QUE) and the ``avenger'' (this archetype does not depend on the others).
 
 \end{itemize}
@@ -322,7 +320,9 @@ condition will be established depending of the best fitness (30 generations with
 Finally, the parameters of the GA also affect the values of the
 obtained world. In this paper, we study the population size, a
 parameter that has big effect in the execution of this kind of
-algorithms \cite{}, comparing populations of 64, 128 and 256
+algorithms \cite{}, 
+% Antonio - CUIDADO! CITA VACÍA!
+comparing populations of 64, 128 and 256
 individuals. %TODO citar a un paper de tamagnos de poblacion
 % Explicar tambien los parametros que *no* se prueban y por que *no*
 % se hace. - JJ
@@ -370,7 +370,7 @@ Runs per configuration & 30 \\ \hline
 In this paper, 9720 runs were carried out for each problem/scenario (30 times * 4 levels for \emph{P} * 2 levels for \emph{D} * 3 levels for \emph{W} * 3 levels for \emph{S} * 3 levels for \emph{F} that represent the possible combinations) to obtain the fitness for each combination.
 
 Since the Kolmogorov-Smirnov test determines that the data we are using
-does not follow a normal distribution a non-parametric test, the Kruskalâ€“Wallis test, has been
+does not follow a normal distribution a non-parametric test, the Kruskal-Wallis test, has been
 performed.  % por
                                 % favor, Podriais escribir esto EN
                                 % INGLES? - JJ FERGU: esto se ha extraido de un paper de ANOVA de hace tiempo, pero he quitado la ultima frase
