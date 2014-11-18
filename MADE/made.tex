@@ -74,7 +74,8 @@ This evolutionary design includes running, to completion, a world simulation rep
 	%reduced computation budget, help you find an optimal world.
 In order to optimize the resources devoted to evolution and to have some
 guarantees that the final result will be close to the optimum, we systematically
-analyze a set of possible values of the most relevant parameters, obtaining a set of generic rules. 
+analyse a set of possible values of the most relevant parameters, obtaining a set of generic rules. 
+%FERGU: analyse es británico y el Evostar es europeo
 % Antonio - ¿a qué te refieres por regla?¿qué tipo de reglas?
 These rules, when applied to the plot requisites, and thus, to the fitness function, will lead to a reduced range of parameter values that will help the storyteller to create optimal worlds with a reduced computation budget.
 % </RH>
@@ -184,7 +185,7 @@ that integrates human creativity by using an agent-based system where
 the characters are developed using interactive evolution. One year later, 
 Cioffi-Revilla et al. \cite{cioffi2012evolutionary} published a study that
 applies a combined EC-ABM approach to the challenge of understanding
-complex adaptive systems in social science. Their conclusions suggest further applications of EC to ABM in terms of multi-population models with heterogeneous agents, multi-objective optimization, dynamic environments, and evolving executable objects for modeling social change.
+complex adaptive systems in social science. Their conclusions suggest further applications of EC to ABM in terms of multi-population models with heterogeneous agents, multi-objective optimization, dynamic environments, and evolving executable objects for modelling social change. %FERGU: modeling es americano
 
 Our approach relies on this idea by using a Genetic Algorithm (GA) to 
 obtain the agents' behaviour that better fits the goals described by the user/author before the world is generated.
@@ -195,8 +196,8 @@ Moreover, that work included a preliminary analysis of one parameter: the number
 % Antonio - profiles generados? o qué profiles?
 Results in that paper shown that this parameter have a significant influence
 in the archetype-based fitness attained. The open-source simulator 
-MADE, 
-% Antonio - URL como nota al pie o algo
+MADE\footnote{\url{http://velonuboso.com/made}}, 
+% Antonio - URL como nota al pie o algo FERGU: puesta
 used in the present work, was also introduced in that paper. However, the rest of parameters that conform the fictional setting (defined in 
 \cite{morrell2006between}) were set as standard ad-hoc parameters. 
 % Antonio - He puesto la REF de Morrel. Comprobadla. ;)
@@ -218,6 +219,7 @@ In this section we will show how to systematize the different steps
 of the proposed method to generate a valid fictional world. 
 % Antonio - Pero esta sección también habla de la configuración de los parámetros para los experimentos, ¿no? Si es así, se podría dividir en dos secciones.
 % Por cierto, la sección no hace esto que se dice, creo yo. No se explica una secuencia de pasos para sistematizar esto... :_(
+
 
 Initially, the fitness should be defined considering the desired behaviour for the agents that populate the world, for example, aiming to reach given quantity of some archetypes. Thus, in order to enable the generation of different
 personalities, different number of ``profiles'' would be required. This concept,
@@ -277,22 +279,36 @@ for every previously explained scenarios:
 %-------------------------------------------------------------------------------
 
 \subsection{Individual representation}
+% FERGU: Como dice Antonio, no sé si esto forma parte de la metodología de este 
+% paper (esto ya se explicó en el ALIFE). He añadido un párrafo para enlazar del 
+% caso general al nuestro concreto.
 
-An individual in the EA is a vector of parameters that model the
-behaviour of {\em all} the agents in the world (keep in mind that an
-individual of the EA is not equal to an agent in the world). These
+As explained in the State of the Art, the agents of a massive world can be 
+modelled using different techniques, such as Neural Networks, Finite State 
+Machines or decision trees, among others. To be evolved they can be mapped 
+to a chromosome to be used in the EA.
+
+In this paper, an individual in the EA is a vector of parameters that model the
+the behaviour of {\em all} the agents in the world simulated by MADE (keep in mind that an
+individual of the EA is not equal to an agent in the world, but a set of values to parametrise them). These
 parameters have been presented in \cite{garcia14my}, and they define
 the transitions and states of a Finite State Machine that model the
 agent's behaviour. % si lo citas mucho tendria¡s que anonimizarlo para
-                   % el doble blind - JJ
+                   % el doble blind - JJ FERGU: en principio no decimos 
+                   % en ningún momento "nuestro trabajo anterior" decimos
+                   % que lo usamos porque es libre"
 
 This vector of parameters is composed by several {\em profiles}. The number of profiles has a direct relation with the desired fitness function. It is expected that functions with only one kind of archetype (such as F1) only would require one profile (or set of parameters). However, as explained in \cite{garcia14my}, to allow the existence of different personalities in the world, different sets of personalities (or profiles) can be evolved at the same time. Therefore, the number of profiles affect the generated fitness, as the chromosome will be larger. 
 % Chromo what? FERGU: arreglado
 
 %-------------------------------------------------------------------------------
 
-\subsection{Exploring the parameters for MADE}
+\subsection{Exploring the parameters}
 
+% FERGU: He quitado el "for MADE" del título, recordemos que estamos 
+% haciendo esto "en general" pero usando MADE como algo concreto.
+% De hecho "exploring the parameter" tampoco me gusta como título
+% de sección
 
 Several parameters related with the world and the GA will be studied
 in this paper so that we can obtain some rule of thumbs on which
