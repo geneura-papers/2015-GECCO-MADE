@@ -75,11 +75,19 @@ rules ensure
 % posibilidad. ;D
 % de hecho, sí. Cuando se encuentra una estrategia óptima se suelen
 % cambiar las reglas. Cambiado de todas formas - JJ
- that there is no single best way of creating a bot that defeats all enemies; once it is found, there is no challenge left. 
+ that there is no single best way of creating a bot that defeats all
+ enemies; once it is found, there is no challenge left since it is
+ just a matter of following the optimal strategy found by the bot. 
 % Antonio - repito, esto no es algo de lo que los diseï¿½adores del juego se preocupen
 % y?  JJ
 % Antonio - Pues que estaba escrito como si el juego se diseñase para eso.
-%           De todas formas esta frase no tiene mucho sentido: "las reglas aseguran que no haya una sola forma par crear el mejor bot; que si se encuentra, no hay más desafío"... ¿qué tiene que ver esto último con que no haya un óptimo conocido?
+%           De todas formas esta frase no tiene mucho sentido: "las
+%           reglas aseguran que no haya una sola forma par crear el
+%           mejor bot; que si se encuentra, no hay más
+%           desafío"... ¿qué tiene que ver esto último con que no haya
+%           un óptimo conocido?
+% ¿qué sentido tiene jugar contra el mejor jugador? - JJ
+% Antonio - Entiendo (y entendía) el significado de la frase, lo que no entiendo es qué tiene que ver con que no haya un óptimo conocido... De hecho el bot que se cuenta ahí sería óptimo, dado que vence a todos los rivales. Otra cosa es que hubiese muchos óptimos... Aunque, sí, la definición de óptimo implica que sólo hay uno, pero todos conocemos problemas con varias soluciones igualmente válidas o con la misma bondad. ;)
 Then, in most games, the fitness evaluation (normally based in playing the game) is noisy and (usually) re-evaluated every generation, so that even if you consider reaching a certain level of fitness as a termination condition, there is no guarantee that the individual with that fitness will not fall below the threshold next generation it is evaluated, or, for that matter, that it is actually optimum.  
 % Antonio - he reescrito un poco esto. Los individuos no cambian, cambia su evaluaciï¿½n. Lo he dejado mï¿½s o menos igual, aunque creo que mejor expresado en este sentido.
 % Antonio: siempre que pongas ``regarding'', piénsatelo, porque siempre está mal. - JJ
@@ -89,7 +97,9 @@ running for a constant amount of generations is often considered as an
 acceptable criteria, if the obtained bots are good enough. However
 this is not necessarily the best approach, since further optimization
 could lie ahead, so other options must be explored.  
-Other possibilities, such as certain level of victories (or fitness quality) over external enemies as a termination condition, present the problem that the bots will be overfitted to those particular enemies. 
+Other possibilities, such as certain level of victories (or fitness
+quality) over external enemies as a termination condition, present the
+problem that the bots will be overfitted to those particular enemies.  
 % Antonio - De hecho, usar múltiples enemigos externos es la mejor forma de evaluación (si no es un co-evolutivo), ya que así se lucha contra la sobre-especialización. Usar una condición de parada basada en eso sería el mejor enfoque, que pero se necesitan muuuchos enemigos.
 % Antonio - he añadido el típico criterio de parada basado en generaciones
 Even as any of these conditions is not perfect, there is the
@@ -101,11 +111,11 @@ The aim of this paper is to find is a termination condition that is able to yiel
 game bot design process, determining the capabilities of every one of
 them and, eventually, selecting one for future designs.
 We will use a particular game, Planet Wars, which has been studied
-extensively in the literature, but the conclusions to our study could, in principle, be extended to any RTS or even any game with non-deterministic match results and with an unknown best solution. 
+extensively in the literature, but the conclusions to our study could,
+in principle, be extended to any Real Time Strategy (RTS) game or even to any game with non-deterministic match results and with an unknown best solution.
+% Antonio - También se habló de extrapolar los resultados a otros problemas con características comunes a estos, es decir: Fitness ruidoso, sin óptimo conocido, etc, no?
 % Antonio - faltaría la última frase con las conclusiones que se alcancen, no?
-% Me reafirmo en esto
 \keywords{Videogames, RTS, evolutionary algorithms, termination criteria, noisy fitness, no-optimal solution}
-% Antonio - no hay co-evolución!!!
 \end{abstract}
 
 %
@@ -115,12 +125,11 @@ extensively in the literature, but the conclusions to our study could, in princi
 
 
 Evolutionary Algorithms (EAS) are one of the methods usually applied
-to find the best autonomous  
-agent for playing the game, i.e. the best \textit{bot}
+to find the best autonomous agent for playing a game, i.e. the best \textit{bot}
 \cite{Agent_Smith_CEC2009,bots:evostar,unreal:gecco10,DBLP:conf/cig/Fernandez-AresGMG12}
 through an evolutionary process.
-And the termination condition is a key factor in any algorithm and its experimental setup since it affects the algorithmic performance, with respect to the quality of the yielded solution, and also to the amount of resources devoted to the run. 
-In EAs \cite{EAs_Back96} the usual termination condition is a constant number of generations (or evaluations), 
+As in any other algorithm, the termination condition is a key factor, along with its experimental setup since it affects the algorithmic performance, with respect to the quality of the yielded solution, and also to the amount of resources devoted to the run. 
+The usual stop criterion in EAs \cite{EAs_Back96} is reaching a constant number of generations (or evaluations), 
 %Maribel: el nÃºmero de generaciones y el nÃºmero de evaluaciÃ³nes
 %estÃ¡n relacionadas sÃ³lo en poblaciones de tamaÃ±o fijo. Yo las
 %tratarÃ­a como condiciones de parada en algunos Ã¡mbitos, aunque no
@@ -130,37 +139,31 @@ In EAs \cite{EAs_Back96} the usual termination condition is a constant number of
 % Maribel da exactamente igual. Lo importante es el número de
 % evaluaciones. - JJ
  which is normally related to a fixed {\em computing cycles budget}
-for doing the run or to a number of generations in
-which the best solution is not improved (distance to the optimum is not reduced), among others \cite{RocheTermination13}. However, neither of them might be useful in certain problems such as games, mainly due to the noisy nature of the fitness function \cite{merelo14:noisy,bots:evostar}. 
+for doing the run. Another usual approach is based in a number of generations in
+which the best solution is not improved (distance to the optimum is not reduced) \cite{RocheTermination13}. However, neither of them might be useful in certain problems such as games, mainly due to the noisy nature of the fitness function \cite{merelo14:noisy,bots:evostar}. 
 
-This \textit{noise} is inherent to most games, since the enemy behavior, the
-game environment, the bot itself, or all of them, may have an
+This \textit{noise} is inherent to most fighting games, since the enemy behavior, the game environment, the bot itself, or all of them, may have an
 stochastic component which might make the result of a match vary from
 one run to the next. Thus, different values would be returned
-every time the fitness is measured.
+every time the fitness is measured by playing the game.
 
 This issue arises in games due to the noisy and combat-based methods
 used for the evolution of bots, because there is not a single,
-principles-based way to compute the fitness and end the algorithm. Besides, any approach you choose, it is usually impossible to reach a global optimum short 
-% Antonio - short???
-% short of - a menos que - JJ
-of managing to obtain a bot that, as in Sun Tzu's ``Art of war'' \cite{tzu2013art}, is able to beat the opponent without
+principles-based way to compute the fitness, and thus, end the algorithm. Besides, any approach you choose, it is usually impossible to reach a global optimum short of managing to obtain a bot that, as in Sun Tzu's ``Art of war'' \cite{tzu2013art}, is able to beat the opponent without
 fighting, as the opponents are not known before the EA is running. 
 % Antonio - esta frase no se entiende
 % a menos que puedas ganar sin luchar, no puedes obtener el fitness
 % óptimo - JJ
-To solve this, usually previously-known opponents are used in the fitness
-function and an ``optimum'' is reached when a certain number of
-victories are achieved against them.
-%Maribel, achieved en vez de obtained. 
-However, using only one or a small number of opponents may lead to generate overfitted solutions that only beat the  enemies that have been used during the 'training' phase (to compute the fitness) \cite{DBLP:journals/jcst/MoraFGGF12}.
+% Antonio - Yo esa cita la quitaría, aunque le dé un componente literario/gafapastiense al artículo. Tampoco veo por qué no se puede obtener un óptimo por no conocer al oponente antes de la evaluación. Si es un manta, le puedes ganar siempre...
+To solve this, usually matches with previously-known opponents are used in the
+computation of the fitness function and an ``optimum'' is reached when a certain number of victories are achieved against them.
+However, using only one or a small number of opponents may lead to
+generate overfitted solutions that only beat the enemies that have
+been used during the `training' phase (to compute the fitness)
+\cite{DBLP:journals/jcst/MoraFGGF12}. 
  
 
-However, these two issues are usually not taken into accout and the usual approach is
-using a fixed number of evaluations or amount of time, usually given
-by the game or challenge conditions. When this rule is not imposed by
-a challenge or some other condition, this is not the right
-approach for finding the best autonomous agent, or even one that is
+However, these two issues are normally not taken into account and the usual approach is taking a fixed number of evaluations or amount of time, usually given by the game or challenge constraints (if it is in a competition). When this rule is not imposed by a challenge or some other condition, this is not the right approach for finding the best autonomous agent, or even one that is
 good enough to defeat those that constitute the state of the art.
 
 That is why finding the optimal termination condition is essential in the search for game bots that competes in a particular challenge. If there is not a fixed evaluation budget, the next usual solution is to give it as much as you have got, 
@@ -199,18 +202,16 @@ number of evaluations as a termination condition.
 % evaluations'
 % Cambiado a evaluations - JJ
 
-These three problems, two of them (noise and unkown optimum)
+These three problems, two of them (noise and unknown optimum)
 algorithmic and one (fair comparison) methodological problems, are
 common for most kinds of games, as well as for many other
-problems without a known (or reachable) set of solutions. 
+problems without a known (or reachable) set of optimal solutions. 
 
 In this paper, we intend to pursue these issues by introducing novel
-termination conditions and  comparing them with others and among
-themselves when trying to
-generate competitive bots for videogames using Genetic Programming (GP) \cite{GP_Koza92}, because this method has proved to be quite flexible and has obtained very good results in previous works [CITA GPBOT]. 
-% Antonio - poner cita del EVO* aunque sea 'To appear'
-The game \textit{Planet Wars}
-% Antonio - poner cita o URL al juego
+termination conditions and comparing them with others (classical ones), and among themselves when trying to generate competitive bots for videogames using Genetic Programming (GP) \cite{GP_Koza92}, because this method has proved to be quite flexible and has obtained very good results in previous works \cite{EvoStar2014:GPBot}. 
+
+The game \textit{Planet Wars}\footnote{http://planetwars.aichallenge.org/}
+% Antonio - poner una URL mejor que esta (la del campeonato), si se estima oportuno.
  has been chosen in our experimental setup, as it is a simple RTS (Real Time Simulator) combat-based game (only one type of resource, one type of attack and one type of unit), and also it has been widely used in the literature, using different generation methods and fitness functions 
 \cite{DBLP:journals/jcst/MoraFGGF12,DBLP:conf/cec/Fernandez-AresMGGF11,DBLP:journals/nc/Lara-CabreraCL14,NogueiraCoevolutionary14}. 
 
@@ -219,17 +220,15 @@ Summarizing, our objective in this study is to find the stop criteria that conve
 To measure the quality of every approach, we will %maribel: quitar el
                                 %will
 %No, está bien - JJ
-consider the time needed to obtain the solution and the
-quality of that solution as metrics. 
+consider the time (or number of generations) needed to obtain the solution and the quality of that solution as metrics. 
 % a ver, esto lo tenemos que pensar. 
 % Vamos a poner un método como base: número fijo de evaluaciones, por
 % ejemplo. A partir de ahí yo consideraría el número de evaluaciones
 % adicionales y la mejora adicional al fitness. También el fitness
 % absoluto, claro. - JJ
+% Antonio - yo digo que el fitness (el usado durante la evolución)sea un mero indicador de lo buena que es cada solución, pero que eso se contraste con una evaluación final de los mejores individuos encontrados con cada criterio de parada. Es decir, cuando se tengan los mejores se ponen a luchar en muchos mapas contra muchos rivales, para decidir cuál de ellos es realmente bueno y cuál es, eventualmente o teóricamente, el mejor.
 
-In principle, the termination
-condition chosen could be extrapolated to any game with
-stochastic behaviour and combat-based results.
+In principle, the termination condition chosen could be extrapolated to any game with stochastic behaviour and combat-based results.
 %maribel: Esta Ãºltima frase es bastante fuerte, decimos sin mÃ¡s que nuestros resultados se pueden extrapolar a un montÃ³n de cosas, sin probar nada, eso serÃ¡ asÃ­?
 % Antonio - Sí, esto hay que justificarlo mucho mejor. ¿por qué
 % estamos convencidos de que se podrá extrapolar? Hay que fijar bien
@@ -237,6 +236,7 @@ stochastic behaviour and combat-based results.
 In general, and as pointed above, it is possible that the conclusions
 could be extended to any problem solved via evolutionary algorithms
 with an unknown or unreachable optimum and noisy fitness. 
+% Antonio - además de esto, que hay que hacerlo para dejar la frase, hay que demostrar de forma 'impepinable' (más o menos) que lo que se propone funciona.
 
 The rest of the paper is organized as follows. Next section
 establishes the state of the art in the use of termination conditions
@@ -261,8 +261,6 @@ implication of the obtained results.
 %
 \section{State of the Art}
 \label{sec:SoA}
-
-%% TODO: esto estÃ¡ en redacciÃ³n...
 
 Real world optimization problems often involve uncertain environment including noisy and/or dynamic environments \cite{Jin2005303,QianYZ13}.
 Basic strategies to handle noisy fitness functions include using a larger population size, averaging to filter out the noise (re-sampling) \cite{Branke98,Branke2001}, thresholding (employing a threshold value to be used in a selection operator for noisy fitness functions) \cite{Markon2001} or changing the selection criteria.
@@ -293,6 +291,8 @@ Authors propose searching the minimum number of generations by means of a conver
 Finally, as stated in Hart et al. \cite{Hart1996} when calculating metrics of parallel performance, it is incorrect to stop a parallel EA either after a fixed number of iterations or when the average fitness exhibits little variation. In this case, stopping rules based on the attainment of thresholds should be used, i.e. stopping the run when a solution that reaches this threshold is found \cite{Sena2001}. Nevertheless, threshold definition requires a good estimation of the optimum of the problem under study, which is unavailable in many cases \cite{Safe2004}.
 
 % A conclusion should be added to this based on the last paragraph - JJ
+In this paper, several stopping criteria will be studied, considering the time needed to obtain the solution and the quality of that solution. 
+
 
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  METHODOLOGY  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
