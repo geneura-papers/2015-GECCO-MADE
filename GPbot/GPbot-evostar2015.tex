@@ -67,51 +67,39 @@
 Evolutionary Algorithms are frequently used as a mechanism for the
 optimization of autonomous agents in games (bots), but knowing when to
 stop evolving, that is, when the bots are good enough, is not as easy as it would a priori seem. 
-The first issue is that there is no known optimum, because most game
-rules ensure
-% Antonio - 'make sure' es como si el juego se asegurase de eso. Al
-% diseï¿½ar un juego no creo que se piense mucho en esta
-% posibilidad. ;D
-% de hecho, sí. Cuando se encuentra una estrategia óptima se suelen
-% cambiar las reglas. Cambiado de todas formas - JJ
- that there is no single best way of creating a bot that defeats all
- enemies; once it is found, there is no challenge left since it is
- just a matter of following the optimal strategy found by the bot. 
-% Antonio - repito, esto no es algo de lo que los diseï¿½adores del juego se preocupen
-% y?  JJ
-% Antonio - Pues que estaba escrito como si el juego se diseñase para eso.
-%           De todas formas esta frase no tiene mucho sentido: "las
-%           reglas aseguran que no haya una sola forma par crear el
-%           mejor bot; que si se encuentra, no hay más
-%           desafío"... ¿qué tiene que ver esto último con que no haya
-%           un óptimo conocido?
-% ¿qué sentido tiene jugar contra el mejor jugador? - JJ
-% Antonio - Entiendo (y entendía) el significado de la frase, lo que no entiendo es qué tiene que ver con que no haya un óptimo conocido... De hecho el bot que se cuenta ahí sería óptimo, dado que vence a todos los rivales. Otra cosa es que hubiese muchos óptimos... Aunque, sí, la definición de óptimo implica que sólo hay uno, pero todos conocemos problemas con varias soluciones igualmente válidas o con la misma bondad. ;)
-Then, in most games, the fitness evaluation (normally based in playing the game) is noisy and (usually) re-evaluated every generation, so that even if you consider reaching a certain level of fitness as a termination condition, there is no guarantee that the individual with that fitness will not fall below the threshold next generation it is evaluated, or, for that matter, that it is actually optimum.  
-% Antonio - he reescrito un poco esto. Los individuos no cambian, cambia su evaluaciï¿½n. Lo he dejado mï¿½s o menos igual, aunque creo que mejor expresado en este sentido.
-% Antonio: siempre que pongas ``regarding'', piénsatelo, porque siempre está mal. - JJ
-% Antonio - Ok. He vuelto a reescribir esta frase. Los juegos no tienen fitness, los EAs sí. No mezcléis cosas dando por hecho que el lector sabe a qué se refiere este tipo de fitness en juegos. ;)
-The termination strategies left are independent of the algorithm:
-running for a constant amount of generations is often considered as an
-acceptable criteria, if the obtained bots are good enough. However
-this is not necessarily the best approach, since further optimization
-could lie ahead, so other options must be explored.  
-Other possibilities, such as certain level of victories (or fitness
-quality) over external enemies as a termination condition, present the
-problem that the bots will be overfitted to those particular enemies.  
+The first issue is that the optimal bots are either not known (and
+thus unusable as termination condition) or unreachable; then, in most
+games, the fitness evaluation (normally based in playing the game) is
+noisy, making its use as a termination condition also complicated.  
+% Reescrito todo que el abstract ocupa casi una página
+A fixed amount of evaluations or, in the case of games, a certain
+level of victories does not guarantee an optimal result.
+%% The termination strategies left are independent of the algorithm:
+%% running for a constant amount of generations is often considered as an
+%% acceptable criteria, if the obtained bots are good enough. However
+%% this is not necessarily the best approach, since further optimization
+%% could lie ahead, so other options must be explored.  
+%% Other possibilities, such as certain level of victories (or fitness
+%% quality) over external enemies as a termination condition, present the
+%% problem that the bots will be overfitted to those particular enemies. 
 % Antonio - De hecho, usar múltiples enemigos externos es la mejor forma de evaluación (si no es un co-evolutivo), ya que así se lucha contra la sobre-especialización. Usar una condición de parada basada en eso sería el mejor enfoque, que pero se necesitan muuuchos enemigos.
 % Antonio - he añadido el típico criterio de parada basado en generaciones
-Even as any of these conditions is not perfect, there is the
-possibility of combining several of them as termination criterion so
-that bots that are as optimal as possible, (and in as general a
-context as it is possible) are found; also, in a minimal amount of
-time and evaluations. 
-The aim of this paper is to find is a termination condition that is able to yield a good solution in a certain amount of time, and that allows researchers to compare between different evolutionary algorithms as fairly as possible, that is why in this work we will examine several ways of ending an evolutionary
-game bot design process, determining the capabilities of every one of
+%% Even as any of these conditions is not perfect, there is the
+%% possibility of combining several of them as termination criterion so
+%% that bots that are as optimal as possible, (and in as general a
+%% context as it is possible) are found; also, in a minimal amount of
+%% time and evaluations. 
+That is why the objective of this paper is evaluate several
+termination conditions in order to find one that is able to yield a
+good solution in a certain amount of time, and that allows researchers
+to compare between different evolutionary algorithms as fairly as
+possible. To achieve that objective we will examine several ways of
+ending an evolutionary game bot design process in a particular game,
+Planet Wars, with the characteristics described above, determining the capabilities of every one of
 them and, eventually, selecting one for future designs.
-We will use a particular game, Planet Wars, which has been studied
-extensively in the literature, but the conclusions to our study could,
-in principle, be extended to any Real Time Strategy (RTS) game or even to any game with non-deterministic match results and with an unknown best solution.
+%% We will use a particular game, Planet Wars, which has been studied
+%% extensively in the literature, but the conclusions to our study could,
+%% in principle, be extended to any Real Time Strategy (RTS) game or even to any game with non-deterministic match results and with an unknown best solution.
 % Antonio - También se habló de extrapolar los resultados a otros problemas con características comunes a estos, es decir: Fitness ruidoso, sin óptimo conocido, etc, no?
 % Antonio - faltaría la última frase con las conclusiones que se alcancen, no?
 \keywords{Videogames, RTS, evolutionary algorithms, termination criteria, noisy fitness, no-optimal solution}
