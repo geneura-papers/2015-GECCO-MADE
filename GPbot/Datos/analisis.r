@@ -1,28 +1,33 @@
 datos = read.csv("sc.csv")
 labels = unique(datos$LABEL)
 
+l = c("Number of generations","Age of outliers","Replacement rate","Fitness threshold","Fitness improvement")
+
 generaciones = read.csv("generation.csv")
 
 puntitos = c(0,0,0,0,3,3,3,3,2,2,2,2,5,5,5,5,1,1,1,1)
 puntitos = c(11,11,11,11,0,0,0,0,15,15,15,15,8,8,8,8,2,2,2,2)
 
+#Reordenamos para que Antonio sea feliz. Si es una chapuza. Atención que los NOMBRES sean siempre los mismos
+datos$LABEL = factor(datos$LABEL, levels = c("NG_030.0","NG_050.0","NG_100.0","NG_200.0","AO_1.0","AO_1.5","AO_2.0","AO_2.5","RT_n/02","RT_n/04","RT_n/08","RT_n/16","FT_20.0","FT_22.0","FT_24.0","FT_26.0","FI_03.0","FI_07.0","FI_10.0","FI_15.0"))
+
 #Boxplot SCORE
 par(cex.axis = 0.85,las=3)
-boxplot(SCORE~LABEL,data=datos,cex=0.2, ylab = "Score Best Individual")
+boxplot(SCORE~LABEL,data=datos,cex=0.2, ylab = "Score Best Individual",log="y")
 abline(v=4.5)
 abline(v=8.5)
 abline(v=12.5)
 abline(v=16.5)
-axis(3,at=c(2,6,10,14,19),labels=c("Age of outliers","Fitness improvement","Fitness threshold","Number of generations","Replacement rate"),las=0,tck=0,cex.axis=0.55)
+axis(3,at=c(2,6,10,14,19),labels=l,las=0,tck=0,cex.axis=0.75)
 
 #Boxplot GENERATIONS
 par(cex.axis = 0.85,las=3)
-boxplot(IT~LABEL,data=datos,cex=0.2, ylab="Generations needed to stop")
+boxplot(IT~LABEL,data=datos,cex=0.2, ylab="Generations to stop",log="y")
 abline(v=4.5)
 abline(v=8.5)
 abline(v=12.5)
 abline(v=16.5)
-axis(3,at=c(2,6,10,14,19),labels=c("Age of outliers","Fitness improvement","Fitness threshold","Number of generations","Replacement rate"),las=0,tck=0,cex.axis=0.55)
+axis(3,at=c(2,6,10,14,19),labels=l,las=0,tck=0,cex.axis=0.75)
 
 
 #Tasa de finalización
@@ -32,7 +37,7 @@ abline(v=4.5)
 abline(v=8.5)
 abline(v=12.5)
 abline(v=16.5)
-axis(3,at=c(2,6,10,14,19),labels=c("Age of outliers","Fitness improvement","Fitness threshold","Number of generations","Replacement rate"),las=0,tck=0,cex.axis=0.55)
+axis(3,at=c(2,6,10,14,19),labels=l,las=0,tck=0,cex.axis=0.55)
 
 #Fitness evolution population
 boxplot(SCORE~IT,data=generaciones,cex=0.2,xaxt="n",ylab="Score Population",xlab="Generation",ylim=c(0,30))
@@ -49,7 +54,7 @@ axis(1, at=seq(from = 50,to = 500,by = 50),labels=seq(from = 50,to = 500,by = 50
 
 library( ggplot2)
 qplot(SCORE,LABEL,data=datos,ylab="Stop criterion",xlab="Score")
-qplot(IT,LABEL,data=datos,ylab="Stop criterion",xlab="Generations needed")
+qplot(IT,LABEL,data=datos,ylab="Stop criterion",xlab="Generations")
 
 #qplot(IT,LABEL,data=datos,cex=0.2,xaxt="n",ylab="Score",xlab="Generations needed",fill=SCORE)
 #datos_AO = datos[datos$LABEL== c("AO_1.0","AO_1.5","AO_2.0","AO_2.5"),]
@@ -70,7 +75,7 @@ d = merge(d, label_rate)
 #legend("topright",col = gray.colors(n = 20, start = 0.8, end = 0.1 )[as.factor(d$SCORE)], legend=d$SCORE)
 
 #Comparativa
-plot(d[,2:3],pch=puntitos,xlim = c(0,500),ylab="Average SCORE of Best Individual","Average GENERATION Needed to stop")
+plot(d[,2:3],pch=puntitos,xlim = c(0,500),ylab="Average SCORE of Best Individual","Average GENERATION to stop",cex=0.8)
 text(d[,2],d[,3],paste(d[,1]," <",round(d[,4]/36*100),"%>",sep=""),cex=0.65,pos=4)
 legend("bottomright",cex=0.85,pch = c(11,0,15,8,2,NA_integer_),legend=c("AO - Age of outliers","FI - Fitness improvement","FT - Fitness threshold","NG - Number of generations","RT - Replacement rate","<value> - Completion Rate in experiments"))
 
@@ -95,3 +100,116 @@ legend("bottomright",cex=0.85,pch = c(11,0,15,8,2,NA_integer_),legend=c("AO - Ag
 
 #legend("bottomright",cex=0.85,pch = c(11,0,15,8,2,NA_integer_),legend=c("AO - Age of outliers","FI - Fitness improvement","FT - Fitness threshold","NG - Number of generations","RT - Replacement rate","<value> - Completion Rate in experiments"))
 
+#SACAMOS LOS MEJORES INDIVIDUOS A UN FICHERITO PARA LA BATERÍA DE BATALLAS
+write(as.matrix(t(datos[order(datos$LABEL),c(5,12)] )),file="mejores.csv",ncolumns = 2,sep = ",")
+
+### ESTUDIOS SCORE
+
+
+#Histograma de SCORE
+par(mfrow = c(5,4),mar = c(2.6,1,1,1),cex=0.5)
+for(i in unique(datos$LABEL)[ order(unique(datos$LABEL))]){
+  hist(datos$SCORE[datos$LABEL == i],main = i,xlim = c(5,30))
+}
+
+#TEST DE NORMALIDAD
+res_norm <- data.frame(row.names = NULL)
+  
+par(mfrow = c(5,4),mar = c(2.6,1,1,1),cex=0.5)
+for(i in unique(datos$LABEL)[ order(unique(datos$LABEL))]){
+  qqnorm(datos$SCORE[datos$LABEL == i],main = i)
+  qqline(datos$SCORE[datos$LABEL == i],main = i)
+  
+  print(paste(i,shapiro.test(datos$SCORE[datos$LABEL == i])[2]))
+  test = shapiro.test(datos$SCORE[datos$LABEL == i])[2]
+  
+  nrow = data.frame(c(i,test,test<0.05),row.names = NULL)
+  names(nrow) = c("SC","PVALUE","NORMAL?")
+  
+  res_norm <- rbind(res_norm, nrow )
+}
+
+res_norm
+
+kruskal.test(SCORE ~ LABEL, data= datos)
+
+res_kruskal <- matrix(nrow = length(x = unique(datos$LABEL)[ order(unique(datos$LABEL))]), ncol = length(unique(datos$LABEL)[ order(unique(datos$LABEL))]))
+rownames(res_kruskal) = unique(datos$LABEL)[ order(unique(datos$LABEL))]
+colnames(res_kruskal) = unique(datos$LABEL)[ order(unique(datos$LABEL))]
+
+
+for(i in unique(datos$LABEL)[ order(unique(datos$LABEL))]){
+  for(j in unique(datos$LABEL)[ order(unique(datos$LABEL))]){
+    if(i != j){
+    test = kruskal.test(SCORE ~ LABEL, data= datos[datos$LABEL == i | datos$LABEL == j,])
+    
+    res_kruskal[i,j] = test$p.value
+
+    }
+  }
+}
+  
+res_kruskal < 0.05
+
+levelplot(res_kruskal < 0.05, col.regions = gray.colors, scales=list(x=list(rot=90)),ylab = "", xlab="", main = "Kruskal test SCORE",border="black",colorkey=FALSE)
+#contourplot(res_kruskal < 0.05, col.regions = gray.colors, scales=list(x=list(rot=90)),ylab = "", xlab="", main = "Kruskal test", at=c(0,1))
+
+
+
+### ESTUDIOS GENERATIONS
+
+
+#Histograma de SCORE
+par(mfrow = c(5,4),mar = c(2.6,1,1,1),cex=0.5)
+for(i in unique(datos$LABEL)[ order(unique(datos$LABEL))]){
+  hist(datos$IT[datos$LABEL == i],main = i,xlim = c(0,500))
+}
+
+#TEST DE NORMALIDAD
+res_norm <- data.frame(row.names = NULL)
+
+par(mfrow = c(5,4),mar = c(2.6,1,1,1),cex=0.5)
+conta = 0
+for(i in unique(datos$LABEL)[ order(unique(datos$LABEL))]){
+  
+  qqnorm(datos$IT[datos$LABEL == i],main = i)
+  qqline(datos$IT[datos$LABEL == i],main = i)
+  
+  
+  
+  if(conta>4){
+  print(paste(i,shapiro.test(datos$IT[datos$LABEL == i])[2]))
+  test = shapiro.test(datos$IT[datos$LABEL == i])[2]
+  
+  nrow = data.frame(c(i,test,test<0.05),row.names = NULL)
+  names(nrow) = c("SC","PVALUE","NORMAL?")
+  
+  res_norm <- rbind(res_norm, nrow )
+    
+  }
+  
+  conta++
+}
+
+kruskal.test(IT ~ LABEL, data= datos)
+
+res_kruskal <- matrix(nrow = length(x = unique(datos$LABEL)[ order(unique(datos$LABEL))]), ncol = length(unique(datos$LABEL)[ order(unique(datos$LABEL))]))
+rownames(res_kruskal) = unique(datos$LABEL)[ order(unique(datos$LABEL))]
+colnames(res_kruskal) = unique(datos$LABEL)[ order(unique(datos$LABEL))]
+
+
+for(i in unique(datos$LABEL)[ order(unique(datos$LABEL))]){
+  for(j in unique(datos$LABEL)[ order(unique(datos$LABEL))]){
+    if(i != j){
+      test = kruskal.test(IT ~ LABEL, data= datos[datos$LABEL == i | datos$LABEL == j,])
+      
+      res_kruskal[i,j] = test$p.value
+      
+    }
+  }
+}
+
+res_kruskal < 0.05
+
+levelplot(res_kruskal < 0.05, col.regions = gray.colors, scales=list(x=list(rot=90)),ylab = "", xlab="", main = "Kruskal test Generations",border="black")
+#contourplot(res_kruskal < 0.05, col.regions = gray.colors, scales=list(x=list(rot=90)),ylab = "", xlab="", main = "Kruskal test", at=c(0,1))
