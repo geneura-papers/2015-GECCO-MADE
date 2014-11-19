@@ -102,7 +102,10 @@ them and, eventually, selecting one for future designs.
 %% extensively in the literature, but the conclusions to our study could,
 %% in principle, be extended to any Real Time Strategy (RTS) game or even to any game with non-deterministic match results and with an unknown best solution.
 % Antonio - También se habló de extrapolar los resultados a otros problemas con características comunes a estos, es decir: Fitness ruidoso, sin óptimo conocido, etc, no?
+% Antares - Sería lo suyo . Por ejemplo, hablando con Gustavo y Maribel, 
+% hemos dicho que realmente estas condiciones de parada son aplicables a cualquier juego.
 % Antonio - faltaría la última frase con las conclusiones que se alcancen, no?
+% Antares - Digo yo :P
 \keywords{Videogames, RTS, evolutionary algorithms, termination criteria, noisy fitness, no-optimal solution}
 \end{abstract}
 
@@ -149,6 +152,7 @@ fighting, as the opponents are usually not known before the EA is running.
 % obtener un óptimo por no conocer al oponente antes de la
 % evaluación. Si es un manta, le puedes ganar siempre...
 % Afú. Es literario-gafapastiense-bromista. ¿Qué tiene de malo? - JJ
+% Antares - A mi gusta xD
 To solve this, usually matches with previously-known opponents are used in the
 computation of the fitness function and an ``optimum'' is reached when a certain number of victories are achieved against them.
 However, using only one or a small number of opponents may lead to
@@ -228,6 +232,7 @@ solution and the quality of that solution as metrics.
 % para decidir cuál de ellos es realmente bueno y cuál es,
 % eventualmente o teóricamente, el mejor.
 %Habrá que tener en cuenta también el tiempo, digo yo. - JJ
+% Antares - Son tres métricas a ser consideradas: Bondad (fitness), Tiempo (Generaciones), tasa de finalización (no todos los SC han terminado en todas las ejecuciones). Sobre la bondad, se está ejecutando una batería de test en múltiples enfrentamientos :)
 
 In general, and as pointed above, it is possible that the conclusions
 could be extended to any problem solved via evolutionary algorithms
@@ -401,30 +406,32 @@ The traditional set of stopping criteria are either based on stagnation, checkin
 
 \begin{itemize}
     \item \texttt{[NG] Number of generations}  is the classical termination
-      criteria in evolutionary algorithms. We will consider 30, 50 and 100 generations since some papers \cite{EvoStar2014:GPBot} have mentioned the middle value. As indicated in the previous section,
+      criteria in evolutionary algorithms. We will consider 30, 50 , 100 and 200 generations since some papers \cite{EvoStar2014:GPBot} have mentioned the middle value. As indicated in the previous section,
       Hart \cite{Hart1996} claims that this is not the right way to
       compare different approaches; however, we include it here as a
       baseline for comparison with the other approaches. % En ese caso yo creo que no habría que probar tantos valores diferentes.
 
     \item \texttt{[AO] Age of outliers}: if the age of one individual is an outlier in the comparison with the rest of the population then it would be potentially an optimal solution % why?
-and the algorithm can be stopped. The difference between the age of the outlier and the rest of the population is measured considering three factors: 1, 1.5 and 2 times the interquartile range (IQR). %explain a bit. Does this mean that it will stop when it finds somebody that is two times as old as the average? - JJ
+and the algorithm can be stopped. The difference between the age of the outlier and the rest of the population is measured considering three factors: 1, 1.5, 2 and 2.5 times the interquartile range (IQR). %explain a bit. Does this mean that it will stop when it finds somebody that is two times as old as the average? - JJ
 
-    \item \texttt{[RT] Replacement rate}: when using an elitist strategy in which individuals are replaced only if the new generation is better, the fact that the population stops generating better individuals might be a sign of stagnation. Three
-      different rates have been tested, namely 25\%, 12.5\%, 6.25\%... % but this has to be combined with a steady state approach or something. By itself, it does not mean a thing. Please explain - JJ
+    \item \texttt{[RT] Replacement rate}: when using an elitist strategy in which individuals are replaced only if the new generation is better, the fact that the population stops generating better individuals might be a sign of stagnation. Four
+      different rates have been tested, namely $\frac{n}{2}$ (50\%) , $\frac{n}{4}$(25\%), $\frac{n}{8}$(12.5\%), $\frac{n}{16}$(6.25\%) ... % but this has to be combined with a steady state approach or something. By itself, it does not mean a thing. Please explain - JJ
 % Antonio - en la descripción del algoritmo se habrá dicho que va a ser generacional (hecho), ya que en un estacionario la tasa de reemplazo estaría mucho más acotada. ;)
 % Maribel: En un algoritmo generacional clásico, se reemplaza toda la población con los hijos menos el mejor. Pero nosotros no estamos usando este reemplazo, así como así, sino que hacemos unión de los hijos y los padres y nos quedamos con los mejores N no? Si esto es así, sería una cosa a comentar en la sección de GA features.
 % Antonio - efectivamente, he intentado contarlo mejor debajo. En todo caso hay que aclararlo en la descripción del algoritmo. - TODO -
 % Aquí había que haber hecho una aclaración o referencia al mismo. Ya lo he aclarado - JJ
-   The values are based in the maximum number of replacements per generation. Our model defines a maximum of n/2 (50\%) individuals to be potentially substituted by the offspring. Thus, the parameter values aim to test half of this probability, and half of the previous values, respectively.
+   The values are based in the maximum number of replacements per generation. Our model defines a maximum of $n = N/2$ individuals to be potentially substituted by the offspring. Thus, the parameter values aim to test half of this probability, and half of the previous values, respectively.
 
     \item \texttt{[FT] Fitness threshold}: a maximum value to obtain in the evolution can be set considering the top limit of the score function, 45. Thus, three possible thresholds are defined,
 % After a phase of systematic experimentation?
 namely 30, 36, 42. These values have been set considering that the ideal fitness/score to obtain is 45, but this is not effectively reachable (the bot must win all the matches in just one turn). %Los valores son bastante arbitrarios, pero bueno. 
+% Antares - ¿Esto no lo habías cambiado tú? ya no son estos :(
 
 In general, setting a fixed value that is a certain distance away to a known (and maybe unreachable) optimum is a compromise solution, since it is not known in advance whether this lower level will be even reached and, if it is, what would be the effort needed to go beyond that and whether a better solution (even including noise) could be found with a higher value. 
 %En este caso, ¿no se tiene en cuenta el ruido? - JJ
+% Antares - Si se contempla el ruido, ya que se sigue haciendo re-evaluaciones. 
 
-    \item \texttt{[FI] Fitness improvement}: in an ideal evolutionary process the fitness of the best individual must be improved during evolution every generation. However, the noisy nature of the problem (or the noisy fitness function) makes this difficult to measure. Thus, if the best fitness is not improved during a number of generations, the algorithm stops. Again three possible values will be tested: 3, 7 and 10 generations. %maribel y por qué estos? está fijado antes en algún otro paper como el del número de gneraciones?
+    \item \texttt{[FI] Fitness improvement}: in an ideal evolutionary process the fitness of the best individual must be improved during evolution every generation. However, the noisy nature of the problem (or the noisy fitness function) makes this difficult to measure. Thus, if the best fitness is not improved during a number of generations, the algorithm stops. Again three possible values will be tested: 3, 7, 10 and 15 generations. %maribel y por qué estos? está fijado antes en algún otro paper como el del número de gneraciones?
 These values have been set after a dedicated systematic experimentation phase as they are minimum and maximum thresholds plus an intermediate value. 
 % Antonio - aclarado. Es la más difícil de justificar. 
 % JJ - yo probaría más valores. En todo caso, el fitness variará cada generación si se vuelve a ejecutar, ¿no? 
@@ -468,21 +475,21 @@ The objective of these experiments % is to test the set of termination criteria.
 
 
 
-\begin{figure}
-\begin{center}
-\includegraphics[scale=0.4]{imags/ScoreBest-Evolution.eps}
-\end{center} 
-\caption{Evolution of the fitness of the best individual during time.}
-\label{fig:scorebestevolution}
-\end{figure}
+% \begin{figure}
+% \begin{center}
+% \includegraphics[scale=0.4]{imags/ScoreBest-Evolution.eps}
+% \end{center} 
+% \caption{Evolution of the fitness of the best individual during time.}
+% \label{fig:scorebestevolution}
+% \end{figure}
 
-\begin{figure}
-\begin{center}
-\includegraphics[scale=0.4]{imags/ScorePopulation-Evolution.eps}
-\end{center} 
-\caption{Evolution of the average fitness of the population during time.}
-\label{fig:scorepopulationevolution}
-\end{figure}
+% \begin{figure}
+% \begin{center}
+% \includegraphics[scale=0.4]{imags/ScorePopulation-Evolution.eps}
+% \end{center} 
+% \caption{Evolution of the average fitness of the population during time.}
+% \label{fig:scorepopulationevolution}
+% \end{figure}
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CONCLUSIONS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -494,6 +501,9 @@ The objective of these experiments % is to test the set of termination criteria.
 %% - ¿entorno ruidoso?
 %% - que se usen mecanismos para paliar la influencia del ruido es importante (podría ser requerido)
 % No se usa ningún mecanismo para ``paliar'' el ruido. Sí se intenta trabajar con él.
+% Antonio - ¿Se podría comentar también que alguno de los criterios de parada podría
+%ser empleado para algún mecanismo diferente del algoritmo, como un
+% ``cataclismo'' o una variación de los pesos o algo así? 
 
 \section*{Acknowledgements}
 
