@@ -347,31 +347,26 @@ The problem of using a tough rival as ExpGenebot is that the maximum fitness/sco
 
 This fitness of each individual $i$ of the population is obtained using the next formula:
 \begin{equation}
-Score_{i}=\alpha+\beta+\gamma
-\label{eq:score}
+\mathbf{\boldsymbol{Score_{i}=\alpha+\beta+\gamma}}\label{eq:score}
 \end{equation}
+
 
 Where
 
 \begin{equation}
-\alpha  = v, \alpha \in\left[0,N\right]
+\boldsymbol{\alpha=v},\alpha\in\left[0,N\right]
 \end{equation}
 
-\begin{equation}
-\begin{split}
-\beta =N\times\frac{t_{win}+\frac{1}{N\times t_{MAX}+1}}{\frac{t_{win}}{v+1}+1},\\
-\beta \in\left[0,N\right], \\
-t_{win} \in\left[0,N\times t_{MAX}\right]
-\end{split}
-\end{equation}
 
 \begin{equation}
-\begin{split}
-\gamma  =\frac{t_{defeated}}{N \times t_{MAX}+1}, \\
-\gamma \in\left[0,1\right], \\
-t_{defeated} \in\left[0,N\times t_{MAX}\right]
-\end{split}
+\boldsymbol{\beta=N\times\frac{t_{win}+\frac{1}{N\times t_{MAX}+1}}{\frac{t_{win}}{v+1}+1}},\beta\in\left[0,N\right],t_{win}\in\left[0,N\times t_{MAX}\right]
 \end{equation}
+
+
+\begin{equation}
+\boldsymbol{\gamma=\frac{t_{defeated}}{N\times t_{MAX}+1}},\gamma\in\left[0,1\right],t_{defeated}\in\left[0,N\times t_{MAX}\right]
+\end{equation}
+
 
 The terms used are: the number of battles ($N$) to test, the number of
 victories of the individual against ExpGenebot ($v$), the total number of
