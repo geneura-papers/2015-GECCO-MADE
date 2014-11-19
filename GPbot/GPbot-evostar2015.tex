@@ -328,11 +328,13 @@ of the art. ExpGenebot adapts its behaviour doing an initial analysis
 of the battle map and depending on the balance of forces between it and the enemy, i.e. location of the fleets and amount of ships.
 This rival has been chosen due to its potential variety of behaviours,
 so 30 different representative maps have been chosen for each
-evaluation, to ensure the bot behaves in a different way in every
-match. Thus, the fitness evaluation enhances the value of an
-individual. 
+evaluation (30 matches, 1 match per map), to ensure the bot behaves in a different way in every match. Thus, the fitness evaluation enhances the value of an individual. 
+The problem of using a tough rival as ExpGenebot is that the maximum fitness/score obtained during the evolution will be very limited, since it would be very difficult that a bot could win against 30 specialised bots \cite{Wolpert97nofree}. Moreover if we take into account that the bots being evolved do not include any adaptive component with regard to the map, as ExpGenebot does.\\
+
+In addition...\\
 % He anonimizado las referencias. Pero ¿son 30 batallas en 30 mapas o
 % sólo 30 batallas, cada una en un mapa?
+% Antonio - lo último. Lo he aclarado.
 
 %***
 %TODO: Definir la función de SCORE
@@ -343,29 +345,17 @@ individual.
 \subsection{Termination Criteria}
 % Antonio - Maribel, criteria es el plural de criterion. ;)
 
-The traditional set of stopping criteria are either based on stagnation, checking for the exitence of a solution in the set and a fixed budget. Combining them we have designed a set of five different algorithm stop criteria are going to be checked in the paper, namely:
+The traditional set of stopping criteria are either based on stagnation, checking for the existence of a solution in the set and a fixed budget. Combining them we have designed a set of five different algorithm stop criteria are going to be checked in the paper, namely:
 
 \begin{itemize}
     \item \texttt{[NG] Number of generations}  is the classical termination
-      criteria in evolutionary algorithms. We will consider 30, 50 and 100 generations since some papers
-      [CITA EVO* 2014] have mentioned the middle value. As indicated in the previous section,
+      criteria in evolutionary algorithms. We will consider 30, 50 and 100 generations since some papers \cita{EvoStar2014:GPBot} have mentioned the middle value. As indicated in the previous section,
       Hart \cite{Hart1996} claims that this is not the right way to
       compare different approaches; however, we include it here as a
       baseline for comparison with the other approaches. % En ese caso yo creo que no habría que probar tantos valores diferentes.
 
     \item \texttt{[AO] Age of outliers}: if the age of one individual is an outlier in the comparison with the rest of the population then it would be potentially an optimal solution % why?
 and the algorithm can be stopped. The difference between the age of the outlier and the rest of the population is measured considering three factors: 1, 1.5 and 2 times the interquartile range (IQR). %explain a bit. Does this mean that it will stop when it finds somebody that is two times as old as the average? - JJ
-
-    \item \texttt{[FT] Fitness threshold}: a maximum value to obtain in the evolution can be set considering the top limit of the score function, 45. Thus, three possible thresholds are defined,
-% After a phase of systematic experimentation?
-namely 30, 36, 42. These values have been set considering that the ideal fitness/score to obtain is 45, but this is not effectively reachable (the bot must win all the matches in just one turn). %Los valores son bastante arbitrarios, pero bueno. 
-In general, setting a fixed value that is a certain distance away to a known (and maybe unreachable) optimum is a compromise solution, since it is not known in advance whether this lower level will be even reached and, if it is, what would be the effort needed to go beyond that and whether a better solution (even including noise) could be found with a higher value. 
-%En este caso, ¿no se tiene en cuenta el ruido? - JJ
-
-    \item \texttt{[FI] Fitness improvement}: in an ideal evolutionary process the fitness of the best individual must be improved during evolution every generation. However, the noisy nature of the problem (or the noisy fitness function) makes this difficult to measure. Thus, if the best fitness is not improved during a number of generations, the algorithm stops. Again three possible values will be tested: 3, 7 and 10 generations. %maribel y por qué estos? está fijado antes en algún otro paper como el del número de gneraciones?
-These values have been set after a dedicated systematic experimentation phase as they are minimum and maximum thresholds plus an intermediate value. 
-% Antonio - aclarado. Es la más difícil de justificar. 
-% JJ - yo probaría más valores. En todo caso, el fitness variará cada generación si se vuelve a ejecutar, ¿no? 
 
     \item \texttt{[RT] Replacement rate}: when using an elitist strategy in which individuals are replaced only if the new generation is better, the fact that the population stops generating better individuals might be a sign of stagnation. Three
       different rates have been tested, namely 25\%, 12.5\%, 6.25\%... % but this has to be combined with a steady state approach or something. By itself, it does not mean a thing. Please explain - JJ
@@ -374,6 +364,18 @@ These values have been set after a dedicated systematic experimentation phase as
 % Antonio - efectivamente, he intentado contarlo mejor debajo. En todo caso hay que aclararlo en la descripción del algoritmo. - TODO -
 % Aquí había que haber hecho una aclaración o referencia al mismo. Ya lo he aclarado - JJ
    The values are based in the maximum number of replacements per generation. Our model defines a maximum of n/2 (50\%) individuals to be potentially substituted by the offspring. Thus, the parameter values aim to test half of this probability, and half of the previous values, respectively.
+
+    \item \texttt{[FT] Fitness threshold}: a maximum value to obtain in the evolution can be set considering the top limit of the score function, 45. Thus, three possible thresholds are defined,
+% After a phase of systematic experimentation?
+namely 30, 36, 42. These values have been set considering that the ideal fitness/score to obtain is 45, but this is not effectively reachable (the bot must win all the matches in just one turn). %Los valores son bastante arbitrarios, pero bueno. 
+
+In general, setting a fixed value that is a certain distance away to a known (and maybe unreachable) optimum is a compromise solution, since it is not known in advance whether this lower level will be even reached and, if it is, what would be the effort needed to go beyond that and whether a better solution (even including noise) could be found with a higher value. 
+%En este caso, ¿no se tiene en cuenta el ruido? - JJ
+
+    \item \texttt{[FI] Fitness improvement}: in an ideal evolutionary process the fitness of the best individual must be improved during evolution every generation. However, the noisy nature of the problem (or the noisy fitness function) makes this difficult to measure. Thus, if the best fitness is not improved during a number of generations, the algorithm stops. Again three possible values will be tested: 3, 7 and 10 generations. %maribel y por qué estos? está fijado antes en algún otro paper como el del número de gneraciones?
+These values have been set after a dedicated systematic experimentation phase as they are minimum and maximum thresholds plus an intermediate value. 
+% Antonio - aclarado. Es la más difícil de justificar. 
+% JJ - yo probaría más valores. En todo caso, el fitness variará cada generación si se vuelve a ejecutar, ¿no? 
 \end{itemize}
 
 The first stop criterion is based in an algorithmic parameter, so the algorithm stops when this parameter reaches a value. For this criterion, the population status does not matter. The rest of criteria are population-based ones, i.e. they consider some of its features to test if the algorithm must stop. The feature of the population leads the stop criteria and so leads the end of the algorithm. 
@@ -408,7 +410,7 @@ The objective of these experiments % is to test the set of termination criteria.
 \begin{center}
 \includegraphics[scale=0.4]{imags/Comparative.eps}
 \end{center} 
-\caption{Mean best individual score versus mean atained generations by each termination criteria.}
+\caption{Mean best individual score versus mean attained generations by each termination criteria.}
 \label{fig:comparative}
 \end{figure}
 %
@@ -432,7 +434,7 @@ Hidden for double-blind review
 %Warning--I didn't find a database entry for "Esparcia10FPS"
 %Warning--I didn't find a database entry for "FernandezAres2012adaptive"
 
-\bibliographystyle{unsrt}
+\bibliographystyle{splncs03}
 \bibliography{geneura,references,gpbot,genebot}
 
 \end{document}
