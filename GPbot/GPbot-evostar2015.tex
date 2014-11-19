@@ -18,6 +18,7 @@
 \documentclass[runningheads,a4paper]{llncs}
 
 \usepackage{amssymb}
+\usepackage{amsmath}
 \setcounter{tocdepth}{3}
 \usepackage{graphicx}
 
@@ -298,47 +299,98 @@ In this paper, several stopping criteria will be studied, considering the time n
 \section{Methodology and experimental setup}
 \label{sec:met}
 
-This section describes the different termination approaches to be tested in the paper. Everyone is commented and justified.
-Then, the parameter setup and the different experiments to be conducted are also presented and discussed. The aim is to analyse the differences in performance obtained with each configuration.
+This section describes, comments and justifies the different termination approaches to be tested in the paper. Although in this work we focus on a specific scenario (generation of competitive bots for the Planet Wars game), the results obtained could be, in principle, be applied to other similar problems. Therefore, we justify a general experimental and parameter setup, with the specific restrictions applied to the problem we are addressing. In this paper we propose different termination criteria that are based on different EA features, such as the parameters of the algorithm (maximum number of generations) or the population (diversity, replacement or age). The differences in performance obtained with each configuration will be analysed and compared. 
 
 % --------------------------------------------------------------
 
-\subsection{GA features}
+\subsection{Algorithm features}
 
-...\\
-
+ 
 % Cada vez que Antonio usa considered, Dios mata a un gatito - JJ
-In this paper, we use a generational approach [REF] in order to have a high level of diversity, % justificarlo
-which is better for checking some of the stop criteria to test. % ¿por qué? - JJ
-Specifically those population-based ones, which are normally more sensitive to diverse populations.
+%In this paper, we use a generational approach [REF] in order to have a high level of diversity, % justificarlo
+%which is better for checking some of the stop criteria to test. % ¿por qué? - JJ
+%Specifically those population-based ones, which are normally more sensitive to diverse populations.
 %maribel: Por qué es mejor tener diversidad para probar criterios de parada?, esto será mejor para algunos criterios, pero no para todos, de hecho los criterios de parada más utilizados, como el número de evaluaciones o el número de generaciones, no tienen nada que ver con la diversidad de la población. Sí es verdad que es importante para criterios basados en alguna metrica basada en la población, como el fitness medio en relación al mejor fitness, o criterios basados en algún tipo de distancia entre los individuos de la población, pero no para todos los criterios de parada en general, como parece que dice la frase anterior, así que creo que hay que justificar mejor el que el algoritmo sea generacional. Pongo a continuación una posible justificación a ver qué os parece.
 % Antonio - Pos eso es lo que habia puesto yo. XD 
 % Me has movido al frase en la que aclaraba eso mismo. Además de que desde el principio ponía 'some of the stop criteria'. ;D
 % Esta frase no tiene sentido. - JJ
 
-%The aim of this paper is to test which is the best way for stopping an evolutionary algorithm to find an autonomous and winner agent for playing a game. We have selected several stopping criteria, some of them, are controlled only by one or more evolutionary paremeter, but others by some features of the population. Due to this kind of stopping criteria, the diversity of the population should be preserved. For this reason, the generational approach is a good option for our test setup.  
+%The aim of this paper is to test which is the best way for stopping an evolutionary algorithm to find an autonomous and winner agent for playing a game. We have selected several stopping criteria, some of them, are controlled only by one or more evolutionary paremeter, but others by some features of the population. Due to this kind of stopping criteria, the diversity of the population should be preserved. For this reason, the generational approach is a good option for our test setup. 
+
+%FERGU: He comentado la intro de arriba y he vuelto a escribirla abajo justificando por qué usamos el GP generacional
+
+The first step of the methodology requires to select the most adequate EA to the problem we are addressing. As we want to generate competitive bots from scratch (without human knowledge) a Genetic Programming algorithm will be used. These kind of algorithms have been previously used in the generation of bots in videogames \cite{Esparcia2013GPunreal}. Due to the huge search space, the lack of a known optimum solution, and the noisy feature of the problem, a generational GP algorithm will be used, with a specific scoring method as fitness.
+
+Because there is not a fitness function to measure the quality of a generated
+bot, a scoring method must be proposed. This scoring method tries to reduce
+the effects of the noisy evaluation (following the guidelines of other works 
+\cite{DBLP:journals/jcst/MoraFGGF12}) by computing fitness from the result
+of 30 matches against an expert rival, 
 
 
-In addition, certain researchers have tried to reduce the effects of the noisy
-evaluation \cite{DBLP:journals/jcst/MoraFGGF12} by computing fitness from the result of
-30 matches against an expert rival, ExpGenebot proposed in
-\cite{DBLP:conf/cig/Fernandez-AresGMG12} and based on the improvement of the heuristics
+This scoring method takes into account the number of victories, turns to win and turns resisted before being defeated 
+by a rival. ExpGenebot, proposed in
+\cite{DBLP:conf/cig/Fernandez-AresGMG12}, and based on the improvement of the heuristics
 proposed by a human player and which is, for this particular game, the state
 of the art. ExpGenebot adapts its behaviour doing an initial analysis
 of the battle map and depending on the balance of forces between it and the enemy, i.e. location of the fleets and amount of ships.
 This rival has been chosen due to its potential variety of behaviours,
 so 30 different representative maps have been chosen for each
 evaluation (30 matches, 1 match per map), to ensure the bot behaves in a different way in every match. Thus, the fitness evaluation enhances the value of an individual. 
-The problem of using a tough rival as ExpGenebot is that the maximum fitness/score obtained during the evolution will be very limited, since it would be very difficult that a bot could win against 30 specialised bots \cite{Wolpert97nofree}. Moreover if we take into account that the bots being evolved do not include any adaptive component with regard to the map, as ExpGenebot does.\\
+The problem of using a tough rival as ExpGenebot is that the maximum fitness/score obtained during the evolution will be very limited, since it would be very difficult that a bot could win against 30 specialised bots \cite{Wolpert97nofree}. This is more evident if we take into account that the bots being evolved do not include any adaptive component that analyses the map, as ExpGenebot does.
 
-In addition...\\
-% He anonimizado las referencias. Pero ¿son 30 batallas en 30 mapas o
-% sólo 30 batallas, cada una en un mapa?
-% Antonio - lo último. Lo he aclarado.
 
-%***
-%TODO: Definir la función de SCORE
-%***
+This fitness of each individual $i$ of the population is obtained using the next formula:
+\begin{equation}
+Score_{i}=\alpha+\beta+\gamma
+\label{eq:score}
+\end{equation}
+
+Where
+
+\begin{equation}
+\alpha  = v, \alpha \in\left[0,N\right]
+\end{equation}
+
+\begin{equation}
+\begin{split}
+\beta =N\times\frac{t_{win}+\frac{1}{N\times t_{MAX}+1}}{\frac{t_{win}}{v+1}+1},\\
+\beta \in\left[0,N\right], \\
+t_{win} \in\left[0,N\times t_{MAX}\right]
+\end{split}
+\end{equation}
+
+\begin{equation}
+\begin{split}
+\gamma  =\frac{t_{defeated}}{N \times t_{MAX}+1}, \\
+\gamma \in\left[0,1\right], \\
+t_{defeated} \in\left[0,N\times t_{MAX}\right]
+\end{split}
+\end{equation}
+
+The terms used are: the number of battles ($N$) to test, the number of
+victories of the individual against ExpGenebot ($v$), the total number of
+turns used to win ExpGenebot ($t_{win}$), the total number of turns when
+the individual has been defeated by ExpGenebot ($t_{defeated}$) and the
+maximum number of turns a battle lasts ($t_{MAX}$). This score aims to
+favour the victories against the turns to win and turns to be
+defeated, giving different ratios to each section. Therefore $\alpha$
+has the highest ratio. The term $\beta$ adds extra score taking into
+account the number of turns when the individual wins (lower numbers to
+win implies better bots), following a exponential curve. 
+Finally, the $\gamma$ term adds score from the turns to be beaten 
+(higher number is better, as it is difficult to be beaten). The 
+1 in all denominators is used to avoid dividing by 0.
+
+As previously said, each individual has been tested 30 times in different maps, therefore $N=30$, 
+and a the limit of turns is the default of the competition ($t_{MAX}=1000$).
+
+%TODO FERGU: comentar y justificar el resto de parámetros del GP
+
+
+
+
+
 
 % --------------------------------------------------------------
 
@@ -413,6 +465,24 @@ The objective of these experiments % is to test the set of termination criteria.
 \caption{Mean best individual score versus mean attained generations by each termination criteria.}
 \label{fig:comparative}
 \end{figure}
+
+
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.4]{imags/ScoreBest-Evolution.eps}
+\end{center} 
+\caption{Evolution of the fitness of the best individual during time.}
+\label{fig:scorebestevolution}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.4]{imags/ScorePopulation-Evolution.eps}
+\end{center} 
+\caption{Evolution of the average fitness of the population during time.}
+\label{fig:scorepopulationevolution}
+\end{figure}
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CONCLUSIONS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -429,10 +499,6 @@ The objective of these experiments % is to test the set of termination criteria.
 
 Hidden for double-blind review
 
-% References missing:
-%Warning--I didn't find a database entry for "Mora2012Genebot"
-%Warning--I didn't find a database entry for "Esparcia10FPS"
-%Warning--I didn't find a database entry for "FernandezAres2012adaptive"
 
 \bibliographystyle{splncs03}
 \bibliography{geneura,references,gpbot,genebot}
