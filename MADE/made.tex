@@ -228,7 +228,7 @@ In this paper, we want to extend that study testing the rest of the parameters t
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\section{Methodology and experimental setup} %Issue #12
+\section{Methodology} %Issue #12
 \label{sec:met}
 
 As mentioned in section \ref{sec:sota}, the proposed technique for generating fictional worlds 
@@ -247,7 +247,7 @@ guarantees that the final result will be close to the optimum.
 
 
 
-\subsection{Characterisation of the target problems}
+\subsection{Problem characterisation}
 \label{subsec:idio}
 
 % Rubén - Las listas ocupan mucho espacio, pero son tan claras... en todo caso, que alguie con más expertise me diga si lo cambio por párrafos hilados.
@@ -267,9 +267,8 @@ This methodology is addresses to problems that present the following characteris
 \end{description}
 
 
-\subsection{Parameter selection}
+\subsection{Parameter effects}
 
-%TODO Rubén - Hablar de los parámetros que afectan a la calidad de la solución y por qué
 As Morrell explains in \cite{morrell2006between}, ``Fiction has three main elements:
 plotting, character, and place or setting'', so, intuitively, these three elements can affect the backstories:
 
@@ -303,8 +302,7 @@ that have to be evaluated by the GA at least 30 times to obtain statistically si
 The total amount of executions should be at least 7290.
 
 
-
-\subsection{Instantiation of the problem}
+\subsection{Specification of the problem}
 
 %Rubén - Empecé a escribir esto, pero creo que tal y como lo explica FERG es más literario
 
@@ -317,7 +315,7 @@ The total amount of executions should be at least 7290.
 %\item[Leitmotif:] The agents are programmed to survive. In our problem, the hunger is the source of conflicts.
 %\end{description}
 
-MADE's instantiation of the problem shows the following characteristics:
+%MADE's instantiation of the problem shows the following characteristics:
 
 %Initially, the fitness should be defined considering the desired behaviour
 %for the agents that populate the world, for example, aiming to reach given quantity of some archetypes. Thus,
@@ -334,7 +332,27 @@ MADE's instantiation of the problem shows the following characteristics:
 % Is this the main point of the paper? Wasn't this proved
 % in the alife paper? - JJ FERGU: you are right, changed
 
-MADE lets the writer select different archetypes that are promoted in the world.
+The agent in the MADE world is a representation of brown rat (formerly \textit{Rattus norvegicus})
+a common specie of urban rodent, modelled as a finite automaton that
+performs actions like move, eat, attack, defend, escape, find mate or have offspring.
+In general, these agents are considered as adults at the age of 40 days, have a pregnancy
+period of 30 days and die at the age of 300 days, but those values can vary depending on
+the profile (or set of parameter values that define the rat behaviour).
+The place where the conflicts appear is a square grid. A cell can only be occupied by one agent.
+The time is instantiated as ``virtual days''.
+The leitmotif of the rats is to survive and to have offspring, thus the source of conflicts is the food:
+agents attacks themselves to steal food before it is eaten by
+other agents. An agent can die of hunger, due to the damage inflicted by other agent or
+because of its advanced age.
+
+
+MADE lets the writer select different archetypes that can be promoted in the world
+(hero, shadow, threshold guardian, star-crossed lovers, etc) as described in \cite{ALIFEV}.
+In this paper we will focus on three different archetypes that will be studied: An agent
+is considered a \textit{villain} if it kills other agent as a result of a fight for the food.
+A \textit{hero} is an agent that has eventually attacked a \textit{villain}.
+An \textit{avenger} is an agent that attacks other one in revenge.
+
 The fitness of the world is a function of the sum of the value for each archetype rate, i.e. 
 the number of characters that present the archetype divided by the total number of characters.
 To promote the appearance of all the archetypes, avoiding as much as possible the 
@@ -342,7 +360,7 @@ starvation of any of them, the function presents a logarithmic curve where
 small rates get bigger values. As a consequence, the fitness of a world with a
 presence of two archetypes whose rate is 0.25 is bigger than the fitness of a world
 with one archetype whose rate is 0.5.
-The function used by MADE is described as following formula: 
+The function used by MADE is described as the following formula: 
 
 
 %The first step requires to develop a fitness function that takes into
@@ -353,20 +371,29 @@ The function used by MADE is described as following formula:
 %``heroes''. Thus, we propose the following fitness function: 
 
 %TODO Una vez mas, no usais ninguna metodologi­a para hacer esto. Es un poco ``Se me ha ocurrido hacerlo asi­''. - JJ FERGU: como podemos hacerlo?
+% RUbén - espero que quede explicado con lo de arriba
 
 
 \begin{equation}
-F_A= {\sum _{i=1}^{A} {\log \left( 1+10p_{i}\right) } \over {\log 1}}
+F_A= {\sum _{i=1}^{A} {\log \left( 1+10r_{i}\right) } \over {\log 1}}
 \end{equation}
 
-% Rubén: ¡¡¡ Voy por aquí, subo paper y sigo !!!
+where $A$ is the number of archetypes that take part in the fitness, $r_{i}$ is the
+appearance rate of the archetype $i$ in the world ($r_{i} \in \{ 0 , 1 \}$).
+
+% Rubén - Quiero añadir que max(F_A) = A, es decir que si se usan 4 arquetipos, el máximo es 4.
+% Si alguien sabe cómo expresarlo, que lo añada al párrafo de arriba, please
+
+                                % Why logs and all the rest? - JJ 
+                                % FERGU: TODO @raiben hablar de arquetipos y completar lo de abajo
+                                % Rubén: OK, explicado arriba
 
 
-where $A$ is the number of desired archetypes, and $a_{i}$ is the
-percentage (from 0 to 1) of a specific archetype in the world.
 
-								 % Why
-                                % logs and all the rest? - JJ FERGU: TODO @raiben hablar de arquetipos y completar lo de abajo
+
+\section{Experimental setup}
+
+
 
 
 In this paper, three fitness functions will be studied a different one
@@ -380,6 +407,7 @@ for every previously explained scenarios:
 
 
 
+% Rubén: ¡¡¡ Voy por aquí, subo paper y sigo !!!
 
 
 
@@ -387,6 +415,9 @@ for every previously explained scenarios:
 
 Then, the features of this world are also decided taking into account the expected... For example, adding enough days to allow the generation of archetypes. Finally, the interesting plot points are extracted from the log using... % !!! Explain this!!! - JJ TODO @raiben
 % Antonio - Pos eso, hay que escribir esto. :D
+
+
+
 
 
 In this work, we propose three scenarios:
