@@ -82,6 +82,8 @@ guarantees that the final result will be close to the optimum, we systematically
 analyse a set of possible values of the most relevant parameters, obtaining a set of generic rules. 
 %FERGU: analyse es británico y el Evostar es europeo
 % Antonio - ¿a qué te refieres por regla?¿qué tipo de reglas?
+% Rubén - a reglas que debe seguir un autor para que que el entorno ofrezca los mejores resultados para él o
+% las reglas que debe tener en cuenta quien diseñe una solución similar. No se si queda claro tal y como está explicado.
 These rules, when applied to the plot requisites, and thus, to the fitness function, will lead to a reduced range of parameter values that will help the storyteller to create optimal worlds with a reduced computation budget.
 % </RH>
 
@@ -136,7 +138,7 @@ present the conclusions reached in this paper.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{State of the Art}
-
+\label{sec:sota}
 %TODO revisar toda la seccion, de momento estoy poniendo la info mas o menos redactada pero falta la coherencia
 
 % Esto está copiado del de Alife y además, no viene muy a
@@ -229,13 +231,97 @@ In this paper, we want to extend that study testing the rest of the parameters t
 \section{Methodology and experimental setup} %Issue #12
 \label{sec:met}
 
-In this section we will show how to systematize the different steps
-of the proposed method to generate a valid fictional world. 
-% Antonio - Pero esta sección también habla de la configuración de los parámetros para los experimentos, ¿no? Si es así, se podría dividir en dos secciones.
-% Por cierto, la sección no hace esto que se dice, creo yo. No se explica una secuencia de pasos para sistematizar esto... :_(
+As mentioned in section \ref{sec:sota}, the proposed technique for generating fictional worlds 
+relies in the use of a a combined EC-ABM approach (a GA in this case).
+The fitness function is configurable to fit the story needs,
+Then, some parameters have to be fixed: world constants, agents' constants and genetic algorithm parameters.
+Finally, the GA has to search in a noisy space, due to the stochastic nature of the approach.
+The influence of each constant and parameter is, a priori, impossible to predict.
+
+Our methodology systematizes the study of key parameters in the massive generation of backstories with 
+EC-ABM approach
+% Rubén - OJO, desde ``in order'' he repetido frase del abstract y probablemente no deba hacerlo.
+% Si a alguien se le ocurre como cambar la frase u opina que deba quedar fuera, que actue
+in order to optimize the resources devoted to evolution and to have some
+guarantees that the final result will be close to the optimum.
 
 
-Initially, the fitness should be defined considering the desired behaviour for the agents that populate the world, for example, aiming to reach given quantity of some archetypes. Thus, in order to enable the generation of different
+
+%Rubén - Nota: que rara se me hace la palabra ``idiosyncracy'' :-)
+\subsection{Idiosyncrasy of the target problems}
+\label{subsec:idio}
+
+% Rubén - Las listas ocupan mucho espacio, pero son tan claras... en todo caso, que alguie con más expertise me diga si lo cambio por párrafos hilados.
+This methodology is addresses to problems that present the following characteristics:
+\begin{description}
+\item[Goal:] The final goal is to generate stochastic virtual worlds massively inhabited by characters with backstories that are aligned with a mood defined by the writer.
+\item[Virtual world:] The virtual world is created by the ABM.
+\item[Fitness:] The virtual world can be evaluated depending on different taxes of archetypes (set by the writer) found in the characters that inhabit it.
+\item[Archetype:] The archetype is a behaviour patterns that can be present in a backstory.
+\item[Backstory:] The backstory of a character is a set of actions and interpretations, coherent with the virtual world and the other agents.
+\item[Agent:] The agent represents a character that performs actions in the virtual world depending on the neighbourhood and its internal state.
+\item[Profile:] The agents can be parametrised and their behaviour (probabilities to perform actions) depends on these parameters. The profile (S) is the set of values for these parameters and can be optimized by the GA.
+\item[Conflict:] Every action is performed in a place and a time, affects to one or more agents and relates to a leitmotif.
+\item[Place:] The agents occupy a location in a map. The map is defined by its size (W).
+\item[Time:] The world exists during a period of time (D). Every backstory will be fed by actions as time goes by, in a bottom-up approach.
+\item[Leitmotif:] In this context, the leitmotiv (F) can be considered as the source of conflicts between the agents; the element that the agents compete for.
+\end{description}
+
+
+\subsection{Parameter selection}
+
+%TODO Rubén - Hablar de los parámetros que afectan a la calidad de la solución y por qué
+As Morrell explains in \cite{morrell2006between}, ``Fiction has three main elements: plotting, character, and place or setting'', so, intuitively, these three elements can affect the backstories:
+
+In our problem, the agent is affected by its profile, that defines its behaviour.
+Our technique uses the GA to evolve the profile of the agent,
+so it will be part of the search space.
+Nevertheless, the use of different number of profiles (S) may also affect the behaviour of the agents, since more profiles
+in the same world can imply new type of conflicts.
+
+The plotting is the result of the different conflicts, that are affected by the place,
+the time and leitmotif.
+The place is defined by the size (W). Smaller maps usually implies more friction between the agents,
+thus different variations of S may derive in different behaviours. The time of the conflict
+is affected by the period of time that the world will exist (D).
+In this sense, a longer period of time will usually imply more interactions, \textit{ergo} more
+archetypes and better fitness, and eventually more agents in the world. In the other hand, the evaluation
+of an individual in the GA implies the execution of every agent and the evaluation of each backstory,
+thus more agents and bigger backstories can increment significantly the evaluation time.
+The leitmotiv is modelled with the parameter (F). Changes in this parameter can increment or decrement
+the number of interactions.
+
+Finally, the search space can be affected by the GA parameters. In this sense, the most significant
+parameter is the population (P), since bigger populations will provide more accuracy but spend more execution time.
+
+To sum up, our methodology will systematically combine more than two variants os five parameters
+and study how the fitness is affected. The parameters proposed for the typology of problems defined in
+subsection \ref{subsec:idio} are number of profiles (S), world size (W),
+virtual time (D), leitmotiv (F) and population (P).
+Three variants for each of the five parameters implies 243 combinations of parameters
+that have to be evaluated by the GA at least 30 times to obtain statistically significant results.
+
+
+
+
+\subsection{Instantiation of the problem}
+
+%Rubén - Empecé a escribir esto, pero creo que tal y como lo explica FERG es más literario
+
+%MADE's instantiation of the problem show the following characteristics:
+%\begin{description}
+%\item[Fitness:] Different archetypes can be chosen.
+%\item[Agent:] A rat that 
+%\item[Place:] The agents live in a grid square (map).
+%\item[Time:] The world exists during a period of time (virtual days).
+%\item[Leitmotif:] The agents are programmed to survive. In our problem, the hunger is the source of conflicts.
+%\end{description}
+
+%TODO Rubén - hablar de todos los puntos que instancia MADE
+%TODO 
+
+Initially, the fitness should be defined considering the desired behaviour
+for the agents that populate the world, for example, aiming to reach given quantity of some archetypes. Thus, in order to enable the generation of different
 personalities, different number of ``profiles'' would be required. This concept,
 presented in \cite{garcia:anon}, describes the different sets of behavioural
 parameters of the agents in the world (the number of different
@@ -253,6 +339,7 @@ Then, the features of this world are also decided taking into account the expect
 
 
 In this work, we propose three scenarios:
+
 \begin{itemize}
 \item Scenario A: The Villains. This scenario only requires one type of archetype: The ``villain''. This % don't leave me this way!!! FERGU: this has to be written by @raiben (TODO @raiben)
 \item Scenario B: The Hero. As in the classic stories, when a villain appears, a hero must rise. The ``hero'' archetype depend on the existence of a ``villain'' archetype. This scenario tries to generate worlds formed by archetypes that depend of others.
@@ -290,34 +377,37 @@ for every previously explained scenarios:
 \item Function 3 ($F_5$): for the scenario C... This function requires 5 different archetypes. These archetypes have some type of interdependence. hero villano obstaculo mentor y vengativo %(este no depende de nadie)
 \end{itemize}
 
-%-------------------------------------------------------------------------------
 
-\subsection{Individual representation}
-% FERGU: Como dice Antonio, no sé si esto forma parte de la metodología de este 
-% paper (esto ya se explicó en el ALIFE). He añadido un párrafo para enlazar del 
-% caso general al nuestro concreto.
-
-As explained in the State of the Art, the agents of a massive world can be 
-modelled using different techniques, such as Neural Networks, Finite State 
-Machines or decision trees, among others. To be evolved they can be mapped 
-to a chromosome to be used in the EA.
-
-In this paper, an individual in the EA is a vector of parameters that model the
-the behaviour of {\em all} the agents in the world simulated by MADE (keep in mind that an
-individual of the EA is not equal to an agent in the world, but a set of values to parametrise them). These
-parameters have been presented in \cite{garcia:anon}, and they define
-the transitions and states of a Finite State Machine that model the
-agent's behaviour. % si lo citas mucho tendria¡s que anonimizarlo para
-                   % el doble blind - JJ FERGU: en principio no decimos 
-                   % en ningún momento "nuestro trabajo anterior" decimos
-                   % que lo usamos porque es libre"
-
-This vector of parameters is composed by several {\em profiles}. The number of profiles has a direct relation with the desired fitness function. It is expected that functions with only one kind of archetype (such as F1) only would require one profile (or set of parameters). However, as explained in \cite{garcia:anon}, to allow the existence of different personalities in the world, different sets of personalities (or profiles) can be evolved at the same time. Therefore, the number of profiles affect the generated fitness, as the chromosome will be larger. 
-% Chromo what? FERGU: arreglado
+% Rubén- comento esta sección porque no la veo como parte de la metodología y ya estaba explicado en alife
+% mantengo el texto por si resucita.
 
 %-------------------------------------------------------------------------------
+%\subsection{Individual representation}
+%% FERGU: Como dice Antonio, no sé si esto forma parte de la metodología de este 
+%% paper (esto ya se explicó en el ALIFE). He añadido un párrafo para enlazar del 
+%% caso general al nuestro concreto.
+%
+%As explained in the State of the Art, the agents of a massive world can be 
+%modelled using different techniques, such as Neural Networks, Finite State 
+%Machines or decision trees, among others. To be evolved they can be mapped 
+%to a chromosome to be used in the EA. 
+%
+%In this paper, an individual in the EA is a vector of parameters that model the
+%the behaviour of {\em all} the agents in the world simulated by MADE (keep in mind that an
+%individual of the EA is not equal to an agent in the world, but a set of values to parametrise them). These
+%parameters have been presented in \cite{garcia:anon}, and they define
+%the transitions and states of a Finite State Machine that model the
+%agent's behaviour. % si lo citas mucho tendria¡s que anonimizarlo para
+%                   % el doble blind - JJ FERGU: en principio no decimos 
+%                   % en ningún momento "nuestro trabajo anterior" decimos
+%                   % que lo usamos porque es libre" 
+%
+%This vector of parameters is composed by several {\em profiles}. The number of profiles has a direct relation with the desired fitness function. It is expected that functions %with only one kind of archetype (such as F1) only would require one profile (or set of parameters). However, as explained in \cite{garcia:anon}, to allow the existence of %different personalities in the world, different sets of personalities (or profiles) can be evolved at the same time. Therefore, the number of profiles affect the generated %fitness, as the chromosome will be larger. 
+%% Chromo what? FERGU: arreglado
 
-\subsection{Exploring the parameters}
+%-------------------------------------------------------------------------------
+
+
 
 % FERGU: He quitado el "for MADE" del título, recordemos que estamos 
 % haciendo esto "en general" pero usando MADE como algo concreto.
