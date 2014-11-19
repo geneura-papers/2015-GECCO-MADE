@@ -268,6 +268,7 @@ This methodology is addresses to problems that present the following characteris
 
 
 \subsection{Parameter effects}
+\label{subsec:params}
 
 As Morrell explains in \cite{morrell2006between}, ``Fiction has three main elements:
 plotting, character, and place or setting'', so, intuitively, these three elements can affect the backstories:
@@ -280,13 +281,23 @@ in the same world can imply new type of conflicts.
 
 The plotting is the result of the different conflicts, that are affected by the place,
 the time and leitmotif.
+
 The place is defined by the size (W). Smaller maps usually implies more friction between the agents,
-thus different variations of S may derive in different behaviours. The time of the conflict
-is affected by the period of time that the world will exist (D).
+thus different variations of S may derive in different behaviours. The values that should be chosen
+are those that test a size smaller or equal to the neighbourhood defined (letting all the agents
+access to all the resources and positions of the world), a size bigger than the neighbourhood
+(forcing the agents to move to reach a new neighbourhood) and much bigger (showing the effects
+of having a big inhabited world).
+
+The time of the conflict is affected by the period of time that the world will exist (D).
 In this sense, a longer period of time will usually imply more interactions, \textit{ergo} more
 archetypes and better fitness, and eventually more agents in the world. In the other hand, the evaluation
 of an individual in the GA implies the execution of every agent and the evaluation of each backstory,
 thus more agents and bigger backstories can increment significantly the evaluation time.
+The values proposed for the study vary from a very short period of time to a bigger one, where the
+maximum is the agent's average lifetime.
+
+
 The leitmotiv is modelled with the parameter (F). Changes in this parameter can increment or decrement
 the number of interactions.
 
@@ -302,7 +313,7 @@ that have to be evaluated by the GA at least 30 times to obtain statistically si
 The total amount of executions should be at least 7290.
 
 
-\subsection{Specification of the problem}
+\subsection{Problem specification}
 
 %Rubén - Empecé a escribir esto, pero creo que tal y como lo explica FERG es más literario
 
@@ -332,27 +343,37 @@ The total amount of executions should be at least 7290.
 % Is this the main point of the paper? Wasn't this proved
 % in the alife paper? - JJ FERGU: you are right, changed
 
-The agent in the MADE world is a representation of brown rat (formerly \textit{Rattus norvegicus})
-a common specie of urban rodent, modelled as a finite automaton that
-performs actions like move, eat, attack, defend, escape, find mate or have offspring.
+
+% Rubén - Resumen de MADE con lo básico para centrar al lector y hablar sobre números que luego son referenciados
+% Considero que esto puede recortarse pero que en esencia estos párrafo explican conceptos de MADE que se van desgranando a lo largo del paper 
+% sobre todo lo relativo a cifras sirve para explicar el experimental setup.
+% (que nunca se ha dicho en otros papers y de hecho está bastante resumido)
+
+The agent in the MADE world is a representation of brown rat
+modelled as a finite automaton that performs actions like move, eat, attack,
+defend, escape, find mate or have offspring.
 In general, these agents are considered as adults at the age of 40 days, have a pregnancy
 period of 30 days and die at the age of 300 days, but those values can vary depending on
 the profile (or set of parameter values that define the rat behaviour).
 The place where the conflicts appear is a square grid. A cell can only be occupied by one agent.
+Each agent can move and interact with other agents in a neighbourhood of 7x7 cells whose center is its position. 
 The time is instantiated as ``virtual days''.
 The leitmotif of the rats is to survive and to have offspring, thus the source of conflicts is the food:
 agents attacks themselves to steal food before it is eaten by
-other agents. An agent can die of hunger, due to the damage inflicted by other agent or
+other agents. Systematically, a number of food rations appears in random positions in the map every virtual day.
+An agent can die of hunger, due to the damage inflicted by other agent or
 because of its advanced age.
 
-
+% Rubén -OJO: importante, no borrar porque es el único lugar donde explico los 3 arquetipos de los que luego se
+% sacan conclusiones (y además, muy cortico)
 MADE lets the writer select different archetypes that can be promoted in the world
-(hero, shadow, threshold guardian, star-crossed lovers, etc) as described in \cite{ALIFEV}.
+as described in \cite{garcia:anon}.
 In this paper we will focus on three different archetypes that will be studied: An agent
-is considered a \textit{villain} if it kills other agent as a result of a fight for the food.
-A \textit{hero} is an agent that has eventually attacked a \textit{villain}.
-An \textit{avenger} is an agent that attacks other one in revenge.
+is considered a \textit{villain} if it kills other agent as a result of a fight for the food,
+a \textit{hero} if it attacks a \textit{villain} and
+\textit{avenger} is it attacks other agent in revenge.
 
+% Rubén - Aquí explico el dichoso fitness, que nunca queda bien claro. Espero que ahora ...
 The fitness of the world is a function of the sum of the value for each archetype rate, i.e. 
 the number of characters that present the archetype divided by the total number of characters.
 To promote the appearance of all the archetypes, avoiding as much as possible the 
@@ -389,54 +410,129 @@ appearance rate of the archetype $i$ in the world ($r_{i} \in \{ 0 , 1 \}$).
                                 % Rubén: OK, explicado arriba
 
 
+\subsection{Data analysis}
+
+%TODO 
 
 
 \section{Experimental setup}
 
+% Rubén - Si hace falta hueco qutamos este párrafo, que básicamente repite lo dicho
+Has explained in subsection \ref{subsec:params}, the parameters 
+whose effect will be studied are the number of profiles (S), the world size (W),
+the virtual time (D), the leitmotiv (F) and the population of the GA (P).
+Different parameter values for each element will be studied to clarify
+their influence in the literary world generation, following the rules and 
+recommendations present at the subsection \ref{subsec:params}
+
+Since the size of the neighbourhood is a square of 7x7 cells, the selected
+values for (W) are 5x5, 10x10 and 20x20 cells. Furthermore, these sizes would
+allow the existence of 25, 100 and 400 agents
+respectively at the same time.
+
+Since the maximum lifetime of the agent is about 300 virtual days,
+the selected set of days (D) to study are 64, 128 and 256. More days would result in a
+huge amount of agents and backstories, harder to evaluate.
 
 
 
-In this paper, three fitness functions will be studied a different one
-for every previously explained scenarios:
+%The world size (size of the
+%grid in this paper: 5x5, 10x10 or 20x20) can also influence in the
+%execution of the story, as larger worlds could make the agents spent
+%more time exploring before an event occurs.
+
+The set of values for the food (F), or source of conflicts, that conditions the actions
+(attack, share and defend among others) are 1/2, 1/4 and 1/8 of the number of cells of the map.
+
+%also could have enough effect in the story generation: lower
+%quantities of food may increase the attacks, creating more aggressive
+%agents, and larger quantities may generate more generous
+%agents. Different proportions of food depending of the world size will
+%be studied (food placed in 1/2, 1/4 and 1/8 of the size of the map). 
+
+
+The set of values proposed for the population (P) size 
+of genetic algorithm are 64, 128 and 256 individuals.
+
+Finally, it is expected that the existence of different number of profiles (S)
+in the world will have a significant effect in the runs, 
+specially in functions that require more than one archetype.
+We will compare the usage of 1, 2, 4 and 8 profiles in each scenario.
+As the usage of different number of profiles generate different
+individual sizes, and therefore different convergence times, the stop
+condition will be established depending of the best fitness 
+(30 generations without improvement), to do a fair comparison.
+
+%the parameters of the GA also affect the values of the
+%obtained world. In this paper, we study 
+%the population size, a
+%parameter that has big effect in the execution of this kind of
+%algorithms \cite{}, 
+% Antonio - CUIDADO! CITA VACÍA!
+%comparing populations of 64, 128 and 256
+%individuals. %TODO citar a un paper de tamagnos de poblacion
+% Explicar tambien los parametros que *no* se prueban y por que *no*
+% se hace. - JJ
+
+Table \ref{tab:parameters} summarizes all the configuration parameters that will be compared (with their acronyms used in this paper),
+and the rest of the (fixed) parameters of the algorithm. The fixed values of the parameters of the GA have been usually described by other authors as...
+
+The rest of the parameters of the MADE environment, such as the initial number of agents in the world, and the agent's parameters (such as the lifespan) are described in \cite{garcia:anon}. In this paper we will use the default values presented in that work.
+
+\begin{table*}
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+{\em Parameter} & {\em Values} \\\hline \hline
+\multicolumn{2}{|c|}{Parameters under study} \\ \hline \hline
+Number of profiles (P) & 1, 2, 4 and 8 \\\hline
+Number of virtual days (D) &  64, 128 and 256 \\ \hline
+World dimension (W) &  5x5, 10x10 and 20x20 \\ \hline
+Food (F) & 1/2, 1/4, 1/8 \\ \hline
+GA population size & 64, 128 and 256 \\ \hline
+\multicolumn{2}{|c|}{Fixed parameters} \\ \hline \hline
+Mutation probability & 1/12 per gene \\ \hline
+Parent pool size & Same as pool size \\ \hline
+Selection method & Binary tournament \\ \hline 
+Elite & 10\%  \\ \hline
+Replacement method & Generational\\ \hline
+Stop condition & 300 gens. or 30 gens. without improvement \\ \hline
+%Stop condition? - JJ FERGU: puesta 
+% Without improvemente in what? It's noisy fitness... no change in the
+% best individual? - JJ
+Runs per configuration & 30 \\ 
+Initial world population & 15 \\ \hline
+\end{tabular}
+\caption{Parameters used in the experiments.}
+\label{tab:parameters}
+\end{center}
+\end{table*}
+
+
+For a more complete knowledge of the search space and the parameters effects, 
+three different sceneries will be studied:
 \begin{itemize}
-\item Function 1 ($F_1$): for the scenario A . This function requires the maximization of the ``villain'' archetype, trying to maximise the number of villains in the world. 
-\item Function 2 ($F_2$): for the scenario B. In this, case, the ``hero'' archetype... and villain ()
-\item Function 3 ($F_5$): for the scenario C... This function requires 5 different archetypes. These archetypes have some type of interdependence. hero villano obstaculo mentor y vengativo %(este no depende de nadie)
+\item $S_1$: Maximization of the ``villain'' archetype.
+\item $S_2$: Maximization of the ``villain'' and the ``hero'' archetypes.
+\item $S_2$: Maximization of the ``villain'', the ``hero'' and the ``avenger'' archetypes.
 \end{itemize}
 
 
-
-
-% Rubén: ¡¡¡ Voy por aquí, subo paper y sigo !!!
-
-
-
-
-
-Then, the features of this world are also decided taking into account the expected... For example, adding enough days to allow the generation of archetypes. Finally, the interesting plot points are extracted from the log using... % !!! Explain this!!! - JJ TODO @raiben
-% Antonio - Pos eso, hay que escribir esto. :D
-
-
-
-
-
-In this work, we propose three scenarios:
-
-\begin{itemize}
-\item Scenario A: The Villains. This scenario only requires one type of archetype: The ``villain''. This % don't leave me this way!!! FERGU: this has to be written by @raiben (TODO @raiben)
-\item Scenario B: The Hero. As in the classic stories, when a villain appears, a hero must rise. The ``hero'' archetype depend on the existence of a ``villain'' archetype. This scenario tries to generate worlds formed by archetypes that depend of others.
-\item Scenario C: The Shakespearian story. As many of the great stories of The Bard, this world requires the existence of different and interdependent archetypes: The ``hero'' and ``villain'' are completed with the ``obstacle'' (QUE HACE QUE), the  ``mentor'' (QUE HACE QUE) and the ``avenger'' (this archetype does not depend on the others).
-
-\end{itemize}
+%In this work, we propose three scenarios:
+%\begin{itemize}
+%\item Scenario A: The Villains. This scenario only requires one type of archetype: The ``villain''. This % don't leave me this way!!! FERGU: this has to be written by @raiben %(TODO @raiben)
+%\item Scenario B: The Hero. As in the classic stories, when a villain appears, a hero must rise. The ``hero'' archetype depend on the existence of a ``villain'' archetype. This %scenario tries to generate worlds formed by archetypes that depend of others.
+%\item Scenario C: The Shakespearian story. As many of the great stories of The Bard, this world requires the existence of different and interdependent archetypes: The ``hero'' %and ``villain'' are completed with the ``obstacle'' (QUE HACE QUE), the  ``mentor'' (QUE HACE QUE) and the ``avenger'' (this archetype does not depend on the others).
+%\end{itemize}
 % Antonio - Esto faltaría completarlo. ;D
+% Rubén - todo esto lo he reutilizado para explicarlo en methodology.
 
 %------------------------------------------------------------------------------
 
-\subsection{Designing a fitness function}
 
 
-
-% Rubén- comento esta sección porque no la veo como parte de la metodología y ya estaba explicado en alife
+%\subsection{Designing a fitness function}
+% Rubén - explicado parcialmente en methodology
 % mantengo el texto por si resucita.
 
 %-------------------------------------------------------------------------------
@@ -472,81 +568,20 @@ In this work, we propose three scenarios:
 % De hecho "exploring the parameter" tampoco me gusta como título
 % de sección
 
-Several parameters related with the world and the GA will be studied
-in this paper so that we can obtain some rule of thumbs on which
-values to use in future experiments, at least as a baseline. As
-explained before, the parameters that define a literary story are the
-time, the world, the characters and the object. In this paper, we use
-the elements defined in MADE: number of days (time), a grid (world),
-food (object) and rats (characters). 
+%Several parameters related with the world and the GA will be studied
+%in this paper so that we can obtain some rule of thumbs on which
+%values to use in future experiments, at least as a baseline. As
+%explained before, the parameters that define a literary story are the
+%time, the world, the characters and the object. In this paper, we use
+%the elements defined in MADE: number of days (time), a grid (world),
+%food (object) and rats (characters). 
 
 %TODO ruben, que no se te olvide hablar de esto en la intro como viene
 %en el issue y que esto relacionado con lo que pongo aqui­. Por
 %ejemplo, llamar al "object" de otra forma
 
-Different parameter values for each element will be studied to clarify
-their influence in the literary world generation. First, it is
-expected that the number of days will have a significant impact, as
-larger values will allow the generation of more backstories. The set
-of days to study will be 64, 128 and 256. The world size (size of the
-grid in this paper: 5x5, 10x10 or 20x20) can also influence in the
-execution of the story, as larger worlds could make the agents spent
-more time exploring before an event occurs. The food, or the element
-that condition the actions (attack, share and defend among others),
-also could have enough effect in the story generation: lower
-quantities of food may increase the attacks, creating more aggressive
-agents, and larger quantities may generate more generous
-agents. Different proportions of food depending of the world size will
-be studied (food placed in 1/2, 1/4 and 1/8 of the size of the map). 
 
-Also, it is expected that the existence of different personalities (or number of profiles) in the world will have a significant effect in the runs, specially in functions that require more than one archetype. We will compare the usage of 1, 2, 4 and 8 profiles in each scenario. As the usage of different number of profiles generate different
-individual sizes, and therefore different convergence times, the stop
-condition will be established depending of the best fitness (30 generations without improvement), to do a fair comparison.
-
-Finally, the parameters of the GA also affect the values of the
-obtained world. In this paper, we study the population size, a
-parameter that has big effect in the execution of this kind of
-algorithms \cite{}, 
-% Antonio - CUIDADO! CITA VACÍA!
-comparing populations of 64, 128 and 256
-individuals. %TODO citar a un paper de tamagnos de poblacion
-% Explicar tambien los parametros que *no* se prueban y por que *no*
-% se hace. - JJ
-
-Table \ref{tab:parameters} summarizes all the configuration parameters that will be compared (with their acronyms used in this paper), and the rest of the (fixed) parameters of the algorithm. The fixed values of the parameters of the GA have been usually described by other authors as...
-
-The rest of the parameters of the MADE environment, such as the initial number of agents in the world, and the agent's parameters (such as the lifespan) are described in \cite{garcia:anon}. In this paper we will use the default values presented in that work.
-
-\begin{table*}
-\begin{center}
-\begin{tabular}{|c|c|}
-\hline
-{\em Parameter} & {\em Values} \\\hline \hline
-\multicolumn{2}{|c|}{Parameters under study} \\ \hline \hline
-Number of profiles (P) & 1, 2, 4 and 8 \\\hline
-Number of virtual days (D) &  64, 128 and 256 \\ \hline
-World dimension (W) &  5x5, 10x10 and 20x20 \\ \hline
-Food (F) & 1/2, 1/4, 1/8 \\ \hline
-GA population size & 64, 128 and 256 \\ \hline
-\multicolumn{2}{|c|}{Fixed parameters} \\ \hline \hline
-Mutation probability & 1/12 per gene \\ \hline
-Parent pool size & Same as pool size \\ \hline
-Selection method & Binary tournament \\ \hline 
-Elite & 10\%  \\ \hline
-Replacement method & Generational\\ \hline
-Stop condition & 300 gens. or 30 gens. without improvement \\ \hline
-%Stop condition? - JJ FERGU: puesta 
-% Without improvemente in what? It's noisy fitness... no change in the
-% best individual? - JJ
-Runs per configuration & 30 \\ 
-Initial world population & 15 \\ \hline
-\end{tabular}
-\caption{Parameters used in the experiments.}
-\label{tab:parameters}
-\end{center}
-\end{table*}
-
-%\subsection{Converting logs to stories}
+\subsection{Converting logs to stories}
 % This subsection is *very* important... and not there yet. - JJ
 
 % 12 pages is the limit.
