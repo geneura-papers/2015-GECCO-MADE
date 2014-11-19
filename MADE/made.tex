@@ -295,12 +295,12 @@ Finally, the search space can be affected by the GA parameters. In this sense, t
 parameter is the population (P), since bigger populations will provide more accuracy but spend more execution time.
 
 To sum up, our methodology will systematically combine more than two variants os five parameters
-and study how the fitness is affected. The parameters proposed for the typology of problems defined in
-subsection \ref{subsec:idio} are number of profiles (S), world size (W),
-virtual time (D), leitmotiv (F) and population (P).
+and study how the fitness is affected. The parameters proposed for the problems characterised in
+subsection \ref{subsec:idio} are the number of profiles (S), the world size (W),
+the virtual time (D), the leitmotiv (F) and the population of the GA (P).
 Three variants for each of the five parameters implies 243 combinations of parameters
 that have to be evaluated by the GA at least 30 times to obtain statistically significant results.
-
+The total amount of executions should be at least 7290.
 
 
 
@@ -317,22 +317,73 @@ that have to be evaluated by the GA at least 30 times to obtain statistically si
 %\item[Leitmotif:] The agents are programmed to survive. In our problem, the hunger is the source of conflicts.
 %\end{description}
 
-%TODO Rubén - hablar de todos los puntos que instancia MADE
-%TODO 
+MADE's instantiation of the problem shows the following characteristics:
 
-Initially, the fitness should be defined considering the desired behaviour
-for the agents that populate the world, for example, aiming to reach given quantity of some archetypes. Thus, in order to enable the generation of different
-personalities, different number of ``profiles'' would be required. This concept,
-presented in \cite{garcia:anon}, describes the different sets of behavioural
-parameters of the agents in the world (the number of different
-FSMs). Therefore, a world with three profiles is composed by three different
-types of agents. However, as it was demonstrated in that work, the
-number of profiles could be different of the number of desired
-archetypes, as some archetypes can be shared, or on the contrary, impossible to obtain with a certain \textit{number of profiles}.
-For this reason we have added this parameter to the list to study in the present paper. 
+%Initially, the fitness should be defined considering the desired behaviour
+%for the agents that populate the world, for example, aiming to reach given quantity of some archetypes. Thus,
+%In order to enable the generation of different
+%personalities, different number of ``profiles'' would be required. This concept,
+%presented in \cite{garcia:anon}, describes the different sets of behavioural
+%parameters of the agents in the world (the number of different
+%FSMs). Therefore, a world with three profiles is composed by three different
+%types of agents. However, as it was demonstrated in that work, the
+%number of profiles could be different of the number of desired
+%archetypes, as some archetypes can be shared, or on the contrary, impossible to obtain with a certain \textit{number of profiles}.
+%For this reason we have added this parameter to the list to study in the present paper. 
 
 % Is this the main point of the paper? Wasn't this proved
 % in the alife paper? - JJ FERGU: you are right, changed
+
+MADE lets the writer select different archetypes that are promoted in the world.
+The fitness of the world is a function of the sum of the value for each archetype rate, i.e. 
+the number of characters that present the archetype divided by the total number of characters.
+To promote the appearance of all the archetypes, avoiding as much as possible the 
+starvation of any of them, the function presents a logarithmic curve where
+small rates get bigger values. As a consequence, the fitness of a world with a
+presence of two archetypes whose rate is 0.25 is bigger than the fitness of a world
+with one archetype whose rate is 0.5.
+The function used by MADE is described as following formula: 
+
+
+%The first step requires to develop a fitness function that takes into
+%account the quantity of the desired archetypes. This fitness function
+%should enable the existence of diversity in the desired
+%archetypes: that is, it is better that the world has 25\% of
+%``villains'' and 25\% of ``heroes'' than 50\% of ``villains'' and no
+%``heroes''. Thus, we propose the following fitness function: 
+
+%TODO Una vez mas, no usais ninguna metodologi­a para hacer esto. Es un poco ``Se me ha ocurrido hacerlo asi­''. - JJ FERGU: como podemos hacerlo?
+
+
+\begin{equation}
+F_A= {\sum _{i=1}^{A} {\log \left( 1+10p_{i}\right) } \over {\log 1}}
+\end{equation}
+
+% Rubén: ¡¡¡ Voy por aquí, subo paper y sigo !!!
+
+
+where $A$ is the number of desired archetypes, and $a_{i}$ is the
+percentage (from 0 to 1) of a specific archetype in the world.
+
+								 % Why
+                                % logs and all the rest? - JJ FERGU: TODO @raiben hablar de arquetipos y completar lo de abajo
+
+
+In this paper, three fitness functions will be studied a different one
+for every previously explained scenarios:
+\begin{itemize}
+\item Function 1 ($F_1$): for the scenario A . This function requires the maximization of the ``villain'' archetype, trying to maximise the number of villains in the world. 
+\item Function 2 ($F_2$): for the scenario B. In this, case, the ``hero'' archetype... and villain ()
+\item Function 3 ($F_5$): for the scenario C... This function requires 5 different archetypes. These archetypes have some type of interdependence. hero villano obstaculo mentor y vengativo %(este no depende de nadie)
+\end{itemize}
+
+
+
+
+
+
+
+
 
 Then, the features of this world are also decided taking into account the expected... For example, adding enough days to allow the generation of archetypes. Finally, the interesting plot points are extracted from the log using... % !!! Explain this!!! - JJ TODO @raiben
 % Antonio - Pos eso, hay que escribir esto. :D
@@ -352,30 +403,6 @@ In this work, we propose three scenarios:
 
 \subsection{Designing a fitness function}
 
-% Una vez mas, no usais ninguna metodologi­a para hacer esto. Es un poco ``Se me ha ocurrido hacerlo asi­''. - JJ FERGU: como podemos hacerlo?
-
-The first step requires to develop a fitness function that takes into
-account the quantity of the desired archetypes. This fitness function
-should enable the existence of diversity in the desired
-archetypes: that is, it is better that the world has 25\% of
-``villains'' and 25\% of ``heroes'' than 50\% of ``villains'' and no
-``heroes''. Thus, we propose the following fitness function: 
-
-\begin{equation}
-F_A= {\sum _{i=1}^{A} {\log \left( 1+10p_{i}\right) } \over {\log 1}}
-\end{equation}
-
-where $A$ is the number of desired archetypes, and $a_{i}$ is the
-percentage (from 0 to 1) of a specific archetype in the world. % Why
-                                % logs and all the rest? - JJ FERGU: TODO @raiben hablar de arquetipos y completar lo de abajo
-
-In this paper, three fitness functions will be studied a different one
-for every previously explained scenarios:
-\begin{itemize}
-\item Function 1 ($F_1$): for the scenario A . This function requires the maximization of the ``villain'' archetype, trying to maximise the number of villains in the world. 
-\item Function 2 ($F_2$): for the scenario B. In this, case, the ``hero'' archetype... and villain ()
-\item Function 3 ($F_5$): for the scenario C... This function requires 5 different archetypes. These archetypes have some type of interdependence. hero villano obstaculo mentor y vengativo %(este no depende de nadie)
-\end{itemize}
 
 
 % Rubén- comento esta sección porque no la veo como parte de la metodología y ya estaba explicado en alife
