@@ -12,7 +12,7 @@ puntitos = c(11,11,11,11,0,0,0,0,15,15,15,15,8,8,8,8,2,2,2,2)
 datos$LABEL = factor(datos$LABEL, levels = c("NG_030.0","NG_050.0","NG_100.0","NG_200.0","AO_1.0","AO_1.5","AO_2.0","AO_2.5","RT_n/02","RT_n/04","RT_n/08","RT_n/16","FT_20.0","FT_22.0","FT_24.0","FT_26.0","FI_03.0","FI_07.0","FI_10.0","FI_15.0"))
 
 #Boxplot SCORE
-par(cex.axis = 0.85,las=3)
+par(cex.axis = 0.70,las=3)
 boxplot(SCORE~LABEL,data=datos,cex=0.2, ylab = "Score Best Individual",log="y")
 abline(v=4.5)
 abline(v=8.5)
@@ -21,7 +21,7 @@ abline(v=16.5)
 axis(3,at=c(2,6,10,14,19),labels=l,las=0,tck=0,cex.axis=0.75)
 
 #Boxplot GENERATIONS
-par(cex.axis = 0.85,las=3)
+par(cex.axis = 0.70,las=3)
 boxplot(IT~LABEL,data=datos,cex=0.2, ylab="Generations to stop",log="y")
 abline(v=4.5)
 abline(v=8.5)
@@ -29,7 +29,7 @@ abline(v=12.5)
 abline(v=16.5)
 axis(3,at=c(2,6,10,14,19),labels=l,las=0,tck=0,cex.axis=0.75)
 
-
+dev.off()
 #Tasa de finalización
 c_rate = table(datos$LABEL)/36
 plot(c_rate, type="p", ylab="Completion Rate in experiments",pch=puntitos)
@@ -75,10 +75,15 @@ d = merge(d, label_rate)
 #legend("topright",col = gray.colors(n = 20, start = 0.8, end = 0.1 )[as.factor(d$SCORE)], legend=d$SCORE)
 
 #Comparativa
-plot(d[,2:3],pch=puntitos,xlim = c(0,500),ylab="Average SCORE of Best Individual","Average GENERATION to stop",cex=0.8)
+par(mar=c(4,4,0,2))
+plot(d[,2:3],pch=puntitos,ylab="Average SCORE of Best Individual","Average GENERATION to stop",cex=0.8,xlim=c(0,500))
 text(d[,2],d[,3],paste(d[,1]," <",round(d[,4]/36*100),"%>",sep=""),cex=0.65,pos=4)
-legend("bottomright",cex=0.85,pch = c(11,0,15,8,2,NA_integer_),legend=c("AO - Age of outliers","FI - Fitness improvement","FT - Fitness threshold","NG - Number of generations","RT - Replacement rate","<value> - Completion Rate in experiments"))
+legend("bottomright",cex=0.65,pch = c(11,0,15,8,2,NA_integer_),legend=c("AO - Age of outliers","FI - Fitness improvement","FT - Fitness threshold","NG - Number of generations","RT - Replacement rate","<value> - Completion Rate in experiments"))
 
+par(mar=c(4,4,0,0))
+plot(d[,2:3],pch=puntitos,ylab="Average SCORE of Best Individual","Average GENERATION to stop",cex=0.8,log ="yx",xlim=c(1,500))
+text(d[,2],d[,3],paste(d[,1]," <",round(d[,4]/36*100),"%>",sep=""),cex=0.65,pos=c(2,4,4,2,4,4,4,4,2,2,2,2,2,2,4,2,4,4,4,2))
+legend("bottomright",cex=0.65,pch = c(11,0,15,8,2,NA_integer_),legend=c("AO - Age of outliers","FI - Fitness improvement","FT - Fitness threshold","NG - Number of generations","RT - Replacement rate","<value> - Completion Rate in experiments"))
 
 #par(mfrow = c(2,3),mar = c(0,0,0,0),cex=1.1)
 #plot(d[1:4,2:3],pch=puntitos[1:4],xlim = c(0,500),cex=d[,4]/24,ylim = c(0,30))
@@ -177,7 +182,7 @@ for(i in unique(datos$LABEL)[ order(unique(datos$LABEL))]){
   
   
   
-  if(conta>4){
+  if(conta>4 & conta!=8){
   print(paste(i,shapiro.test(datos$IT[datos$LABEL == i])[2]))
   test = shapiro.test(datos$IT[datos$LABEL == i])[2]
   
@@ -188,7 +193,7 @@ for(i in unique(datos$LABEL)[ order(unique(datos$LABEL))]){
     
   }
   
-  conta++
+  conta = conta + 1
 }
 
 kruskal.test(IT ~ LABEL, data= datos)
@@ -213,3 +218,50 @@ res_kruskal < 0.05
 
 levelplot(res_kruskal < 0.05, col.regions = gray.colors, scales=list(x=list(rot=90)),ylab = "", xlab="", main = "Kruskal test Generations",border="black")
 #contourplot(res_kruskal < 0.05, col.regions = gray.colors, scales=list(x=list(rot=90)),ylab = "", xlab="", main = "Kruskal test", at=c(0,1))
+
+
+
+library(ggplot2)
+mini = mini[,c(5,4,7)]
+mini$TYPE = strtrim(mini$LABEL,2)
+mini$SUBTYPE = substr(mini$LABEL,start = 3,stop=8)
+
+mini$SUBTYPE[mini$LABEL=="AO_1.0"] = "A"
+mini$SUBTYPE[mini$LABEL=="AO_1.5"] = "B"
+mini$SUBTYPE[mini$LABEL=="AO_2.0"] = "C"
+mini$SUBTYPE[mini$LABEL=="AO_2.5"] = "D"
+
+mini$SUBTYPE[mini$LABEL=="FI_03.0"] = "A"
+mini$SUBTYPE[mini$LABEL=="FI_07.0"] = "B"
+mini$SUBTYPE[mini$LABEL=="FI_10.0"] = "C"
+mini$SUBTYPE[mini$LABEL=="FI_15.0"] = "D"
+
+mini$SUBTYPE[mini$LABEL=="FT_20.0"] = "A"
+mini$SUBTYPE[mini$LABEL=="FT_22.0"] = "B"
+mini$SUBTYPE[mini$LABEL=="FT_24.0"] = "C"
+mini$SUBTYPE[mini$LABEL=="FT_26.0"] = "D"
+
+mini$SUBTYPE[mini$LABEL=="RT_n/02"] = "A"
+mini$SUBTYPE[mini$LABEL=="RT_n/04"] = "B"
+mini$SUBTYPE[mini$LABEL=="RT_n/08"] = "C"
+mini$SUBTYPE[mini$LABEL=="RT_n/16"] = "D"
+
+mini$SUBTYPE[mini$LABEL=="NG_030.0"] = "A"
+mini$SUBTYPE[mini$LABEL=="NG_050.0"] = "B"
+mini$SUBTYPE[mini$LABEL=="NG_100.0"] = "C"
+mini$SUBTYPE[mini$LABEL=="NG_200.0"] = "D"
+
+ggplot(mini,aes(x=IT,y=SCORE,shape=SUBTYPE,colour=TYPE,size=SUBTYPE)) + scale_x_log10() + scale_y_log10() + geom_point() + facet_grid(TYPE ~ .) + scale_fill_grey(start = 0.9,end=0)
+
+#ggplot(mini,aes(x=IT,y=SCORE,shape=TYPE,colour=TYPE, size=TYPE)) + scale_x_log10() + scale_y_log10() + geom_point() 
+
+gp <- ggplot(mini,aes(x=IT,y=SCORE,shape=TYPE)) + scale_x_log10() + scale_y_log10() + geom_point() 
+
+
+
+
+gprincipal <- ggplot(mini[mini$TYPE=="NG",],aes(x=IT,y=SCORE,shape=TYPE,colour=)) + geom_point() par(mfrow = c(2,2),mar = c(2.6,1,1,1),cex=0.5)
+ggplot(mini[mini$TYPE=="FI",],aes(x=IT,y=SCORE,shape=TYPE,colour=LABEL)) + geom_point()
+ggplot(mini[mini$TYPE=="FT",],aes(x=IT,y=SCORE,shape=TYPE,colour=LABEL)) + geom_point()
+ggplot(mini[mini$TYPE=="AO",],aes(x=IT,y=SCORE,shape=TYPE,colour=LABEL)) + geom_point()
+ggplot(mini[mini$TYPE=="RT",],aes(x=IT,y=SCORE,shape=TYPE,colour=LABEL)) + geom_point()
