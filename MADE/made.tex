@@ -415,6 +415,19 @@ appearance rate of the archetype $i$ in the world ($r_{i} \in \{ 0 , 1 \}$).
 %TODO 
 
 
+\subsection{Converting logs to stories}
+
+Once the best values of the parameters have been found, the system can be run
+inside a game context to generate a whole set of secondary characters.
+For the simple reason of using agents in a bottom-up approach for the world generation, MADE provides a social network with family relationships, but also other related to the disputes and to possible archetypes, i.e. in our study, a ``hero'' fights a ``villain'' or an ``avenger'' takes revenge on other character.
+
+The storyteller will be able to tell a story about each character by accessing to its lifelog. The lifelog should have a pre-defined format understandable by the storyteller, with fields like the date, the action performed, the internal state, the direct object and the indirect object.
+Moreover, each agent should be tagged with the different archetypes it fulfils, the days that this archetype begins and ends, and the agents affected.
+
+With this information within reach, the storyteller can create a story about the character by narrating its birthday, its name, the name and story of its parents, siblings and children (also using this technique for describing them), what the agent is (as archetype: ``vilain'', ``hero'', ``avenger'') and why (dates, characters related and supposed motivations).
+
+% Rubén - pondré una referencia a la sección de resultados donde contaré en una líneas una historia de ejemplo generada en un mundo ejecutado con nuestros parámetros.
+
 \section{Experimental setup}
 
 % Rubén - Si hace falta hueco qutamos este párrafo, que básicamente repite lo dicho
@@ -581,8 +594,6 @@ three different sceneries will be studied:
 %ejemplo, llamar al "object" de otra forma
 
 
-\subsection{Converting logs to stories}
-% This subsection is *very* important... and not there yet. - JJ
 
 % 12 pages is the limit.
 
