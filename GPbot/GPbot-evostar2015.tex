@@ -333,8 +333,8 @@ The differences in performance obtained with each configuration will be analysed
 
 %The first step of the methodology requires to select the most adequate EA to the problem we are addressing. 
 % Antonio - ¡Qué pesaos con lo de la metodología! Joé, que aquí la metodología va de elegir bien los criterios de parada, no de diseñar el algoritmo. Eso ya lo tendrá hecho el que vaya a usar nuestro método para elegir cómo/cuándo parar. :/
-The aim of the implemented algorithm is to generate competitive bots from scratch (without human knowledge), so a Genetic Programming algorithm has been used. These kind of algorithms have been previously used in the generation of bots in videogames \cite{Esparcia2013GPunreal}. 
-% Antonio - yo quitarí esta frase, o pondría más citas, una de dos. ;)
+The aim of the implemented algorithm is to generate competitive bots from scratch (without human knowledge), so a Genetic Programming algorithm has been used. These kind of algorithms have been previously used in the generation of bots in videogames \cite{Esparcia2013GPunreal,Harper2014403}. 
+% Antonio - yo quitarí esta frase, o pondría más citas, una de dos. ;) FERGU: añadida referencia
 
 A \textit{generational} approach has been considered in the algorithm. 
 % Antonio - ¿alguien sabe una cita de GP Generacional?
@@ -354,23 +354,22 @@ evaluation (30 matches, 1 match per map), to ensure the bot behaves in a differe
 
 Then, the fitness of each individual $i$ of the population is obtained using the next formula:
 \begin{equation}
-\mathbf{\boldsymbol{Score_{i}=\alpha+\beta+\gamma}}\label{eq:score}
+Score_{i}=\alpha+\beta+\gamma\label{eq:score}
 \end{equation}
 
 Where
 
-\begin{equation}[H]
-\boldsymbol{\alpha=v},\alpha\in\left[0,N\right]
+\begin{equation}
+\alpha=v,\alpha\in\left[0,NB\right]
+\end{equation}
+
+\begin{equation}
+\beta=NB\times\frac{t_{win}+\frac{1}{N\times t_{MAX}+1}}{\frac{t_{win}}{v+1}+1},\beta\in\left[0,NB\right],t_{win}\in\left[0,NB\times t_{MAX}\right]
 \end{equation}
 
 
-\begin{equation}[H]
-\boldsymbol{\beta=N\times\frac{t_{win}+\frac{1}{N\times t_{MAX}+1}}{\frac{t_{win}}{v+1}+1}},\beta\in\left[0,N\right],t_{win}\in\left[0,N\times t_{MAX}\right]
-\end{equation}
-
-
-\begin{equation}[H]
-\boldsymbol{\gamma=\frac{t_{defeated}}{N\times t_{MAX}+1}},\gamma\in\left[0,1\right],t_{defeated}\in\left[0,N\times t_{MAX}\right]
+\begin{equation}
+\gamma=\frac{t_{defeated}}{NB\times t_{MAX}+1},\gamma\in\left[0,1\right],t_{defeated}\in\left[0,NB\times t_{MAX}\right]
 \end{equation}
 
 The terms used are: the number of battles ($NB$) to test, the number of
