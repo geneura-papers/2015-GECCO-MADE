@@ -1,4 +1,3 @@
-
 %%%%%%%%%%%%%%%%%%%%%%% file typeinst.tex %%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % This is the LaTeX source for the instructions to authors using
@@ -17,6 +16,7 @@
 
 \documentclass[runningheads,a4paper]{llncs}
 
+\usepackage[latin1]{inputenc}
 \usepackage{amssymb}
 \usepackage{amsmath}
 \setcounter{tocdepth}{3}
@@ -153,6 +153,8 @@ fighting, as the opponents are usually not known before the EA is running.
 % evaluación. Si es un manta, le puedes ganar siempre...
 % Afú. Es literario-gafapastiense-bromista. ¿Qué tiene de malo? - JJ
 % Antares - A mi gusta xD
+% Antonio - a mi no me molesta la frase, pero la referencia no hace falta, creo yo. ;D
+% ¿qué hay de la segunda parte de mi comentario?
 To solve this, usually matches with previously-known opponents are used in the
 computation of the fitness function and an ``optimum'' is reached when a certain number of victories are achieved against them.
 However, using only one or a small number of opponents may lead to
@@ -202,9 +204,10 @@ termination conditions and comparing them with other classical
 ones, and among themselves when trying to generate competitive bots
 for videogames using Genetic Programming (GP) \cite{GP_Koza92},
 because this method has proved to be quite flexible and has obtained
-very good results in previous works \cite{EvoStar2014:GPBot}.% Este no
+very good results in previous works \cite{EvoStar2014:GPBot:anon}.% Este no
                                 % está en la bibliografía. Por favor,
                                 % añadidlo a geneura.bib - JJ  
+                                % Antonio - hecho
 
 The game \textit{Planet Wars}\footnote{http://planetwars.aichallenge.org/}
 % Antonio - poner una URL mejor que esta (la del campeonato), si se estima oportuno.
@@ -304,7 +307,11 @@ In this paper, several stopping criteria will be studied, considering the time n
 \section{Methodology and experimental setup}
 \label{sec:met}
 
-This section describes, comments and justifies the different termination approaches to be tested in the paper. Although in this work we focus on a specific scenario (generation of competitive bots for the Planet Wars game), the results obtained could be, in principle, be applied to other similar problems. Therefore, we justify a general experimental and parameter setup, with the specific restrictions applied to the problem we are addressing. In this paper we propose different termination criteria that are based on different EA features, such as the parameters of the algorithm (maximum number of generations) or the population (diversity, replacement or age). The differences in performance obtained with each configuration will be analysed and compared. 
+This section describes, comments and justifies the different termination approaches to be tested in the paper. Although in this work we focus on a specific scenario (generation of competitive bots for the Planet Wars game), the results obtained could be, in principle, be applied to other similar problems. Therefore, we justify a general experimental and parameter setup, with the specific restrictions applied to the problem we are addressing. 
+
+In this paper we propose different termination criteria that are based on different EA features, such as the parameters of the algorithm (maximum number of generations) or the population (improvement, replacement or age). 
+% Antonio - no hay nada de diversidad
+The differences in performance obtained with each configuration will be analysed and compared. 
 
 % --------------------------------------------------------------
 
@@ -324,32 +331,31 @@ This section describes, comments and justifies the different termination approac
 
 %FERGU: He comentado la intro de arriba y he vuelto a escribirla abajo justificando por qué usamos el GP generacional
 
-The first step of the methodology requires to select the most adequate EA to the problem we are addressing. As we want to generate competitive bots from scratch (without human knowledge) a Genetic Programming algorithm will be used. These kind of algorithms have been previously used in the generation of bots in videogames \cite{Esparcia2013GPunreal}. Due to the huge search space, the lack of a known optimum solution, and the noisy feature of the problem, a generational GP algorithm will be used, with a specific scoring method as fitness.
+%The first step of the methodology requires to select the most adequate EA to the problem we are addressing. 
+% Antonio - ¡Qué pesaos con lo de la metodología! Joé, que aquí la metodología va de elegir bien los criterios de parada, no de diseñar el algoritmo. Eso ya lo tendrá hecho el que vaya a usar nuestro método para elegir cómo/cuándo parar. :/
+The aim of the implemented algorithm is to generate competitive bots from scratch (without human knowledge), so a Genetic Programming algorithm has been used. These kind of algorithms have been previously used in the generation of bots in videogames \cite{Esparcia2013GPunreal}. 
+% Antonio - yo quitarí esta frase, o pondría más citas, una de dos. ;)
 
-Because there is not a fitness function to measure the quality of a generated
-bot, a scoring method must be proposed. This scoring method tries to reduce
-the effects of the noisy evaluation (following the guidelines of other works 
-\cite{DBLP:journals/jcst/MoraFGGF12}) by computing fitness from the result
-of 30 matches against an expert rival, 
+A \textit{generational} approach has been considered in the algorithm. 
+% Antonio - ¿alguien sabe una cita de GP Generacional?
+In it, at least half of the population (the best chosen as parents) remains from one generation to the next. This provides the algorithm with a higher exploration factor than a steady-state approach, which is very positive due to the huge search space of the problem we are solving.
 
+%the lack of a known optimum solution, and the noisy feature of the problem, a generational GP algorithm will be used, with a specific scoring method as fitness.
+% Antonio - Esto no tiene nada que ver con que se haya elegido un enfoque generacional. Vamos que no veo en qué ayuda eso... :(
+% De hecho, para el ruido iría mejor un estacionario, creo yo.
 
-This scoring method takes into account the number of victories, turns to win and turns resisted before being defeated 
-by a rival. ExpGenebot, proposed in
-\cite{DBLP:conf/cig/Fernandez-AresGMG12}, and based on the improvement of the heuristics
-proposed by a human player and which is, for this particular game, the state
-of the art. ExpGenebot adapts its behaviour doing an initial analysis
+A \textit{Score Function} has been proposed in order to measure the quality of a generated bot (a solution or individual in the algorithm). This scoring method tries to reduce the effects of the noisy evaluation (following the guidelines of other works \cite{DBLP:journals/jcst/MoraFGGF12}) by computing fitness from the result of 30 different matches against an expert rival.
+Thus, the function considers the number of victories, turns to win and turns resisted before being defeated by the opponent (in the case of lose). The rival is \textit{ExpGenebot}, introduced in
+\cite{DBLP:conf/cig/Fernandez-AresGMG12}, and based on the improvement of the heuristics proposed by a human player. This bot is, for this particular game, the state of the art. ExpGenebot adapts its behaviour doing an initial analysis
 of the battle map and depending on the balance of forces between it and the enemy, i.e. location of the fleets and amount of ships.
 This rival has been chosen due to its potential variety of behaviours,
 so 30 different representative maps have been chosen for each
 evaluation (30 matches, 1 match per map), to ensure the bot behaves in a different way in every match. Thus, the fitness evaluation enhances the value of an individual. 
-The problem of using a tough rival as ExpGenebot is that the maximum fitness/score obtained during the evolution will be very limited, since it would be very difficult that a bot could win against 30 specialised bots \cite{Wolpert97nofree}. This is more evident if we take into account that the bots being evolved do not include any adaptive component that analyses the map, as ExpGenebot does.
 
-
-This fitness of each individual $i$ of the population is obtained using the next formula:
+Then, the fitness of each individual $i$ of the population is obtained using the next formula:
 \begin{equation}
 \mathbf{\boldsymbol{Score_{i}=\alpha+\beta+\gamma}}\label{eq:score}
 \end{equation}
-
 
 Where
 
@@ -367,28 +373,47 @@ Where
 \boldsymbol{\gamma=\frac{t_{defeated}}{N\times t_{MAX}+1}},\gamma\in\left[0,1\right],t_{defeated}\in\left[0,N\times t_{MAX}\right]
 \end{equation}
 
-
-The terms used are: the number of battles ($N$) to test, the number of
+The terms used are: the number of battles ($NB$) to test, the number of
 victories of the individual against ExpGenebot ($v$), the total number of
-turns used to win ExpGenebot ($t_{win}$), the total number of turns when
+turns used to beat ExpGenebot ($t_{win}$), the total number of turns when
 the individual has been defeated by ExpGenebot ($t_{defeated}$) and the
 maximum number of turns a battle lasts ($t_{MAX}$). This score aims to
 favour the victories against the turns to win and turns to be
-defeated, giving different ratios to each section. Therefore $\alpha$
-has the highest ratio. The term $\beta$ adds extra score taking into
-account the number of turns when the individual wins (lower numbers to
-win implies better bots), following a exponential curve. 
-Finally, the $\gamma$ term adds score from the turns to be beaten 
+defeated, giving different ratios to each section. 
+Therefore $\alpha$ has the highest ratio, the term $\beta$ adds an extra score taking into account the number of turns when the individual wins (lower numbers to win implies better bots), following a exponential curve; and finally, $\gamma$ adds a corresponding score from the turns to be beaten 
 (higher number is better, as it is difficult to be beaten). The 
-1 in all denominators is used to avoid dividing by 0.
+`1' in all denominators is used to avoid dividing by 0.
 
-As previously said, each individual has been tested 30 times in different maps, therefore $N=30$, 
-and a the limit of turns is the default of the competition ($t_{MAX}=1000$).
+As previously said, each individual has been tested 30 times in different maps, therefore $NB=30$, and a the limit of turns is the default of the competition ($t_{MAX}=1000$).
 
-%TODO FERGU: comentar y justificar el resto de parámetros del GP
+The problem of using a tough rival as ExpGenebot is that the maximum fitness/score obtained during the evolution will be very limited, since it would be very difficult that a bot could win against 30 specialised bots \cite{Wolpert97nofree}. This is more evident if we take into account that the bots being evolved do not include any adaptive component that analyses the map, as ExpGenebot does. This fact will be seen in the fitness analysis in the following section.
 
+%TODO FERGU: comentar y justificar el resto de parámetros del GP FERGU: hecho abajo
+The used GP evolves a binary tree formed by {\em decisions} (logical expressions that evaluate the current state of the game) and {\em actions} (the leafs of the tree: the amount of ships to send to a specific planet). This tree is evaluated in each player's planet, analysing the current state of the map/planet (decision), and how many ships send from that planet to an specific target planet (action). These target planets can be the wealthiest, the closer one, etc. owned by the player or the enemy, or neutral. The possible actions and decisions are listed in \cite{EvoStar2014:GPBot:anon}. Table \ref{tab:parameters} summarizes the rest of the parameters of the EA. These parameters were also justified in that paper, obtaining competitive bots.
 
+\begin{table}
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+{\em Parameter Name} & {\em Value} \\ \hline
+Population size ($N$) & 32 \\ \hline
+Number of battles for scoring ($NB$) & 30 \\ \hline 
+Re-evaluation of individuals & Yes \\ \hline
+Crossover type & Sub-tree crossover \\ \hline
+Crossover rate & 0.5\\ \hline
+Mutation  & 1-node mutation\\ \hline
+Mutation step-size & 0.25 \\ \hline
+Selection & 2-tournament \\ \hline
+Replacement & Generational\\ \hline
+Maximum Tree Depth &  7 \\ \hline
+Runs per configuration & 30 \\ \hline
+\end{tabular}
+\caption{Parameters used in the experiments.}
+\label{tab:parameters}
+\end{center}
+\end{table}
 
+% Antonio - @Fergu, @Antares. Cuidao con los nombres de los parámetros. Ponle un nombre al número de individuos (a la variable o parámetro) y usa ese mismo nombre debajo, en el criterio de Tasa de Reemplazo, porque se ha puesto 'N', que es el número de batallas en la fórmula del Score. Yo pondría otra variable allí, BTW, por ejemplo 'NB'. Así no hay líos. ;D FERGU: Cierto, NB es mejor, puesto.
 
 
 
@@ -397,44 +422,49 @@ and a the limit of turns is the default of the competition ($t_{MAX}=1000$).
 \subsection{Termination Criteria}
 % Antonio - Maribel, criteria es el plural de criterion. ;)
 
-The traditional set of stopping criteria are either based on stagnation, checking for the existence of a solution in the set and a fixed budget. Combining them we have designed a set of five different algorithm stop criteria are going to be checked in the paper, namely:
+The traditional set of stopping criteria are either based on stagnation, checking for the existence of a solution in the set and a fixed budget. Combining them we have designed a set of five different algorithm stop criteria which are going to be checked in the paper, namely:
 
 \begin{itemize}
-    \item \texttt{[NG] Number of generations}  is the classical termination
-      criteria in evolutionary algorithms. We will consider 30, 50 , 100 and 200 generations since some papers \cite{EvoStar2014:GPBot} have mentioned the middle value. As indicated in the previous section,
+    \item \texttt{[NG] Number of Generations}  is the classical termination
+      criteria in evolutionary algorithms. We will consider 30, 50, 100 and 200 generations since some papers \cite{EvoStar2014:GPBot:anon} have mentioned the middle value. As indicated in the previous section,
       Hart \cite{Hart1996} claims that this is not the right way to
       compare different approaches; however, we include it here as a
       baseline for comparison with the other approaches. % En ese caso yo creo que no habría que probar tantos valores diferentes.
 
-    \item \texttt{[AO] Age of outliers}: if the age of one individual is an outlier in the comparison with the rest of the population then it would be potentially an optimal solution % why?
-and the algorithm can be stopped. The difference between the age of the outlier and the rest of the population is measured considering three factors: 1, 1.5, 2 and 2.5 times the interquartile range (IQR). %explain a bit. Does this mean that it will stop when it finds somebody that is two times as old as the average? - JJ
+    \item \texttt{[AO] Age of Outliers}: if the age of one individual is an outlier in the comparison with the rest of the population then it would be potentially an optimal solution and the algorithm can be stopped. % why?
+The idea behind this criterion is that an individual surviving for several generations more than the rest of the population lead to be a very good player (much better than the rest), and thus, a potential optimal solution for the problem. The difference between the age of the outlier and the rest of the population is measured considering three factors: 1, 1.5, 2 and 2.5 times the interquartile range (IQR). %explain a bit. Does this mean that it will stop when it finds somebody that is two times as old as the average? - JJ
+% Antonio - @Antares, explica esto, que no me quedó claro lo de la IQR... :D
 
-    \item \texttt{[RT] Replacement rate}: when using an elitist strategy in which individuals are replaced only if the new generation is better, the fact that the population stops generating better individuals might be a sign of stagnation. Four
-      different rates have been tested, namely $\frac{n}{2}$ (50\%) , $\frac{n}{4}$(25\%), $\frac{n}{8}$(12.5\%), $\frac{n}{16}$(6.25\%) ... % but this has to be combined with a steady state approach or something. By itself, it does not mean a thing. Please explain - JJ
+    \item \texttt{[RT] Replacement Rate}: when using an elitist strategy in which individuals are replaced only if the offspring is better, the fact that the population stops generating better individuals might be a sign of stagnation. Four different rates have been tested, namely $\frac{n}{2}$ (50\%) , $\frac{n}{4}$(25\%), $\frac{n}{8}$(12.5\%), $\frac{n}{16}$(6.25\%) ... % but this has to be combined with a steady state approach or something. By itself, it does not mean a thing. Please explain - JJ
 % Antonio - en la descripción del algoritmo se habrá dicho que va a ser generacional (hecho), ya que en un estacionario la tasa de reemplazo estaría mucho más acotada. ;)
 % Maribel: En un algoritmo generacional clásico, se reemplaza toda la población con los hijos menos el mejor. Pero nosotros no estamos usando este reemplazo, así como así, sino que hacemos unión de los hijos y los padres y nos quedamos con los mejores N no? Si esto es así, sería una cosa a comentar en la sección de GA features.
 % Antonio - efectivamente, he intentado contarlo mejor debajo. En todo caso hay que aclararlo en la descripción del algoritmo. - TODO -
 % Aquí había que haber hecho una aclaración o referencia al mismo. Ya lo he aclarado - JJ
    The values are based in the maximum number of replacements per generation. Our model defines a maximum of $n = N/2$ individuals to be potentially substituted by the offspring. Thus, the parameter values aim to test half of this probability, and half of the previous values, respectively.
+% Antonio - @Antares, cuidao con la variable 'N', que es el número de batallas en la función Score...
 
-    \item \texttt{[FT] Fitness threshold}: a maximum value to obtain in the evolution can be set considering the top limit of the score function, 45. Thus, three possible thresholds are defined,
-% After a phase of systematic experimentation?
-namely 30, 36, 42. These values have been set considering that the ideal fitness/score to obtain is 45, but this is not effectively reachable (the bot must win all the matches in just one turn). %Los valores son bastante arbitrarios, pero bueno. 
+    \item \texttt{[FT] Fitness Threshold}: a maximum value to obtain in the evolution could be set considering the top limit of the score function, 45. However, that value is a limit and never reachable unless the bot wins all the matches in just one turn (when the rival code makes a critical error and cannot be run). This, along with the toughness of ExpGenebot, makes the real fitness limit close to 40 instead. Thus, five thresholds have been defined taking this maximum value ($MAX_{SC}$) as a reference, namely: 20 (as half the maximum: $MAX_{SC}/2$), 30 (as half the maximum score plus half this value: $MAX_{SC}/2 + MAX_{SC}/4$), and the division in four parts of the interval these values compose: 22, 24, 26 and 28.
+
+The justification of these values to check is related with the noisy nature of the fitness/score function, which leads us to think that the improvements of fitness will be very limited (very short steps will be attained in the evolution in the range of the high scores).
+% Los valores son bastante arbitrarios, pero bueno. 
 % Antares - ¿Esto no lo habías cambiado tú? ya no son estos :(
-
+% Antonio - el que comenta es @JJ, no yo. :P
+%           Ya lo he cambiado, intentando justificar esto, pero weno, es un poco chungo...
 In general, setting a fixed value that is a certain distance away to a known (and maybe unreachable) optimum is a compromise solution, since it is not known in advance whether this lower level will be even reached and, if it is, what would be the effort needed to go beyond that and whether a better solution (even including noise) could be found with a higher value. 
-%En este caso, ¿no se tiene en cuenta el ruido? - JJ
+% En este caso, ¿no se tiene en cuenta el ruido? - JJ
 % Antares - Si se contempla el ruido, ya que se sigue haciendo re-evaluaciones. 
 
-    \item \texttt{[FI] Fitness improvement}: in an ideal evolutionary process the fitness of the best individual must be improved during evolution every generation. However, the noisy nature of the problem (or the noisy fitness function) makes this difficult to measure. Thus, if the best fitness is not improved during a number of generations, the algorithm stops. Again three possible values will be tested: 3, 7, 10 and 15 generations. %maribel y por qué estos? está fijado antes en algún otro paper como el del número de gneraciones?
-These values have been set after a dedicated systematic experimentation phase as they are minimum and maximum thresholds plus an intermediate value. 
+    \item \texttt{[FI] Fitness Improvement}: in an ideal evolutionary process the fitness of the best individual must be improved every generation. However, the noisy nature of the problem (or the noisy fitness function) makes this difficult to be measured. Thus, the idea of this criterion is that if the best fitness is not improved during a number of generations, the algorithm must stop. Four possible values will be tested: 3, 7, 10 and 15 generations. %maribel y por qué estos? está fijado antes en algún otro paper como el del número de gneraciones?
+These values have been set after a dedicated systematic experimentation phase, thus they are the minimum and maximum thresholds plus two intermediate values. These values would be strictly related with the problem difficulty so in order to set them in other cases an experimental process should be done to test the fitness variability or improvement rate per generation.
 % Antonio - aclarado. Es la más difícil de justificar. 
 % JJ - yo probaría más valores. En todo caso, el fitness variará cada generación si se vuelve a ejecutar, ¿no? 
 \end{itemize}
 
 The first stop criterion is based in an algorithmic parameter, so the algorithm stops when this parameter reaches a value. For this criterion, the population status does not matter. The rest of criteria are population-based ones, i.e. they consider some of its features to test if the algorithm must stop. The feature of the population leads the stop criteria and so leads the end of the algorithm. 
 
-The objective of these experiments % is to test the set of termination criteria... %el objetivo no es nunca ``probar'' esto. Es solucionar un problema. 
+All these criteria will be tested in the following section. The objective of the experiments conducted is to choose the best stop criterion among all the proposed, and even more, the best value to set on that criterion, depending on the problem to solve and on its features: noise, difficulty, computational limitations, or performance restrictions.
+
+% is to test the set of termination criteria... %el objetivo no es nunca ``probar'' esto. Es solucionar un problema. 
 
 % Habrá que decir qué se va a medir y por qué. ¿Qué se compara? ¿Por qué?
 %
@@ -443,6 +473,16 @@ The objective of these experiments % is to test the set of termination criteria.
 \section{Experiments and Results}
 \label{sec:res}
 
+The experiments conducted have involved 30 runs, each of them configured including all the defined stop criteria, and also adding an extra termination one, i.e. getting to 500 generations, in order to avoid non-ending runs.
+Thus, in every execution all the criteria are checked in every generation and, whenever one termination condition is met, the best individual to that moment (according to its score) is stored as the optimal solution for that criterion.
+
+Once all the runs have finished, we compute the average number of generations and the average score obtained for the same criterion in different runs. There could happen that one criterion is never met in a run, then this will not be considered in the computation of that value.
+
+This is an issue due to the toughness of the rival and the presence of noise ***
+
+
+
+% Antonio - @Antares - La Figura 1 está mal. Los boxplots no se corresponden con los títulos y la leyenda del eje X. ;)
 
 \begin{figure}
 \begin{center}
@@ -452,6 +492,8 @@ The objective of these experiments % is to test the set of termination criteria.
 \label{fig:boxplotscore}
 \end{figure}
 
+% Antonio - @Antares - La Figura 2 está mal. Los boxplots no se corresponden con los títulos y la leyenda del eje X. ;)
+
 \begin{figure}
 \begin{center}
 \includegraphics[width=\columnwidth]{imags/Boxplot_SC-Generations-log.eps}
@@ -459,6 +501,8 @@ The objective of these experiments % is to test the set of termination criteria.
 \caption{Generation attained (of all runs), grouped by termination criteria.}
 \label{fig:boxplotgenerations}
 \end{figure}
+
+% Antonio - @Antares - La Figura 3 se podría mejorar: Me gustaba más sin la escala logarítmica, se veían más claras las diferencias. Los textos se ven mejor al no solaparse, pero por contra los puntos (que son lo más importante) son difíciles de ver, con lo que queda menos claro qué método es mejro y por cuánto. También es difícil apreciar las oscilaciones que se producen (lo que os comenté en los comentarios del Issue). Por otra parte la imagen es un poco tocha. XD
 
 \begin{figure}
 \begin{center}
@@ -469,6 +513,7 @@ The objective of these experiments % is to test the set of termination criteria.
 \end{figure}
 
 
+% Antonio - @Antares - Pregunta general. ¿por qué los valores en las gráficas llevan un decimal '.0' si son enteros? ¿No estarían mejor sin él? ¿No quedaría más claro al haber menos texto? :D
 
 % \begin{figure}
 % \begin{center}
