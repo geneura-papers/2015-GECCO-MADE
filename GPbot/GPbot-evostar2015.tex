@@ -360,21 +360,21 @@ Then, the fitness of each individual $i$ of the population is obtained using the
 Where
 
 \begin{equation}
-\boldsymbol{\alpha=v},\alpha\in\left[0,N\right]
+\boldsymbol{\alpha=v},\alpha\in\left[0,NB\right]
 \end{equation}
 
 
 \begin{equation}
-\boldsymbol{\beta=N\times\frac{t_{win}+\frac{1}{N\times t_{MAX}+1}}{\frac{t_{win}}{v+1}+1}},\beta\in\left[0,N\right],t_{win}\in\left[0,N\times t_{MAX}\right]
+\boldsymbol{\beta=N\times\frac{t_{win}+\frac{1}{NB\times t_{MAX}+1}}{\frac{t_{win}}{v+1}+1}},\beta\in\left[0,N\right],t_{win}\in\left[0,N\times t_{MAX}\right]
 \end{equation}
 
 
 \begin{equation}
-\boldsymbol{\gamma=\frac{t_{defeated}}{N\times t_{MAX}+1}},\gamma\in\left[0,1\right],t_{defeated}\in\left[0,N\times t_{MAX}\right]
+\boldsymbol{\gamma=\frac{t_{defeated}}{NB\times t_{MAX}+1}},\gamma\in\left[0,1\right],t_{defeated}\in\left[0,N\times t_{MAX}\right]
 \end{equation}
 
 
-The terms used are: the number of battles ($N$) to test, the number of
+The terms used are: the number of battles ($NB$) to test, the number of
 victories of the individual against ExpGenebot ($v$), the total number of
 turns used to beat ExpGenebot ($t_{win}$), the total number of turns when
 the individual has been defeated by ExpGenebot ($t_{defeated}$) and the
@@ -385,14 +385,36 @@ Therefore $\alpha$ has the highest ratio, the term $\beta$ adds an extra score t
 (higher number is better, as it is difficult to be beaten). The 
 `1' in all denominators is used to avoid dividing by 0.
 
-As previously said, each individual has been tested 30 times in different maps, therefore $N=30$, and a the limit of turns is the default of the competition ($t_{MAX}=1000$).
+As previously said, each individual has been tested 30 times in different maps, therefore $NB=30$, and a the limit of turns is the default of the competition ($t_{MAX}=1000$).
 
 The problem of using a tough rival as ExpGenebot is that the maximum fitness/score obtained during the evolution will be very limited, since it would be very difficult that a bot could win against 30 specialised bots \cite{Wolpert97nofree}. This is more evident if we take into account that the bots being evolved do not include any adaptive component that analyses the map, as ExpGenebot does. This fact will be seen in the fitness analysis in the following section.
 
-%TODO FERGU: comentar y justificar el resto de parámetros del GP
+%TODO FERGU: comentar y justificar el resto de parámetros del GP FERGU: hecho abajo
+The used GP evolves a binary tree formed by {\em decisions} (logical expressions that evaluate the current state of the game) and {\em actions} (the leafs of the tree: the amount of ships to send to a specific planet). This tree is evaluated in each player's planet, analysing the current state of the map/planet (decision), and how many ships send from that planet to an specific target planet (action). These target planets can be the wealthiest, the closer one, etc. owned by the player or the enemy, or neutral. The possible actions and decisions are listed in \cite{EvoStar2014:GPBot:anon}. Table \ref{tab:parameters} summarizes the rest of the parameters of the EA. These parameters were also justified in that paper, obtaining competitive bots.
 
+\begin{table}
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+{\em Parameter Name} & {\em Value} \\ \hline
+Population size ($N$) & 32 \\ \hline
+Number of battles for scoring ($NB$) & 30 \\ \hline 
+Re-evaluation of individuals & Yes \\ \hline
+Crossover type & Sub-tree crossover \\ \hline
+Crossover rate & 0.5\\ \hline
+Mutation  & 1-node mutation\\ \hline
+Mutation step-size & 0.25 \\ \hline
+Selection & 2-tournament \\ \hline
+Replacement & Generational\\ \hline
+Maximum Tree Depth &  7 \\ \hline
+Runs per configuration & 30 \\ \hline
+\end{tabular}
+\caption{Parameters used in the experiments.}
+\label{tab:parameters}
+\end{center}
+\end{table}
 
-% Antonio - @Fergu, @Antares. Cuidao con los nombres de los parámetros. Ponle un nombre al número de individuos (a la variable o parámetro) y usa ese mismo nombre debajo, en el criterio de Tasa de Reemplazo, porque se ha puesto 'N', que es el número de batallas en la fórmula del Score. Yo pondría otra variable allí, BTW, por ejemplo 'NB'. Así no hay líos. ;D
+% Antonio - @Fergu, @Antares. Cuidao con los nombres de los parámetros. Ponle un nombre al número de individuos (a la variable o parámetro) y usa ese mismo nombre debajo, en el criterio de Tasa de Reemplazo, porque se ha puesto 'N', que es el número de batallas en la fórmula del Score. Yo pondría otra variable allí, BTW, por ejemplo 'NB'. Así no hay líos. ;D FERGU: Cierto, NB es mejor, puesto.
 
 
 
