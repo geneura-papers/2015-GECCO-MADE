@@ -444,7 +444,7 @@ The idea behind this criterion is that an individual surviving for several gener
    The values are based in the maximum number of replacements per generation. Our model defines a maximum of $n = N/2$ individuals to be potentially substituted by the offspring. Thus, the parameter values aim to test half of this probability, and half of the previous values, respectively.
 % Antonio - @Antares, cuidao con la variable 'N', que es el número de batallas en la función Score...
 
-    \item \texttt{[FT] Fitness Threshold}: a maximum value to obtain in the evolution could be set considering the top limit of the score function, 45. However, that value is a limit and never reachable unless the bot wins all the matches in just one turn (when the rival code makes a critical error and cannot be run). This, along with the toughness of ExpGenebot, makes the real fitness limit close to 40 instead. Thus, five thresholds have been defined taking this maximum value ($MAX_SC$) as a reference, namely: 20 (as half the maximum: $MAX_SC/2$), 30 (as half the maximum score plus half this value: $MAX_SC/2 + MAX_SC/4$), and the division in four parts of the interval these values compose: 22, 24, 26 and 28.
+    \item \texttt{[FT] Fitness Threshold}: a maximum value to obtain in the evolution could be set considering the top limit of the score function, 45. However, that value is a limit and never reachable unless the bot wins all the matches in just one turn (when the rival code makes a critical error and cannot be run). This, along with the toughness of ExpGenebot, makes the real fitness limit close to 40 instead. Thus, five thresholds have been defined taking this maximum value ($MAX_{SC}$) as a reference, namely: 20 (as half the maximum: $MAX_{SC}/2$), 30 (as half the maximum score plus half this value: $MAX_{SC}/2 + MAX_{SC}/4$), and the division in four parts of the interval these values compose: 22, 24, 26 and 28.
 
 The justification of these values to check is related with the noisy nature of the fitness/score function, which leads us to think that the improvements of fitness will be very limited (very short steps will be attained in the evolution in the range of the high scores).
 % Los valores son bastante arbitrarios, pero bueno. 
@@ -473,6 +473,14 @@ All these criteria will be tested in the following section. The objective of the
 %
 \section{Experiments and Results}
 \label{sec:res}
+
+The experiments conducted have involved 30 runs, each of them configured including all the defined stop criteria, and also adding an extra termination one, i.e. getting to 500 generations, in order to avoid non-ending runs.
+Thus, in every execution all the criteria are checked in every generation and, whenever one termination condition is met, the best individual to that moment (according to its score) is stored as the optimal solution for that criterion.
+
+Once all the runs have finished, we compute the average number of generations and the average score obtained for the same criterion in different runs. There could happen that one criterion is never met in a run, then this will not be considered in the computation of that value.
+
+This is an issue due to the toughness of the rival and the presence of noise ***
+
 
 
 % Antonio - @Antares - La Figura 1 está mal. Los boxplots no se corresponden con los títulos y la leyenda del eje X. ;)
