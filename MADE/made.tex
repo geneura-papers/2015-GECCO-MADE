@@ -53,7 +53,7 @@
 
 
 \begin{abstract}
-Generating fictional worlds for a 
+Generating fiction environments for a 
 multi-agent system optimized by genetic algorithms
 (with some specific requirements
 related to the desirable plots),
@@ -102,7 +102,7 @@ an evolutionary algorithm that optimizes a virtual world using a fitness functio
 
 MADE works as follows: every individual in the evolutionary algorithm
 is described by a chromosome that represents the parameters of one (or several kinds of)
-finite state machine (FSM)\cite{FSM_Booth} that is set to `live' (interact) in a simulated environment. In \cite{garcia:anon} the evolutionary algorithm was run with a standard
+finite state machine (FSM) \cite{FSM_Booth} that is set to `live' (interact) in a simulated environment. In \cite{garcia:anon} the evolutionary algorithm was run with a standard
 parameter configuration, meanwhile {\em sensible} non-evolutionary parameters (such as the size of the world or amount of food) were set as default values. There was no attempt to optimize these parameters, since the
 main intention seemed to be to have a prototype that allowed the
 authors to have an acid test of their proposed approach.
@@ -139,7 +139,7 @@ According to the taxonomy described by Togelius et al. \cite{togelius2011search}
 the problem of massively generating backstories for non-player
 characters (NPCs) can be considered \textit{Procedural content
   generation (PCG)}, since it implies the generation of a part of
-the game world, namely, the characters and their relations. However,
+the game world, namely, the characters and their relations. In this paper,
 we have used a \textit{offline} and \textit{search-based}, since it is
 done in the phase of game design and using evolutionary algorithms, a
 search-based method.
@@ -153,15 +153,12 @@ search-based method.
 
 % Antonio - creo que podríamos poner algunas citas a los tipos de PCGs, con algunos ejemplos de cada tipo (o uno, al menos). Así quedaría más completa la sección. ;)
 
-In this context (massive non-interactive goal-driven plots), different
-approaches has been proposed, following the survey
-\cite{arinbjarnar2009critical} by Arinbjarnar et al.:
+This paper is focused in the context of computational generation of massive plots without human interaction, and driven by goals proposed by the creator. Different approaches have been proposed in previous works (see the work of Arinbjarnar et al. \cite{arinbjarnar2009critical} for a survey). 
 
 % Antonio - todo esto son métodos automáticos, ¿no? 
-% Hechos mediante programas o algoritmos en computadores, ¿no? Dejadlo claro. ;)
+% Hechos mediante programas o algoritmos en computadores, ¿no? Dejadlo claro. ;) FERGU: hecho, y reescrita la frase
 
 In 1976 the program called \textit{Tale-Spin} \cite{meehan1976metanovel} was able to produce
-% Antonio - Tale-Spin era un programa, ¿no?
 purely text-based fairy tales where semi-autonomous characters
 showed emotions and relationships, with the shortcoming of creating very inconsistent plots.
 Then, different researches used the concept of \textit{goals and pre-defined
@@ -171,7 +168,7 @@ goals provided by the author. It used fragments of stories to assign
 roles to stereotypical characters, relying on the reader the assumption
 of the characters' motivations.
 In 1994, Turner created Minstrel \cite{turner2014creative}, a program which used 
-% Antonio - Minstrel era un programa?
+% Antonio - Minstrel era un programa? FERGU: todo son programas
 case-based reasoning to generate stories about knights and ladies by replacing variables in existing stories and recombining them. It also used goals, in this case for the story and for every character. In 2008, Riedl and Leon
  used in \cite{riedl2008toward} the same idea, conceptualizing a vignette
 as a small story assumed as `interesting', thus they can compose complete stories when exposed sequentially.
@@ -180,11 +177,11 @@ The technique applied in this paper can be understood as the evolution of
 these researches adapted to massive worlds, where coherence is provided by the use of an Agent-Based Model (ABM for further references).
 Instead of using `vignettes' to construct stories, our approach
 modifies the behaviour of the agents and finds `archetypes', i.e. behaviours and patterns universally accepted and present in the
-collective imaginary \cite{garry2005archetypes} that could be interpreted as
+collective imaginary \cite{garry2005archetypes} that may be interpreted as
 generic `vignettes'.
 
 The idea of emerging plots from agents' (ABMs) interactions is not new:
-In 2007, Virtual storyteller \cite{swartjes2007emergent}, used agents that improvise using techniques from improvisational theatre, a plot guide and a narrator. Our technique uses the same approach but there is no plot guide agent. Instead, a Genetic Algorithm will guide the mood of the backstories created by finding `archetypes'.
+in 2007, Virtual storyteller \cite{swartjes2007emergent}, used agents that improvise using techniques from improvisational theatre, a plot guide and a narrator. Our technique uses the same approach but there is no plot guide agent. Instead, a Genetic Algorithm (GA)  guides the mood of the backstories created by finding `archetypes'.
 % Antonio - desired archetypes?
 
 The search of a good plot can be addressed from the Evolutionary Computation (EC) point of view. To this aim in 2011, Nairat et al. proposed in \cite{nairat2011character} a generative drama approach
@@ -194,13 +191,13 @@ Cioffi-Revilla et al. \cite{cioffi2012evolutionary} published a study that
 applies a combined EC-ABM approach to the challenge of understanding
 complex adaptive systems in social science. Their conclusions suggest further applications of EC to ABM in terms of multi-population models with heterogeneous agents, multi-objective optimization, dynamic environments, and evolving executable objects for modelling social change. %FERGU: modeling es americano
 
-Our approach relies on this idea by using a Genetic Algorithm (GA) to 
+Our approach relies on this idea by using a GA to 
 obtain the agents' behaviour that better fits the goals described by the user/author before the world is generated.
 % TODO @raiben enganchar mejor este último párrafo
 % Antonio - hecho. ;D
-It follows the methodology presented by García-Ortega et al. in \cite{garcia:anon}. They systematized the generation of backstories in massive worlds by means of GAs. Thus, the steps to define the elements of a complex world, and how to optimise their character's behaviour using GAs to extract information, were presented.
-Moreover, that work included a preliminary analysis of one parameter: the number of profiles. 
-% Antonio - profiles generados? o qué profiles?
+It follows the methodology presented in \cite{garcia:anon}: systematise the generation of backstories in massive worlds, defining the elements of a complex world, and optimise the characters' behaviour using GAs to extract information.
+Moreover, that work included a preliminary analysis of only one parameter: the number of profiles to use. 
+% Antonio - profiles generados? o qué profiles? FERGU: to use
 Results in that paper shown that this parameter have a significant influence
 in the archetype-based fitness attained. The open-source simulator 
 MADE 
@@ -210,9 +207,9 @@ used in the present work, was also introduced in that paper. However, the rest o
 \cite{morrell2006between}) were set as standard ad-hoc parameters. 
 % Antonio - He puesto la REF de Morrel. Comprobadla. ;)
 
-In this paper, we want to extend that study testing the rest of the
+In this paper, we want to extend the previous study testing the rest of the
 parameters that model a story: the time, the world, the characters and
-the source of conflicts.
+the source of conflicts. 
 % Antonio - hay que darle muuucho más bombo a esto. La importancia de los parámetros, que los resultados pueden variar mucho con un cambio leve en ellos, que unos tienen mucha más influencia, que otros podrían resultar superfluos, que hace falta hacer este estudio para definir el algoritmo bien, que se va a hacer una definición de reglas de configuración, etc etc.
 % Este es el 'selling point' y hay que venderlo bien. De lo contrario puede parecer que esto es una mera excusa para publicar algo sin mucho esfuerzo (aunque lo conlleve, claro). ;D
 % Todo esto también habría que recalcarlo en la Intro. Incluso de forma más extensa que aquí. Si se hace en aquella sección, aquí sólo se nombraría lo que se va a hacer con una pequeña justificación. ;)
@@ -227,16 +224,16 @@ the source of conflicts.
 
 As mentioned in section \ref{sec:sota}, the proposed technique for generating fictional worlds 
 relies in the use of a a combined EC-ABM approach (a GA in this case).
-The fitness function is configurable to fit the story needs,
-Then, some parameters have to be fixed: world constants, agents' constants and genetic algorithm parameters.
+The fitness function is configurable to fit the story needs.
+Then, some parameters have to be fixed: world constants, agents' constants and GA parameters.
 Finally, the GA has to search in a noisy space, due to the stochastic nature of the approach.
 The influence of each constant and parameter is, a priori, impossible to predict.
 
-Our methodology systematizes the study of key parameters in the massive generation of backstories with 
+Our methodology systematizes the study of key parameters in the massive generation of backstories with an
 EC-ABM approach
 % Rubén - OJO, desde `in order' he repetido frase del abstract y probablemente no deba hacerlo.
 % Si a alguien se le ocurre como cambar la frase u opina que deba quedar fuera, que actue
-in order to optimize the resources devoted to evolution and to have some
+in order to optimize the resources allocated to evolution and to have some
 guarantees that the final result will be close to the optimum.
 
 
@@ -246,43 +243,44 @@ guarantees that the final result will be close to the optimum.
 
 % Rubén - Las listas ocupan mucho espacio, pero son tan claras... en
 % todo caso, que alguie con más expertise me diga si lo cambio por
-% párrafos hilados. 
+% párrafos hilados. FERGU: yo soy más de hacerlo "literario", pero lo que mejor te venga :)
 This methodology  addresses to problems that present the following characteristics:
 \begin{description}
 \item[Goal:] The final goal is to generate stochastic virtual worlds massively inhabited by characters with backstories that are aligned with a mood defined by the writer.
-\item[Virtual world:] The virtual world is created by the ABM.
+\item[Virtual world:] The virtual world is modeled by the ABM.
+\item[Archetype:] An archetype is a behaviour pattern that can be present in a backstory.
 \item[Fitness:] The virtual world can be evaluated depending on different taxes of archetypes (set by the writer) found in the characters that inhabit it.
-\item[Archetype:] The archetype is a behaviour patterns that can be present in a backstory.
 \item[Backstory:] The backstory of a character is a set of actions and interpretations, coherent with the virtual world and the other agents.
 \item[Agent:] The agent represents a character that performs actions in the virtual world depending on the neighbourhood and its internal state.
 \item[Profile:] The agents can be parametrised and their behaviour
   (probabilities to perform actions) depends on these parameters. The
-  profile (S) is the set of values for these parameters and can be
+  profile (P) is the set of values for these parameters and is
   optimized by the GA. 
 \item[Conflict:] Every action is performed in a place and a time,
-  affects to one or more agents and relates to the source of tension.
+  affects to one or more agents and relates to the source of conflict.
 \item[Place:] The agents occupy a location in a map. The map is defined by its size (W).
-\item[Time:] The world exists during a period of time (D). Every backstory will be fed by actions as time goes by, in a bottom-up approach.
-\item[Food:] In this context, the food (F) can be considered as the source of conflicts between the agents; the element that the agents compete for.
+\item[Time:] The world exists during a period of time (D). Every backstory is fed by actions as time goes by, in a bottom-up approach.
+\item[Source of conflict:] The element that forces the agents to interact. For example, in this study, the food (F) can be considered as the source of conflicts between the agents; the element that the agents compete for.
+\item[Scenario:] A set of archetypes that have to emerge.
 \end{description}
 
 
 \subsection{Parameter effects}
 \label{subsec:params}
 
-As Morrell explains in \cite{morrell2006between}, `Fiction has three main elements:
-plotting, character, and place or setting', so, intuitively, these three elements can affect the backstories:
+As Morrell explains in \cite{morrell2006between}, ``Fiction has three main elements:
+plotting, character, and place or setting'', so, intuitively, these three elements can affect the backstories:
 
-In our problem, the agent is affected by its profile, that defines its behaviour.
-Our technique uses the GA to evolve the profile of the agent,
+In our problem, an agent is affected by its profile, that defines its behaviour.
+Our technique uses the GA to evolve the profile(s) of the agents,
 so it will be part of the search space.
-Nevertheless, the use of different number of profiles (S) may also affect the behaviour of the agents, since more profiles
-in the same world can imply new type of conflicts.
+Nevertheless, the use of different number of profiles (P) may also affect the behaviour of the agents, since more profiles
+in the same world may imply new types of conflicts (as it was demonstrated in \cite{garcia:anon}).
 
 The plotting is the result of the different conflicts, that are affected by the place,
 the time and the source of conflicts, which in this case is the food.
 
-The place is defined by the size (W). Smaller maps usually implies more friction between the agents,
+The place is defined by the size (W). Smaller maps usually imply more friction between the agents,
 thus different variations of S may derive in different behaviours. The values that should be chosen
 are those that test a size smaller or equal to the neighbourhood defined (letting all the agents
 access to all the resources and positions of the world), a size bigger than the neighbourhood
@@ -293,21 +291,22 @@ The time of the conflict is affected by the period of time that the world will e
 In this sense, a longer period of time will usually imply more interactions, \textit{ergo} more
 archetypes and better fitness, and eventually more agents in the world. In the other hand, the evaluation
 of an individual in the GA implies the execution of every agent and the evaluation of each backstory,
-thus more agents and bigger backstories can increment significantly the evaluation time.
+thus more agents and bigger backstories may increment significantly the evaluation time.
 The values proposed for the study vary from a very short period of time to a bigger one, where the
-maximum is the agent's average lifetime. The food is modelled with the parameter (F). Changes in this parameter can increment or decrement
+maximum is the agent's average lifetime. The food is modelled with the parameter (F). Changes in this parameter may increment or decrement
 the number of interactions. 
 
-Finally, exploration of the search space can be affected by the GA parameters. In this sense, the most significant
-parameter is the population (P), since bigger populations will provide more accuracy but spend more execution time.
+Finally, exploration of the search space might be affected by the GA parameters. In this sense, the most significant
+parameter is the population size (S), since bigger populations will provide more accuracy but spend more execution time.
 
-To sum up, our methodology will systematically combine more than two variants os five parameters
+To sum up, our methodology will systematically combine more than two variants of five parameters
 and study how the fitness is affected. The parameters proposed for the problems characterised in
-subsection \ref{subsec:idio} are the number of profiles (S), the world size (W),
-the virtual time (D), the food (F) and the population of the GA (P).
-Three variants for each of the five parameters implies 243 combinations of parameters
-that have to be evaluated by the GA at least 30 times to obtain statistically significant results.
-The total amount of executions should be at least 7290.
+subsection \ref{subsec:idio} are the number of profiles (P), the world size (W),
+the virtual time (D), the food (F) and the population size of the GA (S).
+%Three variants for each of the five parameters implies 243 combinations of parameters
+%that have to be evaluated by the GA at least 30 times to obtain statistically significant results.
+%The total amount of executions should be at least 7290.
+%FERGU: esto no va aquí, va en experimental section (además, está mal, P=4)
 
 
 \subsection{Problem specification}
@@ -346,43 +345,44 @@ The total amount of executions should be at least 7290.
 % sobre todo lo relativo a cifras sirve para explicar el experimental setup.
 % (que nunca se ha dicho en otros papers y de hecho está bastante resumido)
 
-The agent in the MADE world is a representation of brown rat
+An agent in the MADE world is a representation of brown rat
 modelled as a finite automaton that performs actions like move, eat, attack,
-defend, escape, find mate or have offspring.
-In general, these agents are considered as adults at the age of 40 days, have a pregnancy
-period of 30 days and die at the age of 300 days, but those values can vary depending on
-the profile (or set of parameter values that define the rat behaviour).
+defend, escape, find mate or breed.
+%In general, these agents are considered as adults at the age of 40 days, have a pregnancy
+%period of 30 days and die at the age of 300 days, but those values can vary depending on
+%the profile (or set of parameter values that define the rat behaviour).
+%FERGU: si es variable, pues es variable
 The place where the conflicts appear is a square grid. A cell can only be occupied by one agent.
-Each agent can move and interact with other agents in a neighbourhood of 7x7 cells whose center is its position. 
-The time is instantiated as `virtual days'.
+Each agent can move and interact with other agents in a neighbourhood of 7x7 cells around the rat. 
+The time is a serie of `virtual days'.
 The rats are driven to survive and to have offspring, thus
 % los personajes no tienen leitmotif. Lo tiene una trama. Va a haber
 % que quitar todos los leitmotif. Aparte de que se dice leitmotiv,
 % porque viene del alemán. FERGU: usaremos entonces el "source of conflict"
 the source of conflicts is the food: 
 agents attacks themselves to steal food before it is eaten by 
-other agents. Systematically, a number of food rations appears in random positions in the map every virtual day.
-An agent can die of hunger, due to the damage inflicted by other agent or
-because of its advanced age.
+other agents. Systematically, a number of food rations appears in random positions on the map every virtual day.
+An agent may die of starvation, due to the damage inflicted by other agent or
+because its older.
 
 % Rubén -OJO: importante, no borrar porque es el único lugar donde explico los 3 arquetipos de los que luego se
 % sacan conclusiones (y además, muy cortico)
 MADE lets the writer select different archetypes that can be promoted in the world
 as described in \cite{garcia:anon}.
-In this paper we will focus on three different archetypes that will be studied: An agent
+In this paper we will study three different archetypes: An agent
 is considered a \textit{villain} if it kills other agent as a result of a fight for the food,
-a \textit{hero} if it attacks a \textit{villain} and
+a \textit{hero} if it attacks a \textit{villain} and an
 \textit{avenger} is it attacks other agent in revenge.
 
 % Rubén - Aquí explico el dichoso fitness, que nunca queda bien claro. Espero que ahora ...
-The fitness of the world is a function of the sum of the value for each archetype rate, i.e. 
+The fitness of the world is the sum of the value for each archetype rate, i.e. 
 the number of characters that present the archetype divided by the total number of characters.
 To promote the appearance of all the archetypes, avoiding as much as possible the 
-starvation of any of them, the function presents a logarithmic curve where
+lack of any of them, the function presents a logarithmic curve where
 small rates get bigger values. As a consequence, the fitness of a world with a
 presence of two archetypes whose rate is 0.25 is bigger than the fitness of a world
 with one archetype whose rate is 0.5.
-The function used by MADE is described as the following formula: 
+The function used by MADE is described as: 
 
 
 %The first step requires to develop a fitness function that takes into
@@ -397,11 +397,11 @@ The function used by MADE is described as the following formula:
 
 
 \begin{equation}
-F_A= {\sum _{i=1}^{A} {\log \left( 1+10r_{i}\right) } \over {\log 1}}
+F_A= \sum _{i=1}^{A} {{\log \left( 1+10r_{i}\right) } \over {\log 11}},F_A\in\left[0,A\right]
 \end{equation}
 
-where $A$ is the number of archetypes that take part in the fitness, $r_{i}$ is the
-appearance rate of the archetype $i$ in the world ($r_{i} \in \{ 0 , 1 \}$).
+\noindent where $A$ is the number of archetypes that takes part in the fitness and $r_{i}$ is the
+appearance rate of the archetype $i$ in the world, being $r_{i} \in \left[ 0 , 1 \right]$.
 
 % Rubén - Quiero añadir que max(F_A) = A, es decir que si se usan 4 arquetipos, el máximo es 4.
 % Si alguien sabe cómo expresarlo, que lo añada al párrafo de arriba, please
@@ -430,18 +430,18 @@ With this information within reach, the storyteller can create a story about the
 % repite lo dicho
 % Has explained!!! Agh!!! Mis ojos!!! - JJ
 As explained in subsection \ref{subsec:params}, the parameters 
-whose effect will be studied are the number of profiles (S), the world size (W),
-the virtual time (D), the food (F) and the population of the GA (P).
+whose effect will be studied are the number of profiles (P), the world size (W),
+the virtual time (D), the food (F) and the population size of the GA (S).
 Different parameter values for each element will be studied to clarify
 their influence in the literary world generation, following the rules and 
-recommendations present at the subsection \ref{subsec:params}
+recommendations present in subsection \ref{subsec:params}.
 
 Since the size of the neighbourhood is a square of 7x7 cells, the selected
 values for (W) are 5x5, 10x10 and 20x20 cells. Furthermore, these sizes would
 allow the existence of 25, 100 and 400 agents
 respectively at the same time.
 
-Since the maximum lifetime of the agent is about 300 virtual days,
+Also, as the maximum lifetime of the agent is about 300 virtual days,
 the selected set of days (D) to study are 64, 128 and 256. More days would result in a
 huge amount of agents and backstories, harder to evaluate.
 
@@ -453,7 +453,7 @@ huge amount of agents and backstories, harder to evaluate.
 %more time exploring before an event occurs.
 
 The set of values for the food (F), or source of conflicts, that conditions the actions
-(attack, share and defend among others) are 1/2, 1/4 and 1/8 of the number of cells of the map.
+(attack, share and defend, among others) are 1/2, 1/4 and 1/8 of the number of cells of the map.
 
 %also could have enough effect in the story generation: lower
 %quantities of food may increase the attacks, creating more aggressive
@@ -462,17 +462,25 @@ The set of values for the food (F), or source of conflicts, that conditions the 
 %be studied (food placed in 1/2, 1/4 and 1/8 of the size of the map). 
 
 
-The set of values proposed for the population (P) size 
-of genetic algorithm are 64, 128 and 256 individuals.
+The set of values proposed for the population size (S) 
+of the GA are 64, 128 and 256 individuals.
 
-Finally, it is expected that the existence of different number of profiles (S)
+Finally, it is expected that the existence of different number of profiles (P)
 in the world will have a significant effect in the runs, 
 specially in functions that require more than one archetype.
-We will compare the usage of 1, 2, 4 and 8 profiles in each scenario.
+We will compare the usage of 1, 2, 4 and 8 profiles for each scenario.
 As the usage of different number of profiles generate different
 individual sizes, and therefore different convergence times, the stop
 condition will be established depending of the best fitness 
 (30 generations without improvement), to do a fair comparison.
+
+For a more complete knowledge of the search space and the parameters effects, 
+three different scenerios will be studied:
+\begin{itemize}
+\item $S_1$: Maximization of the `villain' archetype ($A=1$).
+\item $S_2$: Maximization of the `villain' and the `hero' archetypes ($A=2$).
+\item $S_3$: Maximization of the `villain', the `hero' and the `avenger' archetypes ($A=3$).
+\end{itemize}
 
 %the parameters of the GA also affect the values of the
 %obtained world. In this paper, we study 
@@ -486,7 +494,7 @@ condition will be established depending of the best fitness
 % se hace. - JJ
 
 Table \ref{tab:parameters} summarizes all the configuration parameters that will be compared (with their acronyms used in this paper),
-and the rest of the (fixed) parameters of the algorithm. The fixed values of the parameters of the GA have been usually described by other authors as...
+and the rest of the (fixed) parameters of the algorithm. The rest of the values of the parameters of the GA are the used in \cite{garcia:anon}.
 
 The rest of the parameters of the MADE environment, such as the initial number of agents in the world, and the agent's parameters (such as the lifespan) are described in \cite{garcia:anon}. In this paper we will use the default values presented in that work.
 
@@ -521,13 +529,7 @@ Initial world population & 15 \\ \hline
 \end{table*}
 
 
-For a more complete knowledge of the search space and the parameters effects, 
-three different sceneries will be studied:
-\begin{itemize}
-\item $S_1$: Maximization of the `villain' archetype.
-\item $S_2$: Maximization of the `villain' and the `hero' archetypes.
-\item $S_2$: Maximization of the `villain', the `hero' and the `avenger' archetypes.
-\end{itemize}
+
 
 
 %In this work, we propose three scenarios:
@@ -602,7 +604,7 @@ three different sceneries will be studied:
 \section{Experiments and Results}
 \label{sec:res}
 
-In this paper, 9720 runs were carried out for each problem/scenario (30 times * 4 levels for \emph{P} * 2 levels for \emph{D} * 3 levels for \emph{W} * 3 levels for \emph{S} * 3 levels for \emph{F} that represent the possible combinations) to obtain the fitness for each combination.
+In this paper, 9720 runs were carried out for each problem/scenario (30 times * 4 levels for \emph{P} * 3 levels for \emph{D} * 3 levels for \emph{W} * 3 levels for \emph{S} * 3 levels for \emph{F} that represent the possible combinations) to obtain the fitness for each combination.
 
 Since the Kolmogorov-Smirnov test determines that the data we are using
 does not follow a normal distribution a non-parametric test, the Kruskal-Wallis test, has been
@@ -614,14 +616,14 @@ performed.  % por
 %algorithms using that combination of parameters to obtain the best
 %fitness. % Queeeee? - JJ 
 The response variable used to perform the statistical analysis is the
-fitness at the end of the run. The changes in the response variable
-are produced when a new combination of parameters is considered. Then,
-the {R} \footnote{{\tt http://www.r-project.org}} tool was used to
-obtain the Kruskal-Wallis tables as well as the tables of means and
-figures for each problem. 
+fitness at the end of each run. %The changes in the response variable
+%are produced when a new combination of parameters is considered. Then,
+%the {R} \footnote{{\tt http://www.r-project.org}} tool was used to
+%obtain the Kruskal-Wallis tables as well as the tables of means and
+%figures for each problem. 
 
-The tables obtained by the Kruskal-Wallis analysis show for each factor the  degrees of freedom (FD), the experimental value of the statistical F (F value) and its associated p-value. If the output is smaller than 0.05, then the
-effect of this factor is statistically significant at a $95\%$
+The tables obtained by Kruskal-Wallis test show for each factor the  degrees of freedom (FD), the experimental value of the statistical F (F value) and its associated p-value. If the output is smaller than 0.05, then the
+effect of this factor is statistically significant at $95\%$
 confidence level (which indicates that different initial values of
 this parameter lead to significant differences on the fitness).
 
@@ -637,7 +639,7 @@ Therefore, a Kruskal-Wallis multi-comparison test has also been
 performed, showing significant differences among all parameter values,
 except for number of profiles (only using 1 profile has significant
 difference with respect to use 2, 4 and 8), and GA population size
-(64-128 and 128-256), both values (number of profiles and GA population size) in the scenarios Villain and Hero. This
+(64-128 and 128-256), both values (number of profiles and GA population size) in the scenarios $S_1$ and $S_2$. This
 can be explained because only one profile is necessary in these
 scenarios (as the hero and villain archetypes are based in attacking
 other rats, and therefore, can be shared by the same agent). Therefore, 
@@ -647,9 +649,7 @@ the fitness function $F_1$ and $F_2$ only differs in counting the archetype of a
                                 % terminos del propio algoritmo y su
                                 % funcion de fitness. FERGU: lo he intentado, pero no lo tengo muy claro @raiben, escribe tu
 
-% Deberias agruparlos por parametro, no por escenario. No estais
-% comparando diferentes para¡metros de un escenario, sino diferentes
-% niveles para un parametro - JJ FERGU: tienes toda la razon, agrupado
+
 \begin{figure}
         \centering
         \subfigure[\scriptsize{Scenario 1: Villain}]{
@@ -669,13 +669,11 @@ the fitness function $F_1$ and $F_2$ only differs in counting the archetype of a
 %
 All the results have also been plotted in order to better understand 
 their differences (in Figures \ref{fig:boxplotsP} to \ref{fig:boxplotsS}). At first glance, the median for D, W and F is 0 (or almost 0) for several
-values. This could have several possible explanations: First, the
+values. This has several possible explanations: First, the
 number of profiles has quite an impact in the results (Figure
 \ref{fig:boxplotsS}), as it was shown previously in
-\cite{garcia:anon}. %Although no executions achieved the maximum number
-%of generations (300), % Eso que significa? - JJ FERGU: fuera
-% the length of the chromosome has an effect in the
-% convergence. %FERGU: @raiben habra que hacer lo que dice JJ de
+\cite{garcia:anon}. 
+ %FERGU: @raiben habra que hacer lo que dice JJ de
               %estudiar que eventos se esten produciendo. El problema
               %es que habr­a que lanzar todo otra vez... Pienso que
               %tampoco sera mala idea hacer un estudio respecto al
@@ -760,7 +758,7 @@ are more sparsely populated and have less interaction events, so the chances of 
 example, a fight) is more difficult. % pero esto habra que probarlo
                                 % mirando el numero de encuentros, la
                                 % densidad de poblacion, y cosas asi­.
-% Cual es la densidad de poblacion en el mundo 5x5? Como evoluciona?
+% Cual es la densidad de poblacion en el mundo 5x5? Como evoluciona? FERGU: me ha dicho rubén que le has dicho hoy que no haga ningún experimento, pero si hay tiempo podríamos hacerlo
 From the study of these two parameters we can conclude that, at least
 for these scenarios and possibly for any scenario, the baseline number
 of days should be 256 and the world for this population should have a
@@ -783,10 +781,9 @@ small size of 25 cells.
         \caption{Boxplots for GA population size (parameter S)}\label{fig:boxplotsS}
 \end{figure}
 
-Finally, the amount of food (Figure \ref{fig:boxplotsF}), the
-element that has an influence on the occurrence of the actions that
-count for the fitness, such as % @raiben dilo aqui­ - JJ
-, also need to be low enough so that conflict appear, in this case 1/8
+Finally, the amount of food (Figure \ref{fig:boxplotsF}), 
+the source of conflict, % @raiben dilo aqui­ - JJ FERGU: puesto "source of conclict" (con raiben al lado)
+also need to be low enough so that conflict appear, in this case 1/8
 of the world size. % Con un mundo de tamagno 25, Aparecen 3 piezas de
                    % comida? - JJ FERGU: sí, pero se van generando cada día
 
@@ -801,6 +798,16 @@ of the world size. % Con un mundo de tamagno 25, Aparecen 3 piezas de
 
 
 \section{Conclusions}
+
+When using an hybrid EC-ABM approach to generate massive backstories in fiction environments its impossible to know in advance the
+optimal value of a fitness that models the appearance of different archetypes
+together and the search space may be enormous, so a previous study of the most important parameters is prescribed.
+
+In this paper we define the problem addressed (in terms of goal, worlds, fitnesses, archetypes, backstories, agents, profiles, conflicts, places, time and sceneries) and a problem specification with the MADE framework. Our methodology selects key parameters (size of population of the GA, size of the world, number of profiles, source of conflicts and virtual days) that affect the conflicts generation and sets the values that are tested in the experiments. A battery of 29160 executions with all the possible parameter  combinations is launched and the results are studied using Kruskal-Wallis non-parametrical tests.
+
+The results show that there are significant differences between the five parameters in three sceneries with different combinations of the archetype \textit{villain}, \textit{hero} and \textit{avenger}. The best combination of parameters is the smallest map size (5x5), the bigger number of virtual days (256), the fewer rate of food (1/8 of the number of cells), the lower number os profiles (1) and the bigger population size of the GA (256). This is due to the fact that the three archetypes emerge when a the fights occur, and that happens more probably when the world is small and there is little food. Anyway, the backstories size increase with the virtual days of execution, thus it is easier to find archetypes when there are more.
+
+In future works, the influence of more parameters would be tested, while different sceneries are used with archetypes that not only rely in competitions for food, like the affinity or the family relationships. To improve the accuracy of the parameter selection, human guided evaluation could be performed. Finally, the results of the study could be applied to generate backstories in real game engines.
 
 \section*{Acknowledgements}
 
