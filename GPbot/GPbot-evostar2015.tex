@@ -23,7 +23,7 @@
 \usepackage{graphicx}
 \usepackage{multirow}
 \usepackage{rotating}
-
+\usepackage{subfigure} 
 \usepackage{url}
 \newcommand{\keywords}[1]{\par\addvspace\baselineskip
 \noindent\keywordname\enspace\ignorespaces#1}
@@ -476,20 +476,23 @@ All these criteria will be tested in the following section. The objective of the
 \label{sec:res}
 
 The experiments conducted have involved 30 runs, each of them configured including all the defined stop criteria, and also adding an extra termination one, i.e. getting to 500 generations, in order to avoid non-ending runs.
-Thus, in every execution all the criteria are checked in every generation and, whenever one termination condition is met, the best individual to that moment (according to its score) is stored as the optimal solution for that criterion.
 
-Once all the runs have finished, we compute the average number of generations and the average score obtained for the same criterion in different runs. There could happen that one criterion is never met in a run, then this will not be considered in the computation of that value.
+%Antares - Antonio: Ya estamos con el 30... Son 36... 
+
+Thus, in every execution all the criteria are checked in every generation and, whenever one termination condition is met, the best individual to that moment (according to its score) is stored as the optimal solution for that criterion, because if that were the unique stop criterion, the algorithm would end.
+Once all the runs have finished or the extra termination happen, we compute the average number of generations and the average score obtained for the same criterion in all different runs. There could happen that one criterion is never met in a run, then this will not be considered in the computation of that value but it decreases the completion rate of the criterion. 
 
 % Antonio - Antares - La Figura 1 está mal. Los boxplots no se corresponden con los títulos y la leyenda del eje X. ;)
 % Antares - @Antonio: No sé que ha pasado que se han machacado los antiguos, seguramente sea culpa mía. Arrelado.
 
-Figure \ref{fig:boxplotscore} shows the scores obtained by the best individuals yielded for every stop criterion.
+Figure \ref{fig:boxplotscore} shows the scores obtained by the best individuals yielded for every stop criterion and what stop criterion are statistically different from each, using a Kruskal-Wallis test, cause the shapiro test yielded that the samples are not a normal distribution.. 
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=\columnwidth]{imags/Boxplot_SC-Score-log.eps}
+\includegraphics[width=0.74\columnwidth]{imags/Boxplot_SC-Score-log.eps}
+\includegraphics[width=0.25\columnwidth]{imags/Kruskal-Score.eps}
 \end{center} 
-\caption{Scores of the best individuals (of all runs), grouped by termination criterion.}
+\caption{Scores of the best individuals (of all runs), grouped by criterion and Kruskal-Wallis test of samples of each criterion by score (black means no statistical difference)}
 \label{fig:boxplotscore}
 \end{figure}
 
@@ -498,24 +501,28 @@ This is a problem derived from using a tough rival as ExpGenebot. Thus, the maxi
 
 As it can be also seen in the figure all the criterion are well defined, since all the scores grow in every criterion block, so as more restrictive the criterion is, the higher the obtained score is. The score function is working well, even with the presence of noise, as the wide of the boxplots (score dispersion) demonstrates when the criteria become more restrictive (they are met with a lower probability). This is true in all the cases except in the \textit{Age of Outliers} which is so far the criterion with the worse results, as it will be proved in further analyses.
 
+Figure \ref{fig:boxplotgenerations} shows the generations needed by each termination criterion and the Kruskal-Wallis test, like in the score measure.
 
 % Antonio - @Antares - La Figura 2 está mal. Los boxplots no se corresponden con los títulos y la leyenda del eje X. ;)
 % Antares - @Antonio: No sé que ha pasado que se han machacado los antiguos, seguramente sea culpa mía. Arrelado.
 \begin{figure}[h!tb]
 \begin{center}
-\includegraphics[width=\columnwidth]{imags/Boxplot_SC-Generations-log.eps}
+\includegraphics[width=0.74\columnwidth]{imags/Boxplot_SC-Generations-log.eps}
+\includegraphics[width=0.25\columnwidth]{imags/Kruskal-Generations.eps}
 \end{center} 
-\caption{Generation attained (of all runs), grouped by termination criteria.}
+\caption{Generation attained (of all runs), grouped by criterion and Kruskal-Wallis test of samples of each stop criterion by generations (black means no statistical difference)}
 \label{fig:boxplotgenerations}
 \end{figure}
 
+
+
 % Antonio - @Antares - La Figura 3 se podría mejorar: Me gustaba más sin la escala logarítmica, se veían más claras las diferencias. Los textos se ven mejor al no solaparse, pero por contra los puntos (que son lo más importante) son difíciles de ver, con lo que queda menos claro qué método es mejro y por cuánto. También es difícil apreciar las oscilaciones que se producen (lo que os comenté en los comentarios del Issue). Por otra parte la imagen es un poco tocha. XD
+% Antares - @Antonio : He cambiado la gráfica, echa un ojo a ver que te parece
 
 \begin{figure}[h!tb]
 \begin{center}
-\includegraphics[width=0.32\columnwidth]{imags/Comparative-log.eps}
-\includegraphics[width=0.32\columnwidth]{imags/Kruskal-Score.eps}
-\includegraphics[width=0.32\columnwidth]{imags/Kruskal-Generations.eps}
+
+\subfigure[]{\includegraphics[width=0.70\columnwidth]{imags/Comparative-log.eps} }
 \end{center} 
 \caption{Mean best individual score versus mean attained generations by each termination criteria.}
 \label{fig:comparative}
@@ -599,6 +606,15 @@ As it can be also seen in the figure all the criterion are well defined, since a
 \end{tabular}
 \end{table}
 
+
+% Antares - Añado las conclusiones primero en español:
+%El peor criterio de parada encontrado es el método \textit{[AO] Age of Outliers} basado en la edad de los individuos de la población, que es el método que consigue peores resultados en el score ofreciendo una convergencia prácticamente nula de las soluciones encontradas en la población al aumentar lo restrictivo del método. Esto puede ser un indicativo de que la antiguedad de los individuos no es representativo de la bondad de los individuos. Además, el test de Kruskal-Wallis, determinó que exite poca variación entre las muestras de las distintas variaciones del método.
+
+%Por otro lado, el mejor criterio encontrado respecto a la bondad de los individuos es el \textit{[FT] Fitness Threshold} basado en umbrales de fitness. Sin embargo, las dificultades para definir un umbral de fitness correcto en un problema de nuestra naturaleza hacen este método no recomendado, aunque si ideal si puede determinarse. Además, es el método que más generaciones requiere, con el riesgo de que la ejecución del algoritmo no llegue a terminar, al estancarse la población y no ser capaz de convergir al valor frontera.
+
+% El método basado en \textit{[FI] Fitness Improvement} es un método bastante rápido (en cuanto a generaciones), pero que no alcanza resultados muy buenos (en cuanto score). A pesar de que no pueda ser empleado como criterio de parada óptimo, su uso puede resultar interesante como apoyo al algoritmo como mecanismo de multiarranque del algoritmo o de cataclismo.
+
+%Por último, el método de \textit{[FT] Fitness Threshold} es el que ofrece unos resultados más consistentes en todas las métricas. Dado que se basa en la tasa de reemplazo de los individuos, en cierta manera está midiendo el constante crecimiento del fitness dado que los individuos nuevos tienen que tener mayor fitness para entrar en el pull de la nueva población, pero sin hacer uso del propio fitness (que sabemos que por su naturaleza ruidosa no es totalmente confiable). 
 
 
 %Antares - Blablabla correspondencia lineal entre los resultados de la batería de test de bondad y el score con un $R^2=0.9351$
