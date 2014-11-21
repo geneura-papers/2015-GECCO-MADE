@@ -53,7 +53,7 @@
 
 
 \begin{abstract}
-Generating fictional worlds for a 
+Generating fiction environments for a 
 % <RH>expongo el problema concreto ya que en esta misma frase hablamos de fitnes
 	multi-agent system optimized by means of genetic algorithms
 % </RH>
@@ -810,6 +810,16 @@ of the world size. % Con un mundo de tamagno 25, Aparecen 3 piezas de
 
 
 \section{Conclusions}
+
+When using an hybrid EC-ABM approach to generate massive backstories in fiction environments its impossible to know in advance the
+optimal value of a fitness that models the appearance of different archetypes
+together and the search space may be enormous, so a previous study of the most important parameters is prescribed.
+
+In this paper we define the problem addressed (in terms of goal, worlds, fitnesses, archetypes, backstories, agents, profiles, conflicts, places, time and sceneries) and a problem specification with the MADE framework. Our methodology selects key parameters (size of population of the GA, size of the world, number of profiles, source of conflicts and virtual days) that affect the conflicts generation and sets the values that are tested in the experiments. A battery of 29160 executions with all the possible parameter  combinations is launched and the results are studied using Kruskal-Wallis non-parametrical tests.
+
+The results show that there are significant differences between the five parameters in three sceneries with different combinations of the archetype \textit{villain}, \textit{hero} and \textit{avenger}. The best combination of parameters is the smallest map size (5x5), the bigger number of virtual days (256), the fewer rate of food (1/8 of the number of cells), the lower number os profiles (1) and the bigger population size of the GA (256). This is due to the fact that the three archetypes emerge when a the fights occur, and that happens more probably when the world is small and there is little food. Anyway, the backstories size increase with the virtual days of execution, thus it is easier to find archetypes when there are more.
+
+In future works, the influence of more parameters would be tested, while different sceneries are used with archetypes that not only rely in competitions for food, like the affinity or the family relationships. To improve the accuracy of the parameter selection, human guided evaluation could be performed. Finally, the results of the study could be applied to generate backstories in real game engines.
 
 \section*{Acknowledgements}
 
