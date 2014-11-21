@@ -92,17 +92,17 @@ These rules, when applied to the plot requisites, and thus, to the fitness funct
 
 \section{Introduction}
 
-In the very competitive cultural industry that includes videogaming, writers rack their minds in
+In the very competitive cultural industry (including videogame creation), writers rack their minds in
 order to generate interesting fictional worlds.
 % Antonio - no creo que la mayoría de autores se centren en idear
 % mundos para videojuegos (por desgracia). :D
 % Antonio, por favor, si escribes algo escríbelo bien. "including for
-% the" está mal escrito. Si no está seguro, sugiere cambios - JJ
+% the" está mal escrito. Si no está seguro, sugiere cambios - JJ FERGU: lo he cambiado yo a "(including videogame creation)" que era raro de leer
 In order to make the generation of these fictional worlds and the stories within them truly believable, efficient and massive, several automatic/autonomous methods have been proposed  \cite{garcia:anon,nairat2011character}. One of 
 % Antonio - He puesto la REF de Nairat. Comprobad que es la correcta. ;)
 them, called MADE 
-\cite{garcia:anon} finds ``interesting'' character stories by running
-% Antonio - creo que no hay una norma para usar comillas simples o dobles, pero lo que yo suelo ver es que si se habla de términos específicos se usan comillas simples y si es un texto (un string) se usan las dobles. Es sólo una propuesta. ;D
+\cite{garcia:anon} finds `interesting' character stories by running
+% Antonio - creo que no hay una norma para usar comillas simples o dobles, pero lo que yo suelo ver es que si se habla de términos específicos se usan comillas simples y si es un texto (un string) se usan las dobles. Es sólo una propuesta. ;D FERGU: acabo de ver que en británico se prefiere siempre la simple,lo cambio todo
 an evolutionary algorithm that optimizes a fitness function designed to better fit with the archetypes which the user desires they emerge in the world that he/she is designing.
 
 MADE works as follows: every individual in the evolutionary algorithm
@@ -183,17 +183,17 @@ In 1994, Turner created Minstrel \cite{turner2014creative}, a program which used
 % Antonio - Minstrel era un programa?
 case-based reasoning to generate stories about knights and ladies by replacing variables in existing stories and recombining them. It also used goals, in this case for the story and for every character. In 2008, Riedl and Leon
  used in \cite{riedl2008toward} the same idea, conceptualizing a vignette
-as a small story assumed as ``interesting'', thus they can compose complete stories when exposed sequentially.
+as a small story assumed as `interesting', thus they can compose complete stories when exposed sequentially.
 
 The technique applied in this paper can be understood as the evolution of
 these researches adapted to massive worlds, where coherence is provided by the use of an Agent-Based Model (ABM for further references).
-Instead of using ``vignettes'' to construct stories, our approach
-modifies the behaviour of the agents and finds ``archetypes'', i.e. behaviours and patterns universally accepted and present in the
+Instead of using `vignettes' to construct stories, our approach
+modifies the behaviour of the agents and finds `archetypes', i.e. behaviours and patterns universally accepted and present in the
 collective imaginary \cite{garry2005archetypes} that could be interpreted as
-generic ``vignettes''.
+generic `vignettes'.
 
 The idea of emerging plots from agents' (ABMs) interactions is not new:
-In 2007, Virtual storyteller \cite{swartjes2007emergent}, used agents that improvise using techniques from improvisational theatre, a plot guide and a narrator. Our technique uses the same approach but there is no plot guide agent. Instead, a Genetic Algorithm will guide the mood of the backstories created by finding ``archetypes''.
+In 2007, Virtual storyteller \cite{swartjes2007emergent}, used agents that improvise using techniques from improvisational theatre, a plot guide and a narrator. Our technique uses the same approach but there is no plot guide agent. Instead, a Genetic Algorithm will guide the mood of the backstories created by finding `archetypes'.
 % Antonio - desired archetypes?
 
 The search of a good plot can be addressed from the Evolutionary Computation (EC) point of view. To this aim in 2011, Nairat et al. proposed in \cite{nairat2011character} a generative drama approach
@@ -243,7 +243,7 @@ The influence of each constant and parameter is, a priori, impossible to predict
 
 Our methodology systematizes the study of key parameters in the massive generation of backstories with 
 EC-ABM approach
-% Rubén - OJO, desde ``in order'' he repetido frase del abstract y probablemente no deba hacerlo.
+% Rubén - OJO, desde `in order' he repetido frase del abstract y probablemente no deba hacerlo.
 % Si a alguien se le ocurre como cambar la frase u opina que deba quedar fuera, que actue
 in order to optimize the resources devoted to evolution and to have some
 guarantees that the final result will be close to the optimum.
@@ -279,8 +279,8 @@ This methodology  addresses to problems that present the following characteristi
 \subsection{Parameter effects}
 \label{subsec:params}
 
-As Morrell explains in \cite{morrell2006between}, ``Fiction has three main elements:
-plotting, character, and place or setting'', so, intuitively, these three elements can affect the backstories:
+As Morrell explains in \cite{morrell2006between}, `Fiction has three main elements:
+plotting, character, and place or setting', so, intuitively, these three elements can affect the backstories:
 
 In our problem, the agent is affected by its profile, that defines its behaviour.
 Our technique uses the GA to evolve the profile of the agent,
@@ -337,7 +337,7 @@ The total amount of executions should be at least 7290.
 %Initially, the fitness should be defined considering the desired behaviour
 %for the agents that populate the world, for example, aiming to reach given quantity of some archetypes. Thus,
 %In order to enable the generation of different
-%personalities, different number of ``profiles'' would be required. This concept,
+%personalities, different number of `profiles' would be required. This concept,
 %presented in \cite{garcia:anon}, describes the different sets of behavioural
 %parameters of the agents in the world (the number of different
 %FSMs). Therefore, a world with three profiles is composed by three different
@@ -363,11 +363,11 @@ period of 30 days and die at the age of 300 days, but those values can vary depe
 the profile (or set of parameter values that define the rat behaviour).
 The place where the conflicts appear is a square grid. A cell can only be occupied by one agent.
 Each agent can move and interact with other agents in a neighbourhood of 7x7 cells whose center is its position. 
-The time is instantiated as ``virtual days''.
+The time is instantiated as `virtual days'.
 The rats are driven to survive and to have offspring, thus
 % los personajes no tienen leitmotif. Lo tiene una trama. Va a haber
 % que quitar todos los leitmotif. Aparte de que se dice leitmotiv,
-% porque viene del alemán.
+% porque viene del alemán. FERGU: usaremos entonces el "source of conflict"
 the source of conflicts is the food: 
 agents attacks themselves to steal food before it is eaten by 
 other agents. Systematically, a number of food rations appears in random positions in the map every virtual day.
@@ -398,10 +398,10 @@ The function used by MADE is described as the following formula:
 %account the quantity of the desired archetypes. This fitness function
 %should enable the existence of diversity in the desired
 %archetypes: that is, it is better that the world has 25\% of
-%``villains'' and 25\% of ``heroes'' than 50\% of ``villains'' and no
-%``heroes''. Thus, we propose the following fitness function: 
+%`villains' and 25\% of `heroes' than 50\% of `villains' and no
+%`heroes'. Thus, we propose the following fitness function: 
 
-%TODO Una vez mas, no usais ninguna metodologi­a para hacer esto. Es un poco ``Se me ha ocurrido hacerlo asi­''. - JJ FERGU: como podemos hacerlo?
+%TODO Una vez mas, no usais ninguna metodologi­a para hacer esto. Es un poco `Se me ha ocurrido hacerlo asi­'. - JJ FERGU: como podemos hacerlo?
 % RUbén - espero que quede explicado con lo de arriba
 
 
@@ -420,21 +420,16 @@ appearance rate of the archetype $i$ in the world ($r_{i} \in \{ 0 , 1 \}$).
                                 % Rubén: OK, explicado arriba
 
 
-\subsection{Data analysis}
-
-%TODO 
-
-
 \subsection{Converting logs to stories}
 
 Once the best values of the parameters have been found, the system can be run
 inside a game context to generate a whole set of secondary characters.
-For the simple reason of using agents in a bottom-up approach for the world generation, MADE provides a social network with family relationships, but also other related to the disputes and to possible archetypes, i.e. in our study, a ``hero'' fights a ``villain'' or an ``avenger'' takes revenge on other character.
+For the simple reason of using agents in a bottom-up approach for the world generation, MADE provides a social network with family relationships, but also other related to the disputes and to possible archetypes, i.e. in our study, a `hero' fights a `villain' or an `avenger' takes revenge on other character.
 
 The storyteller will be able to tell a story about each character by accessing to its lifelog. The lifelog should have a pre-defined format understandable by the storyteller, with fields like the date, the action performed, the internal state, the direct object and the indirect object.
 Moreover, each agent should be tagged with the different archetypes it fulfils, the days that this archetype begins and ends, and the agents affected.
 
-With this information within reach, the storyteller can create a story about the character by narrating its birthday, its name, the name and story of its parents, siblings and children (also using this technique for describing them), what the agent is (as archetype: ``vilain'', ``hero'', ``avenger'') and why (dates, characters related and supposed motivations).
+With this information within reach, the storyteller can create a story about the character by narrating its birthday, its name, the name and story of its parents, siblings and children (also using this technique for describing them), what the agent is (as archetype: `vilain', `hero', `avenger') and why (dates, characters related and supposed motivations).
 
 % Rubén - pondré una referencia a la sección de resultados donde contaré en una líneas una historia de ejemplo generada en un mundo ejecutado con nuestros parámetros.
 
@@ -521,10 +516,11 @@ Parent pool size & Same as pool size \\ \hline
 Selection method & Binary tournament \\ \hline 
 Elite & 10\%  \\ \hline
 Replacement method & Generational\\ \hline
-Stop condition & 300 gens. or 30 gens. without improvement \\ \hline
+Re-evaluation of individuals & yes \\ \hline
+Stop condition & 30 genereations without improving the best individual found\\ \hline
 %Stop condition? - JJ FERGU: puesta 
 % Without improvemente in what? It's noisy fitness... no change in the
-% best individual? - JJ
+% best individual? - JJ FERGU: corregido (best individual "found") y puesto reevaluación en la tabla
 Runs per configuration & 30 \\ 
 Initial world population & 15 \\ \hline
 \end{tabular}
@@ -537,17 +533,17 @@ Initial world population & 15 \\ \hline
 For a more complete knowledge of the search space and the parameters effects, 
 three different sceneries will be studied:
 \begin{itemize}
-\item $S_1$: Maximization of the ``villain'' archetype.
-\item $S_2$: Maximization of the ``villain'' and the ``hero'' archetypes.
-\item $S_2$: Maximization of the ``villain'', the ``hero'' and the ``avenger'' archetypes.
+\item $S_1$: Maximization of the `villain' archetype.
+\item $S_2$: Maximization of the `villain' and the `hero' archetypes.
+\item $S_2$: Maximization of the `villain', the `hero' and the `avenger' archetypes.
 \end{itemize}
 
 
 %In this work, we propose three scenarios:
 %\begin{itemize}
-%\item Scenario A: The Villains. This scenario only requires one type of archetype: The ``villain''. This % don't leave me this way!!! FERGU: this has to be written by @raiben %(TODO @raiben)
-%\item Scenario B: The Hero. As in the classic stories, when a villain appears, a hero must rise. The ``hero'' archetype depend on the existence of a ``villain'' archetype. This %scenario tries to generate worlds formed by archetypes that depend of others.
-%\item Scenario C: The Shakespearian story. As many of the great stories of The Bard, this world requires the existence of different and interdependent archetypes: The ``hero'' %and ``villain'' are completed with the ``obstacle'' (QUE HACE QUE), the  ``mentor'' (QUE HACE QUE) and the ``avenger'' (this archetype does not depend on the others).
+%\item Scenario A: The Villains. This scenario only requires one type of archetype: The `villain'. This % don't leave me this way!!! FERGU: this has to be written by @raiben %(TODO @raiben)
+%\item Scenario B: The Hero. As in the classic stories, when a villain appears, a hero must rise. The `hero' archetype depend on the existence of a `villain' archetype. This %scenario tries to generate worlds formed by archetypes that depend of others.
+%\item Scenario C: The Shakespearian story. As many of the great stories of The Bard, this world requires the existence of different and interdependent archetypes: The `hero' %and `villain' are completed with the `obstacle' (QUE HACE QUE), the  `mentor' (QUE HACE QUE) and the `avenger' (this archetype does not depend on the others).
 %\end{itemize}
 % Antonio - Esto faltaría completarlo. ;D
 % Rubén - todo esto lo he reutilizado para explicarlo en methodology.
@@ -623,9 +619,9 @@ performed.  % por
                                 % favor, Podriais escribir esto EN
                                 % INGLES? - JJ FERGU: esto se ha extraido de un paper de ANOVA de hace tiempo, pero he quitado la ultima frase
 % podeis NO EXTRAER FRASES MAL ESCRITAS DE PAPERS DE HACE TIEMPO? - JJ
-The application of Kruskal-Wallis consisted in running an evolutionary
-algorithms using that combination of parameters to obtain the best
-fitness. % Queeeee? - JJ 
+%The application of Kruskal-Wallis consisted in running an evolutionary
+%algorithms using that combination of parameters to obtain the best
+%fitness. % Queeeee? - JJ 
 The response variable used to perform the statistical analysis is the
 fitness at the end of the run. The changes in the response variable
 are produced when a new combination of parameters is considered. Then,
@@ -639,7 +635,7 @@ confidence level (which indicates that different initial values of
 this parameter lead to significant differences on the fitness).
 
 We have obtained values lower than 0.05 for all parameters in all scenarios (generated p-values tables have been omitted due to space constraints). These results show that all the parameters considered have a significant
-impact in the generation of the agents behaviour. This confirm our hypothesis that the four elements that conform a story (time, characters, OBJECT and world) have a great repercussion in the generation of stories in the simulation environment. %TODO @raiben poner el concepto del OBJECT que vamos a usar
+impact in the generation of the agents behaviour. This confirm our hypothesis that the four elements that conform a story (time, characters, source of conflict and world) have a great repercussion in the generation of stories in the simulation environment.
 
 Since a significant p-value only tells  that the effects are not all
 equal (i.e., reject the null hypothesis), post-hoc tests might be used
@@ -654,7 +650,7 @@ difference with respect to use 2, 4 and 8), and GA population size
 can be explained because only one profile is necessary in these
 scenarios (as the hero and villain archetypes are based in attacking
 other rats, and therefore, can be shared by the same agent). Therefore, 
-the fitness function $F_1$ and $F_2$ only differs in counting the archetype of an ``attacking'' rat almost twice.  % Yo no
+the fitness function $F_1$ and $F_2$ only differs in counting the archetype of an `attacking' rat almost twice.  % Yo no
                                 % lo explicari­a en terminos de lo que
                                 % nosotros nos imaginamos, sino en
                                 % terminos del propio algoritmo y su
@@ -673,7 +669,7 @@ the fitness function $F_1$ and $F_2$ only differs in counting the archetype of a
                 \includegraphics[width=3.7cm]{imags/boxplotz2P.eps}
                 \label{fig:e2_p}
         }
-        \subfigure[\scriptsize{Scenario 3: Shakespearian}]{
+        \subfigure[\scriptsize{Scenario 3: Avenger}]{
                 \includegraphics[width=3.7cm]{imags/boxplotz5P.eps}
                 \label{fig:e3_p}
         }  
@@ -685,10 +681,10 @@ their differences (in Figures \ref{fig:boxplotsP} to \ref{fig:boxplotsS}). At fi
 values. This could have several possible explanations: First, the
 number of profiles has quite an impact in the results (Figure
 \ref{fig:boxplotsS}), as it was shown previously in
-\cite{garcia:anon}. Although no executions achieved the maximum number
-of generations (300), % Eso que significa? - JJ
- the length of the chromosome has an effect in the
- convergence. %FERGU: @raiben habra que hacer lo que dice JJ de
+\cite{garcia:anon}. %Although no executions achieved the maximum number
+%of generations (300), % Eso que significa? - JJ FERGU: fuera
+% the length of the chromosome has an effect in the
+% convergence. %FERGU: @raiben habra que hacer lo que dice JJ de
               %estudiar que eventos se esten produciendo. El problema
               %es que habr­a que lanzar todo otra vez... Pienso que
               %tampoco sera mala idea hacer un estudio respecto al
@@ -701,7 +697,7 @@ from finding a single finite state automaton whose behaviour
 eventually results in a world compatible with our search to finding
 two or more compatible with it and among themselves. This also happens
 independently of the situation and including complex ones, like the
-Shakespeare scenario, so for the time being we should conclude that a
+Avenger scenario, so for the time being we should conclude that a
 single profile, that is, having the description of a single FSM that
 describes the behavior of the agents in the world, is the best option for any scenario. 
 
@@ -715,15 +711,14 @@ describes the behavior of the agents in the world, is the best option for any sc
                 \includegraphics[width=3.7cm]{imags/boxplotz2D.eps}
                 \label{fig:e2_d}
         }
-        \subfigure[\scriptsize{Scenario 3: Shakespearian}]{
+        \subfigure[\scriptsize{Scenario 3: Avenger}]{
                 \includegraphics[width=3.7cm]{imags/boxplotz5D.eps}
                 \label{fig:e3_d}
         }  
-        \caption{Boxplots for parameter D (number of
-          days)}\label{fig:boxplotsD} % Ponedlo al reves: for the
+        \caption{Boxplots for the number of days (parameter D)}\label{fig:boxplotsD} % Ponedlo al reves: for the
                                 % number of days (parameter D). Lo
                                 % INTERESANTE es el nombre del
-                                % parametro, no el numero.
+                                % parametro, no el numero. FERGU: OK
 \end{figure}
 
 
@@ -737,11 +732,11 @@ describes the behavior of the agents in the world, is the best option for any sc
                 \includegraphics[width=3.7cm]{imags/boxplotz2W.eps}
                 \label{fig:e2_w}
         }
-        \subfigure[\scriptsize{Scenario 3: Shakespearian}]{
+        \subfigure[\scriptsize{Scenario 3: Avenger}]{
                 \includegraphics[width=3.7cm]{imags/boxplotz5W.eps}
                 \label{fig:e3_w}
         }  
-        \caption{Boxplots for parameter W (world size)}\label{fig:boxplotsW}
+        \caption{Boxplots for world size (parameter W)}\label{fig:boxplotsW}
 \end{figure}
 
 \begin{figure}
@@ -754,11 +749,11 @@ describes the behavior of the agents in the world, is the best option for any sc
                 \includegraphics[width=3.7cm]{imags/boxplotz2F.eps}
                 \label{fig:e2_f}
         }
-        \subfigure[\scriptsize{Scenario 3: Shakespearian}]{
+        \subfigure[\scriptsize{Scenario 3: Avenger}]{
                 \includegraphics[width=3.7cm]{imags/boxplotz5F.eps}
                 \label{fig:e3_f}
         }  
-        \caption{Boxplots for parameter F (Food amount)}\label{fig:boxplotsF}
+        \caption{Boxplots for food amount (parameter F)}\label{fig:boxplotsF}
 \end{figure}
 
 % Por que diablos deci­s parametro D y no lo que hace el parametro? Y
@@ -790,11 +785,11 @@ small size of 25 cells.
                 \includegraphics[width=3.7cm]{imags/boxplotz2S.eps}
                 \label{fig:e2_s}
         }
-        \subfigure[\scriptsize{Scenario 3: Shakespearian}]{
+        \subfigure[\scriptsize{Scenario 3: Avenger}]{
                 \includegraphics[width=3.7cm]{imags/boxplotz5S.eps}
                 \label{fig:e3_s}
         }  
-        \caption{Boxplots for parameter S (GA population size)}\label{fig:boxplotsS}
+        \caption{Boxplots for GA population size (parameter S)}\label{fig:boxplotsS}
 \end{figure}
 
 Finally, the amount of food (Figure \ref{fig:boxplotsF}), the
@@ -802,7 +797,7 @@ element that has an influence on the occurrence of the actions that
 count for the fitness, such as % @raiben dilo aqui­ - JJ
 , also need to be low enough so that conflict appear, in this case 1/8
 of the world size. % Con un mundo de tamagno 25, Aparecen 3 piezas de
-                   % comida? - JJ 
+                   % comida? - JJ FERGU: sí, pero se van generando cada día
 
 
 % which is interesting
@@ -815,8 +810,6 @@ of the world size. % Con un mundo de tamagno 25, Aparecen 3 piezas de
 
 
 \section{Conclusions}
-
-
 
 \section*{Acknowledgements}
 
