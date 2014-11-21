@@ -410,10 +410,6 @@ Maximum Tree Depth &  7 \\ \hline
 \end{center}
 \end{table}
 
-% Antonio - @Fergu, @Antares. Cuidao con los nombres de los parámetros. Ponle un nombre al número de individuos (a la variable o parámetro) y usa ese mismo nombre debajo, en el criterio de Tasa de Reemplazo, porque se ha puesto 'N', que es el número de batallas en la fórmula del Score. Yo pondría otra variable allí, BTW, por ejemplo 'NB'. Así no hay líos. ;D FERGU: Cierto, NB es mejor, puesto.
-
-
-
 % --------------------------------------------------------------
 
 \subsection{Termination Criteria}
@@ -431,6 +427,7 @@ The traditional set of stopping criteria are either based on stagnation, checkin
     \item \texttt{[AO] Age of Outliers}: if the age of one individual is an outlier in the comparison with the rest of the population then it would be potentially an optimal solution and the algorithm can be stopped. % why?
 The idea behind this criterion is that an individual surviving for several generations more than the rest of the population lead to be a very good player (much better than the rest), and thus, a potential optimal solution for the problem. The difference between the age of the outlier and the rest of the population is measured considering three factors: 1, 1.5, 2 and 2.5 times the interquartile range (IQR). %explain a bit. Does this mean that it will stop when it finds somebody that is two times as old as the average? - JJ
 % Antonio - @Antares, explica esto, que no me quedó claro lo de la IQR... :D
+% Vale, lo pongo primero en español y luego intento hacerlo en inglés. En este criterio de parada hemos empleado el concepto estadístico de frontera siperior para definir un umbral. Por definición, todo valor de la muestra que supere esa frontera está considerado un punto outsider. Para calcular dicha frontera se necesitan los cuartiles de la muestra Q1 y Q3, con los que se calcula el rango intercuartílico (IQR). El valor de la frontera superior se calcula como = Q3 + 1.5 + IQR . Sin embargo, el valor 1.5 puede ser ajustado a voluntad se denomina rango de la frontera. En nuestro caso, hemos empleado el valor estándar de 1.5 así como valores menos restrictivos (1.0) y más restrictivos (2.0 y 2.5).
 
     \item \texttt{[RT] Replacement Rate}: when using an elitist strategy in which individuals are replaced only if the offspring is better, the fact that the population stops generating better individuals might be a sign of stagnation. Four different rates have been tested, namely $\frac{n}{2}$ (50\%) , $\frac{n}{4}$(25\%), $\frac{n}{8}$(12.5\%), $\frac{n}{16}$(6.25\%) ... % but this has to be combined with a steady state approach or something. By itself, it does not mean a thing. Please explain - JJ
 % Antonio - en la descripción del algoritmo se habrá dicho que va a ser generacional (hecho), ya que en un estacionario la tasa de reemplazo estaría mucho más acotada. ;)
@@ -438,7 +435,9 @@ The idea behind this criterion is that an individual surviving for several gener
 % Antonio - efectivamente, he intentado contarlo mejor debajo. En todo caso hay que aclararlo en la descripción del algoritmo. - TODO -
 % Aquí había que haber hecho una aclaración o referencia al mismo. Ya lo he aclarado - JJ
    The values are based in the maximum number of replacements per generation. Our model defines a maximum of $n = N/2$ individuals to be potentially substituted by the offspring. Thus, the parameter values aim to test half of this probability, and half of the previous values, respectively.
+% Antares - @Antonio eso era antes, la idea es que N es siempre el tamaño de la población, y en este caso, n el valor máxmo de reemplazamiento.
 % Antonio - @Antares, cuidao con la variable 'N', que es el número de batallas en la función Score... ahora está bien.
+
 
     \item \texttt{[FT] Fitness Threshold}: a maximum value to obtain in the evolution could be set considering the top limit of the score function, 45. However, that value is a limit and never reachable unless the bot wins all the matches in just one turn (when the rival code makes a critical error and cannot be run). This, along with the toughness of ExpGenebot, makes the real fitness limit close to 40 instead. Thus, five thresholds have been defined taking this maximum value ($MAX_{SC}$) as a reference, namely: 20 (as half the maximum: $MAX_{SC}/2$), 30 (as half the maximum score plus half this value: $MAX_{SC}/2 + MAX_{SC}/4$), and the division in four parts of the interval these values compose: 22, 24, 26 and 28.
 
@@ -447,6 +446,7 @@ The justification of these values to check is related with the noisy nature of t
 % Antares - ¿Esto no lo habías cambiado tú? ya no son estos :(
 % Antonio - el que comenta es @JJ, no yo. :P
 %           Ya lo he cambiado, intentando justificar esto, pero weno, es un poco chungo...
+% Antares - Ya el problema ha sido que los valores ``chulos'' no arrojasen resultados. De todos modos, es lo que te comenté una distribución uniforme desde la ``mitad'' del fitness hasta el valor máximo.
 In general, setting a fixed value that is a certain distance away to a known (and maybe unreachable) optimum is a compromise solution, since it is not known in advance whether this lower level will be even reached and, if it is, what would be the effort needed to go beyond that and whether a better solution (even including noise) could be found with a higher value. 
 % En este caso, ¿no se tiene en cuenta el ruido? - JJ
 % Antares - Sí se contempla el ruido, ya que se siguen haciendo re-evaluaciones. 
@@ -457,6 +457,7 @@ These values have been set after a dedicated systematic experimentation phase, t
 % Antonio - aclarado. Es la más difícil de justificar. 
 % JJ - yo probaría más valores. En todo caso, el fitness variará cada generación si se vuelve a ejecutar, ¿no? 
 % Antonio - Claro, el fitness cambia, pero se considera el fitness mejor global en cada generación, no el del individuo que se considerame el mejor. Lo he aclarado en el texto.
+% Antares - si pero el ``fitness'' máximo de la población alcanzado hasta el momento no cambia, que es con el que se realiza la comparación.
 \end{itemize}
 
 The first stop criterion is based in an algorithmic parameter, so the algorithm stops when this parameter reaches a value. For this criterion, the population status does not matter. The rest of criteria are population-based ones, i.e. they consider some of its features to test if the algorithm must stop. The feature of the population leads the stop criteria and so leads the end of the algorithm. 
@@ -477,9 +478,16 @@ Thus, in every execution all the criteria are checked in every generation and, w
 
 Once all the runs have finished, we compute the average number of generations and the average score obtained for the same criterion in different runs. There could happen that one criterion is never met in a run, then this will not be considered in the computation of that value.
 
+This is an issue due to the toughness of the rival and the presence of noise ***
+
+
+
+% Antonio - Antares - La Figura 1 está mal. Los boxplots no se corresponden con los títulos y la leyenda del eje X. ;)
+% Antares - @Antonio: No sé que ha pasado que se han machacado los antiguos, seguramente sea culpa mía. Arrelado.
+
 Figure \ref{fig:boxplotscore} shows the scores obtained by the best individuals yielded for every stop criterion.
 
-\begin{figure}
+\begin{figure}[h!tb]
 \begin{center}
 \includegraphics[width=\columnwidth]{imags/Boxplot_SC-Score-log.eps}
 \end{center} 
@@ -494,8 +502,8 @@ As it can be also seen in the figure all the criterion are well defined, since a
 
 
 % Antonio - @Antares - La Figura 2 está mal. Los boxplots no se corresponden con los títulos y la leyenda del eje X. ;)
-
-\begin{figure}
+% Antares - @Antonio: No sé que ha pasado que se han machacado los antiguos, seguramente sea culpa mía. Arrelado.
+\begin{figure}[h!tb]
 \begin{center}
 \includegraphics[width=\columnwidth]{imags/Boxplot_SC-Generations-log.eps}
 \end{center} 
@@ -505,7 +513,7 @@ As it can be also seen in the figure all the criterion are well defined, since a
 
 % Antonio - @Antares - La Figura 3 se podría mejorar: Me gustaba más sin la escala logarítmica, se veían más claras las diferencias. Los textos se ven mejor al no solaparse, pero por contra los puntos (que son lo más importante) son difíciles de ver, con lo que queda menos claro qué método es mejro y por cuánto. También es difícil apreciar las oscilaciones que se producen (lo que os comenté en los comentarios del Issue). Por otra parte la imagen es un poco tocha. XD
 
-\begin{figure}
+\begin{figure}[h!tb]
 \begin{center}
 \includegraphics[width=\columnwidth]{imags/Comparative-log.eps}
 \end{center} 
@@ -514,7 +522,8 @@ As it can be also seen in the figure all the criterion are well defined, since a
 \end{figure}
 
 
-% Antonio - @Antares - Pregunta general. ¿por qué los valores en las gráficas llevan un decimal '.0' si son enteros? ¿No estarían mejor sin él? ¿No quedaría más claro al haber menos texto? :D
+% Antonio - Antares - Pregunta general. ¿por qué los valores en las gráficas llevan un decimal '.0' si son enteros? ¿No estarían mejor sin él? ¿No quedaría más claro al haber menos texto? :D
+% Antares: @Antonio, por seguir una nomenclatura común, pero si quieres podría intentar cambiarlo, pero me iba a llevar tiempo.
 
 % \begin{figure}
 % \begin{center}
@@ -544,6 +553,56 @@ As it can be also seen in the figure all the criterion are well defined, since a
 % No se usa ningún mecanismo para ``paliar'' el ruido. Sí se intenta trabajar con él.
 % Antares - ¿Se podría comentar también que alguno de los criterios de parada podría ser empleado para algún mecanismo diferente del algoritmo, como un
 % ``cataclismo'' o una variación de los pesos o algo así? 
+
+\begin{figure}[h!tb]
+\begin{center}
+\includegraphics[width=\columnwidth]{imags/victories.eps}
+\end{center} 
+\caption{Victories versus... TODO } %Antares - TODO: Ahora lo completo
+\label{fig:vctories}
+\end{figure}
+
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{|r|r|r|r|r|r}
+  \hline
+ LABEL & AVG. GEN & AVG. SCORE & COMPLETION RATE & VICTORIES IN TEST \\ 
+  \hline
+NG\_030.0 & 30.00 & 16.31 & 100.00\% & 45.92\% \\ 
+NG\_050.0 & 50.00 & 17.80 & 100.00\% & 52.72\% \\ 
+NG\_100.0 & 100.00 & 19.21 & 100.00\% & 57.25\% \\ 
+NG\_200.0 & 200.00 & 20.25 & 100.00\% & 58.39\% \\ 
+AO\_1.0 & 8.83 & 13.46 & 100.00\% & 35.89\% \\ 
+AO\_1.5 & 10.33 & 14.07 & 100.00\% & 34.83\% \\ 
+AO\_2.0 & 14.61 & 14.93 & 100.00\% & 38.08\% \\ 
+AO\_2.5 & 17.17 & 15.30 & 100.00\% & 39.92\% \\
+RT\_n/02 & 2.00 & 10.20 & 100.00\% & 20.58\% \\ 
+RT\_n/04 & 5.47 & 12.21 & 100.00\% & 28.17\% \\ 
+RT\_n/08 & 78.64 & 18.16 & 100.00\% & 50.94\% \\ 
+RT\_n/16 & 248.21 & 21.34 & 66.67\% & 62.92\% \\
+FT\_20.0 & 55.08 & 20.62 & 100.00\% & 54.22\% \\ 
+FT\_22.0 & 127.56 & 22.65 & 100.00\% & 58.25\% \\ 
+FT\_24.0 & 276.71 & 24.39 & 77.78\% & 63.39\% \\ 
+FT\_26.0 & 378.88 & 26.45 & 22.22\% & 74.75\% \\ 
+FI\_03.0 & 10.31 & 13.34 & 100.00\% & 30.00\% \\ 
+FI\_07.0 & 24.56 & 15.54 & 100.00\% & 41.39\% \\ 
+FI\_10.0 & 35.47 & 16.50 & 100.00\% & 47.94\% \\ 
+FI\_15.0 & 52.22 & 17.56 & 100.00\% & 53.00\% \\ 
+   \hline
+\end{tabular}
+\end{table}
+
+%Antares - Blablabla correspondencia lineal entre los resultados de la batería de test de bondad y el score con un $R^2=0.9351$
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=0.45\columnwidth]{imags/Kruskal-Score.eps}
+\includegraphics[width=0.45\columnwidth]{imags/Kruskal-Generations.eps}
+\end{center} 
+\caption{Kruskal-Wallis Test... TODO } %Antares - TODO: Ahora lo completo
+\label{fig:vctories}
+\end{figure}
 
 \section*{Acknowledgements}
 
