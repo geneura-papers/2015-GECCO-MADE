@@ -54,20 +54,15 @@
 
 \begin{abstract}
 Generating fictional worlds for a 
-% <RH>expongo el problema concreto ya que en esta misma frase hablamos de fitnes
-	multi-agent system optimized by means of genetic algorithms
-% </RH>
+multi-agent system optimized by genetic algorithms
 (with some specific requirements
-%<RH>
-	related to the desirable plots),
-%</RH>
-presents two main problems: first it is impossible to know in advance the optimal value for the particular designed fitness function, and at the same time, it creates a vast search space for the (evolutionary) 
- % TODO: <RH> Y no solo evolutionary, pero se si liar mas el abstract</RH>
+related to the desirable plots),
+presents two main problems: first it is impossible to know in advance the optimal value for the particular designed fitness function, and at the same time, it creates a vast search space for the  
 parameters that it
-needs. The purpose of this paper is to define a methodology for finding the
-best parameter values for both, the evolutionary algorithm, and the own fictional world configuration ones.
-% TODO: <RH>Y no solo evolutionary, pero se si liar mas el abstract</RH>
-This evolutionary design includes running, to completion, a world simulation represented as a chromosome, and assigning a fitness to it, thus composing a very complex fitness landscape.
+needs. The purpose of this paper is to define a methodology to find the
+best parameter values for both, the evolutionary algorithm, and the own fictional world configuration.
+
+This design includes running, to completion, a world simulation represented as a chromosome, and assigning a fitness to it, thus composing a very complex fitness landscape.
 
 % <RH> reescribo esta oracion
 	%That is why, in order to
@@ -77,10 +72,10 @@ This evolutionary design includes running, to completion, a world simulation rep
 	%rules that will, once you have the fitness function, help you set a
 	%reduced range of values or even a single value that will, with a
 	%reduced computation budget, help you find an optimal world.
-In order to optimize the resources devoted to evolution and to have some
+In order to optimize the resources allocated to evolution and to have some
 guarantees that the final result will be close to the optimum, we systematically
 analyse a set of possible values of the most relevant parameters, obtaining a set of generic rules. 
-%FERGU: analyse es británico y el Evostar es europeo
+
 % Antonio - ¿a qué te refieres por regla?¿qué tipo de reglas?
 % Rubén - a reglas que debe seguir un autor para que que el entorno ofrezca los mejores resultados para él o
 % las reglas que debe tener en cuenta quien diseñe una solución similar. No se si queda claro tal y como está explicado.
@@ -103,27 +98,23 @@ In order to make the generation of these fictional worlds and the stories within
 them, called MADE 
 \cite{garcia:anon} finds `interesting' character stories by running
 % Antonio - creo que no hay una norma para usar comillas simples o dobles, pero lo que yo suelo ver es que si se habla de términos específicos se usan comillas simples y si es un texto (un string) se usan las dobles. Es sólo una propuesta. ;D FERGU: acabo de ver que en británico se prefiere siempre la simple,lo cambio todo
-an evolutionary algorithm that optimizes a fitness function designed to better fit with the archetypes which the user desires they emerge in the world that he/she is designing.
+an evolutionary algorithm that optimizes a virtual world using a fitness function designed to better fit with the archetypes which the user desires they emerge in the world that he/she is designing. %FERGU: nunca decir "optimizar una función fitness", las funciones fitness no se optimizan, se optimiza la solución al problema (usando la función fitness)
 
 MADE works as follows: every individual in the evolutionary algorithm
-is described by a chromosome that represents one (or several kinds of)
-finite state machine (FSM)\cite{FSM_Booth} that are set to `live' (interact) in a simulated environment. The evolutionary algorithm was run with a standard
-parameter configuration, meanwhile {\em sensible} non-evolutionary parameters were assigned default values. The latter are variables such as the number of profiles needed to obtain the desired result, or the size of the simulated
-world. There was no attempt to optimize these parameters, since the
+is described by a chromosome that represents the parameters of one (or several kinds of)
+finite state machine (FSM)\cite{FSM_Booth} that is set to `live' (interact) in a simulated environment. In \cite{garcia:anon} the evolutionary algorithm was run with a standard
+parameter configuration, meanwhile {\em sensible} non-evolutionary parameters (such as the size of the world or amount of food) were set as default values. There was no attempt to optimize these parameters, since the
 main intention seemed to be to have a prototype that allowed the
 authors to have an acid test of their proposed approach.
 
 That paper hinted at the fact that parameters such as the number of
-{\em profiles} (different types of finite state automaton present in
+{\em profiles} (different types of finite state automata present in
 the world) had a big influence on the outcome, to the point of making
-it possible or not. However, other parameters such as the number of
-simulated days the world is running might also have influence, but the authors did not conclude to which level.
+it possible or not. However, other parameters, such as the number of
+simulated days the world is running, might also have influence, but the authors did not conclude to which level.
 
-In this paper we will use that open source simulator 
-% Antonio - poner el enlace. Se supone que no es 'nuestro'. Vamos, que
-% no afecta al blind process. ;)
-\footnote{Which can be downloaded from Github at (hidden URL)}
-%hecho - JJ
+In this paper we will use the MADE open source simulator 
+\footnote{Which can be downloaded from Github at (hidden URL) under a GNU/GPL V3 License}
  and look at it from the evolutionary point of view so that we can check what kind of influence the configuration variables have in the outcome. We will do an experimental setup that will test different parameters (evolutionary and non-evolutionary), and eventually find a series of rules that will help the users of that framework to set the best values for their simulation (depending on their requirements or constraints).
 
 % Antonio - Le falta chicha a la intro. Propongo describir un poco mejor el proceso que se va a seguir para estudiar los parámetros y su influencia, así como para crear esas reglas.
@@ -147,7 +138,7 @@ present the conclusions reached in this paper.
 According to the taxonomy described by Togelius et al. \cite{togelius2011search}
 the problem of massively generating backstories for non-player
 characters (NPCs) can be considered \textit{Procedural content
-  generation (PCG)}, since it implies the generation of oa part of
+  generation (PCG)}, since it implies the generation of a part of
 the game world, namely, the characters and their relations. However,
 we have used a \textit{offline} and \textit{search-based}, since it is
 done in the phase of game design and using evolutionary algorithms, a
