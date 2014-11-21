@@ -23,8 +23,10 @@
 \usepackage{graphicx}
 \usepackage{multirow}
 \usepackage{rotating}
-\usepackage{subfigure} 
+\usepackage{subfigure}
+%\usepackage{subfig}
 \usepackage{url}
+
 \newcommand{\keywords}[1]{\par\addvspace\baselineskip
 \noindent\keywordname\enspace\ignorespaces#1}
 
@@ -482,11 +484,6 @@ The experiments conducted have involved 30 runs, each of them configured includi
 Thus, in every execution all the criteria are checked in every generation and, whenever one termination condition is met, the best individual to that moment (according to its score) is stored as the optimal solution for that criterion, because if that were the unique stop criterion, the algorithm would end.
 Once all the runs have finished or the extra termination happen, we compute the average number of generations and the average score obtained for the same criterion in all different runs. There could happen that one criterion is never met in a run, then this will not be considered in the computation of that value but it decreases the completion rate of the criterion. 
 
-% Antonio - Antares - La Figura 1 está mal. Los boxplots no se corresponden con los títulos y la leyenda del eje X. ;)
-% Antares - @Antonio: No sé que ha pasado que se han machacado los antiguos, seguramente sea culpa mía. Arrelado.
-
-Figure \ref{fig:boxplotscore} shows the scores obtained by the best individuals yielded for every stop criterion and what stop criterion are statistically different from each, using a Kruskal-Wallis test, cause the shapiro test yielded that the samples are not a normal distribution.. 
-
 \begin{figure}
 \begin{center}
 \includegraphics[width=0.74\columnwidth]{imags/Boxplot_SC-Score-log.eps}
@@ -496,58 +493,60 @@ Figure \ref{fig:boxplotscore} shows the scores obtained by the best individuals 
 \label{fig:boxplotscore}
 \end{figure}
 
-The first detail to notice is the non-presence of some of the commented stop values for the \textit{Fitness Threshold} criterion, namely 28 and 30, because the have not been reached in any of the runs.
-This is a problem derived from using a tough rival as ExpGenebot. Thus, the maximum fitness/score obtained during the evolution is very limited, since it is very difficult that one bot could win against 30 specialised bots \cite{Wolpert97nofree} (requirement for obtaining at least a score of 30). This is more evident if we take into account that the bots being evolved do not include any adaptive component that analyses the map, as ExpGenebot does. 
-
-As it can be also seen in the figure all the criterion are well defined, since all the scores grow in every criterion block, so as more restrictive the criterion is, the higher the obtained score is. The score function is working well, even with the presence of noise, as the wide of the boxplots (score dispersion) demonstrates when the criteria become more restrictive (they are met with a lower probability). This is true in all the cases except in the \textit{Age of Outliers} which is so far the criterion with the worse results, as it will be proved in further analyses.
-
-Figure \ref{fig:boxplotgenerations} shows the generations needed by each termination criterion and the Kruskal-Wallis test, like in the score measure.
-
-% Antonio - @Antares - La Figura 2 está mal. Los boxplots no se corresponden con los títulos y la leyenda del eje X. ;)
-% Antares - @Antonio: No sé que ha pasado que se han machacado los antiguos, seguramente sea culpa mía. Arrelado.
 \begin{figure}[h!tb]
 \begin{center}
 \includegraphics[width=0.74\columnwidth]{imags/Boxplot_SC-Generations-log.eps}
 \includegraphics[width=0.25\columnwidth]{imags/Kruskal-Generations.eps}
 \end{center} 
-\caption{Generation attained (of all runs), grouped by criterion and Kruskal-Wallis test of samples of each stop criterion by generations (black means no statistical difference)}
+\caption{Generation attained (of all runs), grouped by criterion and Kruskal-Wallis test of samples of each stop criterion by generations (black means no statistical difference).}
 \label{fig:boxplotgenerations}
 \end{figure}
 
+Figure \ref{fig:boxplotscore} shows the scores obtained by the best individuals yielded for every stop criterion and what stop criterion are statistically different from each, using a Kruskal-Wallis test, cause the shapiro test yielded that the samples are not a normal distribution.. 
 
+The first detail to notice is the non-presence of some of the commented stop values for the \textit{Fitness Threshold} criterion, namely 28 and 30, because the have not been reached in any of the runs.
+This is a problem derived from using a tough rival as ExpGenebot. Thus, the maximum fitness/score obtained during the evolution is very limited, since it is very difficult that one bot could win against 30 specialised bots \cite{Wolpert97nofree} (requirement for obtaining at least a score of 30). This is more evident if we take into account that the bots being evolved do not include any adaptive component that analyses the map, as ExpGenebot does. 
 
-% Antonio - @Antares - La Figura 3 se podría mejorar: Me gustaba más sin la escala logarítmica, se veían más claras las diferencias. Los textos se ven mejor al no solaparse, pero por contra los puntos (que son lo más importante) son difíciles de ver, con lo que queda menos claro qué método es mejro y por cuánto. También es difícil apreciar las oscilaciones que se producen (lo que os comenté en los comentarios del Issue). Por otra parte la imagen es un poco tocha. XD
-% Antares - @Antonio : He cambiado la gráfica, echa un ojo a ver que te parece
+As it can be also seen in the figure all the criterion are well defined, since all the scores grow in every criterion block, so as more restrictive  the criterion is (they are met with a lower probability), the higher the obtained score is. The score function is working well, even with the presence of noise, as the wide of the boxplots (score dispersion) demonstrates when the criteria become more restrictive. This is true in all the cases except in the \textit{Age of Outliers} which is so far the criterion with the worse results, as it will be proved in further analyses.
+
+Figure \ref{fig:boxplotgenerations} shows the generations needed by each termination criterion and the Kruskal-Wallis test, like in the score measure.
 
 \begin{figure}[h!tb]
 \begin{center}
-
-\subfigure[]{\includegraphics[width=0.70\columnwidth]{imags/Comparative-log.eps} }
+\includegraphics[width=0.75\columnwidth]{imags/victories.eps}
+\includegraphics[width=0.24\columnwidth]{imags/score-victories.eps}
 \end{center} 
-\caption{Mean best individual score versus mean attained generations by each termination criteria.}
-\label{fig:comparative}
+\caption{Victories in benchmark versus severals opponents in severals maps (training and not training) and linear regression of the Score (fitness) with the result of the benchmark (Victories), with a $R^2=0.9351$ } %Antares - TODO: Ahora lo completo
+\label{fig:victories}
 \end{figure}
+
+In addition to the score, an benchmark ($\in[0,1]$) based in battles versus several bots common in the bibliography and maps (training and not training) it's passed to the best population of each criterion for all execution. The result of these benchmark it's displays in Fig \ref{fig:victories}. For be sure of the goodness of the score function it's compare to the benchmark result's getting an excellent result.
+
+
+Finally the two principal measures are compare in Figure \ref{subfig:comparative} and all the measures are presented in the Table \ref{fig:table}
+
+\begin{figure}[h!tb]
+\begin{minipage}[b]{.48\columnwidth}
+\includegraphics[width=1\columnwidth]{imags/Comparative-log.eps}
+\caption{Average best individual score and average attained generations by each termination criteria.}
+\label{subfig:comparative}
+\vfill
+\end{minipage}
+\hfill
+\begin{minipage}[b]{.40\columnwidth}
+\includegraphics[width=1\columnwidth]{imags/tabla.eps}
+
+\caption{Comparative of each criterion with tree measure: (G) Number of generations, (S) Score, (R) Completion rate in experiments and (V) Victories versus several bots in several maps. Relative measure by \textit{NG\_30.0}.}
+\label{fig:table}
+\end{minipage}
+\end{figure}
+
 
 
 % Antonio - Antares - Pregunta general. ¿por qué los valores en las gráficas llevan un decimal '.0' si son enteros? ¿No estarían mejor sin él? ¿No quedaría más claro al haber menos texto? :D
 % Antares: @Antonio, por seguir una nomenclatura común, pero si quieres podría intentar cambiarlo, pero me iba a llevar tiempo.
 
-% \begin{figure}
-% \begin{center}
-% \includegraphics[scale=0.4]{imags/ScoreBest-Evolution.eps}
-% \end{center} 
-% \caption{Evolution of the fitness of the best individual during time.}
-% \label{fig:scorebestevolution}
-% \end{figure}
 
-% \begin{figure}
-% \begin{center}
-% \includegraphics[scale=0.4]{imags/ScorePopulation-Evolution.eps}
-% \end{center} 
-% \caption{Evolution of the average fitness of the population during time.}
-% \label{fig:scorepopulationevolution}
-% \end{figure}
-%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CONCLUSIONS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 \section{Conclusions}
@@ -560,52 +559,6 @@ Figure \ref{fig:boxplotgenerations} shows the generations needed by each termina
 % No se usa ningún mecanismo para ``paliar'' el ruido. Sí se intenta trabajar con él.
 % Antares - ¿Se podría comentar también que alguno de los criterios de parada podría ser empleado para algún mecanismo diferente del algoritmo, como un
 % ``cataclismo'' o una variación de los pesos o algo así? 
-
-\begin{figure}[h!tb]
-\begin{center}
-\includegraphics[width=\columnwidth]{imags/victories.eps}
-\end{center} 
-\caption{Victories versus... TODO } %Antares - TODO: Ahora lo completo
-\label{fig:vctories}
-\end{figure}
-
-\begin{table}[ht]
-\centering %
-\begin{tabular}{cccccccc}
-\hline 
-\multirow{2}{*}{{\tiny{SC }}} & {\tiny{AVERAGE}} & {\tiny{AVERAGE}} & {\tiny{COMPLETION}} &  & {\tiny{INDEX}} & {\tiny{INDEX}} & {\tiny{INDEX}}\tabularnewline
- & {\tiny{GENERATIONS }} & {\tiny{AVG. SCORE }} & {\tiny{RATE}} & {\tiny{VICTORIES (\%)}} & {\tiny{GENERATIONS }} & {\tiny{SCORE}} & {\tiny{VICTORIES}}\tabularnewline
-\hline 
-{\tiny{NG\_030.0 }} & {\tiny{30.00 }} & {\tiny{16.31 }} & {\tiny{100\%}} & {\tiny{45.92 }} & {\tiny{1.00 }} & {\tiny{1.00 }} & {\tiny{1.00 }}\tabularnewline
-{\tiny{NG\_050.0 }} & {\tiny{50.00 }} & {\tiny{17.80 }} & {\tiny{100\%}} & {\tiny{52.72 }} & {\tiny{1.70 }} & {\tiny{1.09 }} & {\tiny{1.15 }}\tabularnewline
-{\tiny{NG\_100.0 }} & {\tiny{100.00 }} & {\tiny{19.21 }} & {\tiny{100\%}} & {\tiny{57.25 }} & {\tiny{3.37 }} & {\tiny{1.18 }} & {\tiny{1.25 }}\tabularnewline
-{\tiny{NG\_200.0 }} & {\tiny{200.00 }} & {\tiny{20.25 }} & {\tiny{100\%}} & {\tiny{58.39 }} & {\tiny{6.70 }} & {\tiny{1.24 }} & {\tiny{1.27 }}\tabularnewline
-\hline 
-{\tiny{AO\_1.0 }} & {\tiny{8.83 }} & {\tiny{13.46 }} & {\tiny{100\% }} & {\tiny{35.89 }} & {\tiny{0.29 }} & {\tiny{0.83 }} & {\tiny{0.78 }}\tabularnewline
-{\tiny{AO\_1.5 }} & {\tiny{10.33 }} & {\tiny{14.07 }} & {\tiny{100\%}} & {\tiny{34.83 }} & {\tiny{0.34 }} & {\tiny{0.86 }} & {\tiny{0.76 }}\tabularnewline
-{\tiny{AO\_2.0 }} & {\tiny{14.61 }} & {\tiny{14.93 }} & {\tiny{100\%}} & {\tiny{38.08 }} & {\tiny{0.49 }} & {\tiny{0.92 }} & {\tiny{0.83 }}\tabularnewline
-{\tiny{AO\_2.5 }} & {\tiny{17.17 }} & {\tiny{15.30 }} & {\tiny{100\%}} & {\tiny{39.92 }} & {\tiny{0.57 }} & {\tiny{0.94 }} & {\tiny{0.87 }}\tabularnewline
-\hline 
-{\tiny{RT\_n/02 }} & {\tiny{2.00 }} & {\tiny{10.20 }} & {\tiny{100\%}} & {\tiny{20.58 }} & {\tiny{0.07 }} & {\tiny{0.63 }} & {\tiny{0.45 }}\tabularnewline
-{\tiny{RT\_n/04 }} & {\tiny{5.47 }} & {\tiny{12.21 }} & {\tiny{100\%}} & {\tiny{28.17 }} & {\tiny{0.18 }} & {\tiny{0.75 }} & {\tiny{0.61 }}\tabularnewline
-{\tiny{RT\_n/08 }} & {\tiny{78.64 }} & {\tiny{18.16 }} & {\tiny{100\%}} & {\tiny{50.94 }} & {\tiny{2.62 }} & {\tiny{1.11 }} & {\tiny{1.11 }}\tabularnewline
-{\tiny{RT\_n/16 }} & {\tiny{248.21 }} & {\tiny{21.34 }} & {\tiny{66.66\%}} & {\tiny{62.92 }} & {\tiny{8.27 }} & {\tiny{1.31 }} & {\tiny{1.37 }}\tabularnewline
-\hline 
-{\tiny{FT\_20.0 }} & {\tiny{55.08 }} & {\tiny{20.62 }} & {\tiny{100\%}} & {\tiny{54.22 }} & {\tiny{1.84 }} & {\tiny{1.26 }} & {\tiny{1.18 }}\tabularnewline
-{\tiny{FT\_22.0 }} & {\tiny{127.56 }} & {\tiny{22.65 }} & {\tiny{100\%}} & {\tiny{58.25 }} & {\tiny{4.25 }} & {\tiny{1.39 }} & {\tiny{1.27 }}\tabularnewline
-{\tiny{FT\_24.0 }} & {\tiny{276.71 }} & {\tiny{24.39 }} & {\tiny{77.77\%}} & {\tiny{63.39 }} & {\tiny{9.22 }} & {\tiny{1.50 }} & {\tiny{1.38 }}\tabularnewline
-{\tiny{FT\_26.0 }} & {\tiny{378.88 }} & {\tiny{26.45 }} & {\tiny{22.22\% }} & {\tiny{74.75 }} & {\tiny{12.63 }} & {\tiny{1.62 }} & {\tiny{1.63 }}\tabularnewline
-\hline 
-{\tiny{FI\_03.0 }} & {\tiny{10.31 }} & {\tiny{13.34 }} & {\tiny{100\%}} & {\tiny{30.00 }} & {\tiny{0.34 }} & {\tiny{0.82 }} & {\tiny{0.65 }}\tabularnewline
-{\tiny{FI\_07.0 }} & {\tiny{24.56 }} & {\tiny{15.54 }} & {\tiny{100\%}} & {\tiny{41.39 }} & {\tiny{0.82 }} & {\tiny{0.95 }} & {\tiny{0.90 }}\tabularnewline
-{\tiny{FI\_10.0 }} & {\tiny{35.47 }} & {\tiny{16.50 }} & {\tiny{100\%}} & {\tiny{47.94 }} & {\tiny{1.18 }} & {\tiny{1.01 }} & {\tiny{1.04 }}\tabularnewline
-{\tiny{FI\_15.0 }} & {\tiny{52.22 }} & {\tiny{17.56 }} & {\tiny{100\%}} & {\tiny{53.00 }} & {\tiny{1.74 }} & {\tiny{1.08 }} & {\tiny{1.15 }}\tabularnewline
-
-
-\hline 
-\end{tabular}
-\end{table}
-
 
 % Antares - Añado las conclusiones primero en español:
 %El peor criterio de parada encontrado es el método \textit{[AO] Age of Outliers} basado en la edad de los individuos de la población, que es el método que consigue peores resultados en el score ofreciendo una convergencia prácticamente nula de las soluciones encontradas en la población al aumentar lo restrictivo del método. Esto puede ser un indicativo de que la antiguedad de los individuos no es representativo de la bondad de los individuos. Además, el test de Kruskal-Wallis, determinó que exite poca variación entre las muestras de las distintas variaciones del método.
