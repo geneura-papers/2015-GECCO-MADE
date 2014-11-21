@@ -21,10 +21,14 @@
 \usepackage{amsmath}
 \setcounter{tocdepth}{3}
 \usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{rotating}
 
 \usepackage{url}
 \newcommand{\keywords}[1]{\par\addvspace\baselineskip
 \noindent\keywordname\enspace\ignorespaces#1}
+
+\providecommand{\tabularnewline}{\\}
 
 \begin{document}
 
@@ -509,7 +513,9 @@ As it can be also seen in the figure all the criterion are well defined, since a
 
 \begin{figure}[h!tb]
 \begin{center}
-\includegraphics[width=\columnwidth]{imags/Comparative-log.eps}
+\includegraphics[width=0.32\columnwidth]{imags/Comparative-log.eps}
+\includegraphics[width=0.32\columnwidth]{imags/Kruskal-Score.eps}
+\includegraphics[width=0.32\columnwidth]{imags/Kruskal-Generations.eps}
 \end{center} 
 \caption{Mean best individual score versus mean attained generations by each termination criteria.}
 \label{fig:comparative}
@@ -556,49 +562,48 @@ As it can be also seen in the figure all the criterion are well defined, since a
 \label{fig:vctories}
 \end{figure}
 
-
 \begin{table}[ht]
-\centering
-\begin{tabular}{|r|r|r|r|r|r}
-  \hline
- LABEL & AVG. GEN & AVG. SCORE & COMPLETION RATE & VICTORIES IN TEST \\ 
-  \hline
-NG\_030.0 & 30.00 & 16.31 & 100.00\% & 45.92\% \\ 
-NG\_050.0 & 50.00 & 17.80 & 100.00\% & 52.72\% \\ 
-NG\_100.0 & 100.00 & 19.21 & 100.00\% & 57.25\% \\ 
-NG\_200.0 & 200.00 & 20.25 & 100.00\% & 58.39\% \\ 
-AO\_1.0 & 8.83 & 13.46 & 100.00\% & 35.89\% \\ 
-AO\_1.5 & 10.33 & 14.07 & 100.00\% & 34.83\% \\ 
-AO\_2.0 & 14.61 & 14.93 & 100.00\% & 38.08\% \\ 
-AO\_2.5 & 17.17 & 15.30 & 100.00\% & 39.92\% \\
-RT\_n/02 & 2.00 & 10.20 & 100.00\% & 20.58\% \\ 
-RT\_n/04 & 5.47 & 12.21 & 100.00\% & 28.17\% \\ 
-RT\_n/08 & 78.64 & 18.16 & 100.00\% & 50.94\% \\ 
-RT\_n/16 & 248.21 & 21.34 & 66.67\% & 62.92\% \\
-FT\_20.0 & 55.08 & 20.62 & 100.00\% & 54.22\% \\ 
-FT\_22.0 & 127.56 & 22.65 & 100.00\% & 58.25\% \\ 
-FT\_24.0 & 276.71 & 24.39 & 77.78\% & 63.39\% \\ 
-FT\_26.0 & 378.88 & 26.45 & 22.22\% & 74.75\% \\ 
-FI\_03.0 & 10.31 & 13.34 & 100.00\% & 30.00\% \\ 
-FI\_07.0 & 24.56 & 15.54 & 100.00\% & 41.39\% \\ 
-FI\_10.0 & 35.47 & 16.50 & 100.00\% & 47.94\% \\ 
-FI\_15.0 & 52.22 & 17.56 & 100.00\% & 53.00\% \\ 
-   \hline
+\centering %
+\begin{tabular}{cccccccc}
+\hline 
+\multirow{2}{*}{{\tiny{SC }}} & {\tiny{AVERAGE}} & {\tiny{AVERAGE}} & {\tiny{COMPLETION}} &  & {\tiny{INDEX}} & {\tiny{INDEX}} & {\tiny{INDEX}}\tabularnewline
+ & {\tiny{GENERATIONS }} & {\tiny{AVG. SCORE }} & {\tiny{RATE}} & {\tiny{VICTORIES (\%)}} & {\tiny{GENERATIONS }} & {\tiny{SCORE}} & {\tiny{VICTORIES}}\tabularnewline
+\hline 
+{\tiny{NG\_030.0 }} & {\tiny{30.00 }} & {\tiny{16.31 }} & {\tiny{100\%}} & {\tiny{45.92 }} & {\tiny{1.00 }} & {\tiny{1.00 }} & {\tiny{1.00 }}\tabularnewline
+{\tiny{NG\_050.0 }} & {\tiny{50.00 }} & {\tiny{17.80 }} & {\tiny{100\%}} & {\tiny{52.72 }} & {\tiny{1.70 }} & {\tiny{1.09 }} & {\tiny{1.15 }}\tabularnewline
+{\tiny{NG\_100.0 }} & {\tiny{100.00 }} & {\tiny{19.21 }} & {\tiny{100\%}} & {\tiny{57.25 }} & {\tiny{3.37 }} & {\tiny{1.18 }} & {\tiny{1.25 }}\tabularnewline
+{\tiny{NG\_200.0 }} & {\tiny{200.00 }} & {\tiny{20.25 }} & {\tiny{100\%}} & {\tiny{58.39 }} & {\tiny{6.70 }} & {\tiny{1.24 }} & {\tiny{1.27 }}\tabularnewline
+\hline 
+{\tiny{AO\_1.0 }} & {\tiny{8.83 }} & {\tiny{13.46 }} & {\tiny{100\% }} & {\tiny{35.89 }} & {\tiny{0.29 }} & {\tiny{0.83 }} & {\tiny{0.78 }}\tabularnewline
+{\tiny{AO\_1.5 }} & {\tiny{10.33 }} & {\tiny{14.07 }} & {\tiny{100\%}} & {\tiny{34.83 }} & {\tiny{0.34 }} & {\tiny{0.86 }} & {\tiny{0.76 }}\tabularnewline
+{\tiny{AO\_2.0 }} & {\tiny{14.61 }} & {\tiny{14.93 }} & {\tiny{100\%}} & {\tiny{38.08 }} & {\tiny{0.49 }} & {\tiny{0.92 }} & {\tiny{0.83 }}\tabularnewline
+{\tiny{AO\_2.5 }} & {\tiny{17.17 }} & {\tiny{15.30 }} & {\tiny{100\%}} & {\tiny{39.92 }} & {\tiny{0.57 }} & {\tiny{0.94 }} & {\tiny{0.87 }}\tabularnewline
+\hline 
+{\tiny{RT\_n/02 }} & {\tiny{2.00 }} & {\tiny{10.20 }} & {\tiny{100\%}} & {\tiny{20.58 }} & {\tiny{0.07 }} & {\tiny{0.63 }} & {\tiny{0.45 }}\tabularnewline
+{\tiny{RT\_n/04 }} & {\tiny{5.47 }} & {\tiny{12.21 }} & {\tiny{100\%}} & {\tiny{28.17 }} & {\tiny{0.18 }} & {\tiny{0.75 }} & {\tiny{0.61 }}\tabularnewline
+{\tiny{RT\_n/08 }} & {\tiny{78.64 }} & {\tiny{18.16 }} & {\tiny{100\%}} & {\tiny{50.94 }} & {\tiny{2.62 }} & {\tiny{1.11 }} & {\tiny{1.11 }}\tabularnewline
+{\tiny{RT\_n/16 }} & {\tiny{248.21 }} & {\tiny{21.34 }} & {\tiny{66.66\%}} & {\tiny{62.92 }} & {\tiny{8.27 }} & {\tiny{1.31 }} & {\tiny{1.37 }}\tabularnewline
+\hline 
+{\tiny{FT\_20.0 }} & {\tiny{55.08 }} & {\tiny{20.62 }} & {\tiny{100\%}} & {\tiny{54.22 }} & {\tiny{1.84 }} & {\tiny{1.26 }} & {\tiny{1.18 }}\tabularnewline
+{\tiny{FT\_22.0 }} & {\tiny{127.56 }} & {\tiny{22.65 }} & {\tiny{100\%}} & {\tiny{58.25 }} & {\tiny{4.25 }} & {\tiny{1.39 }} & {\tiny{1.27 }}\tabularnewline
+{\tiny{FT\_24.0 }} & {\tiny{276.71 }} & {\tiny{24.39 }} & {\tiny{77.77\%}} & {\tiny{63.39 }} & {\tiny{9.22 }} & {\tiny{1.50 }} & {\tiny{1.38 }}\tabularnewline
+{\tiny{FT\_26.0 }} & {\tiny{378.88 }} & {\tiny{26.45 }} & {\tiny{22.22\% }} & {\tiny{74.75 }} & {\tiny{12.63 }} & {\tiny{1.62 }} & {\tiny{1.63 }}\tabularnewline
+\hline 
+{\tiny{FI\_03.0 }} & {\tiny{10.31 }} & {\tiny{13.34 }} & {\tiny{100\%}} & {\tiny{30.00 }} & {\tiny{0.34 }} & {\tiny{0.82 }} & {\tiny{0.65 }}\tabularnewline
+{\tiny{FI\_07.0 }} & {\tiny{24.56 }} & {\tiny{15.54 }} & {\tiny{100\%}} & {\tiny{41.39 }} & {\tiny{0.82 }} & {\tiny{0.95 }} & {\tiny{0.90 }}\tabularnewline
+{\tiny{FI\_10.0 }} & {\tiny{35.47 }} & {\tiny{16.50 }} & {\tiny{100\%}} & {\tiny{47.94 }} & {\tiny{1.18 }} & {\tiny{1.01 }} & {\tiny{1.04 }}\tabularnewline
+{\tiny{FI\_15.0 }} & {\tiny{52.22 }} & {\tiny{17.56 }} & {\tiny{100\%}} & {\tiny{53.00 }} & {\tiny{1.74 }} & {\tiny{1.08 }} & {\tiny{1.15 }}\tabularnewline
+
+
+\hline 
 \end{tabular}
 \end{table}
 
+
+
 %Antares - Blablabla correspondencia lineal entre los resultados de la batería de test de bondad y el score con un $R^2=0.9351$
 
-\begin{figure}
-\begin{center}
-\includegraphics[width=0.45\columnwidth]{imags/Kruskal-Score.eps}
-\includegraphics[width=0.45\columnwidth]{imags/Kruskal-Generations.eps}
-\end{center} 
-\caption{Kruskal-Wallis Test... TODO } %Antares - TODO: Ahora lo completo
-\label{fig:kruskal}
-\end{figure}
-
-\section*{Acknowledgements}
+\section*{Acknowledgments}
 
 Hidden for double-blind review
 
