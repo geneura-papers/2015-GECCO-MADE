@@ -357,8 +357,6 @@ Then, the fitness of each individual $i$ of the population is obtained using the
 Score_{i}=\alpha+\beta+\gamma\label{eq:score}
 \end{equation}
 
-Where
-
 \begin{equation}
 \alpha=v,\alpha\in\left[0,NB\right]
 \end{equation}
@@ -478,16 +476,12 @@ Thus, in every execution all the criteria are checked in every generation and, w
 
 Once all the runs have finished, we compute the average number of generations and the average score obtained for the same criterion in different runs. There could happen that one criterion is never met in a run, then this will not be considered in the computation of that value.
 
-This is an issue due to the toughness of the rival and the presence of noise ***
-
-
-
 % Antonio - Antares - La Figura 1 está mal. Los boxplots no se corresponden con los títulos y la leyenda del eje X. ;)
 % Antares - @Antonio: No sé que ha pasado que se han machacado los antiguos, seguramente sea culpa mía. Arrelado.
 
 Figure \ref{fig:boxplotscore} shows the scores obtained by the best individuals yielded for every stop criterion.
 
-\begin{figure}[h!tb]
+\begin{figure}
 \begin{center}
 \includegraphics[width=\columnwidth]{imags/Boxplot_SC-Score-log.eps}
 \end{center} 
@@ -498,7 +492,7 @@ Figure \ref{fig:boxplotscore} shows the scores obtained by the best individuals 
 The first detail to notice is the non-presence of some of the commented stop values for the \textit{Fitness Threshold} criterion, namely 28 and 30, because the have not been reached in any of the runs.
 This is a problem derived from using a tough rival as ExpGenebot. Thus, the maximum fitness/score obtained during the evolution is very limited, since it is very difficult that one bot could win against 30 specialised bots \cite{Wolpert97nofree} (requirement for obtaining at least a score of 30). This is more evident if we take into account that the bots being evolved do not include any adaptive component that analyses the map, as ExpGenebot does. 
 
-As it can be also seen in the figure all the criterion are well defined, since all the scores grow in every criterion block. The score function is working well even with the presence of noise (a fact shown by the wide of the boxplots). ***
+As it can be also seen in the figure all the criterion are well defined, since all the scores grow in every criterion block, so as more restrictive the criterion is, the higher the obtained score is. The score function is working well, even with the presence of noise, as the wide of the boxplots (score dispersion) demonstrates when the criteria become more restrictive (they are met with a lower probability). This is true in all the cases except in the \textit{Age of Outliers} which is so far the criterion with the worse results, as it will be proved in further analyses.
 
 
 % Antonio - @Antares - La Figura 2 está mal. Los boxplots no se corresponden con los títulos y la leyenda del eje X. ;)
@@ -601,7 +595,7 @@ FI\_15.0 & 52.22 & 17.56 & 100.00\% & 53.00\% \\
 \includegraphics[width=0.45\columnwidth]{imags/Kruskal-Generations.eps}
 \end{center} 
 \caption{Kruskal-Wallis Test... TODO } %Antares - TODO: Ahora lo completo
-\label{fig:vctories}
+\label{fig:kruskal}
 \end{figure}
 
 \section*{Acknowledgements}
