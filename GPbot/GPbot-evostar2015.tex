@@ -385,10 +385,8 @@ Therefore $\alpha$ has the highest ratio, the term $\beta$ adds an extra score t
 
 As previously said, each individual has been tested 30 times in different maps, therefore $NB=30$, and a the limit of turns is the default of the competition ($t_{MAX}=1000$).
 
-The problem of using a tough rival as ExpGenebot is that the maximum fitness/score obtained during the evolution will be very limited, since it would be very difficult that a bot could win against 30 specialised bots \cite{Wolpert97nofree}. This is more evident if we take into account that the bots being evolved do not include any adaptive component that analyses the map, as ExpGenebot does. This fact will be seen in the fitness analysis in the following section.
-
 %TODO FERGU: comentar y justificar el resto de parámetros del GP FERGU: hecho abajo
-The used GP evolves a binary tree formed by {\em decisions} (logical expressions that evaluate the current state of the game) and {\em actions} (the leafs of the tree: the amount of ships to send to a specific planet). This tree is evaluated in each player's planet, analysing the current state of the map/planet (decision), and how many ships send from that planet to an specific target planet (action). These target planets can be the wealthiest, the closer one, etc. owned by the player or the enemy, or neutral. The possible actions and decisions are listed in \cite{EvoStar2014:GPBot:anon}. Table \ref{tab:parameters} summarizes the rest of the parameters of the EA. These parameters were also justified in that paper, obtaining competitive bots.
+The used GP evolves a binary tree formed by {\em decisions} (logical expressions that evaluate the current state of the game) and {\em actions} (the leafs of the tree: the amount of ships to send to a specific planet). This tree is evaluated in each player's planet, analysing the current state of the map/planet (decision), and how many ships send from that planet to an specific target planet (action). These target planets can be the wealthiest, the closer one, etc. owned by the player or the enemy, or neutral. The possible actions and decisions are listed in \cite{EvoStar2014:GPBot:anon}. Table \ref{tab:parameters} summarizes the rest of the operators and parameters used in the algorithm. These parameters were also justified in that paper, obtaining competitive bots.
 
 \begin{table}
 \begin{center}
@@ -405,9 +403,9 @@ Mutation step-size & 0.25 \\ \hline
 Selection & 2-tournament \\ \hline
 Replacement & Generational\\ \hline
 Maximum Tree Depth &  7 \\ \hline
-Runs per configuration & 30 \\ \hline
+%Runs per configuration & 30 \\ \hline
 \end{tabular}
-\caption{Parameters used in the experiments.}
+\caption{GP parameters and operators used in the experiments.}
 \label{tab:parameters}
 \end{center}
 \end{table}
@@ -420,7 +418,7 @@ Runs per configuration & 30 \\ \hline
 The traditional set of stopping criteria are either based on stagnation, checking for the existence of a solution in the set and a fixed budget. Combining them we have designed a set of five different algorithm stop criteria which are going to be checked in the paper, namely:
 
 \begin{itemize}
-    \item \texttt{[NG] Number of Generations}  is the classical termination
+    \item \texttt{[NG] Number of Generations}: it is the classical termination
       criteria in evolutionary algorithms. We will consider 30, 50, 100 and 200 generations since some papers \cite{EvoStar2014:GPBot:anon} have mentioned the middle value. As indicated in the previous section,
       Hart \cite{Hart1996} claims that this is not the right way to
       compare different approaches; however, we include it here as a
@@ -437,8 +435,9 @@ The idea behind this criterion is that an individual surviving for several gener
 % Antonio - efectivamente, he intentado contarlo mejor debajo. En todo caso hay que aclararlo en la descripción del algoritmo. - TODO -
 % Aquí había que haber hecho una aclaración o referencia al mismo. Ya lo he aclarado - JJ
    The values are based in the maximum number of replacements per generation. Our model defines a maximum of $n = N/2$ individuals to be potentially substituted by the offspring. Thus, the parameter values aim to test half of this probability, and half of the previous values, respectively.
-% Antonio - Antares, cuidao con la variable 'N', que es el número de batallas en la función Score...
 % Antares - @Antonio eso era antes, la idea es que N es siempre el tamaño de la población, y en este caso, n el valor máxmo de reemplazamiento.
+% Antonio - @Antares, cuidao con la variable 'N', que es el número de batallas en la función Score... ahora está bien.
+
 
     \item \texttt{[FT] Fitness Threshold}: a maximum value to obtain in the evolution could be set considering the top limit of the score function, 45. However, that value is a limit and never reachable unless the bot wins all the matches in just one turn (when the rival code makes a critical error and cannot be run). This, along with the toughness of ExpGenebot, makes the real fitness limit close to 40 instead. Thus, five thresholds have been defined taking this maximum value ($MAX_{SC}$) as a reference, namely: 20 (as half the maximum: $MAX_{SC}/2$), 30 (as half the maximum score plus half this value: $MAX_{SC}/2 + MAX_{SC}/4$), and the division in four parts of the interval these values compose: 22, 24, 26 and 28.
 
@@ -450,12 +449,14 @@ The justification of these values to check is related with the noisy nature of t
 % Antares - Ya el problema ha sido que los valores ``chulos'' no arrojasen resultados. De todos modos, es lo que te comenté una distribución uniforme desde la ``mitad'' del fitness hasta el valor máximo.
 In general, setting a fixed value that is a certain distance away to a known (and maybe unreachable) optimum is a compromise solution, since it is not known in advance whether this lower level will be even reached and, if it is, what would be the effort needed to go beyond that and whether a better solution (even including noise) could be found with a higher value. 
 % En este caso, ¿no se tiene en cuenta el ruido? - JJ
-% Antares - Si se contempla el ruido, ya que se sigue haciendo re-evaluaciones. 
+% Antares - Sí se contempla el ruido, ya que se siguen haciendo re-evaluaciones. 
 
-    \item \texttt{[FI] Fitness Improvement}: in an ideal evolutionary process the fitness of the best individual must be improved every generation. However, the noisy nature of the problem (or the noisy fitness function) makes this difficult to be measured. Thus, the idea of this criterion is that if the best fitness is not improved during a number of generations, the algorithm must stop. Four possible values will be tested: 3, 7, 10 and 15 generations. %maribel y por qué estos? está fijado antes en algún otro paper como el del número de gneraciones?
+    \item \texttt{[FI] Fitness Improvement}: in an ideal evolutionary process the fitness of the best individual must be improved every generation. However, the noisy nature of the problem (or the noisy fitness function) makes this difficult to be measured. Thus, the idea of this criterion is that if the best fitness is not improved during a number of generations, the algorithm must stop. As a difference with the traditional approach, the fitness to test every generation is the best overall, without regarding to which individual it corresponds. This is done because there is a re-evaluation process of all the individuals every generation so, due to the noise, the fitness of the best to date may vary in the following generation.
+Four possible values will be tested: 3, 7, 10 and 15 generations. %maribel y por qué estos? está fijado antes en algún otro paper como el del número de gneraciones?
 These values have been set after a dedicated systematic experimentation phase, thus they are the minimum and maximum thresholds plus two intermediate values. These values would be strictly related with the problem difficulty so in order to set them in other cases an experimental process should be done to test the fitness variability or improvement rate per generation.
 % Antonio - aclarado. Es la más difícil de justificar. 
-% JJ - yo probaría más valores. En todo caso, el fitness variará cada generación si se vuelve a ejecutar, ¿no?
+% JJ - yo probaría más valores. En todo caso, el fitness variará cada generación si se vuelve a ejecutar, ¿no? 
+% Antonio - Claro, el fitness cambia, pero se considera el fitness mejor global en cada generación, no el del individuo que se considerame el mejor. Lo he aclarado en el texto.
 % Antares - si pero el ``fitness'' máximo de la población alcanzado hasta el momento no cambia, que es con el que se realiza la comparación.
 \end{itemize}
 
@@ -484,13 +485,21 @@ This is an issue due to the toughness of the rival and the presence of noise ***
 % Antonio - Antares - La Figura 1 está mal. Los boxplots no se corresponden con los títulos y la leyenda del eje X. ;)
 % Antares - @Antonio: No sé que ha pasado que se han machacado los antiguos, seguramente sea culpa mía. Arrelado.
 
+Figure \ref{fig:boxplotscore} shows the scores obtained by the best individuals yielded for every stop criterion.
+
 \begin{figure}
 \begin{center}
 \includegraphics[width=\columnwidth]{imags/Boxplot_SC-Score-log.eps}
 \end{center} 
-\caption{Best individual score (of all runs), grouped by termination criteria.}
+\caption{Scores of the best individuals (of all runs), grouped by termination criterion.}
 \label{fig:boxplotscore}
 \end{figure}
+
+The first detail to notice is the non-presence of some of the commented stop values for the \textit{Fitness Threshold} criterion, namely 28 and 30, because the have not been reached in any of the runs.
+This is a problem derived from using a tough rival as ExpGenebot. Thus, the maximum fitness/score obtained during the evolution is very limited, since it is very difficult that one bot could win against 30 specialised bots \cite{Wolpert97nofree} (requirement for obtaining at least a score of 30). This is more evident if we take into account that the bots being evolved do not include any adaptive component that analyses the map, as ExpGenebot does. 
+
+As it can be also seen in the figure all the criterion are well defined, since all the scores grow in every criterion block. The score function is working well even with the presence of noise (a fact shown by the wide of the boxplots). ***
+
 
 % Antonio - @Antares - La Figura 2 está mal. Los boxplots no se corresponden con los títulos y la leyenda del eje X. ;)
 % Antares - @Antonio: No sé que ha pasado que se han machacado los antiguos, seguramente sea culpa mía. Arrelado.
@@ -542,8 +551,7 @@ This is an issue due to the toughness of the rival and the presence of noise ***
 %% - ¿entorno ruidoso?
 %% - que se usen mecanismos para paliar la influencia del ruido es importante (podría ser requerido)
 % No se usa ningún mecanismo para ``paliar'' el ruido. Sí se intenta trabajar con él.
-% Antonio - ¿Se podría comentar también que alguno de los criterios de parada podría
-%ser empleado para algún mecanismo diferente del algoritmo, como un
+% Antares - ¿Se podría comentar también que alguno de los criterios de parada podría ser empleado para algún mecanismo diferente del algoritmo, como un
 % ``cataclismo'' o una variación de los pesos o algo así? 
 
 \section*{Acknowledgements}
