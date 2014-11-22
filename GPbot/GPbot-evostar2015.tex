@@ -78,7 +78,7 @@ The first issue is that the optimal bots are either not known (and
 thus unusable as termination condition) or unreachable; then, in most
 games, the fitness evaluation (normally based in playing the game) is
 noisy, making its use as a termination condition also complicated.  
-% Reescrito todo que el abstract ocupa casi una página
+% Reescrito todo que el abstract ocupa casi una pï¿½gina
 A fixed amount of evaluations or, in the case of games, a certain
 level of victories does not guarantee an optimal result.
 %% The termination strategies left are independent of the algorithm:
@@ -89,8 +89,8 @@ level of victories does not guarantee an optimal result.
 %% Other possibilities, such as certain level of victories (or fitness
 %% quality) over external enemies as a termination condition, present the
 %% problem that the bots will be overfitted to those particular enemies. 
-% Antonio - De hecho, usar múltiples enemigos externos es la mejor forma de evaluación (si no es un co-evolutivo), ya que así se lucha contra la sobre-especialización. Usar una condición de parada basada en eso sería el mejor enfoque, que pero se necesitan muuuchos enemigos.
-% Antonio - he añadido el típico criterio de parada basado en generaciones
+% Antonio - De hecho, usar mï¿½ltiples enemigos externos es la mejor forma de evaluaciï¿½n (si no es un co-evolutivo), ya que asï¿½ se lucha contra la sobre-especializaciï¿½n. Usar una condiciï¿½n de parada basada en eso serï¿½a el mejor enfoque, que pero se necesitan muuuchos enemigos.
+% Antonio - he aï¿½adido el tï¿½pico criterio de parada basado en generaciones
 %% Even as any of these conditions is not perfect, there is the
 %% possibility of combining several of them as termination criterion so
 %% that bots that are as optimal as possible, (and in as general a
@@ -107,10 +107,10 @@ them and, eventually, selecting one for future designs.
 %% We will use a particular game, Planet Wars, which has been studied
 %% extensively in the literature, but the conclusions to our study could,
 %% in principle, be extended to any Real Time Strategy (RTS) game or even to any game with non-deterministic match results and with an unknown best solution.
-% Antonio - También se habló de extrapolar los resultados a otros problemas con características comunes a estos, es decir: Fitness ruidoso, sin óptimo conocido, etc, no?
-% Antares - Sería lo suyo . Por ejemplo, hablando con Gustavo y Maribel, 
+% Antonio - Tambiï¿½n se hablï¿½ de extrapolar los resultados a otros problemas con caracterï¿½sticas comunes a estos, es decir: Fitness ruidoso, sin ï¿½ptimo conocido, etc, no?
+% Antares - Serï¿½a lo suyo . Por ejemplo, hablando con Gustavo y Maribel, 
 % hemos dicho que realmente estas condiciones de parada son aplicables a cualquier juego.
-% Antonio - faltaría la última frase con las conclusiones que se alcancen, no?
+% Antonio - faltarï¿½a la ï¿½ltima frase con las conclusiones que se alcancen, no?
 % Antares - Digo yo :P
 \keywords{Videogames, RTS, evolutionary algorithms, termination criteria, noisy fitness, no-optimal solution}
 \end{abstract}
@@ -133,7 +133,7 @@ The usual stop criterion in EAs \cite{EAs_Back96} is reaching a constant number 
 %sÃ© si nos interesa o no tratarlos separados o simplemente decir que
 %en este caso son lo mismo aunque para otros entornos no tiene por
 %quÃ© serlo.
-% Maribel da exactamente igual. Lo importante es el número de
+% Maribel da exactamente igual. Lo importante es el nï¿½mero de
 % evaluaciones. - JJ
  which is normally related to a fixed {\em computing cycles budget}
 for doing the run. Another usual approach is based in a number of generations in
@@ -152,15 +152,15 @@ Besides, independently of the approach you choose, it is usually impossible to r
 fighting, as the opponents are usually not known before the EA is running. 
 % Antonio - esta frase no se entiende
 % a menos que puedas ganar sin luchar, no puedes obtener el fitness
-% óptimo - JJ
-% Antonio - Yo esa cita la quitaría, aunque le dé un componente
-% literario/gafapastiense al artículo. Tampoco veo por qué no se puede
-% obtener un óptimo por no conocer al oponente antes de la
-% evaluación. Si es un manta, le puedes ganar siempre...
-% Afú. Es literario-gafapastiense-bromista. ¿Qué tiene de malo? - JJ
+% ï¿½ptimo - JJ
+% Antonio - Yo esa cita la quitarï¿½a, aunque le dï¿½ un componente
+% literario/gafapastiense al artï¿½culo. Tampoco veo por quï¿½ no se puede
+% obtener un ï¿½ptimo por no conocer al oponente antes de la
+% evaluaciï¿½n. Si es un manta, le puedes ganar siempre...
+% Afï¿½. Es literario-gafapastiense-bromista. ï¿½Quï¿½ tiene de malo? - JJ
 % Antares - A mi gusta xD
 % Antonio - a mi no me molesta la frase, pero la referencia no hace falta, creo yo. ;D
-% ¿qué hay de la segunda parte de mi comentario?
+% ï¿½quï¿½ hay de la segunda parte de mi comentario?
 To solve this, usually matches with previously-known opponents are used in the
 computation of the fitness function and an ``optimum'' is reached when a certain number of victories are achieved against them.
 However, using only one or a small number of opponents may lead to
@@ -180,7 +180,7 @@ one that is
 good enough to defeat those that constitute the state of the art.
 
 That is why finding the optimal termination condition is essential in the search for game bots that competes in a particular challenge. If there is not a fixed evaluation budget, the next usual solution is to give it as much as you have got, 
-% Antonio - 'as you have got'??? En qué? A qué te refieres?
+% Antonio - 'as you have got'??? En quï¿½? A quï¿½ te refieres?
 % ``darlo todo'' - JJ
 which is fair if you are designing a bot %maribel, el got no se suele
                                 %poner 
@@ -193,7 +193,7 @@ as similar as possible, which
 might make {\em as much as you have got} a bit short on
 details: a independent stopping criterion is needed, since using any method for the same
 time or for the same number of evaluations is not usually fair,
-% Antonio - Explicar por qué no es justo.
+% Antonio - Explicar por quï¿½ no es justo.
 because the object of the process is to obtain a very good or
 near-optimal bot and some methods might need more evaluations, or more
 time, than others. 
@@ -211,8 +211,8 @@ ones, and among themselves when trying to generate competitive bots
 for videogames using Genetic Programming (GP) \cite{GP_Koza92},
 because this method has proved to be quite flexible and has obtained
 very good results in previous works \cite{EvoStar2014:GPBot:anon}.% Este no
-                                % está en la bibliografía. Por favor,
-                                % añadidlo a geneura.bib - JJ  
+                                % estï¿½ en la bibliografï¿½a. Por favor,
+                                % aï¿½adidlo a geneura.bib - JJ  
                                 % Antonio - hecho
 
 The game \textit{Planet Wars}\footnote{http://planetwars.aichallenge.org/}
@@ -224,24 +224,24 @@ bots is random and the decisions are stochastic, although the result
 of the combat is deterministic. 
 
 Summarizing, our objective in this study is to find a stopping criteria that converges to good solutions (the optimal, if possible). %Maribel: Anadir al final de la frase, saving resources and time. 
-% Antonio - he puesto 'optimal', pero no sé se dejarlo como 'best'
+% Antonio - he puesto 'optimal', pero no sï¿½ se dejarlo como 'best'
 and that is independent of the method chosen. To measure the quality of every approach, we will 
 consider the time (or number of generations) needed to obtain the
 solution and the quality of that solution as metrics. 
 % a ver, esto lo tenemos que pensar. 
-% Vamos a poner un método como base: número fijo de evaluaciones, por
-% ejemplo. A partir de ahí yo consideraría el número de evaluaciones
-% adicionales y la mejora adicional al fitness. También el fitness
+% Vamos a poner un mï¿½todo como base: nï¿½mero fijo de evaluaciones, por
+% ejemplo. A partir de ahï¿½ yo considerarï¿½a el nï¿½mero de evaluaciones
+% adicionales y la mejora adicional al fitness. Tambiï¿½n el fitness
 % absoluto, claro. - JJ
-% Antonio - yo digo que el fitness (el usado durante la evolución)sea
-% un mero indicador de lo buena que es cada solución, pero que eso se
-% contraste con una evaluación final de los mejores individuos
+% Antonio - yo digo que el fitness (el usado durante la evoluciï¿½n)sea
+% un mero indicador de lo buena que es cada soluciï¿½n, pero que eso se
+% contraste con una evaluaciï¿½n final de los mejores individuos
 % encontrados con cada criterio de parada. Es decir, cuando se tengan
 % los mejores se ponen a luchar en muchos mapas contra muchos rivales,
-% para decidir cuál de ellos es realmente bueno y cuál es,
-% eventualmente o teóricamente, el mejor.
-%Habrá que tener en cuenta también el tiempo, digo yo. - JJ
-% Antares - Son tres métricas a ser consideradas: Bondad (fitness), Tiempo (Generaciones), tasa de finalización (no todos los SC han terminado en todas las ejecuciones). Sobre la bondad, se está ejecutando una batería de test en múltiples enfrentamientos :)
+% para decidir cuï¿½l de ellos es realmente bueno y cuï¿½l es,
+% eventualmente o teï¿½ricamente, el mejor.
+%Habrï¿½ que tener en cuenta tambiï¿½n el tiempo, digo yo. - JJ
+% Antares - Son tres mï¿½tricas a ser consideradas: Bondad (fitness), Tiempo (Generaciones), tasa de finalizaciï¿½n (no todos los SC han terminado en todas las ejecuciones). Sobre la bondad, se estï¿½ ejecutando una baterï¿½a de test en mï¿½ltiples enfrentamientos :)
 
 In general, and as pointed above, it is possible that the conclusions
 could be extended to any problem solved via evolutionary algorithms
@@ -249,7 +249,7 @@ with an unknown or unreachable optimum and noisy fitness, since the
 termination conditions chosen are independent of the game itself and
 just take into account evolutionary measures. In fact, they could be
 extended to any problem with the same characteristics.
-% Antonio - además de esto, que hay que hacerlo para dejar la frase, hay que demostrar de forma 'impepinable' (más o menos) que lo que se propone funciona.
+% Antonio - ademï¿½s de esto, que hay que hacerlo para dejar la frase, hay que demostrar de forma 'impepinable' (mï¿½s o menos) que lo que se propone funciona.
 
 The rest of the paper is organized as follows. Next section
 establishes the state of the art in the use of termination conditions
@@ -263,7 +263,7 @@ sketch the problem we are using in this particular paper, evolution of
 bot for Planet Wars. Results will be presented in Section
 \ref{sec:res}, followed by the conclusions and a discussion of the
 implication of the obtained results.
-% Antonio - esto habría que reescribirlo mejor y con los contenidos reales. ;D
+% Antonio - esto habrï¿½a que reescribirlo mejor y con los contenidos reales. ;D
 
 
 %maribel: En realidad, este Ãºltimo pÃ¡rrafo lo simplifiquÃ© y reescribÃ­ entero tal y como os pongo aquÃ­ abajo
@@ -326,29 +326,29 @@ The differences in performance obtained with each configuration will be analysed
  
 % Cada vez que Antonio usa considered, Dios mata a un gatito - JJ
 %In this paper, we use a generational approach [REF] in order to have a high level of diversity, % justificarlo
-%which is better for checking some of the stop criteria to test. % ¿por qué? - JJ
+%which is better for checking some of the stop criteria to test. % ï¿½por quï¿½? - JJ
 %Specifically those population-based ones, which are normally more sensitive to diverse populations.
-%maribel: Por qué es mejor tener diversidad para probar criterios de parada?, esto será mejor para algunos criterios, pero no para todos, de hecho los criterios de parada más utilizados, como el número de evaluaciones o el número de generaciones, no tienen nada que ver con la diversidad de la población. Sí es verdad que es importante para criterios basados en alguna metrica basada en la población, como el fitness medio en relación al mejor fitness, o criterios basados en algún tipo de distancia entre los individuos de la población, pero no para todos los criterios de parada en general, como parece que dice la frase anterior, así que creo que hay que justificar mejor el que el algoritmo sea generacional. Pongo a continuación una posible justificación a ver qué os parece.
+%maribel: Por quï¿½ es mejor tener diversidad para probar criterios de parada?, esto serï¿½ mejor para algunos criterios, pero no para todos, de hecho los criterios de parada mï¿½s utilizados, como el nï¿½mero de evaluaciones o el nï¿½mero de generaciones, no tienen nada que ver con la diversidad de la poblaciï¿½n. Sï¿½ es verdad que es importante para criterios basados en alguna metrica basada en la poblaciï¿½n, como el fitness medio en relaciï¿½n al mejor fitness, o criterios basados en algï¿½n tipo de distancia entre los individuos de la poblaciï¿½n, pero no para todos los criterios de parada en general, como parece que dice la frase anterior, asï¿½ que creo que hay que justificar mejor el que el algoritmo sea generacional. Pongo a continuaciï¿½n una posible justificaciï¿½n a ver quï¿½ os parece.
 % Antonio - Pos eso es lo que habia puesto yo. XD 
-% Me has movido al frase en la que aclaraba eso mismo. Además de que desde el principio ponía 'some of the stop criteria'. ;D
+% Me has movido al frase en la que aclaraba eso mismo. Ademï¿½s de que desde el principio ponï¿½a 'some of the stop criteria'. ;D
 % Esta frase no tiene sentido. - JJ
 
 %The aim of this paper is to test which is the best way for stopping an evolutionary algorithm to find an autonomous and winner agent for playing a game. We have selected several stopping criteria, some of them, are controlled only by one or more evolutionary paremeter, but others by some features of the population. Due to this kind of stopping criteria, the diversity of the population should be preserved. For this reason, the generational approach is a good option for our test setup. 
 
-%FERGU: He comentado la intro de arriba y he vuelto a escribirla abajo justificando por qué usamos el GP generacional
+%FERGU: He comentado la intro de arriba y he vuelto a escribirla abajo justificando por quï¿½ usamos el GP generacional
 
 %The first step of the methodology requires to select the most adequate EA to the problem we are addressing. 
-% Antonio - ¡Qué pesaos con lo de la metodología! Joé, que aquí la metodología va de elegir bien los criterios de parada, no de diseñar el algoritmo. Eso ya lo tendrá hecho el que vaya a usar nuestro método para elegir cómo/cuándo parar. :/
+% Antonio - ï¿½Quï¿½ pesaos con lo de la metodologï¿½a! Joï¿½, que aquï¿½ la metodologï¿½a va de elegir bien los criterios de parada, no de diseï¿½ar el algoritmo. Eso ya lo tendrï¿½ hecho el que vaya a usar nuestro mï¿½todo para elegir cï¿½mo/cuï¿½ndo parar. :/
 The aim of the implemented algorithm is to generate competitive bots from scratch (without human knowledge), so a Genetic Programming algorithm has been used. These kind of algorithms have been previously used in the generation of bots in videogames \cite{Esparcia2013GPunreal,Harper2014403}. 
-% Antonio - yo quitarí esta frase, o pondría más citas, una de dos. ;) FERGU: añadida referencia
+% Antonio - yo quitarï¿½ esta frase, o pondrï¿½a mï¿½s citas, una de dos. ;) FERGU: aï¿½adida referencia
 
 A \textit{generational} approach has been considered in the algorithm. 
-% Antonio - ¿alguien sabe una cita de GP Generacional?
+% Antonio - ï¿½alguien sabe una cita de GP Generacional?
 In it, at least half of the population (the best chosen as parents) remains from one generation to the next. This provides the algorithm with a higher exploration factor than a steady-state approach, which is very positive due to the huge search space of the problem we are solving.
 
 %the lack of a known optimum solution, and the noisy feature of the problem, a generational GP algorithm will be used, with a specific scoring method as fitness.
-% Antonio - Esto no tiene nada que ver con que se haya elegido un enfoque generacional. Vamos que no veo en qué ayuda eso... :(
-% De hecho, para el ruido iría mejor un estacionario, creo yo.
+% Antonio - Esto no tiene nada que ver con que se haya elegido un enfoque generacional. Vamos que no veo en quï¿½ ayuda eso... :(
+% De hecho, para el ruido irï¿½a mejor un estacionario, creo yo.
 
 A \textit{Score Function} has been proposed in order to measure the quality of a generated bot (a solution or individual in the algorithm). This scoring method tries to reduce the effects of the noisy evaluation (following the guidelines of other works \cite{DBLP:journals/jcst/MoraFGGF12}) by computing fitness from the result of 30 different matches against an expert rival.
 Thus, the function considers the number of victories, turns to win and turns resisted before being defeated by the opponent (in the case of lose). The rival is \textit{ExpGenebot}, introduced in
@@ -389,7 +389,7 @@ Therefore $\alpha$ has the highest ratio, the term $\beta$ adds an extra score t
 
 As previously said, each individual has been tested 30 times in different maps, therefore $NB=30$, and a the limit of turns is the default of the competition ($t_{MAX}=1000$).
 
-%TODO FERGU: comentar y justificar el resto de parámetros del GP FERGU: hecho abajo
+%TODO FERGU: comentar y justificar el resto de parï¿½metros del GP FERGU: hecho abajo
 The used GP evolves a binary tree formed by {\em decisions} (logical expressions that evaluate the current state of the game) and {\em actions} (the leafs of the tree: the amount of ships to send to a specific planet). This tree is evaluated in each player's planet, analysing the current state of the map/planet (decision), and how many ships send from that planet to an specific target planet (action). These target planets can be the wealthiest, the closer one, etc. owned by the player or the enemy, or neutral. The possible actions and decisions are listed in \cite{EvoStar2014:GPBot:anon}. Table \ref{tab:parameters} summarizes the rest of the operators and parameters used in the algorithm. These parameters were also justified in that paper, obtaining competitive bots.
 
 \begin{table}
@@ -426,42 +426,42 @@ The traditional set of stopping criteria are either based on stagnation, checkin
       criteria in evolutionary algorithms. We will consider 30, 50, 100 and 200 generations since some papers \cite{EvoStar2014:GPBot:anon} have mentioned the middle value. As indicated in the previous section,
       Hart \cite{Hart1996} claims that this is not the right way to
       compare different approaches; however, we include it here as a
-      baseline for comparison with the other approaches. % En ese caso yo creo que no habría que probar tantos valores diferentes.
+      baseline for comparison with the other approaches. % En ese caso yo creo que no habrï¿½a que probar tantos valores diferentes.
 
     \item \texttt{[AO] Age of Outliers}: if the age of one individual is an outlier in the comparison with the rest of the population then it would be potentially an optimal solution and the algorithm can be stopped. % why?
 The idea behind this criterion is that an individual surviving for several generations more than the rest of the population lead to be a very good player (much better than the rest), and thus, a potential optimal solution for the problem. The difference between the age of the outlier and the rest of the population is measured considering three factors: 1, 1.5, 2 and 2.5 times the interquartile range (IQR). %explain a bit. Does this mean that it will stop when it finds somebody that is two times as old as the average? - JJ
-% Antonio - @Antares, explica esto, que no me quedó claro lo de la IQR... :D
-% Vale, lo pongo primero en español y luego intento hacerlo en inglés. En este criterio de parada hemos empleado el concepto estadístico de frontera siperior para definir un umbral. Por definición, todo valor de la muestra que supere esa frontera está considerado un punto outsider. Para calcular dicha frontera se necesitan los cuartiles de la muestra Q1 y Q3, con los que se calcula el rango intercuartílico (IQR). El valor de la frontera superior se calcula como = Q3 + 1.5 + IQR . Sin embargo, el valor 1.5 puede ser ajustado a voluntad se denomina rango de la frontera. En nuestro caso, hemos empleado el valor estándar de 1.5 así como valores menos restrictivos (1.0) y más restrictivos (2.0 y 2.5).
+% Antonio - @Antares, explica esto, que no me quedï¿½ claro lo de la IQR... :D
+% Vale, lo pongo primero en espaï¿½ol y luego intento hacerlo en inglï¿½s. En este criterio de parada hemos empleado el concepto estadï¿½stico de frontera siperior para definir un umbral. Por definiciï¿½n, todo valor de la muestra que supere esa frontera estï¿½ considerado un punto outsider. Para calcular dicha frontera se necesitan los cuartiles de la muestra Q1 y Q3, con los que se calcula el rango intercuartï¿½lico (IQR). El valor de la frontera superior se calcula como = Q3 + 1.5 + IQR . Sin embargo, el valor 1.5 puede ser ajustado a voluntad se denomina rango de la frontera. En nuestro caso, hemos empleado el valor estï¿½ndar de 1.5 asï¿½ como valores menos restrictivos (1.0) y mï¿½s restrictivos (2.0 y 2.5).
 
     \item \texttt{[RT] Replacement Rate}: when using an elitist strategy in which individuals are replaced only if the offspring is better, the fact that the population stops generating better individuals might be a sign of stagnation. Four different rates have been tested, namely $\frac{n}{2}$ (50\%) , $\frac{n}{4}$(25\%), $\frac{n}{8}$(12.5\%), $\frac{n}{16}$(6.25\%) ... % but this has to be combined with a steady state approach or something. By itself, it does not mean a thing. Please explain - JJ
-% Antonio - en la descripción del algoritmo se habrá dicho que va a ser generacional (hecho), ya que en un estacionario la tasa de reemplazo estaría mucho más acotada. ;)
-% Maribel: En un algoritmo generacional clásico, se reemplaza toda la población con los hijos menos el mejor. Pero nosotros no estamos usando este reemplazo, así como así, sino que hacemos unión de los hijos y los padres y nos quedamos con los mejores N no? Si esto es así, sería una cosa a comentar en la sección de GA features.
-% Antonio - efectivamente, he intentado contarlo mejor debajo. En todo caso hay que aclararlo en la descripción del algoritmo. - TODO -
-% Aquí había que haber hecho una aclaración o referencia al mismo. Ya lo he aclarado - JJ
+% Antonio - en la descripciï¿½n del algoritmo se habrï¿½ dicho que va a ser generacional (hecho), ya que en un estacionario la tasa de reemplazo estarï¿½a mucho mï¿½s acotada. ;)
+% Maribel: En un algoritmo generacional clï¿½sico, se reemplaza toda la poblaciï¿½n con los hijos menos el mejor. Pero nosotros no estamos usando este reemplazo, asï¿½ como asï¿½, sino que hacemos uniï¿½n de los hijos y los padres y nos quedamos con los mejores N no? Si esto es asï¿½, serï¿½a una cosa a comentar en la secciï¿½n de GA features.
+% Antonio - efectivamente, he intentado contarlo mejor debajo. En todo caso hay que aclararlo en la descripciï¿½n del algoritmo. - TODO -
+% Aquï¿½ habï¿½a que haber hecho una aclaraciï¿½n o referencia al mismo. Ya lo he aclarado - JJ
    The values are based in the maximum number of replacements per generation. Our model defines a maximum of $n = N/2$ individuals to be potentially substituted by the offspring. Thus, the parameter values aim to test half of this probability, and half of the previous values, respectively.
-% Antares - @Antonio eso era antes, la idea es que N es siempre el tamaño de la población, y en este caso, n el valor máxmo de reemplazamiento.
-% Antonio - @Antares, cuidao con la variable 'N', que es el número de batallas en la función Score... ahora está bien.
+% Antares - @Antonio eso era antes, la idea es que N es siempre el tamaï¿½o de la poblaciï¿½n, y en este caso, n el valor mï¿½xmo de reemplazamiento.
+% Antonio - @Antares, cuidao con la variable 'N', que es el nï¿½mero de batallas en la funciï¿½n Score... ahora estï¿½ bien.
 
 
     \item \texttt{[FT] Fitness Threshold}: a maximum value to obtain in the evolution could be set considering the top limit of the score function, 45. However, that value is a limit and never reachable unless the bot wins all the matches in just one turn (when the rival code makes a critical error and cannot be run). This, along with the toughness of ExpGenebot, makes the real fitness limit close to 40 instead. Thus, five thresholds have been defined taking this maximum value ($MAX_{SC}$) as a reference, namely: 20 (as half the maximum: $MAX_{SC}/2$), 30 (as half the maximum score plus half this value: $MAX_{SC}/2 + MAX_{SC}/4$), and the division in four parts of the interval these values compose: 22, 24, 26 and 28.
 
 The justification of these values to check is related with the noisy nature of the fitness/score function, which leads us to think that the improvements of fitness will be very limited (very short steps will be attained in the evolution in the range of the high scores).
 % Los valores son bastante arbitrarios, pero bueno. 
-% Antares - ¿Esto no lo habías cambiado tú? ya no son estos :(
+% Antares - ï¿½Esto no lo habï¿½as cambiado tï¿½? ya no son estos :(
 % Antonio - el que comenta es @JJ, no yo. :P
 %           Ya lo he cambiado, intentando justificar esto, pero weno, es un poco chungo...
-% Antares - Ya el problema ha sido que los valores ``chulos'' no arrojasen resultados. De todos modos, es lo que te comenté una distribución uniforme desde la ``mitad'' del fitness hasta el valor máximo.
+% Antares - Ya el problema ha sido que los valores ``chulos'' no arrojasen resultados. De todos modos, es lo que te comentï¿½ una distribuciï¿½n uniforme desde la ``mitad'' del fitness hasta el valor mï¿½ximo.
 In general, setting a fixed value that is a certain distance away to a known (and maybe unreachable) optimum is a compromise solution, since it is not known in advance whether this lower level will be even reached and, if it is, what would be the effort needed to go beyond that and whether a better solution (even including noise) could be found with a higher value. 
-% En este caso, ¿no se tiene en cuenta el ruido? - JJ
-% Antares - Sí se contempla el ruido, ya que se siguen haciendo re-evaluaciones. 
+% En este caso, ï¿½no se tiene en cuenta el ruido? - JJ
+% Antares - Sï¿½ se contempla el ruido, ya que se siguen haciendo re-evaluaciones. 
 
     \item \texttt{[FI] Fitness Improvement}: in an ideal evolutionary process the fitness of the best individual must be improved every generation. However, the noisy nature of the problem (or the noisy fitness function) makes this difficult to be measured. Thus, the idea of this criterion is that if the best fitness is not improved during a number of generations, the algorithm must stop. As a difference with the traditional approach, the fitness to test every generation is the best overall, without regarding to which individual it corresponds. This is done because there is a re-evaluation process of all the individuals every generation so, due to the noise, the fitness of the best to date may vary in the following generation.
-Four possible values will be tested: 3, 7, 10 and 15 generations. %maribel y por qué estos? está fijado antes en algún otro paper como el del número de gneraciones?
+Four possible values will be tested: 3, 7, 10 and 15 generations. %maribel y por quï¿½ estos? estï¿½ fijado antes en algï¿½n otro paper como el del nï¿½mero de gneraciones?
 These values have been set after a dedicated systematic experimentation phase, thus they are the minimum and maximum thresholds plus two intermediate values. These values would be strictly related with the problem difficulty so in order to set them in other cases an experimental process should be done to test the fitness variability or improvement rate per generation.
-% Antonio - aclarado. Es la más difícil de justificar. 
-% JJ - yo probaría más valores. En todo caso, el fitness variará cada generación si se vuelve a ejecutar, ¿no? 
-% Antonio - Claro, el fitness cambia, pero se considera el fitness mejor global en cada generación, no el del individuo que se considerame el mejor. Lo he aclarado en el texto.
-% Antares - si pero el ``fitness'' máximo de la población alcanzado hasta el momento no cambia, que es con el que se realiza la comparación.
+% Antonio - aclarado. Es la mï¿½s difï¿½cil de justificar. 
+% JJ - yo probarï¿½a mï¿½s valores. En todo caso, el fitness variarï¿½ cada generaciï¿½n si se vuelve a ejecutar, ï¿½no? 
+% Antonio - Claro, el fitness cambia, pero se considera el fitness mejor global en cada generaciï¿½n, no el del individuo que se considerame el mejor. Lo he aclarado en el texto.
+% Antares - si pero el ``fitness'' mï¿½ximo de la poblaciï¿½n alcanzado hasta el momento no cambia, que es con el que se realiza la comparaciï¿½n.
 \end{itemize}
 
 The first stop criterion is based in an algorithmic parameter, so the algorithm stops when this parameter reaches a value. For this criterion, the population status does not matter. The rest of criteria are population-based ones, i.e. they consider some of its features to test if the algorithm must stop. The feature of the population leads the stop criteria and so leads the end of the algorithm. 
@@ -470,7 +470,7 @@ All these criteria will be tested in the following section. The objective of the
 
 % is to test the set of termination criteria... %el objetivo no es nunca ``probar'' esto. Es solucionar un problema. 
 
-% Habrá que decir qué se va a medir y por qué. ¿Qué se compara? ¿Por qué?
+% Habrï¿½ que decir quï¿½ se va a medir y por quï¿½. ï¿½Quï¿½ se compara? ï¿½Por quï¿½?
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%  EXPERIMENTS AND RESULTS  %%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -543,36 +543,38 @@ Finally the two principal measures are compare in Figure \ref{subfig:comparative
 
 
 
-% Antonio - Antares - Pregunta general. ¿por qué los valores en las gráficas llevan un decimal '.0' si son enteros? ¿No estarían mejor sin él? ¿No quedaría más claro al haber menos texto? :D
-% Antares: @Antonio, por seguir una nomenclatura común, pero si quieres podría intentar cambiarlo, pero me iba a llevar tiempo.
+% Antonio - Antares - Pregunta general. ï¿½por quï¿½ los valores en las grï¿½ficas llevan un decimal '.0' si son enteros? ï¿½No estarï¿½an mejor sin ï¿½l? ï¿½No quedarï¿½a mï¿½s claro al haber menos texto? :D
+% Antares: @Antonio, por seguir una nomenclatura comï¿½n, pero si quieres podrï¿½a intentar cambiarlo, pero me iba a llevar tiempo.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CONCLUSIONS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 \section{Conclusions}
 
-%% En las conclusiones no debemos olvidar sentar las bases de los tipos de problemas/algoritmos a los que se podrían extrapolar o generalizar los resultados.
+%% En las conclusiones no debemos olvidar sentar las bases de los tipos de problemas/algoritmos a los que se podrï¿½an extrapolar o generalizar los resultados.
 
-%% - fitness óptimo no conocido
-%% - ¿entorno ruidoso?
-%% - que se usen mecanismos para paliar la influencia del ruido es importante (podría ser requerido)
-% No se usa ningún mecanismo para ``paliar'' el ruido. Sí se intenta trabajar con él.
-% Antares - ¿Se podría comentar también que alguno de los criterios de parada podría ser empleado para algún mecanismo diferente del algoritmo, como un
-% ``cataclismo'' o una variación de los pesos o algo así? 
+%% - fitness ï¿½ptimo no conocido
+%% - ï¿½entorno ruidoso?
+%% - que se usen mecanismos para paliar la influencia del ruido es importante (podrï¿½a ser requerido)
+% No se usa ningï¿½n mecanismo para ``paliar'' el ruido. Sï¿½ se intenta trabajar con ï¿½l.
+% Antares - ï¿½Se podrï¿½a comentar tambiï¿½n que alguno de los criterios de parada podrï¿½a ser empleado para algï¿½n mecanismo diferente del algoritmo, como un
+% ``cataclismo'' o una variaciï¿½n de los pesos o algo asï¿½? 
 
-This paper compares five stopping criteria for ending an EA for game bots. We have selected them taking in mind both the status of the population or the parameters of the EA. We collate the results of all the runs and the results   
+% Antares - Aï¿½ado las conclusiones primero en espaï¿½ol:
+%El peor criterio de parada encontrado es el mï¿½todo \textit{[AO] Age of Outliers} basado en la edad de los individuos de la poblaciï¿½n, que es el mï¿½todo que consigue peores resultados en el score ofreciendo una convergencia prï¿½cticamente nula de las soluciones encontradas en la poblaciï¿½n al aumentar lo restrictivo del mï¿½todo. Esto puede ser un indicativo de que la antiguedad de los individuos no es representativo de la bondad de los individuos. Ademï¿½s, el test de Kruskal-Wallis, determinï¿½ que exite poca variaciï¿½n entre las muestras de las distintas variaciones del mï¿½todo.
+%Maribel, hago una primera aproximaciï¿½n en inglï¿½s para este pï¿½rrafo. Leerla a ver si es eso exactamente lo que Antares ha querido decir en el pa?rafo en espaï¿½ol, porque yo 
 
-% Antares - Añado las conclusiones primero en español:
-%El peor criterio de parada encontrado es el método \textit{[AO] Age of Outliers} basado en la edad de los individuos de la población, que es el método que consigue peores resultados en el score ofreciendo una convergencia prácticamente nula de las soluciones encontradas en la población al aumentar lo restrictivo del método. Esto puede ser un indicativo de que la antiguedad de los individuos no es representativo de la bondad de los individuos. Además, el test de Kruskal-Wallis, determinó que exite poca variación entre las muestras de las distintas variaciones del método.
-
-%Por otro lado, el mejor criterio encontrado respecto a la bondad de los individuos es el \textit{[FT] Fitness Threshold} basado en umbrales de fitness. Sin embargo, las dificultades para definir un umbral de fitness correcto en un problema de nuestra naturaleza hacen este método no recomendado, aunque si ideal si puede determinarse. Además, es el método que más generaciones requiere, con el riesgo de que la ejecución del algoritmo no llegue a terminar, al estancarse la población y no ser capaz de convergir al valor frontera.
-
-% El método basado en \textit{[FI] Fitness Improvement} es un método bastante rápido (en cuanto a generaciones), pero que no alcanza resultados muy buenos (en cuanto score). A pesar de que no pueda ser empleado como criterio de parada óptimo, su uso puede resultar interesante como apoyo al algoritmo como mecanismo de multiarranque del algoritmo o de cataclismo.
-
-%Por último, el método de \textit{[FT] Fitness Threshold} es el que ofrece unos resultados más consistentes en todas las métricas. Dado que se basa en la tasa de reemplazo de los individuos, en cierta manera está midiendo el constante crecimiento del fitness dado que los individuos nuevos tienen que tener mayor fitness para entrar en el pull de la nueva población, pero sin hacer uso del propio fitness (que sabemos que por su naturaleza ruidosa no es totalmente confiable). 
+This paper compares five stopping criteria for ending an EA for game bots. We have selected them taking in mind both the status of the population or the parameters of the EA. We collate the results of all the runs and the results prove the AO criterion, based on the Age of Outliers, gets the worst score converging quickly but without good solutions while the values for AO turn older. This chance is a proof of that the older individuals have not to be good solutions. Moreover, Kruskal-Wallis test outputs non differences among the results for any AO input values, that is, the output of the runs for any value of AO are similar.  
 
 
-%Antares - Blablabla correspondencia lineal entre los resultados de la batería de test de bondad y el score con un $R^2=0.9351$
+%Por otro lado, el mejor criterio encontrado respecto a la bondad de los individuos es el \textit{[FT] Fitness Threshold} basado en umbrales de fitness. Sin embargo, las dificultades para definir un umbral de fitness correcto en un problema de nuestra naturaleza hacen este mï¿½todo no recomendado, aunque si ideal si puede determinarse. Ademï¿½s, es el mï¿½todo que mï¿½s generaciones requiere, con el riesgo de que la ejecuciï¿½n del algoritmo no llegue a terminar, al estancarse la poblaciï¿½n y no ser capaz de convergir al valor frontera.
+
+% El mï¿½todo basado en \textit{[FI] Fitness Improvement} es un mï¿½todo bastante rï¿½pido (en cuanto a generaciones), pero que no alcanza resultados muy buenos (en cuanto score). A pesar de que no pueda ser empleado como criterio de parada ï¿½ptimo, su uso puede resultar interesante como apoyo al algoritmo como mecanismo de multiarranque del algoritmo o de cataclismo.
+
+%Por ï¿½ltimo, el mï¿½todo de \textit{[FT] Fitness Threshold} es el que ofrece unos resultados mï¿½s consistentes en todas las mï¿½tricas. Dado que se basa en la tasa de reemplazo de los individuos, en cierta manera estï¿½ midiendo el constante crecimiento del fitness dado que los individuos nuevos tienen que tener mayor fitness para entrar en el pull de la nueva poblaciï¿½n, pero sin hacer uso del propio fitness (que sabemos que por su naturaleza ruidosa no es totalmente confiable). 
+
+
+%Antares - Blablabla correspondencia lineal entre los resultados de la baterï¿½a de test de bondad y el score con un $R^2=0.9351$
 
 \section*{Acknowledgments}
 
