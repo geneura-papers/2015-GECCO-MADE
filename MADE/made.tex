@@ -688,7 +688,7 @@ Avenger scenario, so for the time being we should conclude that a
 single profile, that is, having the description of a single FSM that
 describes the behavior of the agents in the world, is the best option for any scenario. 
 
-\begin{figure}
+\begin{figure}[h!tb]
         \centering
         \subfigure[\scriptsize{Scenario 1: Villain}]{
                 \includegraphics[width=3.7cm]{imags/boxplotz1D.eps}
@@ -702,31 +702,10 @@ describes the behavior of the agents in the world, is the best option for any sc
                 \includegraphics[width=3.7cm]{imags/boxplotz5D.eps}
                 \label{fig:e3_d}
         }  
-        \caption{Boxplots for the number of days (parameter D)}\label{fig:boxplotsD} % Ponedlo al reves: for the
-                                % number of days (parameter D). Lo
-                                % INTERESANTE es el nombre del
-                                % parametro, no el numero. FERGU: OK
+        \caption{Boxplots for the number of days (parameter D).}\label{fig:boxplotsD} % Ponedlo al reves: for the
 \end{figure}
-
-
-\begin{figure}
-        \centering
-        \subfigure[\scriptsize{Scenario 1: Villain}]{
-                \includegraphics[width=3.7cm]{imags/boxplotz1W.eps}
-                \label{fig:e1_w}
-        }
-        \subfigure[\scriptsize{Scenario 2: Hero}]{
-                \includegraphics[width=3.7cm]{imags/boxplotz2W.eps}
-                \label{fig:e2_w}
-        }
-        \subfigure[\scriptsize{Scenario 3: Avenger}]{
-                \includegraphics[width=3.7cm]{imags/boxplotz5W.eps}
-                \label{fig:e3_w}
-        }  
-        \caption{Boxplots for world size (parameter W)}\label{fig:boxplotsW}
-\end{figure}
-
-\begin{figure}
+%
+\begin{figure}[h!tb]
         \centering
         \subfigure[\scriptsize{Scenario 1: Villain}]{
                 \includegraphics[width=3.7cm]{imags/boxplotz1F.eps}
@@ -743,20 +722,39 @@ describes the behavior of the agents in the world, is the best option for any sc
         \caption{Boxplots for food amount (parameter F)}\label{fig:boxplotsF}
 \end{figure}
 
-% Por que diablos deci­s parametro D y no lo que hace el parametro? Y
-% por que usais with respect en vez de enlazarlo con el anterior?
 A similar result is obtained for the number of days, whose results in
 the three scenarios can be seen in Figure \ref{fig:boxplotsD}: A small
 amount of days (64) is not enough to allow the generation of any
 archetype, as there is no time to develop a story, or, in another
 words, for the events that we examine to compute fitness to occur, in
 most of the scenarios. This can also be said
+%
+\begin{figure}[h!tb]
+        \centering
+        \subfigure[\scriptsize{Scenario 1: Villain}]{
+                \includegraphics[width=3.7cm]{imags/boxplotz1W.eps}
+                \label{fig:e1_w}
+        }
+        \subfigure[\scriptsize{Scenario 2: Hero}]{
+                \includegraphics[width=3.7cm]{imags/boxplotz2W.eps}
+                \label{fig:e2_w}
+        }
+        \subfigure[\scriptsize{Scenario 3: Avenger}]{
+                \includegraphics[width=3.7cm]{imags/boxplotz5W.eps}
+                \label{fig:e3_w}
+        }  
+        \caption{Boxplots for world size (parameter W)}\label{fig:boxplotsW}
+\end{figure}
+%
 about the world dimension (Figure \ref{fig:boxplotsW}): larger worlds
 are more sparsely populated and have less interaction events, so the chances of an encounter that can trig an event (for
 example, a fight) is more difficult. % pero esto habra que probarlo
                                 % mirando el numero de encuentros, la
                                 % densidad de poblacion, y cosas asi­.
-% Cual es la densidad de poblacion en el mundo 5x5? Como evoluciona? FERGU: me ha dicho rubén que le has dicho hoy que no haga ningún experimento, pero si hay tiempo podríamos hacerlo
+% Cual es la densidad de poblacion en el mundo 5x5? Como evoluciona?
+% FERGU: me ha dicho rubén que le has dicho hoy que no haga ningún
+% experimento, pero si hay tiempo podríamos hacerlo
+% Ya lo dejamos para el siguiente trabajo.
 From the study of these two parameters we can conclude that, at least
 for these scenarios and possibly for any scenario, the baseline number
 of days should be 256 and the world for this population should have a
@@ -779,9 +777,9 @@ small size of 25 cells.
         \caption{Boxplots for GA population size (parameter S)}\label{fig:boxplotsS}
 \end{figure}
 
-Finally, the amount of food (Figure \ref{fig:boxplotsF}), 
-the source of conflict, % @raiben dilo aqui­ - JJ FERGU: puesto "source of conclict" (con raiben al lado)
-also need to be low enough so that conflict appear, in this case 1/8
+Finally, the amount of food (Figure \ref{fig:boxplotsF}), which is 
+the main source of conflicts, % @raiben dilo aqui­ - JJ FERGU: puesto "source of conclict" (con raiben al lado)
+also needs to be low enough so that it actually happens, in this case 1/8
 of the world size. % Con un mundo de tamagno 25, Aparecen 3 piezas de
                    % comida? - JJ FERGU: sí, pero se van generando cada día
 
