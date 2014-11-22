@@ -573,9 +573,11 @@ On the other hand, the best stop criterion taking in mind the goodness of the bo
 
 % El m�todo basado en \textit{[FI] Fitness Improvement} es un m�todo bastante r�pido (en cuanto a generaciones), pero que no alcanza resultados muy buenos (en cuanto score). A pesar de que no pueda ser empleado como criterio de parada �ptimo, su uso puede resultar interesante como apoyo al algoritmo como mecanismo de multiarranque del algoritmo o de cataclismo.
 
-
+\textit{FI} needs a low number of generations for ending, that is the algorithm quickly ends when we use this criterion but the results, based on score, are not good enough. In spite of it cannot be used as optimal criterion it would reward the algorithm if we use it combined with any other meta-heuristics as a population reset if the best individual stalls.   
 
 %Por �ltimo, el m�todo de \textit{[FT] Fitness Threshold} es el que ofrece unos resultados m�s consistentes en todas las m�tricas. Dado que se basa en la tasa de reemplazo de los individuos, en cierta manera est� midiendo el constante crecimiento del fitness dado que los individuos nuevos tienen que tener mayor fitness para entrar en el pull de la nueva poblaci�n, pero sin hacer uso del propio fitness (que sabemos que por su naturaleza ruidosa no es totalmente confiable). 
+
+At least, \textit{FT} provides  
 
 
 %Antares - Blablabla correspondencia lineal entre los resultados de la bater�a de test de bondad y el score con un $R^2=0.9351$
