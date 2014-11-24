@@ -477,39 +477,51 @@ All these criteria will be tested in the following section. The objective of the
 \section{Experiments and Results}
 \label{sec:res}
 
-The experiments conducted have involved 30 runs, each of them configured including all the defined stop criteria, and also adding an extra termination one, i.e. getting to 500 generations, in order to avoid non-ending runs.
+The experiments conducted have involved 36 runs (this number has been used in order to profit the computational power of a cluster with this number of nodes), each of them configured including all the defined stop criteria, and also adding an extra termination one, i.e. getting to 500 generations, in order to avoid non-ending runs.
 
 %Antares - Antonio: Ya estamos con el 30... Son 36... 
+% Antonio - ya sé que son 36 => ¿y por qué no 40? te dirán. Pero bueno, ale, ya lo he puesto y justificado. ;)
 
 Thus, in every execution all the criteria are checked in every generation and, whenever one termination condition is met, the best individual to that moment (according to its score) is stored as the optimal solution for that criterion, because if that were the unique stop criterion, the algorithm would end.
-Once all the runs have finished or the extra termination happen, we compute the average number of generations and the average score obtained for the same criterion in all different runs. There could happen that one criterion is never met in a run, then this will not be considered in the computation of that value but it decreases the completion rate of the criterion. 
+Once all the runs have finished or the extra termination has been met, we compute the average number of generations and the average score obtained for the same criterion in all different runs. There could happen that one criterion is never met in a run, then this will not be considered in the computation of that value but it decreases the completion rate of the criterion. 
+
+The first study concerns the fitness/score evolution in the runs. Figure \ref{fig:boxplotscore} (left) shows the scores obtained by the best individuals yielded for every stop criterion, and (right) what stop criterion is statistically different from others. This has been done using a Kruskal-Wallis test, given that the Shapiro test concluded that the samples do not follow a Normal distribution.
 
 \begin{figure}
 \begin{center}
 \includegraphics[width=0.74\columnwidth]{imags/Boxplot_SC-Score-log.eps}
 \includegraphics[width=0.25\columnwidth]{imags/Kruskal-Score.eps}
 \end{center} 
-\caption{Scores of the best individuals (of all runs), grouped by criterion and Kruskal-Wallis test of samples of each criterion by score (black means no statistical difference)}
+\caption{(Left) Scores of the best individuals (of all runs), grouped by criterion. (Right) Kruskal-Wallis test of samples of each criterion by score (black means no statistical significant difference has been found)}
 \label{fig:boxplotscore}
 \end{figure}
+
+% Antonio - @Antares - yo no mezclaría gráficos, podemos llegar a las 14 páginas sin problemas, pero bueno. En caso de dejarlo así intenta ponerlas como subfigura mejor, porque son cosas muy distintas. ;D
+% Antonio - Sería 'statistical significant difference', ¿no?
+
+The first detail to notice in the figure is the non-presence of some of the commented stop values for the \textit{Fitness Threshold} criterion, namely 28 and 30, because they have not been reached in any of the runs.
+This is a problem derived from using a tough rival as ExpGenebot. Thus, the maximum fitness/score obtained during the evolution is very limited, since it is very difficult that one bot could win against 30 specialised bots \cite{Wolpert97nofree} (requirement for obtaining at least a score of 30). This is more evident if we take into account that the bots being evolved do not include any adaptive component that analyses the map, as ExpGenebot does. 
+
+As it can also be seen in Figure \ref{fig:boxplotscore} (left) all the criterion are well defined, since all the scores grow in every criterion block, so as more restrictive the criterion is (they are met with a lower probability), the higher the obtained score is. The score function is working well, even with the presence of noise, as the wide of the boxplots (score dispersion) demonstrates when the criteria become more restrictive. This is true in all the cases except in the \textit{Age of Outliers} which is so far the criterion with the worse results, as it is also proved by the statistical test which does not find significant differences between the scores obtained by every age-based criterion and the previous and next ones.
+The \textit{Replacement Rate} criterion yields the best distribution of results, with a clear fitness improvement tendency and a very good maximum score, close to that obtained by the \textit{Fitness Thresholds}. However the latter is not as good as it seems, since the success rate (times that the runs has reached that value) is the lowest among all for high threshold values. This will be shown in further results.
+
+With respect to the number of generations reached by every criterion, Figure \ref{fig:boxplotgenerations} (left) shows their distribution in criterion blocks. It is complemented (right) with the results of the Kruskal-Wallis test, like in the score graphs.
 
 \begin{figure}[h!tb]
 \begin{center}
 \includegraphics[width=0.74\columnwidth]{imags/Boxplot_SC-Generations-log.eps}
 \includegraphics[width=0.25\columnwidth]{imags/Kruskal-Generations.eps}
 \end{center} 
-\caption{Generation attained (of all runs), grouped by criterion and Kruskal-Wallis test of samples of each stop criterion by generations (black means no statistical difference).}
+\caption{(Left) Generation attained (of all runs), grouped by criterion. (Right) Kruskal-Wallis test of samples of each stop criterion by generations (black means no statistical significant difference has been found).}
 \label{fig:boxplotgenerations}
 \end{figure}
 
-Figure \ref{fig:boxplotscore} shows the scores obtained by the best individuals yielded for every stop criterion and what stop criterion are statistically different from each, using a Kruskal-Wallis test, cause the shapiro test yielded that the samples are not a normal distribution.. 
+% Antonio - @Antares - pos eso, lo mismo que antes.
+% Antonio - Y lo mismo: sería 'statistical significant difference', ¿no?
 
-The first detail to notice is the non-presence of some of the commented stop values for the \textit{Fitness Threshold} criterion, namely 28 and 30, because the have not been reached in any of the runs.
-This is a problem derived from using a tough rival as ExpGenebot. Thus, the maximum fitness/score obtained during the evolution is very limited, since it is very difficult that one bot could win against 30 specialised bots \cite{Wolpert97nofree} (requirement for obtaining at least a score of 30). This is more evident if we take into account that the bots being evolved do not include any adaptive component that analyses the map, as ExpGenebot does. 
+This figure plots ***
 
-As it can be also seen in the figure all the criterion are well defined, since all the scores grow in every criterion block, so as more restrictive  the criterion is (they are met with a lower probability), the higher the obtained score is. The score function is working well, even with the presence of noise, as the wide of the boxplots (score dispersion) demonstrates when the criteria become more restrictive. This is true in all the cases except in the \textit{Age of Outliers} which is so far the criterion with the worse results, as it will be proved in further analyses.
 
-Figure \ref{fig:boxplotgenerations} shows the generations needed by each termination criterion and the Kruskal-Wallis test, like in the score measure.
 
 \begin{figure}[h!tb]
 \begin{center}
@@ -520,7 +532,7 @@ Figure \ref{fig:boxplotgenerations} shows the generations needed by each termina
 \label{fig:victories}
 \end{figure}
 
-In addition to the score, an benchmark ($\in[0,1]$) based in battles versus several bots common in the bibliography and maps (training and not training) it's passed to the best population of each criterion for all execution. The result of these benchmark it's displays in Fig \ref{fig:victories}. For be sure of the goodness of the score function it's compare to the benchmark result's getting an excellent result.
+In addition to the score, a benchmark ($\in[0,1]$) based in battles versus several bots common in the bibliography and maps (training and not training) it's passed to the best population of each criterion for all execution. The result of these benchmark it's displays in Fig \ref{fig:victories}. For be sure of the goodness of the score function it's compare to the benchmark result's getting an excellent result.
 
 
 Finally the two principal measures are compare in Figure \ref{subfig:comparative} and all the measures are presented in the Table \ref{fig:table}
