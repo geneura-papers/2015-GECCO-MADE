@@ -266,10 +266,9 @@ This methodology  addresses to problems that present the following characteristi
 \subsection{Parameter effects}
 \label{subsec:params}
 
-As Morrell explains in \cite{morrell2006between}, ``Fiction has three main elements:
-plotting, character, and place or setting'', so, intuitively, these three elements can affect the backstories:
-
-In our problem, an agent is affected by its profile, that defines its behaviour.
+As Morrell explains in \cite{morrell2006between}, ``fiction has three main elements:
+plotting, character, and place or setting'', so, intuitively, these three elements can affect the backstories. 
+In our problem, an agent is ruled by its profile, which defines its behaviour.
 Our technique uses the GA to evolve the profile(s) of the agents,
 so it will be part of the search space.
 Nevertheless, the use of different number of profiles (P) may also affect the behaviour of the agents, since more profiles
@@ -278,14 +277,14 @@ in the same world may imply new types of conflicts (as it was demonstrated in \c
 The plotting is the result of the different conflicts, that are affected by the place,
 the time and the source of conflicts, which in this case is the food.
 
-The place is defined by the size (W). Smaller maps usually imply more friction between the agents,
-thus different variations of S may derive in different behaviours. The values that should be chosen
+The place is defined by the size ($W$). Smaller maps usually imply more friction between the agents,
+thus different variations of $W$ may derive in different behaviours. The values that should be chosen
 are those that test a size smaller or equal to the neighbourhood defined (letting all the agents
 access to all the resources and positions of the world), a size bigger than the neighbourhood
 (forcing the agents to move to reach a new neighbourhood) and much bigger (showing the effects
 of having a big inhabited world).
 
-The time of the conflict is affected by the period of time that the world will exist (D).
+The time of the conflict is affected by the period of time that the world is given to run (D).
 In this sense, a longer period of time will usually imply more interactions, \textit{ergo} more
 archetypes and better fitness, and eventually more agents in the world. In the other hand, the evaluation
 of an individual in the GA implies the execution of every agent and the evaluation of each backstory,
