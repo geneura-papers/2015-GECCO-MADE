@@ -523,7 +523,9 @@ With respect to the number of generations reached by every criterion, Figure \re
 % Antonio - @Antares - pos eso, lo mismo que antes.
 % Antonio - Y lo mismo: ser? 'statistical significant difference', ?no?
 
-This figure plots ***
+This figure shows that every stop criteria needs more generation for determine that the algorithm have to stop when the criterion is more restrictive. \textit{AO} stop criterion is the faster, needing less generation but it's the worst in the score. For other hand, the \textit{FT} stop criterion it's the one that need more generations to finish, and it's possible that it never ends (in \ref{fig:table} shows the completion rate in experiments of each stop criteria). The \textit{FI} scale well, needing few turns to determine the stop. Finally the \textit{RT} it's the one that scale more pronounced, needing few turns in the minus restrictive case and a variable number in the more restrictive (and it's possible that never stop, like \textit{FT}).
+
+The Kruskal-Wallis test shows that the more restrictive \textit{FI} stop criteria aren't statistical significant difference with a \textit{Number of Generations Stop Criterion}. It shows too, that there aren't difference between the near values of \textit{AO} criteria. 
 
 
 
@@ -539,7 +541,7 @@ This figure plots ***
 In addition to the score, a benchmark ($\in[0,1]$) based in battles versus several bots common in the bibliography and maps (training and not training) it's passed to the best population of each criterion for all execution. The result of these benchmark it's displays in Fig \ref{fig:victories}. For be sure of the goodness of the score function it's compare to the benchmark result's getting an excellent result.
 
 
-Finally the two principal measures are compare in Figure \ref{subfig:comparative} and all the measures are presented in the Table \ref{fig:table}
+Finally the two principal measures are compare in Figure \ref{subfig:comparative} and all the measures are presented in the Table \ref{fig:table}. In this table is presented too the completion rate of the stop criterion, that indicate the number of executions that have finished in the experiments. 
 
 \begin{figure}[h!tb]
 	\begin{minipage}[b]{.50\columnwidth}
