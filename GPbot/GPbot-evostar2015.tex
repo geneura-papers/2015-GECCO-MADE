@@ -26,6 +26,7 @@
 \usepackage{subfigure}
 %\usepackage{subfig}
 \usepackage{url}
+\usepackage{caption}
 
 \newcommand{\keywords}[1]{\par\addvspace\baselineskip
 \noindent\keywordname\enspace\ignorespaces#1}
@@ -160,7 +161,8 @@ fighting, as the opponents are usually not known before the EA is running.
 % Afï¿½. Es literario-gafapastiense-bromista. ï¿½Quï¿½ tiene de malo? - JJ
 % Antares - A mi gusta xD
 % Antonio - a mi no me molesta la frase, pero la referencia no hace falta, creo yo. ;D
-% ï¿½quï¿½ hay de la segunda parte de mi comentario?
+% ï¿½quï¿½ hay de la segunda parte de mi comentario
+% Antares - Le puedes ganar siempre, pero la cosa es que tardas un tiempo (turnos) en ganarle :)
 To solve this, usually matches with previously-known opponents are used in the
 computation of the fitness function and an ``optimum'' is reached when a certain number of victories are achieved against them.
 However, using only one or a small number of opponents may lead to
@@ -254,7 +256,8 @@ extended to any problem with the same characteristics.
 The rest of the paper is organized as follows. Next section
 establishes the state of the art in the use of termination conditions
 for this kind of evolutionary algorithms in which the optimum is not
-known and/or with the presence of a noisy environment or fitness evaluation. Then in Section \ref{sec:met} we will %Maribel: quitar el will de la frase
+known and/or with the presence of a noisy environment or fitness evaluation. Then in Section \ref{sec:met} we will
+%Maribel: quitar el will de la frase
 present the different termination
 conditions %maribel Borrar desde aquÃ­ hasta "and how ... " osea que la frase quedarÃ­a mucho mÃ¡s corta y sencilla "Next in Section \ref{sec:met} we present the different termination conditions and how they contribute to ...
 we will be checking in this work and how they contribute to
@@ -317,6 +320,7 @@ This section describes, comments and justifies the different termination approac
 
 In this paper we propose different termination criteria that are based on different EA features, such as the parameters of the algorithm (maximum number of generations) or the population (improvement, replacement or age). 
 % Antonio - no hay nada de diversidad
+% Antares - Â¿A quÃ© te refieres con diversidad?
 The differences in performance obtained with each configuration will be analysed and compared. 
 
 % --------------------------------------------------------------
@@ -480,7 +484,7 @@ All these criteria will be tested in the following section. The objective of the
 The experiments conducted have involved 36 runs (this number has been used in order to profit the computational power of a cluster with this number of nodes), each of them configured including all the defined stop criteria, and also adding an extra termination one, i.e. getting to 500 generations, in order to avoid non-ending runs.
 
 %Antares - Antonio: Ya estamos con el 30... Son 36... 
-% Antonio - ya sé que son 36 => ¿y por qué no 40? te dirán. Pero bueno, ale, ya lo he puesto y justificado. ;)
+% Antonio - ya s?que son 36 => ?y por qu?no 40? te dir?. Pero bueno, ale, ya lo he puesto y justificado. ;)
 
 Thus, in every execution all the criteria are checked in every generation and, whenever one termination condition is met, the best individual to that moment (according to its score) is stored as the optimal solution for that criterion, because if that were the unique stop criterion, the algorithm would end.
 Once all the runs have finished or the extra termination has been met, we compute the average number of generations and the average score obtained for the same criterion in all different runs. There could happen that one criterion is never met in a run, then this will not be considered in the computation of that value but it decreases the completion rate of the criterion. 
@@ -496,8 +500,8 @@ The first study concerns the fitness/score evolution in the runs. Figure \ref{fi
 \label{fig:boxplotscore}
 \end{figure}
 
-% Antonio - @Antares - yo no mezclaría gráficos, podemos llegar a las 14 páginas sin problemas, pero bueno. En caso de dejarlo así intenta ponerlas como subfigura mejor, porque son cosas muy distintas. ;D
-% Antonio - Sería 'statistical significant difference', ¿no?
+% Antonio - @Antares - yo no mezclar? gr?icos, podemos llegar a las 14 p?inas sin problemas, pero bueno. En caso de dejarlo as?intenta ponerlas como subfigura mejor, porque son cosas muy distintas. ;D
+% Antonio - Ser? 'statistical significant difference', ?no?
 
 The first detail to notice in the figure is the non-presence of some of the commented stop values for the \textit{Fitness Threshold} criterion, namely 28 and 30, because they have not been reached in any of the runs.
 This is a problem derived from using a tough rival as ExpGenebot. Thus, the maximum fitness/score obtained during the evolution is very limited, since it is very difficult that one bot could win against 30 specialised bots \cite{Wolpert97nofree} (requirement for obtaining at least a score of 30). This is more evident if we take into account that the bots being evolved do not include any adaptive component that analyses the map, as ExpGenebot does. 
@@ -517,7 +521,7 @@ With respect to the number of generations reached by every criterion, Figure \re
 \end{figure}
 
 % Antonio - @Antares - pos eso, lo mismo que antes.
-% Antonio - Y lo mismo: sería 'statistical significant difference', ¿no?
+% Antonio - Y lo mismo: ser? 'statistical significant difference', ?no?
 
 This figure plots ***
 
@@ -538,17 +542,17 @@ In addition to the score, a benchmark ($\in[0,1]$) based in battles versus sever
 Finally the two principal measures are compare in Figure \ref{subfig:comparative} and all the measures are presented in the Table \ref{fig:table}
 
 \begin{figure}[h!tb]
-\begin{minipage}[b]{.48\columnwidth}
-\includegraphics[width=1\columnwidth]{imags/Comparative-log.eps}
-\caption{Average best individual score and average attained generations by each termination criteria.}
-\label{subfig:comparative}
-\vfill
-\end{minipage}
+	\begin{minipage}[b]{.50\columnwidth}
+		\includegraphics[width=1\columnwidth]{imags/Comparative-log.eps}
+		\caption{Average best individual score and average attained generations by each termination criteria.}
+		\label{subfig:comparative}
+		\vfill
+		\end{minipage}
 \hfill
-\begin{minipage}[b]{.40\columnwidth}
+\begin{minipage}[b]{.44\columnwidth}
 \includegraphics[width=1\columnwidth]{imags/tabla.eps}
 
-\caption{Comparative of each criterion with three measures: (G) Number of generations, (S) Score, (R) Completion rate in experiments and (V) Victories versus several bots in several maps. Relative measure by \textit{NG\_30.0}.}
+\captionof{table}[foo]{Comparative of each criterion with three measures: Number of generations (G), Score (S), Completion rate in experiments (R)  and  Victories versus several bots in several maps (V). (Relative measure by \textit{NG\_30.0}).}
 \label{fig:table}
 \end{minipage}
 \end{figure}
