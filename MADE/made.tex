@@ -419,9 +419,6 @@ With this information within reach, the storyteller can create a story about the
 \section{Experimental setup}
 \label{sec:exp}
 
-% Rubén - Si hace falta hueco qutamos este párrafo, que básicamente
-% repite lo dicho
-% Has explained!!! Agh!!! Mis ojos!!! - JJ
 As explained in subsection \ref{subsec:params}, the parameters 
 whose effect will be studied are the number of profiles (P), the world size (W),
 the virtual time (D), the food (F) and the population size of the GA (S).
@@ -438,8 +435,6 @@ Also, as the maximum lifetime of the agent is about 300 virtual days,
 the selected set of days (D) to study are 64, 128 and 256. More days would result in a
 huge amount of agents and backstories, harder to evaluate.
 
-
-Po
 %The world size (size of the
 %grid in this paper: 5x5, 10x10 or 20x20) can also influence in the
 %execution of the story, as larger worlds could make the agents spent
@@ -750,6 +745,7 @@ example, a fight) is more difficult. % pero esto habra que probarlo
 % FERGU: me ha dicho rubén que le has dicho hoy que no haga ningún
 % experimento, pero si hay tiempo podríamos hacerlo
 % Ya lo dejamos para el siguiente trabajo.
+% Correcto - JJ
 From the study of these two parameters we can conclude that, at least
 for these scenarios and possibly for any scenario, the baseline number
 of days should be 256 and the world for this population should have a
@@ -790,11 +786,25 @@ With respect to the GA population size, Figure \ref{fig:boxplotsS} shows visuall
 
 When using an hybrid EC-ABM approach to generate massive backstories in fiction environments its impossible to know in advance the
 optimal value of a fitness that models the appearance of different archetypes
-together and the search space may be enormous, so a previous study of the most important parameters is prescribed.
+together and the search space may be enormous, so a previous study of
+the most important parameters is prescribed. 
 
-In this paper we define the problem addressed (in terms of goal, worlds, fitnesses, archetypes, backstories, agents, profiles, conflicts, places, time and scenario) and a problem specification with the MADE framework. Our methodology selects key parameters (size of population of the GA, size of the world, number of profiles, source of conflicts and virtual days) that affect the conflicts generation and sets the values that are tested in the experiments. A battery of 29160 executions with all the possible parameter  combinations is launched and the results are studied using Kruskal-Wallis non-parametrical tests.
+In this paper we define the problem addressed (in terms of goal,
+worlds, fitnesses, archetypes, backstories, agents, profiles,
+conflicts, places, time and scenario) and a problem specification with
+the MADE framework. Our methodology selects key parameters (size of
+population of the GA, size of the world, number of profiles, source of
+conflicts and virtual days) that affect the generation of conflicts
+and sets the values that are tested in the experiments, looking for
+significant differences in the fitness of the evolved worlds. 
 
-The results show that there are significant differences between the five parameters in three scenarios with different combinations of the archetype \textit{villain}, \textit{hero} and \textit{avenger}. The best combination of parameters is the smallest map size (5x5), the bigger number of virtual days (256), the fewer rate of food (1/8 of the number of cells), the lower number of profiles (1) and the bigger population size of the GA (256). This is due to the fact that the three possible archetypes emerge when a the fights occur, and that happens more probably when the world is small and there is little food. Anyway, the backstories size increase with the virtual days of execution, thus it is easier to find archetypes when there are more. This can be generalised to similar problems (and the rest of scenarios): the source of conflict should be forced to occur more times, and simultaneously, it is necessary to give enough time to these situations appear.
+Our experiments prove that there are significant differences between
+the five parameters in three scenarios with different combinations of
+the archetype \textit{villain}, \textit{hero} and
+\textit{avenger}. The best combination of parameters, that is, the one
+that gives on average the highest fitness, is the smallest map size
+(5x5), the bigger number of virtual days (256), the fewer rate of food
+growth (1/8 of the number of cells), the lower number of profiles (1) and the bigger population size of the GA (256). This is due to the fact that the three possible archetypes emerge when a the fights occur, and that happens more probably when the world is small and there is little food. Anyway, the backstories size increase with the virtual days of execution, thus it is easier to find archetypes when there are more. This can be generalised to similar problems (and the rest of scenarios): the source of conflict should be forced to occur more times, and simultaneously, it is necessary to give enough time to these situations appear.
 
 In future works, the influence of more parameters would be tested, while different scenarios are used with archetypes that not only rely in competitions for food, like the affinity or the family relationships. To improve the accuracy of the parameter selection, human guided evaluation could be performed. Finally, the results of the study could be applied to generate backstories in real game engines.
 
