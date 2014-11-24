@@ -239,7 +239,7 @@ guarantees that the final result will be close to the optimum.
 This methodology  addresses to problems that present the following characteristics:
 \begin{description}
 \item[Goal:] The final goal is to generate stochastic virtual worlds massively inhabited by characters with backstories that are aligned with a mood defined by the writer.
-\item[Virtual world:] The virtual world is modeled by the ABM.
+\item[Virtual world:] The virtual world is modelled by the ABM.
 \item[Archetype:] An archetype is a behaviour pattern that can be present in a backstory.
 \item[Fitness:] The virtual world can be evaluated depending on different taxes of archetypes (set by the writer) found in the characters that inhabit it.
 \item[Backstory:] The backstory of a character is a set of actions and interpretations, coherent with the virtual world and the other agents.
@@ -345,7 +345,7 @@ defend, escape, find mate or breed.
 %FERGU: si es variable, pues es variable
 The place where the conflicts appear is a square grid. A cell can only be occupied by one agent.
 Each agent can move and interact with other agents in a neighbourhood of 7x7 cells around the rat. 
-The time is a serie of `virtual days'.
+The time is a number of `virtual days'.
 The rats are driven to survive and to have offspring, thus
 % los personajes no tienen leitmotif. Lo tiene una trama. Va a haber
 % que quitar todos los leitmotif. Aparte de que se dice leitmotiv,
@@ -466,7 +466,7 @@ condition will be established depending of the best fitness
 (30 generations without improvement), to do a fair comparison.
 
 For a more complete knowledge of the search space and the parameters effects, 
-three different scenerios will be studied:
+three different scenarios will be studied:
 \begin{itemize}
 \item $S_1$: Maximization of the `villain' archetype ($A=1$).
 \item $S_2$: Maximization of the `villain' and the `hero' archetypes ($A=2$).
@@ -507,7 +507,7 @@ Selection method & Binary tournament \\ \hline
 Elite & 10\%  \\ \hline
 Replacement method & Generational\\ \hline
 Re-evaluation of individuals & yes \\ \hline
-Stop condition & 30 genereations without improving the best individual found\\ \hline
+Stop condition & 30 generations without improving the best individual found\\ \hline
 %Stop condition? - JJ FERGU: puesta 
 % Without improvemente in what? It's noisy fitness... no change in the
 % best individual? - JJ FERGU: corregido (best individual "found") y puesto reevaluación en la tabla
@@ -662,7 +662,7 @@ All the results have also been plotted in order to better understand
 their differences (in Figures \ref{fig:boxplotsP} to \ref{fig:boxplotsS}). At first glance, the median for D, W and F is 0 (or almost 0) for several
 values. This has several possible explanations: First, the
 number of profiles has quite an impact in the results (Figure
-\ref{fig:boxplotsS}), as it was shown previously in
+\ref{fig:boxplotsP}), as it was shown previously in
 \cite{garcia:anon}. 
  %FERGU: @raiben habra que hacer lo que dice JJ de
               %estudiar que eventos se esten produciendo. El problema
@@ -776,10 +776,8 @@ also needs to be low enough so that it actually happens, in this case 1/8
 of the world size. % Con un mundo de tamagno 25, Aparecen 3 piezas de
                    % comida? - JJ FERGU: sí, pero se van generando cada día
 
-
-% which is interesting
-% because... - JJ FERGU: explicado todo
-
+%NO habíamos puesto explicación del último parámetro! :S FERGU
+With respect to the GA population size, Figure \ref{fig:boxplotsS} shows visually the confirmation of the tests: there are significant differences in the values for the Scenario 3. Because the large exploration space of this problem it is clear that larger sizes, in combination with a stop criterion based in changes of the best individual found, can obtain a higher range of possible solution values.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -792,11 +790,11 @@ When using an hybrid EC-ABM approach to generate massive backstories in fiction 
 optimal value of a fitness that models the appearance of different archetypes
 together and the search space may be enormous, so a previous study of the most important parameters is prescribed.
 
-In this paper we define the problem addressed (in terms of goal, worlds, fitnesses, archetypes, backstories, agents, profiles, conflicts, places, time and sceneries) and a problem specification with the MADE framework. Our methodology selects key parameters (size of population of the GA, size of the world, number of profiles, source of conflicts and virtual days) that affect the conflicts generation and sets the values that are tested in the experiments. A battery of 29160 executions with all the possible parameter  combinations is launched and the results are studied using Kruskal-Wallis non-parametrical tests.
+In this paper we define the problem addressed (in terms of goal, worlds, fitnesses, archetypes, backstories, agents, profiles, conflicts, places, time and scenario) and a problem specification with the MADE framework. Our methodology selects key parameters (size of population of the GA, size of the world, number of profiles, source of conflicts and virtual days) that affect the conflicts generation and sets the values that are tested in the experiments. A battery of 29160 executions with all the possible parameter  combinations is launched and the results are studied using Kruskal-Wallis non-parametrical tests.
 
-The results show that there are significant differences between the five parameters in three sceneries with different combinations of the archetype \textit{villain}, \textit{hero} and \textit{avenger}. The best combination of parameters is the smallest map size (5x5), the bigger number of virtual days (256), the fewer rate of food (1/8 of the number of cells), the lower number os profiles (1) and the bigger population size of the GA (256). This is due to the fact that the three archetypes emerge when a the fights occur, and that happens more probably when the world is small and there is little food. Anyway, the backstories size increase with the virtual days of execution, thus it is easier to find archetypes when there are more.
+The results show that there are significant differences between the five parameters in three scenarios with different combinations of the archetype \textit{villain}, \textit{hero} and \textit{avenger}. The best combination of parameters is the smallest map size (5x5), the bigger number of virtual days (256), the fewer rate of food (1/8 of the number of cells), the lower number of profiles (1) and the bigger population size of the GA (256). This is due to the fact that the three possible archetypes emerge when a the fights occur, and that happens more probably when the world is small and there is little food. Anyway, the backstories size increase with the virtual days of execution, thus it is easier to find archetypes when there are more. This can be generalised to similar problems (and the rest of scenarios): the source of conflict should be forced to occur more times, and simultaneously, it is necessary to give enough time to these situations appear.
 
-In future works, the influence of more parameters would be tested, while different sceneries are used with archetypes that not only rely in competitions for food, like the affinity or the family relationships. To improve the accuracy of the parameter selection, human guided evaluation could be performed. Finally, the results of the study could be applied to generate backstories in real game engines.
+In future works, the influence of more parameters would be tested, while different scenarios are used with archetypes that not only rely in competitions for food, like the affinity or the family relationships. To improve the accuracy of the parameter selection, human guided evaluation could be performed. Finally, the results of the study could be applied to generate backstories in real game engines.
 
 \section*{Acknowledgements}
 
