@@ -15,7 +15,7 @@
 \mainmatter  % start of an individual contribution
 
 % first the title is needed
-\title{How the world was MADE: analysing the parameters for massive evolutionary generation of coherent backstories in fiction environments}
+\title{How the world was MADE: parametrisation of evolved agent-based models for backstory generation}
 
 % a short form should be given in case it is too long for the running head
 \titlerunning{How the world was MADE}
@@ -54,9 +54,7 @@ presents two main problems: first it is impossible to know in advance the optima
 parameters that it
 needs. The purpose of this paper is to define a methodology to find the
 best parameter values for both, the evolutionary algorithm, and the own fictional world configuration.
-
 This design includes running, to completion, a world simulation represented as a chromosome, and assigning a fitness to it, thus composing a very complex fitness landscape.
-
 % <RH> reescribo esta oracion
 	%That is why, in order to
 	%optimize resources given to evolution and also have some guarantee
@@ -68,15 +66,13 @@ This design includes running, to completion, a world simulation represented as a
 In order to optimize the resources allocated to evolution and to have some
 guarantees that the final result will be close to the optimum, we systematically
 analyse a set of possible values of the most relevant parameters, obtaining a set of generic rules. 
-
 % Antonio - ¿a qué te refieres por regla?¿qué tipo de reglas?
 % Rubén - a reglas que debe seguir un autor para que que el entorno ofrezca los mejores resultados para él o
 % las reglas que debe tener en cuenta quien diseñe una solución similar. No se si queda claro tal y como está explicado.
 These rules, when applied to the plot requisites, and thus, to the fitness function, will lead to a reduced range of parameter values that will help the storyteller to create optimal worlds with a reduced computation budget.
 % </RH>
 
-\keywords{Games, Plot, Content generation, Fictional world,
-  Literature, Evolutionary algorithms, Agent Based Models}
+\keywords{Games, Plot, Content generation, Evolutionary algorithms, Agent Based Models}
 \end{abstract}
 
 \section{Introduction}
@@ -804,9 +800,44 @@ the archetype \textit{villain}, \textit{hero} and
 \textit{avenger}. The best combination of parameters, that is, the one
 that gives on average the highest fitness, is the smallest map size
 (5x5), the bigger number of virtual days (256), the fewer rate of food
-growth (1/8 of the number of cells), the lower number of profiles (1) and the bigger population size of the GA (256). This is due to the fact that the three possible archetypes emerge when a the fights occur, and that happens more probably when the world is small and there is little food. Anyway, the backstories size increase with the virtual days of execution, thus it is easier to find archetypes when there are more. This can be generalised to similar problems (and the rest of scenarios): the source of conflict should be forced to occur more times, and simultaneously, it is necessary to give enough time to these situations appear.
+growth (1/8 of the number of cells), the lower number of profiles (1)
+and the bigger population size of the GA (256). This is due to the
+fact that the three possible archetypes emerge when a the fights
+occur, and that happens more probably when the world is small and
+there is little food. Anyway, the backstories size increase with the
+virtual days of execution, thus it is easier to find archetypes when
+there are more. This can be generalised to similar problems (and the
+rest of scenarios): the source of conflict should be forced to occur
+more times, and simultaneously, it is necessary to give enough time to
+these situations appear. 
 
-In future works, the influence of more parameters would be tested, while different scenarios are used with archetypes that not only rely in competitions for food, like the affinity or the family relationships. To improve the accuracy of the parameter selection, human guided evaluation could be performed. Finally, the results of the study could be applied to generate backstories in real game engines.
+This points to the fact that the number of virtual days might not be
+an adequate termination condition for the world, since what we are
+looking for is for a series of facts to occur so that {\em
+  interesting} stories and relationships are generated. Using those
+facts (maybe combined with a maximum amount of days) might be a better
+termination condition for the world.
+
+Anothe conclusion is that, even if the number of profiles (different
+behaviors in the world) could, a priori, allow for more complex
+archetypes to appear, the fact that they are codified in a chromosome
+changes the shape of the search space and increases its size and
+complexity, so that the number of generations the algorithm needs
+might be much more. It is never easy to establish termination
+conditions in these kind of evolutionary algorithms, so this is
+something that should be researched in the future.
+
+Since it has been proved that conflicts, as in fiction, is what drives
+fitness up in the worlds we are designing, the actual number of conflicts happening in the world, its
+influence in the fitness and its relationship with world size and food
+growth will have to be assessed in future works. The influence of
+parameters such as the initial population could be tested, while different scenarios will be used
+with archetypes that not only rely in competition for food, like the
+affinity or the family relationships. To improve the accuracy of the
+parameter selection, human guided evaluation could be
+performed, but this is only one possible way of doing it. Finally, the
+results of the study could be applied to 
+generate backstories in real game engines. 
 
 \section*{Acknowledgements}
 
