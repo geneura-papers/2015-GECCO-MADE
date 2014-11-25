@@ -469,7 +469,7 @@ All these criteria will be tested in the following section. The objective of the
 \section{Experiments and Results}
 \label{sec:res}
 
-The experiments conducted have involved 36 runs (this number has been used in order to profit the computational power of a cluster with this number of nodes), each of them configured including all the defined stop criteria, and also adding an extra termination one, i.e. getting to 500 generations, in order to avoid non-ending runs.
+The experiments conducted have involved 36 runs (this number has been used in order to leverage the computational power of a cluster with this number of nodes), each of them configured including all the defined stop criteria, and also adding an extra termination one, i.e. getting to 500 generations, in order to avoid non-ending runs.
 
 %Antares - Antonio: Ya estamos con el 30... Son 36... 
 % Antonio - ya s?que son 36 => ?y por qu?no 40? te dir?. Pero bueno, ale, ya lo he puesto y justificado. ;)
@@ -484,17 +484,18 @@ The first study concerns the fitness/score evolution in the runs. Figure \ref{fi
 \subfigure[Score]{\includegraphics[width=0.74\columnwidth]{imags/Boxplot_SC-Score-log.eps}}
 \subfigure[Kruskal-Wallis]{\includegraphics[width=0.25\columnwidth]{imags/Kruskal-Score.eps}}
 \end{center} 
-\caption{(a) Scores of the best individuals (of all runs), grouped by criterion. (b) Kruskal-Wallis test of samples of each criterion by score (black means no statistical significant difference has been found)}
+\caption{(a) Scores of the best individuals (of all runs), grouped by criterion. (b) Kruskal-Wallis test of samples of each criterion by score (black means no statistically significant difference has been found)}
 \label{fig:boxplotscore}
 \end{figure}
 
 % Antonio - @Antares - yo no mezclar? gr?icos, podemos llegar a las 14 p?inas sin problemas, pero bueno. En caso de dejarlo as?intenta ponerlas como subfigura mejor, porque son cosas muy distintas. ;D
 % Antonio - Ser? 'statistical significant difference', ?no?
+% statistical_ly_ - JJ
 
 % Antonio - @Antares - SCORE en minúscula, plis ya. :D
 
-The first detail to notice in the figure is the non-presence of some of the commented stop values for the \textit{Fitness Threshold} criterion, namely 28 and 30, because they have not been reached in any of the runs.
-This is a problem derived from using a tough rival as ExpGenebot. Thus, the maximum fitness/score obtained during the evolution is very limited, since it is very difficult that one bot could win against 30 specialised bots \cite{Wolpert97nofree} (requirement for obtaining at least a score of 30). This is more evident if we take into account that the bots being evolved do not include any adaptive component that analyses the map, as ExpGenebot does. 
+The first detail to notice in the figure is the absence of some of the commented stop values for the \textit{Fitness Threshold} criterion, namely 28 and 30, because they have not been reached in any of the runs.
+This is a problem derived from using a tough rival such as ExpGenebot. Thus, the maximum fitness/score obtained during the evolution is very limited, since it is very difficult that one bot could win against 30 specialised bots \cite{Wolpert97nofree} (requirement for obtaining at least a score of 30). This is more evident if we take into account that the bots being evolved do not include any adaptive component that analyses the map, as ExpGenebot does. 
 
 As it can also be seen in Figure \ref{fig:boxplotscore}.a all the criterion are well defined, since all the scores grow in every criterion block, so as more restrictive the criterion is (they are met with a lower probability), the higher the obtained score is. The score function is working well, even with the presence of noise, as the wide of the boxplots (score dispersion) demonstrates when the criteria become more restrictive. This is true in all the cases except in the \textit{Age of Outliers} which is so far the criterion with the worse results, as it is also proved by the statistical test (Figure \ref{fig:boxplotscore}.b) which does not find significant differences between the scores obtained by every age-based criterion and the previous and next ones.
 The \textit{Replacement Rate} criterion yields the best distribution of results, with a clear fitness improvement tendency and a very good maximum score, close to that obtained by the \textit{Fitness Thresholds}. However the latter is not as good as it seems, since the success rate (times that the runs has reached that value) is the lowest among all for high threshold values. This will be shown in further results.
@@ -574,7 +575,9 @@ The case of RT\_22 seems much more promising, since it has a very good comprise 
 
 Anyway, these results could be used as a reference to choose the best criterion in every case, depending on the problem and on the restrictions. Thus, for instance, if we are facing a competition with a limited amount of computational time, we could select the best criterion in score and victories taking into account the maximum number of generations that could be reached in that limit.\\
 
-*** Generalizar esto a cualquier problema => hacerlo una metodología ***
+%*** Generalizar esto a cualquier problema => hacerlo una metodología
+%***
+% Coñe, ¿es que no podéis poner comentarios? -JJ
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CONCLUSIONS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
