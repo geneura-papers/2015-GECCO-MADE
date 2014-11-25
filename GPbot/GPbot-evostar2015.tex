@@ -160,17 +160,17 @@ the enemies that have been used during the `training' phase (to compute the
 fitness) \cite{DBLP:journals/jcst/MoraFGGF12}, and using more opponents might 
 make evolution unwieldy consuming too many CPU cycles.
 
-However, these two issues (noisy and reachability of optimal fitness)
-are normally not taken into account when deciding when to end the
-evolution process. and the usual approach is taking a
-fixed number of evaluations or amount of time, usually given by the
-game or challenge constraints (if it is in a competition). When this
-rule is not imposed by a challenge or some other condition, this is
-not the right approach for finding the best autonomous agent, or even
-one that is 
-good enough to defeat those that constitute the state of the art.
+These two issues, noise and optimal fitness reachability, are normally not 
+taken into account when choosing how to stop the evolution process. Usual 
+approach is to use a fixed number of evaluations or a fixed amount of time, 
+usually given by the game or challenge constraints. When this constrain is not 
+imposed by a challenge or some other condition, this is not the right approach 
+for finding the best game agent, or even one that is good enough to defeat 
+those found in the state of the art.
 
-That is why finding the optimal termination condition is essential in the search for game bots that competes in a particular challenge. If there is not a fixed evaluation budget, the next usual solution is to give it as much as you have got, 
+That is why finding the optimal termination condition is essential in the 
+search for game bots that competes in a particular challenge. If there is not a 
+fixed evaluation budget, the next usual solution is consume as much as possible, 
 % Antonio - 'as you have got'??? En qu�? A qu� te refieres?
 % ``darlo todo'' - JJ
 which is fair if you are designing a bot %maribel, el got no se suele
@@ -180,17 +180,14 @@ to participate in a competition
 \cite{DBLP:conf/cec/Fernandez-AresMGGF11:anon}. However, from a
 methodological point of view, if you want to compare different
 approaches to design a bot it needs to be done in conditions that are
-as similar as possible, which  
-might make {\em as much as you have got} a bit short on
-details: a independent stopping criterion is needed, since using any method for the same
-time or for the same number of evaluations is not usually fair,
+as fair as possible, which might make {\em as much as you have got} a bit short 
+on details: a independent stopping criterion is needed, since using any method 
+for the same time or for the same number of evaluations can be misleading. 
 % Antonio - Explicar por qu� no es justo.
-because the object of the process is to obtain a very good or
-near-optimal bot and some methods might need more evaluations, or more
-time, than others. 
+The object of the process is to obtain an optimal bot and some methods might 
+need more evaluations, or more time, than others.
 % explicado - JJ
-This makes, from the methodological point of view, inadequate to simply use the
-number of evaluations as a termination condition.
+From a methodological point of view, it can be considered naive using a number of evaluations as the termination condition.
 
 These three problems, two of them (noise and unknown or unreachable optimum)
 algorithmic and one (fair comparison) methodological, are
