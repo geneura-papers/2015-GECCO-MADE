@@ -1,19 +1,3 @@
-%%%%%%%%%%%%%%%%%%%%%%% file typeinst.tex %%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% This is the LaTeX source for the instructions to authors using
-% the LaTeX document class 'llncs.cls' for contributions to
-% the Lecture Notes in Computer Sciences series.
-% http://www.springer.com/lncs       Springer Heidelberg 2006/05/04
-%
-% It may be used as a template for your own input - copy it
-% to a new file with a new name and use it as the basis
-% for your article.
-%
-% NB: the document class 'llncs' has its own and detailed documentation, see
-% ftp://ftp.springer.de/data/pubftp/pub/tex/latex/llncs/latex2e/llncsdoc.pdf
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
 \documentclass[runningheads,a4paper]{llncs}
 
 \usepackage[latin1]{inputenc}
@@ -113,7 +97,7 @@ them and, eventually, selecting one for future designs.
 % hemos dicho que realmente estas condiciones de parada son aplicables a cualquier juego.
 % Antonio - faltar�a la �ltima frase con las conclusiones que se alcancen, no?
 % Antares - Digo yo :P
-\keywords{Videogames, RTS, evolutionary algorithms, termination criteria, noisy fitness, no-optimal solution}
+\keywords{Videogames, RTS, evolutionary algorithms, termination criteria, noisy fitness}
 \end{abstract}
 
 %
@@ -256,17 +240,19 @@ extended to any problem with the same characteristics.
 The rest of the paper is organized as follows. Next section
 establishes the state of the art in the use of termination conditions
 for this kind of evolutionary algorithms in which the optimum is not
-known and/or with the presence of a noisy environment or fitness evaluation. Then in Section \ref{sec:met} we will
+known and/or with the presence of a noisy environment or fitness
+evaluation. Then Section \ref{sec:met} %we will 
 %Maribel: quitar el will de la frase
-present the different termination
+% Si lo quitas que siga concordando sujeto y predicado - JJ
+presents the different termination
 conditions %maribel Borrar desde aquí hasta "and how ... " osea que la frase quedaría mucho más corta y sencilla "Next in Section \ref{sec:met} we present the different termination conditions and how they contribute to ...
-we will be checking in this work and how they contribute to
-prove which one has better behaviour in this context; we will also
-sketch the problem we are using in this particular paper, evolution of
-bot for Planet Wars. Results will be presented in Section
+sketches the problem we are using in this particular paper, evolution of
+bots for Planet Wars. Results will be presented in Section
 \ref{sec:res}, followed by the conclusions and a discussion of the
 implication of the obtained results.
-% Antonio - esto habr�a que reescribirlo mejor y con los contenidos reales. ;D
+% Antonio - esto habr�a que reescribirlo mejor y con los contenidos
+% reales. ;D
+% Se ha hecho?
 
 
 %maribel: En realidad, este último párrafo lo simplifiqué y reescribí entero tal y como os pongo aquí abajo
@@ -316,12 +302,13 @@ In this paper, several stopping criteria will be studied, considering the time n
 \section{Methodology and experimental setup}
 \label{sec:met}
 
-This section describes, comments and justifies the different termination approaches to be tested in the paper. Although in this work we focus on a specific scenario (generation of competitive bots for the Planet Wars game), the results obtained could be, in principle, be applied to other similar problems. Therefore, we justify a general experimental and parameter setup, with the specific restrictions applied to the problem we are addressing. 
-
+%This section describes, comments and justifies the different
+%termination approaches to be tested in the paper. 
 In this paper we propose different termination criteria that are based on different EA features, such as the parameters of the algorithm (maximum number of generations) or the population (improvement, replacement or age). 
 % Antonio - no hay nada de diversidad
 % Antares - ¿A qué te refieres con diversidad?
 The differences in performance obtained with each configuration will be analysed and compared. 
+Although in this work we focus on a specific scenario (generation of competitive bots for the Planet Wars game), the results obtained could, in principle, be applied to other similar problems. Therefore, we justify a general experimental and parameter setup, with the specific restrictions applied to the problem we are addressing. 
 
 % --------------------------------------------------------------
 
@@ -348,7 +335,8 @@ The aim of the implemented algorithm is to generate competitive bots from scratc
 
 A \textit{generational} approach has been considered in the algorithm. 
 % Antonio - �alguien sabe una cita de GP Generacional?
-In it, at least half of the population (the best chosen as parents) remains from one generation to the next. This provides the algorithm with a higher exploration factor than a steady-state approach, which is very positive due to the huge search space of the problem we are solving.
+In it, at least half of the population (the best chosen as parents)
+remains in the population from one generation to the next. This provides the algorithm with a higher exploration factor than a steady-state approach, which is very positive due to the huge search space of the problem we are solving.
 
 %the lack of a known optimum solution, and the noisy feature of the problem, a generational GP algorithm will be used, with a specific scoring method as fitness.
 % Antonio - Esto no tiene nada que ver con que se haya elegido un enfoque generacional. Vamos que no veo en qu� ayuda eso... :(
