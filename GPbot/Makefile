@@ -15,6 +15,9 @@ auto:
 clean:
 	latexmk -C
 
+realclean: clean
+	$(RM) *.bbl imags/*-eps-converted-to.pdf
+
 ###############################################################################
 
 %.pdf: %.tex $(EPS)
