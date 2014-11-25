@@ -120,9 +120,9 @@ the problem of massively generating backstories for non-player
 characters (NPCs) can be considered \textit{Procedural content
   generation (PCG)}, since it implies the generation of a part of
 the game world, namely, the characters and their relations. In this paper,
-we have used a \textit{offline} and \textit{search-based}, since it is
-done in the phase of game design and using evolutionary algorithms, a
-search-based method.
+we have used an \textit{offline} approach since the computation is
+done in the phase of game design and it is considered \textit{search-based} due to the use an evolutionary algorithm.
+
 % Antonio - esta taxonomía no me cuadra mucho. La PCG (apartado 1) puede hacerse mediante algoritmos de búsqueda u optimización, como los AEs (otro de los apartados). Por otra parte éstos podrán ser offline (otro apartado) y el contenido a crear podría ser opcional o completo...
 % Yo explicaría todo esto sin ponerlo a modo de taxonomía, sino
 % comentando las distintas opciones de PCG: basada en algoritmos de
@@ -189,7 +189,7 @@ used in the present work, was also introduced in that paper. However, the rest o
 % Antonio - He puesto la REF de Morrel. Comprobadla. ;)
 % Alguien la ha comprobado? @raiben - JJ
 
-In this paper, we want to extend the previous study testing the rest of the
+In this research, we want to extend the previous study testing the rest of the
 parameters that model a story: the time, the world, the characters and
 the source of conflicts. 
 % Antonio - hay que darle muuucho más bombo a esto. La importancia de los parámetros, que los resultados pueden variar mucho con un cambio leve en ellos, que unos tienen mucha más influencia, que otros podrían resultar superfluos, que hace falta hacer este estudio para definir el algoritmo bien, que se va a hacer una definición de reglas de configuración, etc etc.
@@ -323,7 +323,7 @@ the virtual time (D), the food (F) and the population size of the GA (S).
 % sobre todo lo relativo a cifras sirve para explicar el experimental setup.
 % (que nunca se ha dicho en otros papers y de hecho está bastante resumido)
 
-An agent in the MADE world is a representation of brown rat
+An agent in the MADE world is a representation of a brown rat
 modelled as a finite automaton that performs actions like move, eat, attack,
 defend, escape, find mate or breed.
 %In general, these agents are considered as adults at the age of 40 days, have a pregnancy
@@ -350,7 +350,7 @@ as described in \cite{garcia:anon}.
 In this paper we will study three different archetypes: An agent
 is considered a \textit{villain} if it kills other agent as a result of a fight for the food,
 a \textit{hero} if it attacks a \textit{villain} and an
-\textit{avenger} is it attacks other agent in revenge.
+\textit{avenger} if it attacks other agent in revenge.
 
 % Rubén - Aquí explico el dichoso fitness, que nunca queda bien claro. Espero que ahora ...
 The fitness of the world is the sum of the value for each archetype rate, i.e. 
@@ -398,7 +398,7 @@ For the simple reason of using agents in a bottom-up approach for the world gene
 The storyteller will be able to tell a story about each character by accessing to its lifelog. The lifelog should have a pre-defined format understandable by the storyteller, with fields like the date, the action performed, the internal state, the direct object and the indirect object.
 Moreover, each agent should be tagged with the different archetypes it fulfils, the days that this archetype begins and ends, and the agents affected.
 
-With this information within reach, the storyteller can create a story about the character by narrating its birthday, its name, the name and story of its parents, siblings and children (also using this technique for describing them), what the agent is (as archetype: `vilain', `hero', `avenger') and why (dates, characters related and supposed motivations).
+With this information within reach, the storyteller can create a story about the character by narrating its birthday, its name, the name and story of its parents, siblings and children (also using this technique for describing them), what the agent is (as archetype: `villain', `hero', `avenger') and why (dates, characters related and supposed motivations).
 
 % Rubén - pondré una referencia a la sección de resultados donde contaré en una líneas una historia de ejemplo generada en un mundo ejecutado con nuestros parámetros.
 
@@ -410,7 +410,7 @@ whose effect will be studied are the number of profiles (P), the world size (W),
 the virtual time (D), the food (F) and the population size of the GA (S).
 Different parameter values for each element will be studied to clarify
 their influence in the literary world generation, following the rules and 
-recommendations present in subsection \ref{subsec:params}.
+recommendations presented in subsection \ref{subsec:params}.
 
 Since the size of the neighbourhood is a square of 7x7 cells, the selected
 values for (W) are 5x5, 10x10 and 20x20 cells. Furthermore, these sizes would
@@ -581,7 +581,7 @@ Initial world population & 15 \\ \hline
 In this paper, 9720 runs were carried out for each problem/scenario (30 times * 4 levels for \emph{P} * 3 levels for \emph{D} * 3 levels for \emph{W} * 3 levels for \emph{S} * 3 levels for \emph{F} that represent the possible combinations) to obtain the fitness for each combination.
 
 Since the Kolmogorov-Smirnov test determines that the data we are using
-does not follow a normal distribution a non-parametric test, the Kruskal-Wallis test, has been
+does not follow a normal distribution, a non-parametric test, the Kruskal-Wallis test, has been
 performed.  % por
                                 % favor, Podriais escribir esto EN
                                 % INGLES? - JJ FERGU: esto se ha extraido de un paper de ANOVA de hace tiempo, pero he quitado la ultima frase
@@ -796,20 +796,22 @@ fact that the three possible archetypes emerge when a the fights
 occur, and that happens more probably when the world is small and
 there is little food. Anyway, the backstories size increase with the
 virtual days of execution, thus it is easier to find archetypes when
-there are more. This can be generalised to similar problems (and the
+more virtual days are executed, in other words, when all the agents have
+the opportunity to live their entire lives.
+This can be generalised to similar problems (and the
 rest of scenarios): the source of conflict should be forced to occur
 more times, and simultaneously, it is necessary to give enough time to
 these situations appear. 
 
 This points to the fact that the number of virtual days might not be
 an adequate termination condition for the world, since what we are
-looking for is for a series of facts to occur so that {\em
+looking for is a series of facts to occur so that {\em
   interesting} stories and relationships are generated. Using those
 facts (maybe combined with a maximum amount of days) might be a better
 termination condition for the world.
 
-Anothe conclusion is that, even if the number of profiles (different
-behaviors in the world) could, a priori, allow for more complex
+Another conclusion is that, even if the number of profiles (different
+behaviours in the world) could, a priori, allow for more complex
 archetypes to appear, the fact that they are codified in a chromosome
 changes the shape of the search space and increases its size and
 complexity, so that the number of generations the algorithm needs
