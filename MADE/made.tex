@@ -12,49 +12,34 @@
 
 \begin{document}
 
-\mainmatter  % start of an individual contribution
+\mainmatter  
 
-% first the title is needed
 \title{How the world was MADE: parametrisation of evolved agent-based models for backstory generation}
 
-% a short form should be given in case it is too long for the running head
 \titlerunning{How the world was MADE}
 
-% the name(s) of the author(s) follow(s) next
-%
-%
 \author{A. N. Onymouse%
 \thanks{Anonymous Institute}}
 %
 \authorrunning{Anonymous, A}
-% (feature abused for this document to repeat the title also on left hand pages)
 
-% Antonio - he cambiado el autor y demás para que no sea el mismo que el de GPBot. :D
 
-% the affiliations are given next; don't give your e-mail address
-% unless you accept that it will be published
 \institute{No Institute}
-
-%
-% NB: a more complex sample for affiliations and the mapping to the
-% corresponding authors can be found in the file "llncs.dem"
-% (search for the string "\mainmatter" where a contribution starts).
-% "llncs.dem" accompanies the document class "llncs.cls".
-%
 
 \maketitle
 
-
 \begin{abstract}
-Generating fiction environments for a 
-multi-agent system optimized by genetic algorithms
-(with some specific requirements
-related to the desirable plots),
-presents two main problems: first it is impossible to know in advance the optimal value for the particular designed fitness function, and at the same time, it creates a vast search space for the  
-parameters that it
-needs. The purpose of this paper is to define a methodology to find the
-best parameter values for both, the evolutionary algorithm, and the own fictional world configuration.
-This design includes running, to completion, a world simulation represented as a chromosome, and assigning a fitness to it, thus composing a very complex fitness landscape.
+Generating fiction environments for a multi-agent system optimized by
+genetic algorithms (with some specific requirements related to the
+desirable plots), presents two main problems: first it is impossible
+to know in advance the optimal value for the particular designed
+fitness function, and at the same time, it creates a vast search space
+for the parameters that it needs. The purpose of this paper is to
+define a methodology to find the best parameter values for both, the
+evolutionary algorithm, and the own fictional world configuration.
+This design includes running, to completion, a world simulation
+represented as a chromosome, and assigning a fitness to it, thus
+composing a very complex fitness landscape.
 % <RH> reescribo esta oracion
 	%That is why, in order to
 	%optimize resources given to evolution and also have some guarantee
@@ -63,13 +48,17 @@ This design includes running, to completion, a world simulation represented as a
 	%rules that will, once you have the fitness function, help you set a
 	%reduced range of values or even a single value that will, with a
 	%reduced computation budget, help you find an optimal world.
-In order to optimize the resources allocated to evolution and to have some
-guarantees that the final result will be close to the optimum, we systematically
-analyse a set of possible values of the most relevant parameters, obtaining a set of generic rules. 
+In order to optimize the resources allocated to evolution and to have
+some guarantees that the final result will be close to the optimum, we
+systematically analyse a set of possible values of the most relevant
+parameters, obtaining a set of generic rules.
 % Antonio - ¿a qué te refieres por regla?¿qué tipo de reglas?
 % Rubén - a reglas que debe seguir un autor para que que el entorno ofrezca los mejores resultados para él o
 % las reglas que debe tener en cuenta quien diseñe una solución similar. No se si queda claro tal y como está explicado.
-These rules, when applied to the plot requisites, and thus, to the fitness function, will lead to a reduced range of parameter values that will help the storyteller to create optimal worlds with a reduced computation budget.
+These rules, when applied to the plot requisites, and thus, to the
+fitness function, will lead to a reduced range of parameter values
+that will help the storyteller to create optimal worlds with a reduced
+computation budget.
 % </RH>
 
 \keywords{Games, Plot, Content generation, Evolutionary algorithms, Agent Based Models}
@@ -77,7 +66,8 @@ These rules, when applied to the plot requisites, and thus, to the fitness funct
 
 \section{Introduction}
 
-In the very competitive cultural industry (including videogame creation), writers rack their minds in
+In the very competitive cultural industry, that includes videogame
+creation, writers rack their minds in 
 order to generate interesting fictional worlds.
 % Antonio - no creo que la mayoría de autores se centren en idear
 % mundos para videojuegos (por desgracia). :D
