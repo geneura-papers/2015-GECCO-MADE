@@ -104,12 +104,14 @@ designs.
 \section{Introduction}
 
 
-Evolutionary Algorithms (EAS) are one of the methods usually applied
-to find the best autonomous agent for playing a game, i.e. the best \textit{bot}
-\cite{Agent_Smith_CEC2009,bots:evostar,unreal:gecco10:anon,DBLP:conf/cig/Fernandez-AresGMG12:anon}
-through an evolutionary process.
-As in any other algorithm, the termination condition is a key factor, along with its experimental setup since it affects the algorithmic performance, with respect to the quality of the yielded solution, and also to the amount of resources devoted to the run. 
-The usual stop criterion in EAs \cite{EAs_Back96} is reaching a constant number of generations (or evaluations), 
+Evolutionary Algorithms (EAS) are one of the methods usually applied to find the
+ best autonomous agent for playing a game, i.e. the best \textit{bot} \cite{Agent_Smith_CEC2009,bots:evostar,unreal:gecco10:anon,DBLP:conf/cig/Fernandez-AresGMG12:anon} through a process mimicking the natural evolution of the 
+species. As in any other algorithm, the termination condition is a key factor 
+as the rest ot the experimental setup since it affects the algorithmic 
+performance, with respect to the quality of the yielded solution, and also to 
+the amount of resources devoted to the run. The usual stop criterion in EAs 
+\cite{EAs_Back96} is reaching a constant number of generations (or 
+evaluations), 
 %Maribel: el número de generaciones y el número de evaluaciónes
 %están relacionadas sólo en poblaciones de tamaño fijo. Yo las
 %trataría como condiciones de parada en algunos ámbitos, aunque no
@@ -118,9 +120,12 @@ The usual stop criterion in EAs \cite{EAs_Back96} is reaching a constant number 
 %qué serlo.
 % Maribel da exactamente igual. Lo importante es el n�mero de
 % evaluaciones. - JJ
- which is normally related to a fixed {\em computing cycles budget}
-for doing the run. Another usual approach is based in a number of generations in
-which the best solution is not improved (distance to the optimum is not reduced) \cite{RocheTermination13}. However, neither of them might be useful in certain problems such as games, mainly due to the noisy nature of the fitness function \cite{merelo14:noisy,bots:evostar}. 
+ which is normally related to a fixed {\em computing power budget} for doing 
+the run. Another usual approach is based in a number of generations in which 
+the best solution is not improved or the distance to the optimum is not reduced 
+\cite{RocheTermination13}. However, neither of them might be useful in certain 
+kind of problems such as games, mainly due to the noisy nature of the fitness 
+function \cite{merelo14:noisy,bots:evostar}.
 
 This \textit{noise} is inherent to most fighting games, since the enemy behavior, the game environment, the bot itself, or all of them, may have an
 stochastic component which might make the result of a match vary from
