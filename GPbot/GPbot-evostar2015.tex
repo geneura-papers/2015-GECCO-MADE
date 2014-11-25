@@ -522,7 +522,11 @@ The Kruskal-Wallis test (Figure \ref{fig:boxplotgenerations}.b) results are less
 
 This two measures are compared in Figure \ref{subfig:comparative}. As it can be seen, an improvement in the fitness/score means a higher number of generations are required. This happens in almost all the cases, with some exceptions such as RT\_20 or RT\_22, which get a higher score value in less generations than other criteria. However, this happens due to the commented problem of noise.
 
-In addition to these two studies, a new measure factor has been computed by means of a benchmark based in battles against several bots of the literature [***REF***] in 100 maps (some of them used during the evolution). This test has been conducted for the best individual obtained when every criterion was met in every run, thus 24x36 bots have been tested.
+In addition to these two studies, a new measure factor has been
+computed by means of a benchmark based in battles against several bots
+of the literature % [***REF***]  Joder, macho, esto no puede estar
+                  % aquí a estas alturas - JJ
+ in 100 maps (some of them used during the evolution). This test has been conducted for the best individual obtained when every criterion was met in every run, thus 24x36 bots have been tested.
 
 The results of the benchmark (percentage of victories $\in[0,1]$) are displayed in Figure \ref{fig:victories}.a. 
 Figure \ref{fig:victories}.b plots the linear regression analysis between the obtained score by the chosen bots, and the results in the benchmark. It has a value $R^2=0.9351$, which means an excellent correlation, and thus, the score function is quite well defined, since a high value corresponds to a very good individual indeed.
@@ -596,23 +600,57 @@ Anyway, these results could be used as a reference to choose the best criterion 
 %El peor criterio de parada encontrado es el mï¿½todo \textit{[AO] Age of Outliers} basado en la edad de los individuos de la poblaciï¿½n, que es el mï¿½todo que consigue peores resultados en el score ofreciendo una convergencia prï¿½cticamente nula de las soluciones encontradas en la poblaciï¿½n al aumentar lo restrictivo del mï¿½todo. Esto puede ser un indicativo de que la antiguedad de los individuos no es representativo de la bondad de los individuos. Ademï¿½s, el test de Kruskal-Wallis, determinï¿½ que exite poca variaciï¿½n entre las muestras de las distintas variaciones del mï¿½todo.
 %Maribel, hago una primera aproximaciï¿½n en inglï¿½s para este pï¿½rrafo. Leerla a ver si es eso exactamente lo que Antares ha querido decir en el pa?rafo en espaï¿½ol, porque yo 
 
-This paper compares five stopping criteria for ending an EA for game bots. We have selected them taking in mind both the status of the population or the parameters of the EA. We collate the results of all the runs and the results prove the \textit{AO} criterion, based on the Age of Outliers, gets the worst score converging quickly but without good solutions while the values for \textit{AO} turn older. This chance is a proof of that the older individuals have not to be good solutions. Moreover, Kruskal-Wallis test outputs non differences among the results for any \textit{AO} input values, that is, the output of the runs for any value of \textit{AO} are similar.  
-
-
-%Por otro lado, el mejor criterio encontrado respecto a la bondad de los individuos es el \textit{[FT] Fitness Threshold} basado en umbrales de fitness. Sin embargo, las dificultades para definir un umbral de fitness correcto en un problema de nuestra naturaleza hacen este mï¿½todo no recomendado, aunque si ideal si puede determinarse. Ademï¿½s, es el mï¿½todo que mï¿½s generaciones requiere, con el riesgo de que la ejecuciï¿½n del algoritmo no llegue a terminar, al estancarse la poblaciï¿½n y no ser capaz de convergir al valor frontera.
-
-On the other hand, the best stop criterion taking in mind the goodness of the bots at the end of the evolution is \textit{[FT] Fitness Threshold}. That is, the individuals at the end when the algorithm stops with FT criterion are the highest. Nevertheless this criterion is too difficult to fix because it is not easy to find the fitness threshold due to the noise. In any case, if noise is low and the threshold could be fixed it would be the best option. In any case, this criterion needs the higher generation number for ending making easier the algorithm ends by other chance based on \textit{NG}. 
-
+This paper compares five stopping criteria for ending an EA for game
+bots. We have selected them taking in mind both the status of the
+population or the parameters of the EA. The experiments prove that the
+\textit{AO} criterion, based on the Age of Outliers, gets the worst
+score. 
+% converging quickly but without good solutions while the values
+% for \textit{AO} turn older. This chance is a proof of that the older
+% individuals have not to be good solutions. Moreover, Kruskal-Wallis
+% test outputs non differences among the results for any \textit{AO}
+% input values, that is, the output of the runs for any value of
+% \textit{AO} are similar.   
+% Borrado todo esto porque está mal escrito y además no cabe - JJ
+%
+%Por otro lado, el mejor criterio encontrado respecto a la bondad de
+%los individuos es el \textit{[FT] Fitness Threshold} basado en
+%umbrales de fitness. Sin embargo, las dificultades para definir un
+%umbral de fitness correcto en un problema de nuestra naturaleza hacen
+%este mï¿½todo no recomendado, aunque si ideal si puede
+%determinarse. Ademï¿½s, es el mï¿½todo que mï¿½s generaciones
+%requiere, con el riesgo de que la ejecuciï¿½n del algoritmo no llegue
+%a terminar, al estancarse la poblaciï¿½n y no ser capaz de convergir
+%al valor frontera.
+%
+The best stop criterion considering only bot score is \textit{[FT]
+  Fitness Threshold}. Nevertheless this criterion is hard to set
+because it is not easy to find the fitness threshold due to the
+noise. In any case, if noise is low and the threshold could be fixed
+it would be the best option. In any case, this criterion needs the
+highest generation number for ending making easier the algorithm ends
+by other chance based on \textit{NG}. 
+%
 % El mï¿½todo basado en \textit{[FI] Fitness Improvement} es un mï¿½todo bastante rï¿½pido (en cuanto a generaciones), pero que no alcanza resultados muy buenos (en cuanto score). A pesar de que no pueda ser empleado como criterio de parada ï¿½ptimo, su uso puede resultar interesante como apoyo al algoritmo como mecanismo de multiarranque del algoritmo o de cataclismo.
-
-\textit{FI} needs a low number of generations for ending, that is the algorithm quickly ends when we use this criterion but the results, based on score, are not good enough. In spite of it cannot be used as optimal criterion it would reward the algorithm if we use it combined with any other meta-heuristics as a population reset if the best individual stalls.   
+%
+On the other hand \textit{FI} needs few generations for ending; but
+the results, based on score, are not good enough. 
+% In spite of it cannot be used as optimal criterion it would reward the algorithm if we use it combined with any other meta-heuristics as a population reset if the best individual stalls.   
 
 %Por ï¿½ltimo, el mï¿½todo de \textit{[FT] Fitness Threshold} es el que ofrece unos resultados mï¿½s consistentes en todas las mï¿½tricas. Dado que se basa en la tasa de reemplazo de los individuos, en cierta manera estï¿½ midiendo el constante crecimiento del fitness dado que los individuos nuevos tienen que tener mayor fitness para entrar en el pull de la nueva poblaciï¿½n, pero sin hacer uso del propio fitness (que sabemos que por su naturaleza ruidosa no es totalmente confiable). 
 
-At least, \textit{FT} provides the best results if we combine both metrics, generations and score. It is based on replacement rate, so it measures, in a certain sense, how the population increases their abilities because the new individuals would have a higher fitness to be included into the population, but we are not testing their fitness themselves.  
+Finally, \textit{FT} provides the best results if we combine both
+metrics, generations and score. It is based on replacement rate,
+measuring whether the algorithm is still able to provide an improvement
+over last generation. 
 
 
-%Antares - Blablabla correspondencia lineal entre los resultados de la baterï¿½a de test de bondad y el score con un $R^2=0.9351$
+%Antares - Blablabla correspondencia lineal entre los resultados de la
+%baterï¿½a de test de bondad y el score con un $R^2=0.9351$
+
+% En vez de explicar cada criterio por separado (ya lo debíais haber
+% hecho arriba) deberíais explicar por qué este ofrece los mejores
+% resultados y concluir qué se debe usar en el futuro. 
 
 \section*{Acknowledgments}
 
