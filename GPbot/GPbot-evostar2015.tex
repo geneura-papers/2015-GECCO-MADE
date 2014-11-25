@@ -136,8 +136,10 @@ every time the fitness is measured by playing the game.
 %% used for the evolution of bots, because there is not a single,
 %% principles-based way to compute the fitness, and thus, end the
 %% algorithm.
-Besides, independently of the approach you choose, it is usually impossible to reach a global optimum short of managing to obtain a bot that, as in Sun Tzu's ``Art of war'' \cite{tzu2013art}, is able to beat the opponent without
-fighting, as the opponents are usually not known before the EA is running. 
+Independently of the chossen approach, it is usually impossible to reach a 
+global optimum short of managing to obtain a bot that, as in Sun Tzu's ``Art of 
+war'' \cite{tzu2013art}, is able to beat the opponent without fighting, as the 
+opponents are usually not known before the EA is run.
 % Antonio - esta frase no se entiende
 % a menos que puedas ganar sin luchar, no puedes obtener el fitness
 % �ptimo - JJ
@@ -150,13 +152,13 @@ fighting, as the opponents are usually not known before the EA is running.
 % Antonio - a mi no me molesta la frase, pero la referencia no hace falta, creo yo. ;D
 % �qu� hay de la segunda parte de mi comentario
 % Antares - Le puedes ganar siempre, pero la cosa es que tardas un tiempo (turnos) en ganarle :)
-To solve this, usually matches with previously-known opponents are used in the
-computation of the fitness function and an ``optimum'' is reached when a certain number of victories are achieved against them.
-However, using only one or a small number of opponents may lead to
-generate overfitted solutions that only beat the enemies that have
-been used during the `training' phase (to compute the fitness)
-\cite{DBLP:journals/jcst/MoraFGGF12}, and using more opponents might
-make evolution unwieldy consuming too many CPU cycles. 
+To solve this, usually tournaments with previously-known opponents are used in 
+the computation of the fitness function and an ``optimum'' is reached when a 
+certain number of victories are achieved against them. However, using only one 
+or a small number of opponents may lead to overfitted solutions that only beat 
+the enemies that have been used during the `training' phase (to compute the 
+fitness) \cite{DBLP:journals/jcst/MoraFGGF12}, and using more opponents might 
+make evolution unwieldy consuming too many CPU cycles.
 
 However, these two issues (noisy and reachability of optimal fitness)
 are normally not taken into account when deciding when to end the
