@@ -493,60 +493,74 @@ The first study concerns the fitness/score evolution in the runs. Figure \ref{fi
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=0.74\columnwidth]{imags/Boxplot_SC-Score-log.eps}
-\includegraphics[width=0.25\columnwidth]{imags/Kruskal-Score.eps}
+\subfigure[Score]{\includegraphics[width=0.74\columnwidth]{imags/Boxplot_SC-Score-log.eps}}
+\subfigure[Kruskal-Wallis]{\includegraphics[width=0.25\columnwidth]{imags/Kruskal-Score.eps}}
 \end{center} 
-\caption{(Left) Scores of the best individuals (of all runs), grouped by criterion. (Right) Kruskal-Wallis test of samples of each criterion by score (black means no statistical significant difference has been found)}
+\caption{(a) Scores of the best individuals (of all runs), grouped by criterion. (b) Kruskal-Wallis test of samples of each criterion by score (black means no statistical significant difference has been found)}
 \label{fig:boxplotscore}
 \end{figure}
 
 % Antonio - @Antares - yo no mezclar? gr?icos, podemos llegar a las 14 p?inas sin problemas, pero bueno. En caso de dejarlo as?intenta ponerlas como subfigura mejor, porque son cosas muy distintas. ;D
 % Antonio - Ser? 'statistical significant difference', ?no?
 
+% Antonio - @Antares - SCORE en minúscula, plis ya. :D
+
 The first detail to notice in the figure is the non-presence of some of the commented stop values for the \textit{Fitness Threshold} criterion, namely 28 and 30, because they have not been reached in any of the runs.
 This is a problem derived from using a tough rival as ExpGenebot. Thus, the maximum fitness/score obtained during the evolution is very limited, since it is very difficult that one bot could win against 30 specialised bots \cite{Wolpert97nofree} (requirement for obtaining at least a score of 30). This is more evident if we take into account that the bots being evolved do not include any adaptive component that analyses the map, as ExpGenebot does. 
 
-As it can also be seen in Figure \ref{fig:boxplotscore} (left) all the criterion are well defined, since all the scores grow in every criterion block, so as more restrictive the criterion is (they are met with a lower probability), the higher the obtained score is. The score function is working well, even with the presence of noise, as the wide of the boxplots (score dispersion) demonstrates when the criteria become more restrictive. This is true in all the cases except in the \textit{Age of Outliers} which is so far the criterion with the worse results, as it is also proved by the statistical test which does not find significant differences between the scores obtained by every age-based criterion and the previous and next ones.
+As it can also be seen in Figure \ref{fig:boxplotscore}.a all the criterion are well defined, since all the scores grow in every criterion block, so as more restrictive the criterion is (they are met with a lower probability), the higher the obtained score is. The score function is working well, even with the presence of noise, as the wide of the boxplots (score dispersion) demonstrates when the criteria become more restrictive. This is true in all the cases except in the \textit{Age of Outliers} which is so far the criterion with the worse results, as it is also proved by the statistical test (Figure \ref{fig:boxplotscore}.b) which does not find significant differences between the scores obtained by every age-based criterion and the previous and next ones.
 The \textit{Replacement Rate} criterion yields the best distribution of results, with a clear fitness improvement tendency and a very good maximum score, close to that obtained by the \textit{Fitness Thresholds}. However the latter is not as good as it seems, since the success rate (times that the runs has reached that value) is the lowest among all for high threshold values. This will be shown in further results.
 
-With respect to the number of generations reached by every criterion, Figure \ref{fig:boxplotgenerations} (left) shows their distribution in criterion blocks. It is complemented (right) with the results of the Kruskal-Wallis test, like in the score graphs.
+With respect to the number of generations reached by every criterion, Figure \ref{fig:boxplotgenerations}.a shows their distribution in criterion blocks. It is complemented with the results of the Kruskal-Wallis test (Figure \ref{fig:boxplotgenerations}.b), like in the score graphs.
 
 \begin{figure}[h!tb]
 \begin{center}
-\includegraphics[width=0.74\columnwidth]{imags/Boxplot_SC-Generations-log.eps}
-\includegraphics[width=0.25\columnwidth]{imags/Kruskal-Generations.eps}
+\subfigure[Generations]{\includegraphics[width=0.74\columnwidth]{imags/Boxplot_SC-Generations-log.eps}}
+\subfigure[Kruskal-Wallis]{\includegraphics[width=0.25\columnwidth]{imags/Kruskal-Generations.eps}}
 \end{center} 
-\caption{(Left) Generation attained (of all runs), grouped by criterion. (Right) Kruskal-Wallis test of samples of each stop criterion by generations (black means no statistical significant difference has been found).}
+\caption{(a) Generation attained (of all runs), grouped by criterion. (b) Kruskal-Wallis test of samples of each stop criterion by generations (black means no statistical significant difference has been found).}
 \label{fig:boxplotgenerations}
 \end{figure}
 
 % Antonio - @Antares - pos eso, lo mismo que antes.
 % Antonio - Y lo mismo: ser? 'statistical significant difference', ?no?
 
-This figure shows that every stop criteria needs more generation for determine that the algorithm have to stop when the criterion is more restrictive. \textit{AO} stop criterion is the faster, needing less generation but it's the worst in the score. For other hand, the \textit{FT} stop criterion it's the one that need more generations to finish, and it's possible that it never ends (in \ref{fig:table} shows the completion rate in experiments of each stop criteria). The \textit{FI} scale well, needing few turns to determine the stop. Finally the \textit{RT} it's the one that scale more pronounced, needing few turns in the minus restrictive case and a variable number in the more restrictive (and it's possible that never stop, like \textit{FT}).
+% Antonio - @Antares - como ya te dije, yo no soy partidario de usar escalas logarítmicas en los boxplots, ya que se 'falsea' la información que estos ofrecen (el ancho del boxplot es importante). Mira por ejemplo el RT_n/4 o RT_n/8, parecen mucho más dispersos que RT_n/16, pero ¿realmente lo son?
 
-The Kruskal-Wallis test shows that the more restrictive \textit{FI} stop criteria aren't statistical significant difference with a \textit{Number of Generations Stop Criterion}. It shows too, that there aren't difference between the near values of \textit{AO} criteria. 
+The figure proved again that the criteria are well defined, since everyone needs more generations to be reached when it is more restrictive (higher value or less probability to be met). \textit{Age of Outliers} stop criterion is the faster, reaching less generations, but, as previously stated, it is the worst regarding to the score.  \textit{Fitness Threshold} stop criterion is the one that needs more generations to finish, and even it never meets some of the conditions (as Table \ref{fig:table} shows in the completion rate column). The maximum score (around 27) is obtained in a number of generations close to the final limitation (500). This happens due to the difficulties for getting a high fitness/score value against the tough rival we have chosen for the evaluation. The \textit{Fitness Improvement} criterion scales well, needing just a few generations to stop. Finally the \textit{Replacement Rate} shows quite variable results, going from a small amount of generations in the first values of the criterion, to  a huge number in the most restrictive ones. Thus, sometimes it does not meet these conditions, as in \textit{FT} case.
 
+The Kruskal-Wallis test (Figure \ref{fig:boxplotgenerations}.b) results are less conclusive this time, since they refer to the number of generations required for some criteria to be met. Thus, the test shows, for instance, that the most restrictive \textit{FI} stop criteria do not present statistical significant differences with respect to the first \textit{Number of Generations} values, so most of the runs have met the criteria in the same number of generations, which denotes a robustness factor for those criteria. This also happens for other criterion values, such as RT\_n/8, RT\_n/16, and FT\_20.
 
+This two measures are compared in Figure \ref{subfig:comparative}. As it can be seen, an improvement in the fitness/score means a higher number of generations are required. This happens in almost all the cases, with some exceptions such as RT\_20 or RT\_22, which get a higher score value in less generations than other criteria. However, this happens due to the commented problem of noise.
+
+In addition to these two studies, a new measure factor has been computed by means of a benchmark based in battles against several bots of the literature [***REF***] in 100 maps (some of them used during the evolution). This test has been conducted for the best individual obtained when every criterion was met in every run, thus 24x36 bots have been tested.
+
+The results of the benchmark (percentage of victories $\in[0,1]$) are displayed in Figure \ref{fig:victories}.a. 
+Figure \ref{fig:victories}.b plots the linear regression analysis between the obtained score by the chosen bots, and the results in the benchmark. It has a value $R^2=0.9351$, which means an excellent correlation, and thus, the score function is quite well defined, since a high value corresponds to a very good individual indeed.
+% Antonio - Antares - mira si está bien explicado esto
 
 \begin{figure}[h!tb]
 \begin{center}
-\includegraphics[width=0.75\columnwidth]{imags/victories.eps}
-\includegraphics[width=0.24\columnwidth]{imags/score-victories.eps}
+\subfigure[Benchmark Battles]{\includegraphics[width=0.75\columnwidth]{imags/victories.eps}}
+\subfigure[Linear regression]{\includegraphics[width=0.24\columnwidth]{imags/score-victories.eps}}
 \end{center} 
-\caption{Victories in benchmark versus severals opponents in severals maps (training and not training) and linear regression of the Score (fitness) with the result of the benchmark (Victories), with a $R^2=0.9351$ } %Antares - TODO: Ahora lo completo
+\caption{(a) Percentage of victories in benchmark versus several opponents in 100 maps (training and not training). (b) Linear regression of the Score (fitness) with the results of the benchmark (Percentage of victories)} %Antares - TODO: Ahora lo completo
 \label{fig:victories}
 \end{figure}
 
-In addition to the score, a benchmark ($\in[0,1]$) based in battles versus several bots common in the bibliography and maps (training and not training) it's passed to the best population of each criterion for all execution. The result of these benchmark it's displays in Fig \ref{fig:victories}. For be sure of the goodness of the score function it's compare to the benchmark result's getting an excellent result.
+% Antonio - Antares - Varias cosas:
+% - Las leyendas deberían poner 'Percentage of victories' o '% Victories', y 'SCORE per individual' (en mayúcula o en minúscula, pero siempre igual). ;D
+% - ¿Cuántos son 'several opponents'? Hay que poner cuántos rivales se han considerado y cuáles en el texto. 
+% - Ha sido en 100 mapas, ¿no? ;D
 
+As it can be seen in Figure \ref{fig:victories}.a, the best results are yielded by the most restrictive criterion, highlighting the FT\_26 results. This is also a reinforcement to the correctness of the score function.
 
-Finally the two principal measures are compare in Figure \ref{subfig:comparative} and all the measures are presented in the Table \ref{fig:table}. In this table is presented too the completion rate of the stop criterion, that indicate the number of executions that have finished in the experiments. 
+Finally, in order to chose the best stop criterion, we should consider all these three measures. Thus, Table \ref{fig:table} presents all the results as a summary. It also shows the completion rate of every stop criterion (number of runs in which the criterion has been met). Moreover, a comparative set of values have been computed, considering the number of generations equal to 30 (usual in previous papers) as the standard value to relativize the rest.
 
 \begin{figure}[h!tb]
 	\begin{minipage}[b]{.50\columnwidth}
 		\includegraphics[width=1\columnwidth]{imags/Comparative-log.eps}
-		\caption{Average best individual score and average attained generations by each termination criteria.}
+		\caption{Average score of the best individual and average reached generations per termination criteria.}
 		\label{subfig:comparative}
 		\vfill
 		\end{minipage}
@@ -554,16 +568,25 @@ Finally the two principal measures are compare in Figure \ref{subfig:comparative
 \begin{minipage}[b]{.44\columnwidth}
 \includegraphics[width=1\columnwidth]{imags/tabla.eps}
 
-\captionof{table}[foo]{Comparative of each criterion with three measures: Number of generations (G), Score (S), Completion rate in experiments (R)  and  Victories versus several bots in several maps (V). (Relative measure by \textit{NG\_30.0}).}
+\captionof{table}[foo]{Comparative of each criterion with three measures (averages): Number of generations (G), Score (S), Completion rate in experiments (R) and  Victories in benchmark (V). Relative measures computed with respect to \textit{NG\_30.0}.}
 \label{fig:table}
 \end{minipage}
 \end{figure}
 
-
+% Antonio - Antares - Revisa la tabla porfa. La última columna de los valores relativos es 'V', ¿verdad?. 'R' no tiene sentido, aro. Si es V, ¿no debería ir la V global como resultado absoluto?
+% La 'R' quizá debería ir aparte (en otra columna), ya que si que es global, no se relativiza y no es una media, como el resto de valores. ;)
+% Otra cosa: sé que es un coñazo y que no se va a ver nada, pero siempre que se pongan medias,hay que poner desviaciones típicas... :_(
 
 % Antonio - Antares - Pregunta general. ï¿½por quï¿½ los valores en las grï¿½ficas llevan un decimal '.0' si son enteros? ï¿½No estarï¿½an mejor sin ï¿½l? ï¿½No quedarï¿½a mï¿½s claro al haber menos texto? :D
 % Antares: @Antonio, por seguir una nomenclatura comï¿½n, pero si quieres podrï¿½a intentar cambiarlo, pero me iba a llevar tiempo.
+% Antonio - apúntatelo para la versión definitiva, porfa. Queda un poco raro. ;D
 
+The results in both, the table and Figure \ref{subfig:comparative}, show that, in principle, the best criterion regarding the score and victories in benchmark could be FT\_26. However, looking at the completion rate, it is around 22\%,so this is not a robust criteria (that fitness is quite difficult to be reached).
+The case of RT\_22 seems much more promising, since it has a very good comprise between the number of generations required (around 127), and the score obtained (more than 22).
+
+Anyway, these results could be used as a reference to choose the best criterion in every case, depending on the problem and on the restrictions. Thus, for instance, if we are facing a competition with a limited amount of computational time, we could select the best criterion in score and victories taking into account the maximum number of generations that could be reached in that limit.\\
+
+*** Generalizar esto a cualquier problema => hacerlo una metodología ***
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  CONCLUSIONS  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -607,5 +630,7 @@ Hidden for double-blind review
 
 \bibliographystyle{splncs03}
 \bibliography{geneura,references,gpbot,genebot}
+
+% Antonio - hay muchísimas referencias. Se pueden quitar unas cuantas
 
 \end{document}
