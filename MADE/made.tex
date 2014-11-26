@@ -103,7 +103,9 @@ In this paper we will use the MADE open source simulator
 \footnote{Which can be downloaded from Github at (hidden URL) under a GNU/GPL V3 License}
  and look at it from the evolutionary point of view so that we can check what kind of influence the configuration variables have in the outcome. We will do an experimental setup that will test different parameters (evolutionary and non-evolutionary), and eventually find a series of rules that will help the users of that framework to set the best values for their simulation (depending on their requirements or constraints).
 
-% Antonio - Le falta chicha a la intro. Propongo describir un poco mejor el proceso que se va a seguir para estudiar los parámetros y su influencia, así como para crear esas reglas.
+% Antonio - Le falta chicha a la intro. Propongo describir un poco
+% mejor el proceso que se va a seguir para estudiar los parámetros y
+% su influencia, así como para crear esas reglas. 
 
 The rest of the paper is organized as follows. Coming up next, we
 present the state of the art in parameter setting of simulated
@@ -118,9 +120,6 @@ present our conclusions to finish the paper.
 \label{sec:sota}
 %TODO revisar toda la seccion, de momento estoy poniendo la info mas o menos redactada pero falta la coherencia
 
-% Esto está copiado del de Alife y además, no viene muy a
-% cuento. Habría que hacer un resumen y decir "esto es un PCG de tal y
-% tal forma" y punto. - JJ
 According to the taxonomy described by Togelius et al. \cite{togelius2011search}
 the problem of massively generating backstories for non-player
 characters (NPCs) can be considered \textit{Procedural content
@@ -129,21 +128,12 @@ the game world, namely, the characters and their relations. In this paper,
 we have used an \textit{offline} approach since the computation is
 done in the phase of game design, also considered \textit{search-based} due to the use of an evolutionary algorithm.
 
-% Antonio - esta taxonomía no me cuadra mucho. La PCG (apartado 1) puede hacerse mediante algoritmos de búsqueda u optimización, como los AEs (otro de los apartados). Por otra parte éstos podrán ser offline (otro apartado) y el contenido a crear podría ser opcional o completo...
-% Yo explicaría todo esto sin ponerlo a modo de taxonomía, sino
-% comentando las distintas opciones de PCG: basada en algoritmos de
-% búsqueda u optimización o de forma estocástica, que se puede hacer
-% online u offline y que puede generar historias completas o
-% parciales. Por ejemplo. ;D 
-% Hala, quitado. - JJ
-
-% Antonio - creo que podríamos poner algunas citas a los tipos de PCGs, con algunos ejemplos de cada tipo (o uno, al menos). Así quedaría más completa la sección. ;)
-
+% Antonio - creo que podríamos poner algunas citas a los tipos de
+% PCGs, con algunos ejemplos de cada tipo (o uno, al menos). Así
+% quedaría más completa la sección. ;)
+% ¿Alguien? ¿Nadie? No hay espacio, de todas formas - JJ
 
 This paper is focused in the context of computational generation of massive plots without human interaction, and driven by goals proposed by the creator. Different approaches have been proposed in previous works (see the work of Arinbjarnar et al. \cite{arinbjarnar2009critical} for a survey). 
-
-% Antonio - todo esto son métodos automáticos, ¿no? 
-% Hechos mediante programas o algoritmos en computadores, ¿no? Dejadlo claro. ;) FERGU: hecho, y reescrita la frase
 
 In 1976 the program called \textit{Tale-Spin} \cite{meehan1976metanovel} was able to produce
 purely text-based fairy tales where semi-autonomous characters
