@@ -16,7 +16,7 @@ clean:
 	latexmk -C
 
 realclean: clean
-	$(RM) *.bbl imags/*-eps-converted-to.pdf
+	$(RM) *.bbl imags/*-eps-converted-to.pdf *~
 
 ###############################################################################
 
