@@ -79,7 +79,7 @@ level of victories does not guarantee an optimal result.
 %% that bots that are as optimal as possible, (and in as general a
 %% context as it is possible) are found; also, in a minimal amount of
 %% time and evaluations. 
-Thus the main objective of this paper is test several termination conditions 
+Thus the main objective of this paper is to test several termination conditions 
 in order to find the one that yields optimal solutions within a restricted 
 amount of time, and that allows researchers to compare different EAs as fairly 
 as possible. To achieve this we will examine several ways of finishing an EA 
@@ -278,7 +278,7 @@ In this sense, Roche et al. \cite{RocheTermination13} propose terminating the ev
 Usually, the algorithm termination is decided based on a heuristic stopping criteria, such as the maximum number of evaluations or on reaching a performance level during the run. 
 When the algorithm converges, it is terminated in order to avoid wasting computational resources.
 Although these criteria are suitable for well defined benchmark problems (the optimum is known), they are not applicable to real world problems. 
-In these cases, more sophisticated heuristic stopping criteria have to be used \cite{NME2909,Wagner2009,Wagner2010}.
+In these cases, more sophisticated heuristic stopping criteria have to be used \cite{NME2909,Wagner2010}.
 
 In the last years some adaptive alternatives have been proposed  as termination conditions.
 In this sense, Safe et al. \cite{Safe2004} present a review of the state-of-the-art in the design of termination conditions and convergence analysis in GAs.
@@ -452,7 +452,7 @@ These values have been set after a dedicated systematic experimentation phase, t
 
 The first stop criterion is based in an algorithmic parameter, so the algorithm stops when this parameter reaches a value. For this criterion, the population status does not matter. Remaining criteria are population-based, i.e. they consider some of its features to test if the algorithm must stop. The feature of the population leads the stop criteria and so leads the end of the algorithm. 
 
-Proposed criteria will be tested in the following section. The objective of the experiments conducted is choosing the best stopping criterion among all the proposed, and even more, the best value to set on that criterion, depending on the problem to solve and on its features: noise, difficulty, computational limitations, or performance restrictions.
+All these criteria will be tested in the following section. The objective of the experiments conducted is choosing the best stopping criterion among all the proposed, and even more, the best value to set on that criterion, depending on the problem to solve and on its features: noise, difficulty, computational limitations, or performance restrictions.
 
 % is to test the set of termination criteria... %el objetivo no es nunca ``probar'' esto. Es solucionar un problema. 
 
@@ -468,14 +468,14 @@ The experiments conducted have involved 36 runs\footnote{This number has been us
 Thus, in every execution all the criteria are checked in every generation and, whenever one termination condition is met, the best individual to that moment (according to its score) is stored as the optimal solution for that criterion, because if that were the unique stop criterion, the algorithm would end.
 Once all the runs have finished or the extra termination has been met, we compute the average number of generations and the average score obtained for the same criterion in all different runs. There could happen that one criterion is never met in a run, then this will not be considered in the computation of that value but it decreases the completion rate of the criterion. 
 
-The first study concerns the fitness/score evolution in the runs and carried out using a Kruskal-Wallis test, given that the Shapiro test concluded that the samples do not follow a Normal distribution. Thus, Figure \ref{fig:boxplotscore}.a shows the scores obtained by the best individuals yielded for every stop criterion, and \ref{fig:boxplotscore}.b what stopping criterion is statistically different from others.
+The first study concerns the fitness/score evolution in the runs, along with an study of the statistical differences between results. This has been carried out using a Kruskal-Wallis test, given that the Shapiro test concluded that the samples do not follow a Normal distribution. Thus, Figure \ref{fig:boxplotscore}.a shows the scores obtained by the best individuals yielded for every stop criterion, and \ref{fig:boxplotscore}.b plots which stopping criteria are statistically different from others.
 
 \begin{figure}
 \begin{center}
 \subfigure[Score]{\includegraphics[width=0.74\columnwidth]{imags/Boxplot_SC-Score-log.eps}}
 \subfigure[Kruskal-Wallis]{\includegraphics[width=0.25\columnwidth]{imags/Kruskal-Score.eps}}
 \end{center} 
-\caption{(a) Scores of the best individuals (of all runs), grouped by criterion. (b) Kruskal-Wallis test of samples of each criterion by score (black means no statistically significant difference has been found).Please notice the logarithmic scale in the plots.}
+\caption{(a) Scores of the best individuals (of all runs), grouped by criterion. (b) Kruskal-Wallis test of samples of each criterion by score (black means no statistically significant difference has been found). A logarithmic scale has been used in the plots.}
 \label{fig:boxplotscore}
 \end{figure}
 
@@ -499,7 +499,7 @@ With respect to the number of generations reached by every criterion, Figure \re
 \subfigure[Generations]{\includegraphics[width=0.74\columnwidth]{imags/Boxplot_SC-Generations-log.eps}}
 \subfigure[Kruskal-Wallis]{\includegraphics[width=0.25\columnwidth]{imags/Kruskal-Generations.eps}}
 \end{center} 
-\caption{(a) Generation attained (of all runs), grouped by criterion. (b) Kruskal-Wallis test of samples of each stop criterion by generations (black means no statistical significant difference has been found). Please notice the logarithmic scale in the plots.}
+\caption{(a) Generation attained (of all runs), grouped by criterion. (b) Kruskal-Wallis test of samples of each stop criterion by generations (black means no statistically significant difference has been found). A logarithmic scale has been used in the plots.}
 \label{fig:boxplotgenerations}
 \end{figure}
 
@@ -527,7 +527,7 @@ Figure \ref{fig:victories}.b plots the linear regression analysis between the ob
 \subfigure[Benchmark Battles]{\includegraphics[width=0.75\columnwidth]{imags/victories.eps}}
 \subfigure[Linear regression]{\includegraphics[width=0.24\columnwidth]{imags/score-victories.eps}}
 \end{center} 
-\caption{(a) Percentage of victories in benchmark versus several opponents in 100 maps (training and not training). (b) Linear regression of the Score (fitness) with the results of the benchmark (Percentage of victories)} %Antares - TODO: Ahora lo completo
+\caption{(a) Percentage of victories in benchmark versus several opponents in 100 maps (training and not training). (b) Linear regression of the Score (fitness) with the results of the benchmark (Percentage of victories).} %Antares - TODO: Ahora lo completo
 \label{fig:victories}
 \end{figure}
 
@@ -538,7 +538,7 @@ Figure \ref{fig:victories}.b plots the linear regression analysis between the ob
 
 As it can be seen in Figure \ref{fig:victories}.a, the best results are yielded by the most restrictive of each criterion, highlighting the \textit{FT} results. This is also a reinforcement to the correctness of the score function.
 
-Score and generations measures are compared in Figure \ref{subfig:comparative}. As it can be seen, an improvement in the fitness/score means a higher number of generations are required. This happens in almost all the cases, with some exceptions such as \textit{RT}, which get a higher score value in less generations than other criteria. However, this happens due to the commented problem of noise.
+Score and generations measures are compared in Figure \ref{subfig:comparative}. As it can be seen, an improvement in the fitness/score means a higher number of generations are required. This happens in almost all the cases, with some exceptions such as some of \textit{RT} criteria, which get a higher score value in less generations than other criteria. However, this happens due to the commented problem of noise.
 
 Finally Table \ref{fig:table} presents all the results as a summary. It also shows the completion rate of every stop criterion (number of runs in which the criterion has been met). Moreover, a comparative set of values have been computed, considering the number of generations equal to 30 (usual in previous papers) as the standard value to relativize the rest.
 
@@ -553,7 +553,7 @@ Finally Table \ref{fig:table} presents all the results as a summary. It also sho
 \begin{minipage}[b]{.44\columnwidth}
 \includegraphics[width=1\columnwidth]{imags/tabla.eps}
 
-\captionof{table}[foo]{Comparative of each criterion with three measures (averages): Number of generations (G), Score (S), Completion rate in experiments (R) and  Victories in benchmark (V). Relative measures computed with respect to \textit{NG\_30.0}.}
+\captionof{table}[foo]{Average results of every criterion for the three measures: Number of generations (G), Score (S), and  Victories in benchmark (V); plus the Completion rate in experiments (R). Relative values are computed with respect to \textit{NG\_30.0}.}
 \label{fig:table}
 \end{minipage}
 \end{figure}
@@ -563,19 +563,17 @@ Finally Table \ref{fig:table} presents all the results as a summary. It also sho
 
 % El AO no es un buen criterio de parada ya que los resultado prueban que aumentar las restricciones no garantizan una mejora de los individuos, ya que no exiten diferencias significativas entre los valores cercanos del criterio.
 
-Results show that the \textit{AO} criterion is not a good one, as more restrictive values do not imply a significant score improvement. This can be considered as a proof that oldest individuals in population may not to be the best solutions, just luckiest.
+Results show that the \textit{AO} criterion is not a good one, as more restrictive values do not imply a significant score improvement. This can be taken as a proof that the oldest individuals in the population may not be the best solutions, so they are just the luckiest (win by chance).
 
 %The results prove the \textit{AO}, gets the worst score converging quickly but without good solutions while the values for \textit{AO} turn older. This chance is a proof of that the older individuals have not to be good solutions. Moreover, Kruskal-Wallis test outputs non differences among the results for any \textit{AO} input values, that is, the output of the runs for any value of \textit{AO} are similar.  
 
-Considering only the score, the best stop criterion is \textit{FT}. However, this criterion has several disadvantages in this kind of problems. An optimum might not be known, and therefore, it requires an analysis prior its usage. Moreover, this criterion needs the higher generation number for ending and has the lowest completion rate, as the population may stagnate and not reach the desired threshold. 
+Considering only the score, the best stop criterion is \textit{FT}. However, this criterion has a very big disadvantage in this kind of problems: the optimum fitness might not be known, so defining it (setting the limits) would require a deep analysis in advance. Moreover, this criterion needs the highest amount of generations to be met and has the lowest completion rate, as the population may stagnate and do not reach the desired threshold. 
 %Este criterio ha resultado muy bueno detectando cuando el algoritmo se ha estancado en un Ã³ptimo local. A mayor restricciÃ³n del criterio, mayor es tiempo que se da algoritmo para salir de un Ã³ptimo local, ya que se dan mÃ¡s generaciones para intentarlo. Dado que es posible que un EA converja rÃ¡pidamente al mejor individuo de la poblaciÃ³n inicial, este criterio se comporta de forma similar a un criterio de parada basado en nÃºmero de generaciones suficientes para que este suceso ocurra. En la experimentaciÃ³n, este criterio de parada ha detenido las ejecuciones en Ã³ptimos locales sin permitir mejora que otros criterios si han permitido. Sin embargo su capacidad de detecciÃ³n de Ã³ptimos locales, puede resultar muy como mecanismo de reinicio.  
 
-The \textit{FI} criterion is useful to detect local optima. Increasing the restriction value of this method makes the EA to use more generations to escape from the local optimum, obtaining significantly better results. As the EA can quickly converge to a local optima, this method is equivalent to a fixed (but unknown) number of generations enough to make the population stagnate. However, the results show that this criterion has stopped in local optima that other methods have surpassed.
+The \textit{FI} criterion is useful to `detect' local optima. Increasing the restriction value of this method makes the EA to use more generations to escape from a local optimum, obtaining significantly better results. As the EA can quickly converge to a local optima, this method is equivalent to a fixed (but unknown) number of generations enough to make the population stagnate. However, the results show that this criterion has stopped in local optima that other methods have surpassed.
+% Antonio - @Antares, @ Fergunet - esto no lo entiendo bien. ¿El método es equivalente al número de generaciones para hacer que la población se estanque? ¿Eso es bueno?¿Se 'hace' que la población se estanque o se detecta que eso pasa?
 
-
-Finally, \textit{RT} provides the best results for both metrics: generations and score. It is based on replacement rate, so it indirectly measures how the whole population increases their abilities, without explicitly measure the average fitness. This is useful in this kind of problems, where the fitness is noisy and the optimal is unknown.
-
-
+Finally, \textit{RT} provides the best results for both metrics: generations and score. It is based on replacement rate, so it indirectly measures how the whole population increases their abilities, without explicitly measure the average fitness. This is useful in this kind of problems, i.e. where there is a noisy fitness function and the optimal solution is unknown.
 
 
 %*** Generalizar esto a cualquier problema => hacerlo una metodolog?
@@ -599,20 +597,21 @@ Finally, \textit{RT} provides the best results for both metrics: generations and
 %El peor criterio de parada encontrado es el mï¿½todo \textit{[AO] Age of Outliers} basado en la edad de los individuos de la poblaciï¿½n, que es el mï¿½todo que consigue peores resultados en el score ofreciendo una convergencia prï¿½cticamente nula de las soluciones encontradas en la poblaciï¿½n al aumentar lo restrictivo del mï¿½todo. Esto puede ser un indicativo de que la antiguedad de los individuos no es representativo de la bondad de los individuos. Ademï¿½s, el test de Kruskal-Wallis, determinï¿½ que exite poca variaciï¿½n entre las muestras de las distintas variaciones del mï¿½todo.
 %Maribel, hago una primera aproximaciï¿½n en inglï¿½s para este pï¿½rrafo. Leerla a ver si es eso exactamente lo que Antares ha querido decir en el pa?rafo en espaï¿½ol, porque yo 
 
-Evolutionary Algorithms to generate game bots have two main issues: the fitness is noisy and optimal bots are either not known or unreachable. This make difficult to find a good stopping criterion for the EA. Several stopping criteria taking into account the best individual and the population have been compared. 
+Using Evolutionary Algorithms (EAs) to generate bots for playing games have two main issues: the fitness is noisy and optimal bots are either not known or unreachable. This makes it difficult to find a good stopping criterion for the EA. In this paper four different stopping criteria, based in fitness and in the population, have been tested and compared with the classical approach of the fixed number of generations. 
 
-A stopping criterion based in \textit{Fitness Threshold} would be the most desirable option, as it attains the best score. However, in this kind of problems, it is difficult to find a optimal fitness value to use. In addition, this method requires more computational budget, and it is possible that never ends. A compromise solution is to rely in the population improvement without implicitly use the fitness, for example, using a \textit{Replacement Rate} as stopping criterion.
+Several experiments have been conducted, using different metrics based in a score function, the number of generations reached for each criterion, and the number of victories that the best yielded bots per criterion have obtained against an external rival (not the same used in the fitness computation).
 
-Anyway, these results could be used as a reference to choose the best criterion in every case, depending on the problem and on the restrictions. Thus, for instance, if we are facing a competition with a limited amount of computational time, we could select the best criterion in score and victories taking into account the maximum number of generations that could be reached in that limit.
+According to the results, initially, a stopping criterion based in \textit{Fitness Threshold} would be the most desirable option, as it attains the best score. However, in this kind of problems, it is quite difficult to find an optimal fitness value to use (normally it is unknown). In addition, this method requires more computational budget, and it is possible that it never ends (the criterion is not met). Given this, and also according to the obtained results, the best option would be using a \textit{Replacement Rate} as stopping criterion, since it is a compromise solution which relies in the population improvement without implicitly use the fitness.
 
+Anyway, the presented results in the work could be used as a reference to choose the best criterion in every case, depending on the problem and on the restrictions. Thus, for instance, if we are facing a competition with a limited amount of computational time, we could select the best criterion considering score and victories taking into account the maximum number of generations that could be reached in that limit.
 
 %Futuro trabajo: 
-In future work, new problems will be addressed to validate the proposed stop criteria, using different environments and new score functions. In addition,  mechanisms to improve the EA will be used in conjunction with the proposed methods, for example, increasing the search space when  stagnation of the population is detected.
+As future work, new problems (and algorithms) will be addressed to validate the proposed stopping criteria, using different environments and new score functions. In addition,  mechanisms to improve the EA will be used in conjunction with the proposed methods, for example, increasing the search space when a stagnation of the population is detected.
 
 
-\section*{Acknowledgments}
-
-Hidden for double-blind review
+%\section*{Acknowledgments}
+%
+%Hidden for double-blind review
 
 
 \bibliographystyle{splncs03}
