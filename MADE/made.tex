@@ -54,6 +54,7 @@ parameters, obtaining a set of generic rules.
 % Antonio - ¿a qué te refieres por regla?¿qué tipo de reglas?
 % Rubén - a reglas que debe seguir un autor para que que el entorno ofrezca los mejores resultados para él o
 % las reglas que debe tener en cuenta quien diseñe una solución similar. No se si queda claro tal y como está explicado.
+% Antonio - OK, creo que se entiende en el texto. ;)
 These rules, when applied to the plot requisites, and thus, to the
 fitness function, will lead to a reduced range of parameter values
 that will help the storyteller to create optimal worlds with a reduced
@@ -74,6 +75,7 @@ order to generate interesting fictional worlds.
 % the" está mal escrito. Si no está seguro, sugiere cambios - JJ
 % FERGU: lo he cambiado yo a "(including videogame creation)" que era
 % raro de leer 
+% Antonio - fue un error tipográfico, sorry. Sé que no se escribe 'including for the'
 In order to design these fictional worlds and the
 stories within them so that they are truly believable, efficient and massive, several
 automatic/autonomous methods have been proposed
@@ -81,9 +83,11 @@ automatic/autonomous methods have been proposed
 % Antonio - He puesto la REF de Nairat. Comprobad que es la
 % correcta. ;)
 % ¿Alguien ha comprobado que esa referencia es correcta? - jj
+% Antonio - OK, yo creo que era correcta
 them, called MADE 
 \cite{garcia:anon} finds `interesting' character stories by running
 % Antonio - creo que no hay una norma para usar comillas simples o dobles, pero lo que yo suelo ver es que si se habla de términos específicos se usan comillas simples y si es un texto (un string) se usan las dobles. Es sólo una propuesta. ;D FERGU: acabo de ver que en británico se prefiere siempre la simple,lo cambio todo
+% Antonio - OK
 an evolutionary algorithm that optimizes a virtual world using a fitness function designed to better fit with the archetypes which the user desires they emerge in the world that he/she is designing. %FERGU: nunca decir "optimizar una función fitness", las funciones fitness no se optimizan, se optimiza la solución al problema (usando la función fitness)
 
 MADE works as follows: every individual in the evolutionary algorithm
@@ -106,6 +110,7 @@ In this paper we will use the MADE open source simulator
 % Antonio - Le falta chicha a la intro. Propongo describir un poco
 % mejor el proceso que se va a seguir para estudiar los parámetros y
 % su influencia, así como para crear esas reglas. 
+% Antonio - NOTOK - Está a medias. Habría que describir el proceso que se va a seguir para estudiar los parámetros, es decir, describir el 'an experimental setup'.
 
 The rest of the paper is organized as follows. Coming up next, we
 present the state of the art in parameter setting of simulated
@@ -146,6 +151,7 @@ roles to stereotypical characters, relying on the reader the assumption
 of the characters' motivations.
 In 1994, Turner created Minstrel \cite{turner2014creative}, a program which used 
 % Antonio - Minstrel era un programa? FERGU: todo son programas
+% Antonio - OK
 case-based reasoning to generate stories about knights and ladies by replacing variables in existing stories and recombining them. It also used goals, in this case for the story and for every character. In 2008, Riedl and Leon
  used in \cite{riedl2008toward} the same idea, conceptualizing a vignette
 as a small story assumed as `interesting', thus they can compose complete stories when exposed sequentially.
@@ -160,6 +166,7 @@ generic `vignettes'.
 The idea of emerging plots from agents' interactions, that is, using
 agent-based models of the world to generate stories is not new. In 2007, Virtual storyteller \cite{swartjes2007emergent}, used agents that improvise using techniques from improvisational theatre, a plot guide and a narrator. Our technique uses the same approach but there is no plot guide agent. Instead, a Genetic Algorithm (GA)  guides the mood of the backstories created by finding `archetypes'.
 % Antonio - desired archetypes?
+% Antonio - NOTOK - creo que habría que especificar qué arquetipos encuentra el algoritmo. Bueno, más bien cuáles busca o pretende encontrar. ;)
 
 The search of a good plot can be addressed from the Evolutionary Computation (EC) point of view. To this aim in 2011, Nairat et al. proposed in \cite{nairat2011character} a generative drama approach
 that integrates human creativity by using an agent-based system where
@@ -171,26 +178,30 @@ complex adaptive systems in social science. Their conclusions suggest further ap
 Our approach relies on this idea by using a GA to 
 obtain the agents' life story that better fits the goals described by the user/author before the world is generated.
 % TODO @raiben enganchar mejor este último párrafo
-% Antonio - hecho. ;D
+% Antonio - hecho. ;D - OK
 It follows the methodology presented in \cite{garcia:anon}: systematise the generation of backstories in massive worlds, defining the elements of a complex world, and optimise the characters' behaviour using GAs to extract information.
 Moreover, that work included a preliminary analysis of only one parameter: the number of profiles to use. 
 % Antonio - profiles generados? o qué profiles? FERGU: to use
+% Antonio - OK
 Results in that paper shown that this parameter have a significant influence
 in the archetype-based fitness attained. The open-source simulator 
 MADE 
 % Antonio - URL como nota al pie o algo FERGU: puesta
 % Quitado porque ya se ha puesto antes - JJ
+% Antonio - OK
 used in the present work, was also introduced in that paper. However, the rest of parameters that conform the fictional setting (defined in 
 \cite{morrell2006between}) were set as standard ad-hoc parameters. 
 % Antonio - He puesto la REF de Morrel. Comprobadla. ;)
 % Alguien la ha comprobado? @raiben - JJ
+% Antonio - OK, Yo creo que está bien.
 
 In this research, we want to extend the previous study testing the rest of the
 parameters that model a story: the time, the world, the characters and
 the source of conflicts. 
-% Antonio - hay que darle muuucho más bombo a esto. La importancia de los parámetros, que los resultados pueden variar mucho con un cambio leve en ellos, que unos tienen mucha más influencia, que otros podrían resultar superfluos, que hace falta hacer este estudio para definir el algoritmo bien, que se va a hacer una definición de reglas de configuración, etc etc.
+% Antonio - hay que darle muuucho más bombo a esto. La importancia de los parámetros, que los resultados pueden variar mucho con un cambio leve en ellos, que unos tienen mucha más influencia, que otros podrían resultar superfluos, qué hace falta hacer este estudio para definir el algoritmo bien, que se va a hacer una definición de reglas de configuración, etc etc.
 % Este es el 'selling point' y hay que venderlo bien. De lo contrario puede parecer que esto es una mera excusa para publicar algo sin mucho esfuerzo (aunque lo conlleve, claro). ;D
 % Todo esto también habría que recalcarlo en la Intro. Incluso de forma más extensa que aquí. Si se hace en aquella sección, aquí sólo se nombraría lo que se va a hacer con una pequeña justificación. ;)
+% Antonio - NOTOK - creo que habría que mejorar esto para dar importancia a lo que se ha hecho. ;D
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
