@@ -19,12 +19,17 @@
 
 \titlerunning{How the world was MADE}
 
-\author{A. N. Onymouse%
-\thanks{Anonymous Institute}}
+%\author{A. N. Onymouse%
+%\thanks{Anonymous Institute}}
 %
-\authorrunning{Anonymous, A}
 
-\institute{No Institute}
+\author{R.~H. Garc\'ia Ortega\inst{1,2} \and P. Garc\'ia-S\'anchez\inst{1} \and J.~J. Merelo\inst{1} \and M.~I. García\inst{1} \and  P.~A.~ Castillo\inst{1} \and A.~M. Mora\inst{1}}
+
+\authorrunning{R.~H. Garc\'ia Ortega et al.}
+
+\institute{Dept. of Computer Architecture and Technology, University of Granada, Spain
+\and Fundaci\'on I+D del Software Libre - Fidesol, Granada, Spain 
+\mailsa}
 
 \maketitle
 
@@ -63,20 +68,17 @@ order to generate interesting fictional worlds.
 In order to design these fictional worlds and the
 stories within them so that they are truly believable, efficient and massive, several
 automatic/autonomous methods have been proposed
-\cite{garcia:anon,nairat2011character}. One of them, called MADE 
-\cite{garcia:anon} finds `interesting' character stories by running
+\cite{garcia14my,nairat2011character}. One of them, called MADE 
+\cite{garcia14my} finds `interesting' character stories by running
 an evolutionary algorithm that optimizes a virtual world using a fitness function designed to better fit with the archetypes which the user desires they emerge in the world that he/she is designing. 
 
 MADE works as follows: every individual in the evolutionary algorithm
 is described by a chromosome that represents the parameters of one (or several kinds of)
-finite state machine (FSM) \cite{FSM_Booth} that is set to `live' (interact) in a simulated environment. In \cite{garcia:anon} the evolutionary algorithm was run with a standard
+finite state machine (FSM) \cite{FSM_Booth} that is set to `live' (interact) in a simulated environment. In \cite{garcia14my} the evolutionary algorithm was run with a standard
 parameter configuration, meanwhile {\em sensible} non-evolutionary parameters (such as the size of the world or amount of food) were set as default values. There was no attempt to optimize these parameters, since the
 main intention seemed to be to have a prototype that allowed the
-authors to have an acid test of their proposed approach.
-
-That paper hinted at the fact that parameters such as the number of
-{\em profiles} (different types of finite state automata present in
-the world) had a big influence on the outcome, to the point of making
+authors to have an acid test of their proposed approach. That paper hinted at the fact that parameters such as the number of
+{\em profiles} (different types of finite state automata present) had a big influence on the outcome, to the point of making
 it possible or not. However, other parameters, such as the number of
 simulated days the world is running, might also have influence, but the authors did not conclude to which level.
 
@@ -107,8 +109,7 @@ present our conclusions to finish the paper.
 According to the taxonomy described by Togelius et al. \cite{togelius2011search}
 the problem of massively generating backstories for non-player
 characters (NPCs) can be considered \textit{Procedural content
-  generation (PCG)}, since it implies the generation of a part of
-the game world, namely, the characters and their relations. In this paper,
+generation (PCG)}, since it implies the generation of the characters and their relations in the game world. In this paper,
 we have used an \textit{offline} approach since the computation is
 done in the phase of game design, also considered \textit{search-based} due to the use of an evolutionary algorithm.
 
@@ -138,8 +139,8 @@ The technique applied in this paper can be understood as the evolution of
 these researches adapted to massive worlds, where coherence is provided by the use of an Agent-Based Model (ABM for further references).
 Instead of using `vignettes' to construct stories, our approach
 modifies the behaviour of the agents and finds `archetypes', i.e. behaviours and patterns universally accepted and present in the
-collective imaginary \cite{garry2005archetypes} that may be interpreted as
-generic `vignettes'.
+collective imaginary \cite{garry2005archetypes}.
+%that may be interpreted as generic `vignettes'.
 
 The idea of emerging plots from agents' interactions, that is, using
 agent-based models of the world to generate stories is not new. In 2007, Virtual storyteller \cite{swartjes2007emergent}, used agents that improvise using techniques from improvisational theatre, a plot guide and a narrator. Our technique uses the same approach but there is no plot guide agent. Instead, a Genetic Algorithm (GA)  guides the mood of the backstories created by finding `archetypes' (selected by the user).
@@ -152,13 +153,11 @@ that integrates human creativity by using an agent-based system where
 the characters are developed using interactive evolution. One year later, 
 Cioffi-Revilla et al. \cite{cioffi2012evolutionary} published a study that
 applies a combined EC-ABM approach to the challenge of understanding
-complex adaptive systems in social science. Their conclusions suggest further applications of EC to ABM in terms of multi-population models with heterogeneous agents, multi-objective optimization, dynamic environments, and evolving executable objects for modelling social change. 
+complex adaptive systems in social science. Their conclusions suggest further applications of EC to ABM in terms of multi-population models with heterogeneous agents, multi-objective optimization, dynamic environments, and evolving executable objects for modelling social change.
 
 Our approach relies on this idea by using a GA to 
-obtain the agents' life story that better fits the goals described by the user/author before the world is generated. It follows the methodology presented in \cite{garcia:anon}: systematise the generation of backstories in massive worlds, defining the elements of a complex world, and optimise the characters' behaviour using GAs to extract information.
-Moreover, that work included a preliminary analysis of only one parameter: the number of profiles to use. 
-
-Results in that paper shown that this parameter have a significant influence
+obtain the agents' life story that better fits the goals described by the user/author before the world is generated. It follows the methodology presented in \cite{garcia14my}: systematise the generation of backstories in massive worlds, defining the elements of a complex world, and optimise the characters' behaviour using GAs to extract information.
+Moreover, that work included a preliminary analysis of only one parameter: the number of profiles to use. Results in that paper shown that this parameter have a significant influence
 in the archetype-based fitness attained. The open-source simulator 
 MADE used in the present work, was also introduced in that paper. However, the rest of parameters that conform the fictional setting (defined in 
 \cite{morrell2006between}) were set as standard ad-hoc parameters. 
@@ -166,7 +165,8 @@ MADE used in the present work, was also introduced in that paper. However, the r
 
 In this research, we want to extend the previous study testing the rest of the
 parameters that model a story: the time, the world, the characters and
-the source of conflicts, since there are not any analysis on them. These parameters might have a huge effect in the plot generation, where small variations could substantially alter the results, or on the other hand, some of them may be superfluous.
+the source of conflicts. %, since there are not any analysis on them.
+These parameters might have a huge effect in the plot generation, where small variations could substantially alter the results, or on the other hand, some of them may be superfluous.
 % Antonio - hay que darle muuucho más bombo a esto. La importancia de los parámetros, que los resultados pueden variar mucho con un cambio leve en ellos, que unos tienen mucha más influencia, que otros podrían resultar superfluos, qué hace falta hacer este estudio para definir el algoritmo bien, que se va a hacer una definición de reglas de configuración, etc etc.
 % Este es el 'selling point' y hay que venderlo bien. De lo contrario puede parecer que esto es una mera excusa para publicar algo sin mucho esfuerzo (aunque lo conlleve, claro). ;D
 % Todo esto también habría que recalcarlo en la Intro. Incluso de forma más extensa que aquí. Si se hace en aquella sección, aquí sólo se nombraría lo que se va a hacer con una pequeña justificación. ;)
@@ -196,25 +196,26 @@ guarantees that the final result will be close to the optimum.
 \label{subsec:idio}
 
 
-This methodology  addresses to problems that present the following characteristics:
-\begin{description}
-\item[Goal:] The final goal is to generate stochastic virtual worlds massively inhabited by characters with backstories that are aligned with a mood defined by the writer.
-\item[Virtual world:] The virtual world is modelled by the ABM.
-\item[Archetype:] An archetype is a behaviour pattern that can be present in a backstory.
-\item[Fitness:] The virtual world can be evaluated depending on different taxes of archetypes (set by the writer) found in the characters that inhabit it.
-\item[Backstory:] The backstory of a character is a set of actions and interpretations, coherent with the virtual world and the other agents.
-\item[Agent:] The agent represents a character that performs actions in the virtual world depending on the neighbourhood and its internal state.
-\item[Profile:] The agents can be parametrised and their behaviour
+This methodology  addresses to problems with the following characteristics:
+
+\begin{enumerate}
+\item Goal: The final goal is to generate stochastic virtual worlds massively inhabited by characters with backstories that are aligned with a mood defined by the writer.
+\item Virtual world: The virtual world is modelled by the ABM.
+\item Archetype: An archetype is a behaviour pattern that can be present in a backstory.
+\item Fitness: The evaluation of the virtual world can be based in the rates of archetypes (set by the writer) found in the characters that inhabit it.
+\item Backstory: The backstory of a character is a set of actions and interpretations, coherent with the virtual world and the other agents.
+\item Agent: The agent represents a character that performs actions in the virtual world depending on the neighbourhood and its internal state.
+\item Profile: The agents can be parametrised and their behaviour
   (probabilities to perform actions) depends on these parameters. The
   profile (P) is the set of values for these parameters and is
   optimized by the GA. 
-\item[Conflict:] Every action is performed in a place and a time,
+\item Conflict: Every action is performed in a place and a time,
   affects to one or more agents and relates to the source of conflict.
-\item[Place:] The agents occupy a location in a map. The map is defined by its size (W).
-\item[Time:] The world exists during a period of time (D). Every backstory is fed by actions as time goes by, in a bottom-up approach.
-\item[Source of conflict:] The element that forces the agents to interact. For example, in this study, the food (F) can be considered as the source of conflicts between the agents; the element that the agents compete for.
-\item[Scenario:] A set of archetypes that have to emerge.
-\end{description}
+\item Place: The agents occupy a location in a map, defined by its size (W).
+\item Time: The world exists during a period of time (D). Every backstory is fed by actions as time goes by, in a bottom-up approach.
+\item Source of conflict: The element that forces the agents to interact. For example, in this study, the food (F) can be considered as the source of conflicts between the agents; the element that the agents compete for.
+\item Scenario: A set of archetypes that have to emerge.
+\end{enumerate}
 
 
 \subsection{Parameter effects}
@@ -226,7 +227,7 @@ In our problem, an agent is ruled by its profile, which defines its behaviour.
 Our technique uses the GA to evolve the profile(s) of the agents,
 so it will be part of the search space.
 Nevertheless, the use of different number of profiles (P) may also affect the behaviour of the agents, since more profiles
-in the same world may imply new types of conflicts (as it was demonstrated in \cite{garcia:anon}).
+in the same world may imply new types of conflicts (as it was demonstrated in \cite{garcia14my}).
 
 The plotting is the result of the different conflicts, that are affected by the place,
 the time and the source of conflicts, which in this case is the food.
@@ -277,7 +278,7 @@ because its older.
 
 
 MADE lets the writer select different archetypes that can be promoted in the world
-as described in \cite{garcia:anon}.
+as described in \cite{garcia14my}.
 In this paper we will study three different archetypes: An agent
 is considered a \textit{villain} if it kills other agent as a result of a fight for the food,
 a \textit{hero} if it attacks a \textit{villain} and an
@@ -363,7 +364,7 @@ three different scenarios will be studied:
 % FERGU: pongo que se dejan fijos y que en principio no tienen que ver con la historia @raiben lo ves bien?
 
 Table \ref{tab:parameters} summarizes all the configuration parameters that will be compared (with their acronyms used in this paper),
-and the rest of the (fixed) parameters of the algorithm. The rest of the parameters of the MADE environment, such as the initial number of agents in the world, and the agent's parameters (such as the lifespan) are described in \cite{garcia:anon}. In this paper we will use their default values as, in principle, they are not related with the aspects that model a story.
+and the rest of the (fixed) parameters of the algorithm. The rest of the parameters of the MADE environment, such as the initial number of agents in the world, and the agent's parameters (such as the lifespan) are described in \cite{garcia14my}. In this paper we will use their default values as, in principle, they are not related with the aspects that model a story.
 
 \begin{table*}
 \begin{center}
@@ -437,15 +438,18 @@ the fitness function $F_1$ and $F_2$ only differs in counting the archetype of a
 \begin{figure}
         \centering
         \subfigure[\scriptsize{Scenario 1: Villain}]{
-                \includegraphics[width=3.7cm]{imags/boxplotz1P.eps}
+                \includegraphics[ trim=0cm 2cm 0cm 2cm,
+                width=3.7cm]{imags/boxplotz1P.eps}
                 \label{fig:e1_p}
         }
         \subfigure[\scriptsize{Scenario 2: Hero}]{
-                \includegraphics[width=3.7cm]{imags/boxplotz2P.eps}
+                \includegraphics[ trim=0cm 2cm 0cm 2cm,
+                width=3.7cm]{imags/boxplotz2P.eps}
                 \label{fig:e2_p}
         }
         \subfigure[\scriptsize{Scenario 3: Avenger}]{
-                \includegraphics[width=3.7cm]{imags/boxplotz5P.eps}
+                \includegraphics[ trim=0cm 2cm 0cm 2cm,
+                width=3.7cm]{imags/boxplotz5P.eps}
                 \label{fig:e3_p}
         }  
         \caption{Boxplots for parameter P (number of profiles)}\label{fig:boxplotsP}
@@ -456,7 +460,7 @@ their differences (in Figures \ref{fig:boxplotsP} to \ref{fig:boxplotsS}). At fi
 values. This has several possible explanations: First, the
 number of profiles has quite an impact in the results (Figure
 \ref{fig:boxplotsP}), as it was shown previously in
-\cite{garcia:anon}. 
+\cite{garcia14my}. 
 
 Increasing the number of profiles means changing the search problem
 from finding a single finite state automaton whose behaviour
@@ -470,15 +474,15 @@ describes the behavior of the agents in the world, is the best option for any sc
 \begin{figure}[h!tb]
         \centering
         \subfigure[\scriptsize{Scenario 1: Villain}]{
-                \includegraphics[width=3.7cm]{imags/boxplotz1D.eps}
+                \includegraphics[trim=0cm 2cm 0cm 3cm, width=3.7cm]{imags/boxplotz1D.eps}
                 \label{fig:e1_d}
         }
         \subfigure[\scriptsize{Scenario 2: Hero}]{
-                \includegraphics[width=3.7cm]{imags/boxplotz2D.eps}
+                \includegraphics[trim=0cm 2cm 0cm 3cm, width=3.7cm]{imags/boxplotz2D.eps}
                 \label{fig:e2_d}
         }
         \subfigure[\scriptsize{Scenario 3: Avenger}]{
-                \includegraphics[width=3.7cm]{imags/boxplotz5D.eps}
+                \includegraphics[trim=0cm 2cm 0cm 3cm, width=3.7cm]{imags/boxplotz5D.eps}
                 \label{fig:e3_d}
         }  
         \caption{Boxplots for the number of days (parameter D).}\label{fig:boxplotsD} 
@@ -487,15 +491,15 @@ describes the behavior of the agents in the world, is the best option for any sc
 \begin{figure}[h!tb]
         \centering
         \subfigure[\scriptsize{Scenario 1: Villain}]{
-                \includegraphics[width=3.7cm]{imags/boxplotz1F.eps}
+                \includegraphics[trim=0cm 2cm 0cm 3cm, width=3.7cm]{imags/boxplotz1F.eps}
                 \label{fig:e1_f}
         }
         \subfigure[\scriptsize{Scenario 2: Hero}]{
-                \includegraphics[width=3.7cm]{imags/boxplotz2F.eps}
+                \includegraphics[trim=0cm 2cm 0cm 3cm, width=3.7cm]{imags/boxplotz2F.eps}
                 \label{fig:e2_f}
         }
         \subfigure[\scriptsize{Scenario 3: Avenger}]{
-                \includegraphics[width=3.7cm]{imags/boxplotz5F.eps}
+                \includegraphics[trim=0cm 2cm 0cm 3cm, width=3.7cm]{imags/boxplotz5F.eps}
                 \label{fig:e3_f}
         }  
         \caption{Boxplots for food amount (parameter F)}\label{fig:boxplotsF}
@@ -511,15 +515,15 @@ most of the scenarios. This can also be said
 \begin{figure}[h!tb]
         \centering
         \subfigure[\scriptsize{Scenario 1: Villain}]{
-                \includegraphics[width=3.7cm]{imags/boxplotz1W.eps}
+                \includegraphics[trim=0cm 2cm 0cm 3cm, width=3.7cm]{imags/boxplotz1W.eps}
                 \label{fig:e1_w}
         }
         \subfigure[\scriptsize{Scenario 2: Hero}]{
-                \includegraphics[width=3.7cm]{imags/boxplotz2W.eps}
+                \includegraphics[trim=0cm 2cm 0cm 3cm, width=3.7cm]{imags/boxplotz2W.eps}
                 \label{fig:e2_w}
         }
         \subfigure[\scriptsize{Scenario 3: Avenger}]{
-                \includegraphics[width=3.7cm]{imags/boxplotz5W.eps}
+                \includegraphics[trim=0cm 2cm 0cm 3cm, width=3.7cm]{imags/boxplotz5W.eps}
                 \label{fig:e3_w}
         }  
         \caption{Boxplots for world size (parameter W)}\label{fig:boxplotsW}
@@ -537,15 +541,15 @@ small size of 25 cells.
 \begin{figure}
         \centering
         \subfigure[\scriptsize{Scenario 1: Villain}]{
-                \includegraphics[width=3.7cm]{imags/boxplotz1S.eps}
+                \includegraphics[trim=0cm 2cm 0cm 3cm, width=3.7cm]{imags/boxplotz1S.eps}
                 \label{fig:e1_s}
         }
         \subfigure[\scriptsize{Scenario 2: Hero}]{
-                \includegraphics[width=3.7cm]{imags/boxplotz2S.eps}
+                \includegraphics[trim=0cm 2cm 0cm 3cm, width=3.7cm]{imags/boxplotz2S.eps}
                 \label{fig:e2_s}
         }
         \subfigure[\scriptsize{Scenario 3: Avenger}]{
-                \includegraphics[width=3.7cm]{imags/boxplotz5S.eps}
+                \includegraphics[trim=0cm 2cm 0cm 3cm, width=3.7cm]{imags/boxplotz5S.eps}
                 \label{fig:e3_s}
         }  
         \caption{Boxplots for GA population size (parameter S)}\label{fig:boxplotsS}
@@ -630,8 +634,7 @@ generate backstories in real game engines.
 
 \section*{Acknowledgements}
 
-Hidden for double-blind review
-
+This work has been supported in part by SIPESCA (Programa Operativo FEDER de Andalucía 2007-2013), TIN2011-28627-C04-02 (Spanish Ministry of Economy and Competitivity), SPIP2014-01437 (Dirección General de Tráfico), PRY142/14 (Fundación Pública Andaluza Centro de Estudios Andaluces en la IX Convocatoria de Proyectos de Investigación) and PYR-2014-17 GENIL project (CEI-BIOTIC Granada).
 \bibliographystyle{splncs03}
 \bibliography{geneura,references}
 
