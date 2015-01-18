@@ -1,6 +1,6 @@
 R.~H. Garc\'ia Ortega rhgarcia@ugr.es*
 P. Garc\'ia-S\'anchez pgarcia@atc.ugr.es
 J.~J. Merelo jmerelo@geneura.ugr.es
-M.~I. Garc\'ia Arenas mgarenas@ugr.es
+M.~G. Arenas mgarenas@ugr.es
 P.~A.~ Castillo pacv@ugr.es
 A.~M. Mora\inst amorag@ugr.es
