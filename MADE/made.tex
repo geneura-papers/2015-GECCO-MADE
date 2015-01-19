@@ -47,7 +47,7 @@ composing a very complex fitness landscape.
 
 In order to optimize the resources allocated to evolution and to have
 some guarantees that the final result will be close to the optimum, we
-systematically analyse a set of possible values of the most relevant
+systematically analyze a set of possible values of the most relevant
 parameters, obtaining a set of generic rules.
 These rules, when applied to the plot requisites, and thus, to the
 fitness function, will lead to a reduced range of parameter values
@@ -155,7 +155,7 @@ applies a combined EC-ABM approach to the challenge of understanding
 complex adaptive systems in social science. Their conclusions suggest further applications of EC to ABM in terms of multi-population models with heterogeneous agents, multi-objective optimization, dynamic environments, and evolving executable objects for modelling social change.
 
 Our approach relies on this idea by using a GA to 
-obtain the agents' life story that better fits the goals described by the user/author before the world is generated. It follows the methodology presented in \cite{garcia14my}: systematise the generation of backstories in massive worlds, defining the elements of a complex world, and optimise the characters' behaviour using GAs to extract information.
+obtain the agents' life story that better fits the goals described by the user/author before the world is generated. It follows the methodology presented in \cite{garcia14my}: systematize the generation of backstories in massive worlds, defining the elements of a complex world, and optimize the characters' behaviour using GAs to extract information.
 Moreover, that work included a preliminary analysis of only one parameter: the number of profiles to use. Results in that paper shown that this parameter have a significant influence
 in the archetype-based fitness attained. The open-source simulator 
 MADE used in the present work, was also introduced in that paper. However, the rest of parameters that conform the fictional setting (defined in 
@@ -191,7 +191,7 @@ EC-ABM approach
 in order to optimize the resources allocated to evolution and to have some
 guarantees that the final result will be close to the optimum.
 
-\subsection{Problem characterisation}
+\subsection{Problem characterization}
 \label{subsec:idio}
 
 
@@ -244,14 +244,14 @@ archetypes and better fitness, and eventually more agents in the world. In the o
 of an individual in the GA implies the execution of every agent and the evaluation of each backstory,
 thus more agents and bigger backstories may increment significantly the evaluation time.
 The values proposed for the study vary from a very short period of time to a bigger one, where the
-maximum is the agent's average lifetime. The food is modelled with the parameter (F). Changes in this parameter may increment or decrement
+maximum is the agent's average lifetime. The food is modelled with the parameter (F). Changes in this parameter may increment or decrease
 the number of interactions. 
 
 Finally, exploration of the search space might be affected by the GA parameters. In this sense, the most significant
 parameter is the population size (S), since bigger populations will provide more accuracy but spend more execution time.
 
 To sum up, our methodology will systematically combine more than two variants of five parameters
-and study how the fitness is affected. The parameters proposed for the problems characterised in
+and study how the fitness is affected. The parameters proposed for the problems characterized in
 subsection \ref{subsec:idio} are the number of profiles (P), the world size (W),
 the virtual time (D), the food (F) and the population size of the GA (S).
 
@@ -307,8 +307,8 @@ Once the best values of the parameters have been found, the system can be run
 inside a game context to generate a whole set of secondary characters.
 For the simple reason of using agents in a bottom-up approach for the world generation, MADE provides a social network with family relationships, but also other related to the disputes and to possible archetypes, i.e. in our study, a `hero' fights a `villain' or an `avenger' takes revenge on other character.
 
-The storyteller will be able to tell a story about each character by accessing to its lifelog. The lifelog should have a pre-defined format understandable by the storyteller, with fields like the date, the action performed, the internal state, the direct object and the indirect object.
-Moreover, each agent should be tagged with the different archetypes it fulfils, the days that this archetype begins and ends, and the agents affected.
+The storyteller will be able to tell a story about each character by accessing to its life-log. The life-log should have a pre-defined format understandable by the storyteller, with fields like the date, the action performed, the internal state, the direct object and the indirect object.
+Moreover, each agent should be tagged with the different archetypes it fulfills, the days that this archetype begins and ends, and the agents affected.
 
 With this information within reach, the storyteller can create a story about the character by narrating its birthday, its name, the name and story of its parents, siblings and children (also using this technique for describing them), what the agent is (as archetype: `villain', `hero', `avenger') and why (dates, characters related and supposed motivations).
 
@@ -597,7 +597,7 @@ there is little food. Anyway, the backstories size increase with the
 virtual days of execution, thus it is easier to find archetypes when
 more virtual days are executed, in other words, when all the agents have
 the opportunity to live their entire lives.
-This can be generalised to similar problems (and the
+This can be generalized to similar problems (and the
 rest of scenarios): the source of conflict should be forced to occur
 more times, and simultaneously, it is necessary to give enough time to
 these situations appear. 
