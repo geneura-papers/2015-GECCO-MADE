@@ -14,7 +14,7 @@
 
 \mainmatter  
 
-\title{How the world was MADE: parametrisation of evolved agent-based
+\title{How the world was MADE: parametrization of evolved agent-based
   models for backstory generation} 
 
 \titlerunning{How the world was MADE}
@@ -23,12 +23,11 @@
 %\thanks{Anonymous Institute}}
 %
 
-\author{R.~H. Garc\'ia-Ortega\inst{1,2} \and P. Garc\'ia-S\'anchez\inst{1} \and J.~J. Merelo\inst{1} \and M.~G. Arenas\inst{1} \and  P.~A.~ Castillo\inst{1} \and A.~M. Mora\inst{1}}
+\author{R.~H. Garc\'ia-Ortega \and P. Garc\'ia-S\'anchez \and J.~J. Merelo \and M.~G. Arenas \and  P.~A.~ Castillo \and A.~M. Mora}
 
 \authorrunning{R.~H. Garc\'ia Ortega et al.}
 
-\institute{Dept. of Computer Architecture and Technology, University of Granada, Spain
-\and Fundaci\'on I$+$D del Software Libre - Fidesol, Granada, Spain}
+\institute{Dept. of Computer Architecture and Technology, University of Granada, Spain}
 
 \maketitle
 
@@ -47,7 +46,7 @@ composing a very complex fitness landscape.
 
 In order to optimize the resources allocated to evolution and to have
 some guarantees that the final result will be close to the optimum, we
-systematically analyse a set of possible values of the most relevant
+systematically analyze a set of possible values of the most relevant
 parameters, obtaining a set of generic rules.
 These rules, when applied to the plot requisites, and thus, to the
 fitness function, will lead to a reduced range of parameter values
@@ -77,7 +76,7 @@ finite state machine (FSM) \cite{FSM_Booth} that is set to `live' (interact) in 
 parameter configuration, meanwhile {\em sensible} non-evolutionary parameters (such as the size of the world or amount of food) were set as default values. There was no attempt to optimize these parameters, since the
 main intention seemed to be to have a prototype that allowed the
 authors to have an acid test of their proposed approach. That paper hinted at the fact that parameters such as the number of
-{\em profiles} (different types of finite state automata present) had a big influence on the outcome, to the point of making
+{\em profiles} (different types of finite state automaton present) had a big influence on the outcome, to the point of making
 it possible or not. However, other parameters, such as the number of
 simulated days the world is running, might also have influence, but the authors did not conclude to which level.
 
@@ -137,12 +136,12 @@ as a small story assumed as `interesting', thus they can compose complete storie
 The technique applied in this paper can be understood as the evolution of
 these researches adapted to massive worlds, where coherence is provided by the use of an Agent-Based Model (ABM for further references).
 Instead of using `vignettes' to construct stories, our approach
-modifies the behaviour of the agents and finds `archetypes', i.e. behaviours and patterns universally accepted and present in the
+modifies the behavior of the agents and finds `archetypes', i.e. behaviors and patterns universally accepted and present in the
 collective imaginary \cite{garry2005archetypes}.
 %that may be interpreted as generic `vignettes'.
 
 The idea of emerging plots from agents' interactions, that is, using
-agent-based models of the world to generate stories is not new. In 2007, Virtual storyteller \cite{swartjes2007emergent}, used agents that improvise using techniques from improvisational theatre, a plot guide and a narrator. Our technique uses the same approach but there is no plot guide agent. Instead, a Genetic Algorithm (GA)  guides the mood of the backstories created by finding `archetypes' (selected by the user).
+agent-based models of the world to generate stories is not new. In 2007, Virtual storyteller \cite{swartjes2007emergent}, used agents that improvise using techniques from improvisational theater, a plot guide and a narrator. Our technique uses the same approach but there is no plot guide agent. Instead, a Genetic Algorithm (GA)  guides the mood of the backstories created by finding `archetypes' (selected by the user).
 % Antonio - desired archetypes?
 % Antonio - NOTOK - creo que habría que especificar qué arquetipos encuentra el algoritmo. Bueno, más bien cuáles busca o pretende encontrar. ;)
 % FERGU: no podemos decir aquí cuales queremos encontrar (el villano y todo eso), así que añado que encuentra arquetipos deseados por el usuario
@@ -152,10 +151,10 @@ that integrates human creativity by using an agent-based system where
 the characters are developed using interactive evolution. One year later, 
 Cioffi-Revilla et al. \cite{cioffi2012evolutionary} published a study that
 applies a combined EC-ABM approach to the challenge of understanding
-complex adaptive systems in social science. Their conclusions suggest further applications of EC to ABM in terms of multi-population models with heterogeneous agents, multi-objective optimization, dynamic environments, and evolving executable objects for modelling social change.
+complex adaptive systems in social science. Their conclusions suggest further applications of EC to ABM in terms of multi-population models with heterogeneous agents, multi-objective optimization, dynamic environments, and evolving executable objects for modeling social change.
 
 Our approach relies on this idea by using a GA to 
-obtain the agents' life story that better fits the goals described by the user/author before the world is generated. It follows the methodology presented in \cite{garcia14my}: systematise the generation of backstories in massive worlds, defining the elements of a complex world, and optimise the characters' behaviour using GAs to extract information.
+obtain the agents' life story that better fits the goals described by the user/author before the world is generated. It follows the methodology presented in \cite{garcia14my}: systematize the generation of backstories in massive worlds, defining the elements of a complex world, and optimize the characters' behavior using GAs to extract information.
 Moreover, that work included a preliminary analysis of only one parameter: the number of profiles to use. Results in that paper shown that this parameter have a significant influence
 in the archetype-based fitness attained. The open-source simulator 
 MADE used in the present work, was also introduced in that paper. However, the rest of parameters that conform the fictional setting (defined in 
@@ -184,14 +183,14 @@ relies in the use of a a combined EC-ABM approach (a GA in this case).
 The fitness function is configurable to fit the story needs.
 Then, some parameters have to be fixed: world constants, agents' constants and GA parameters.
 Finally, the GA has to search in a noisy space, due to the stochastic nature of the approach.
-The influence of each constant and parameter is, a priori, impossible to predict.
+The influence of each constant and parameter is, \textit{a priori}, impossible to predict.
 
 Our methodology systematizes the study of key parameters in the massive generation of backstories with an
 EC-ABM approach
 in order to optimize the resources allocated to evolution and to have some
 guarantees that the final result will be close to the optimum.
 
-\subsection{Problem characterisation}
+\subsection{Problem characterization}
 \label{subsec:idio}
 
 
@@ -199,12 +198,12 @@ This methodology  addresses to problems with the following characteristics:
 
 \begin{enumerate}
 \item Goal: The final goal is to generate stochastic virtual worlds massively inhabited by characters with backstories that are aligned with a mood defined by the writer.
-\item Virtual world: The virtual world is modelled by the ABM.
-\item Archetype: An archetype is a behaviour pattern that can be present in a backstory.
+\item Virtual world: The virtual world is modeled by the ABM.
+\item Archetype: An archetype is a behavior pattern that can be present in a backstory.
 \item Fitness: The evaluation of the virtual world can be based in the rates of archetypes (set by the writer) found in the characters that inhabit it.
 \item Backstory: The backstory of a character is a set of actions and interpretations, coherent with the virtual world and the other agents.
-\item Agent: The agent represents a character that performs actions in the virtual world depending on the neighbourhood and its internal state.
-\item Profile: The agents can be parametrised and their behaviour
+\item Agent: The agent represents a character that performs actions in the virtual world depending on the neighborhood and its internal state.
+\item Profile: The agents can be parametrized and their behavior
   (probabilities to perform actions) depends on these parameters. The
   profile (P) is the set of values for these parameters and is
   optimized by the GA. 
@@ -222,20 +221,20 @@ This methodology  addresses to problems with the following characteristics:
 
 As Morrell explains in \cite{morrell2006between}, ``fiction has three main elements:
 plotting, character, and place or setting'', so, intuitively, these three elements can affect the backstories. 
-In our problem, an agent is ruled by its profile, which defines its behaviour.
+In our problem, an agent is ruled by its profile, which defines its behavior.
 Our technique uses the GA to evolve the profile(s) of the agents,
 so it will be part of the search space.
-Nevertheless, the use of different number of profiles (P) may also affect the behaviour of the agents, since more profiles
+Nevertheless, the use of different number of profiles (P) may also affect the behavior of the agents, since more profiles
 in the same world may imply new types of conflicts (as it was demonstrated in \cite{garcia14my}).
 
 The plotting is the result of the different conflicts, that are affected by the place,
 the time and the source of conflicts, which in this case is the food.
 
 The place is defined by the size ($W$). Smaller maps usually imply more friction between the agents,
-thus different variations of $W$ may derive in different behaviours. The values that should be chosen
-are those that test a size smaller or equal to the neighbourhood defined (letting all the agents
-access to all the resources and positions of the world), a size bigger than the neighbourhood
-(forcing the agents to move to reach a new neighbourhood) and much bigger (showing the effects
+thus different variations of $W$ may derive in different behaviors. The values that should be chosen
+are those that test a size smaller or equal to the neighborhood defined (letting all the agents
+access to all the resources and positions of the world), a size bigger than the neighborhood
+(forcing the agents to move to reach a new neighborhood) and much bigger (showing the effects
 of having a big inhabited world).
 
 The time of the conflict is affected by the period of time that the world is given to run (D).
@@ -244,14 +243,14 @@ archetypes and better fitness, and eventually more agents in the world. In the o
 of an individual in the GA implies the execution of every agent and the evaluation of each backstory,
 thus more agents and bigger backstories may increment significantly the evaluation time.
 The values proposed for the study vary from a very short period of time to a bigger one, where the
-maximum is the agent's average lifetime. The food is modelled with the parameter (F). Changes in this parameter may increment or decrement
-the number of interactions. 
+maximum is the agent's average lifetime. The food is modeled with the parameter (F). Changes in this parameter may increment or decrease
+the number of interactions.
 
 Finally, exploration of the search space might be affected by the GA parameters. In this sense, the most significant
 parameter is the population size (S), since bigger populations will provide more accuracy but spend more execution time.
 
 To sum up, our methodology will systematically combine more than two variants of five parameters
-and study how the fitness is affected. The parameters proposed for the problems characterised in
+and study how the fitness is affected. The parameters proposed for the problems characterized in
 subsection \ref{subsec:idio} are the number of profiles (P), the world size (W),
 the virtual time (D), the food (F) and the population size of the GA (S).
 
@@ -262,11 +261,11 @@ the virtual time (D), the food (F) and the population size of the GA (S).
 
 
 An agent in the MADE world is a representation of a brown rat
-modelled as a finite automaton that performs actions like move, eat, attack,
+modeled as a finite automaton that performs actions like move, eat, attack,
 defend, escape, find mate or breed.
 
 The place where the conflicts appear is a square grid. A cell can only be occupied by one agent.
-Each agent can move and interact with other agents in a neighbourhood of 7x7 cells around the rat. 
+Each agent can move and interact with other agents in a neighborhood of 7x7 cells around the rat. 
 The time is a number of `virtual days'.
 The rats are driven to survive and to have offspring, thus
 the source of conflicts is the food: 
@@ -307,8 +306,8 @@ Once the best values of the parameters have been found, the system can be run
 inside a game context to generate a whole set of secondary characters.
 For the simple reason of using agents in a bottom-up approach for the world generation, MADE provides a social network with family relationships, but also other related to the disputes and to possible archetypes, i.e. in our study, a `hero' fights a `villain' or an `avenger' takes revenge on other character.
 
-The storyteller will be able to tell a story about each character by accessing to its lifelog. The lifelog should have a pre-defined format understandable by the storyteller, with fields like the date, the action performed, the internal state, the direct object and the indirect object.
-Moreover, each agent should be tagged with the different archetypes it fulfils, the days that this archetype begins and ends, and the agents affected.
+The storyteller will be able to tell a story about each character by accessing to its life-log. The life-log should have a pre-defined format understandable by the storyteller, with fields like the date, the action performed, the internal state, the direct object and the indirect object.
+Moreover, each agent should be tagged with the different archetypes it fulfills, the days that this archetype begins and ends, and the agents affected.
 
 With this information within reach, the storyteller can create a story about the character by narrating its birthday, its name, the name and story of its parents, siblings and children (also using this technique for describing them), what the agent is (as archetype: `villain', `hero', `avenger') and why (dates, characters related and supposed motivations).
 
@@ -322,7 +321,7 @@ Different parameter values for each element will be studied to clarify
 their influence in the literary world generation, following the rules and 
 recommendations presented in subsection \ref{subsec:params}.
 
-Since the size of the neighbourhood is a square of 7x7 cells, the selected
+Since the size of the neighborhood is a square of 7x7 cells, the selected
 values for (W) are 5x5, 10x10 and 20x20 cells. Furthermore, these sizes would
 allow the existence of 25, 100 and 400 agents
 respectively at the same time.
@@ -416,7 +415,7 @@ confidence level (which indicates that different initial values of
 this parameter lead to significant differences on the fitness).
 
 We have obtained values lower than 0.05 for all parameters in all scenarios (generated p-values tables have been omitted due to space constraints). These results show that all the parameters considered have a significant
-impact in the generation of the agents behaviour. This confirm our hypothesis that the four elements that conform a story (time, characters, source of conflict and world) have a great repercussion in the generation of stories in the simulation environment.
+impact in the generation of the agents behavior. This confirm our hypothesis that the four elements that conform a story (time, characters, source of conflict and world) have a great repercussion in the generation of stories in the simulation environment.
 
 Since a significant p-value only tells  that the effects are not all
 equal (i.e., reject the null hypothesis), post-hoc tests might be used
@@ -462,7 +461,7 @@ number of profiles has quite an impact in the results (Figure
 \cite{garcia14my}. 
 
 Increasing the number of profiles means changing the search problem
-from finding a single finite state automaton whose behaviour
+from finding a single finite state automaton whose behavior
 eventually results in a world compatible with our search to finding
 two or more compatible with it and among themselves. This also happens
 independently of the situation and including complex ones, like the
@@ -597,7 +596,7 @@ there is little food. Anyway, the backstories size increase with the
 virtual days of execution, thus it is easier to find archetypes when
 more virtual days are executed, in other words, when all the agents have
 the opportunity to live their entire lives.
-This can be generalised to similar problems (and the
+This can be generalized to similar problems (and the
 rest of scenarios): the source of conflict should be forced to occur
 more times, and simultaneously, it is necessary to give enough time to
 these situations appear. 
@@ -611,7 +610,7 @@ these situations appear.
 %termination condition for the world.
 
 Another conclusion is that, even if the number of profiles (different
-behaviours in the world) could, a priori, allow for more complex
+behaviors in the world) could, \textit{a priori}, allow for more complex
 archetypes to appear, the fact that they are codified in a chromosome
 changes the shape of the search space and increases its size and
 complexity, so that the number of generations the algorithm needs
