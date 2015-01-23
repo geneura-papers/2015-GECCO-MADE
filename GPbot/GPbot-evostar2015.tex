@@ -140,7 +140,8 @@ every time the fitness is measured by playing the game.
 %% algorithm.
 Independently of the chosen approach, it is usually impossible to reach a 
 global optimum short of managing to obtain a bot that, as in Sun Tzu's ``Art of 
-war'' \cite{tzu2013art}, is able to beat the opponent without fighting, as the 
+war'' %\cite{tzu2013art} A muchos revisores no le ha gustado la broma, y nos colamos de espacio
+, is able to beat the opponent without fighting, as the 
 opponents are usually not known before the EA is run.
 % Antonio - esta frase no se entiende
 % a menos que puedas ganar sin luchar, no puedes obtener el fitness
@@ -488,7 +489,7 @@ The first study concerns the fitness/score evolution in the runs, along with a s
 % Antonio - @Antares - SCORE en min?scula, plis ya. :D
 
 The first detail to notice in the figure is the absence of some of the commented stop values for the \textit{Fitness Threshold} criterion, namely 28 and 30, because they have not been reached in any of the runs.
-This is a problem derived from using a tough rival such as ExpGenebot. Thus, the maximum fitness/score obtained during the evolution is very limited, since it is very difficult that one bot could win against 30 specialised bots \cite{Wolpert97nofree} (requirement for obtaining at least a score of 30). This is more evident if we take into account that the bots being evolved do not include any adaptive component that analyses the map, as ExpGenebot does. 
+This is a problem derived from using a tough rival such as ExpGenebot. Thus, the maximum fitness/score obtained during the evolution is very limited, since it is very difficult that one bot could win against 30 specialised bots \cite{Wolpert97nofree} (requirement for obtaining at least a score of 30). This is more evident if we take into account that the bots being evolved do not include any adaptive component that analyses the map, as ExpGenebot.% does. 
 
 As it can also be seen in Figure \ref{fig:boxplotscore}.a, all the criterion are well defined, since all the scores grow in every criterion block, so as more restrictive the criterion is (they are met with a lower probability), the higher the obtained score is. The score function is working as expected, even with the presence of noise, as the wide of the boxplots (score dispersion) demonstrates when the criteria become more restrictive. This is true in all the cases except in the \textit{Age of Outliers} which is so far the criterion with the worse results, as it is also proved by the statistical test (Figure \ref{fig:boxplotscore}.b) which does not find significant differences between the scores obtained by every age-based criterion and the previous and next ones.
 
@@ -612,7 +613,7 @@ As future work, new problems (and algorithms) will be addressed to validate the 
 
 
 \section*{Acknowledgments}
-This work has been supported in part by SIPESCA (Programa Operativo FEDER de Andaluc\'ia 2007-2013), TIN2011-28627-C04-02 (Spanish Ministry of Economy and Competitivity), SPIP2014-01437 (Direcci\'on General de Tr\'afico), PRY142/14 (Fundaci\'on P\'ublica Andaluza Centro de Estudios Andaluces en la IX Convocatoria de Proyectos de Investigaci\'on) and PYR-2014-17 GENIL project (CEI-BIOTIC Granada).
+\scriptsize{This work has been supported in part by SIPESCA (Programa Operativo FEDER de Andaluc\'ia 2007-2013), TIN2011-28627-C04-02 (Spanish Ministry of Economy and Competitivity), SPIP2014-01437 (Direcci\'on General de Tr\'afico), PRY142/14 (Fundaci\'on P\'ublica Andaluza Centro de Estudios Andaluces en la IX Convocatoria de Proyectos de Investigaci\'on) and PYR-2014-17 GENIL project (CEI-BIOTIC Granada).}
 
 
 %
