@@ -1,4 +1,5 @@
-\documentclass[runningheads,a4paper]{llncs}
+\documentclass{acm_proc_article-sp}
+
 
 \usepackage[latin1]{inputenc}
 \usepackage{amssymb}
@@ -12,50 +13,49 @@
 
 \begin{document}
 
-\mainmatter  
+\title{} 
 
-\title{How the world was MADE: parametrization of evolved agent-based
-  models for backstory generation} 
-
-\titlerunning{How the world was MADE}
-
+\numberofauthors{1} %  in this sample file, there are a *total*
+% of EIGHT authors. SIX appear on the 'first-page' (for formatting
+% reasons) and the remaining two appear in the \additionalauthors section.
+%
+\author{
+% You can go ahead and credit any number of authors here,
+% e.g. one 'row of three' or two rows (consisting of one row of three
+% and a second row of one, two or three).
+%
+% The command \alignauthor (no curly braces needed) should
+% precede each author name, affiliation/snail-mail address and
+% e-mail address. Additionally, tag each line of
+% affiliation/address with \affaddr, and tag the
+% e-mail address with \email.
+%
+% 1st. author
+\alignauthor
+Ben Trovato\titlenote{Dr.~Trovato insisted his name be first.}\\
+       \affaddr{Institute for Clarity in Documentation}\\
+       \affaddr{1932 Wallamaloo Lane}\\
+       \affaddr{Wallamaloo, New Zealand}\\
+       \email{trovato@corporation.com}
+}
 %\author{A. N. Onymouse%
 %\thanks{Anonymous Institute}}
 %
 
-\author{R.~H. Garc\'ia-Ortega \and P. Garc\'ia-S\'anchez \and J.~J. Merelo \and M.~G. Arenas \and  P.~A.~ Castillo \and A.~M. Mora}
+%\author{R.~H. Garc\'ia-Ortega \and P. Garc\'ia-S\'anchez \and J.~J. Merelo \and M.~G. Arenas \and  P.~A.~ Castillo \and A.~M. Mora}
 
-\authorrunning{R.~H. Garc\'ia Ortega et al.}
+%\authorrunning{R.~H. Garc\'ia Ortega et al.}
 
-\institute{Dept. of Computer Architecture and Technology, University of Granada, Spain}
+%\institute{Dept. of Computer Architecture and Technology, University of Granada, Spain}
 
 \maketitle
 
 \begin{abstract}
-Generating fiction environments for a multi-agent system optimized by
-genetic algorithms (with some specific requirements related to the
-desirable plots), presents two main problems: first it is impossible
-to know in advance the optimal value for the particular designed
-fitness function, and at the same time, it creates a vast search space
-for the parameters that it needs. The purpose of this paper is to
-define a methodology to find the best parameter values for both, the
-evolutionary algorithm, and the own fictional world configuration.
-This design includes running, to completion, a world simulation
-represented as a chromosome, and assigning a fitness to it, thus
-composing a very complex fitness landscape.
 
-In order to optimize the resources allocated to evolution and to have
-some guarantees that the final result will be close to the optimum, we
-systematically analyze a set of possible values of the most relevant
-parameters, obtaining a set of generic rules.
-These rules, when applied to the plot requisites, and thus, to the
-fitness function, will lead to a reduced range of parameter values
-that will help the storyteller to create optimal worlds with a reduced
-computation budget.
 
+\end{abstract}
 
 \keywords{Games, Plot, Content generation, Evolutionary algorithms, Agent Based Models}
-\end{abstract}
 
 \section{Introduction}
 
@@ -568,72 +568,11 @@ With respect to the GA population size, Figure \ref{fig:boxplotsS} shows visuall
 
 \section{Conclusions}
 
-When using an hybrid EC-ABM approach to generate massive backstories in fiction environments its impossible to know in advance the
-optimal value of a fitness that models the appearance of different archetypes
-together and the search space may be enormous, so a previous study of
-the most important parameters is prescribed. 
-
-In this paper we define the problem addressed (in terms of goal,
-worlds, fitnesses, archetypes, backstories, agents, profiles,
-conflicts, places, time and scenario) and a problem specification with
-the MADE framework. Our methodology selects key parameters (size of
-population of the GA, size of the world, number of profiles, source of
-conflicts and virtual days) that affect the generation of conflicts
-and sets the values that are tested in the experiments, looking for
-significant differences in the fitness of the evolved worlds. 
-
-Our experiments prove that there are significant differences between
-the five parameters in three scenarios with different combinations of
-the archetype \textit{villain}, \textit{hero} and
-\textit{avenger}. The best combination of parameters, that is, the one
-that gives on average the highest fitness, is the smallest map size
-(5x5), the bigger number of virtual days (256), the fewer rate of food
-growth (1/8 of the number of cells), the lower number of profiles (1)
-and the bigger population size of the GA (256). This is due to the
-fact that the three possible archetypes emerge when a the fights
-occur, and that happens more probably when the world is small and
-there is little food. Anyway, the backstories size increase with the
-virtual days of execution, thus it is easier to find archetypes when
-more virtual days are executed, in other words, when all the agents have
-the opportunity to live their entire lives.
-This can be generalized to similar problems (and the
-rest of scenarios): the source of conflict should be forced to occur
-more times, and simultaneously, it is necessary to give enough time to
-these situations appear. 
-
-%FERGU: Este párrafo que sigue no tiene ni pies ni cabeza, fuera :/
-%This points to the fact that the number of virtual days might not be
-%an adequate termination condition for the world, since what we are
-%looking for is a series of facts to occur so that {\em
-%  interesting} stories and relationships are generated. Using those
-%facts (maybe combined with a maximum amount of days) might be a better
-%termination condition for the world.
-
-Another conclusion is that, even if the number of profiles (different
-behaviors in the world) could, \textit{a priori}, allow for more complex
-archetypes to appear, the fact that they are codified in a chromosome
-changes the shape of the search space and increases its size and
-complexity, so that the number of generations the algorithm needs
-might be much more. It is never easy to establish termination
-conditions in these kind of evolutionary algorithms, so this is
-something that should be researched in the future.
-
-Since it has been proved that conflicts, as in fiction, is what drives
-fitness up in the worlds we are designing, the actual number of conflicts happening in the world, its
-influence in the fitness and its relationship with world size and food
-growth will have to be assessed in future works. The influence of
-parameters such as the initial population could be tested, while different scenarios will be used
-with archetypes that not only rely in competition for food, like the
-affinity or the family relationships. To improve the accuracy of the
-parameter selection, human guided evaluation could be
-performed, but this is only one possible way of doing it. Finally, the
-results of the study could be applied to 
-generate backstories in real game engines. 
 
 \section*{Acknowledgements}
 
 This work has been supported in part by SIPESCA (Programa Operativo FEDER de Andalucía 2007-2013), TIN2011-28627-C04-02 (Spanish Ministry of Economy and Competitivity), SPIP2014-01437 (Dirección General de Tráfico), PRY142/14 (Fundación Pública Andaluza Centro de Estudios Andaluces en la IX Convocatoria de Proyectos de Investigación) and PYR-2014-17 GENIL project (CEI-BIOTIC Granada).
-\bibliographystyle{splncs}
+\bibliographystyle{abbrv}
 \bibliography{garcia_ortega}
 
 \end{document}
