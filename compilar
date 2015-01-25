@@ -7,5 +7,13 @@ rm *.log
 rm *~
 rm *.dvi
 
-pdflatex made.tex && pdflatex made.tex &&  pdflatex made.tex && bibtex made && pdflatex made.tex && pdflatex made.tex && pdflatex made.tex && echo "-----------------------------" && pdflatex made
+pdflatex made-gecco2015.tex &&
+pdflatex made-gecco2015.tex &&
+pdflatex made-gecco2015.tex &&
+bibtex made-gecco2015 &&
+pdflatex made-gecco2015.tex &&
+pdflatex made-gecco2015.tex &&
+pdflatex made-gecco2015.tex &&
+echo "-----------------------------" &&
+pdflatex made-gecco2015.tex
 #d2vips made.dvi -o && ps2pdf made.ps && echo " "
