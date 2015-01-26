@@ -66,6 +66,30 @@ these conflicts for a particular virtual world.
 
 \section{Introduction}
 
+
+In the last years, procedural content generation (PGC for further references) 
+is attracting more and more interest in the area of videogames development,
+and different productions where PGC is applied are winning international awards for the first time, proving that PGC can also be an added value due to the re-playability and richness of the result, attributes very appreciated by the videogames players.
+To give an example, No man's sky, an adventure videogame where planets, fauna and flora are created procedurally, won several Game Critics Awards in the past E3 2014\footnote{http://www.gamecriticsawards.com/winners.html}.
+
+According to the classification by Hendrikx et Al. \cite{Hendrikx:2013:PCG:2422956.2422957}, PGC can be applied to many different areas in videogames, such as derived content, design, scenarios, systems, space and game units. Our paper is focused in the creation of scenarios, and more specifically in the backstories of the non-player characters in massive worlds, used to provide realism, create an interesting atmosphere and promote the appearance of secondary goals.
+In this context, and following the work by Garc\'ia-Ortega et Al. \cite{garcia14my}, creating backstories using hybrid 
+\textit{Evolutionary Computation - Agent-Based Model} approach 
+(for further references EC-ABM) have been proved to work in virtual words where agents with particular personalities or \textit{profiles} live in a \textit{map} and interact in a \textit{space-time} dimension, generating high level behaviors or \textit{archetypes} that can emerge.
+These archetypes are selected by the creator of the videogame depending
+of the setting needs. The authors demonstrate in their work that sensible non-evolutionary parameters as the number of agents, the world size,
+the execution time or the source of conflicts affect drastically the quality of the solution given by the EC-ABM approach and that the 
+appearance of conflicts promotes the appearance of archetypes, \textit{ergo}, better solutions.
+
+In our paper, we focus on these conflict-based archetypes and we classify them based on their relation to the source of conflict, allowing the creator of a story predict their appearance when certain parameters of the world are established. Also, different conflict-based patterns extracted from classical literature are proposed, explained and designed.
+In order to implement these archetypes, the MADE open source simulator is used. MADE works as follows: every individual in the evolutionary algorithm is described by a chromosome that represents the parameters of one (or several kinds of) finite state machine (FSM) \cite{FSM_Booth} that is set to \textit{live} (interact) in a simulated environment.
+
+In the other hand, promoting different archetypes relies in an appropriate fitness function for a virtual world. In this paper we propose and test different approaches based in the archetypes of the agents that inhabit the world, their speed of apparition, their distribution, etc, selecting those that generate better solutions in the experiments performed.
+
+The rest of the paper is organized as follows. Coming up next, we present the state of the art in the definition, classification and evaluation
+of conflict-based archetypes. The next section \ref{sec:met} presents the methodology,followed by the experimental setup in Section \ref{sec:exp}, whose results are shown in Section \ref{sec:res}. Finally, we present our conclusions to finish the paper.
+
+
 %In the very competitive cultural industry, that includes videogame
 %creation, writers rack their minds in 
 %order to generate interesting fictional worlds.
@@ -89,7 +113,10 @@ these conflicts for a particular virtual world.
 %
 %In this paper we will use the MADE open source simulator 
 %\footnote{Which can be downloaded from Github at https://github.com/raiben/made under a GNU/GPL V3 License}
-% and look at it from the evolutionary point of view so that we can check what kind of influence the configuration variables have in the outcome. We will do an experimental setup that will test different parameters (evolutionary and non-evolutionary), and eventually find a series of rules that will help the users of that framework to set the best values for their simulation (depending on their requirements or constraints). A discussion about the reasons to chose these parameters and values will be also presented.
+% and look at it from the evolutionary point of view so that we can check what kind of influence the configuration variables have in the outcome.
+% We will do an experimental setup that will test different parameters (evolutionary and non-evolutionary), and eventually find a series of rules
+% that will help the users of that framework to set the best values for their simulation (depending on their requirements or constraints).
+% A discussion about the reasons to chose these parameters and values will be also presented.
 %
 %The rest of the paper is organized as follows. Coming up next, we
 %present the state of the art in parameter setting of simulated
@@ -293,10 +320,10 @@ these conflicts for a particular virtual world.
 %Moreover, each agent should be tagged with the different archetypes it fulfills, the days that this archetype begins and ends, and the agents affected.
 %
 %With this information within reach, the storyteller can create a story about the character by narrating its birthday, its name, the name and story of its parents, siblings and children (also using this technique for describing them), what the agent is (as archetype: `villain', `hero', `avenger') and why (dates, characters related and supposed motivations).
-%
-%\section{Experimental setup}
-%\label{sec:exp}
-%
+
+\section{Experimental setup}
+\label{sec:exp}
+
 %As explained in subsection \ref{subsec:params}, the parameters 
 %whose effect will be studied are the number of profiles (P), the world size (W),
 %the virtual time (D), the food (F) and the population size of the GA (S).
@@ -549,7 +576,7 @@ these conflicts for a particular virtual world.
 \section*{Acknowledgements}
 
 %This work has been supported in part by SIPESCA (Programa Operativo FEDER de Andalucía 2007-2013), TIN2011-28627-C04-02 (Spanish Ministry of Economy and Competitivity), SPIP2014-01437 (Dirección General de Tráfico), PRY142/14 (Fundación Pública Andaluza Centro de Estudios Andaluces en la IX Convocatoria de Proyectos de Investigación) and PYR-2014-17 GENIL project (CEI-BIOTIC Granada).
-%\bibliographystyle{abbrv}
-%\bibliography{garcia_ortega}
+\bibliographystyle{abbrv}
+\bibliography{garcia_ortega}
 
 \end{document}
