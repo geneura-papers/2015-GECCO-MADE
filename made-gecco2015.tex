@@ -60,6 +60,7 @@ need different types of conflicts and, in many cases, conflicts are also
 emergent, so in this paper we will present a general methodology for
 setting the parameters and conditions of the actions that influence 
 these conflicts for a particular virtual world.
+% Antonio - decir qué se va a probar exactamente: fitness, operadores, parámetros. ;)
 \end{abstract}
 
 \keywords{Games, Plot, Content generation, Evolutionary algorithms, Agent Based Models}
@@ -68,26 +69,56 @@ these conflicts for a particular virtual world.
 
 
 In the last years, procedural content generation (PGC for further references) 
-is attracting more and more interest in the area of videogames development,
-and different productions where PGC is applied are winning international awards for the first time, proving that PGC can also be an added value due to the re-playability and richness of the result, attributes very appreciated by the videogames players.
+is attracting more and more interest in the area of videogames development.
+Different productions, where PGC is applied, are winning international awards for the first time, proving that this methodology can also be an added value due to the re-playability and richness of the result, attributes very appreciated by the videogames players.
 To give an example, No man's sky, an adventure videogame where planets, fauna and flora are created procedurally, won several Game Critics Awards in the past E3 2014\footnote{http://www.gamecriticsawards.com/winners.html}.
 
-According to the classification by Hendrikx et Al. \cite{Hendrikx:2013:PCG:2422956.2422957}, PGC can be applied to many different areas in videogames, such as derived content, design, scenarios, systems, space and game units. Our paper is focused in the creation of scenarios, and more specifically in the backstories of the non-player characters in massive worlds, used to provide realism, create an interesting atmosphere and promote the appearance of secondary goals.
-In this context, and following the work by Garc\'ia-Ortega et Al. \cite{garcia14my}, creating backstories using hybrid 
-\textit{Evolutionary Computation - Agent-Based Model} approach 
-(for further references EC-ABM) have been proved to work in virtual words where agents with particular personalities or \textit{profiles} live in a \textit{map} and interact in a \textit{space-time} dimension, generating high level behaviors or \textit{archetypes} that can emerge.
-These archetypes are selected by the creator of the videogame depending
-of the setting needs. The authors demonstrate in their work that sensible non-evolutionary parameters as the number of agents, the world size,
-the execution time or the source of conflicts affect drastically the quality of the solution given by the EC-ABM approach and that the 
-appearance of conflicts promotes the appearance of archetypes, \textit{ergo}, better solutions.
+According to the classification by Hendrikx et Al. \cite{Hendrikx:2013:PCG:2422956.2422957}, PGC can be applied to many different areas in videogames, such as derived content, design, scenarios, systems, space or game units. This paper is focused in the creation of scenarios, and more specifically in the backstories of the non-player characters in massive worlds. This would be used to provide realism, creating an interesting atmosphere and promoting the appearance of secondary goals.
+% Antonio - ¿qué quiere decir esto de los objetivos secundarios?. Aclararlo
 
-In our paper, we focus on these conflict-based archetypes and we classify them based on their relation to the source of conflict, allowing the creator of a story predict their appearance when certain parameters of the world are established. Also, different conflict-based patterns extracted from classical literature are proposed, explained and designed.
-In order to implement these archetypes, the MADE open source simulator is used. MADE works as follows: every individual in the evolutionary algorithm is described by a chromosome that represents the parameters of one (or several kinds of) finite state machine (FSM) \cite{FSM_Booth} that is set to \textit{live} (interact) in a simulated environment.
+In this context, and following the work by Garc\'ia-Ortega et Al. \cite{garcia14my}, 
+% Antonio - Si nos vamos a ¡apoyar' en conclusiones o cosas hechas en artículos anteriores, mejor anonimizarlo y usarlo así. ;)
+creating backstories using a hybrid \textit{Evolutionary Computation - Agent-Based Model} approach (for further references EC-ABM) have proved to work in virtual words where agents with particular personalities or \textit{profiles} live in a \textit{map} and interact in a \textit{space-time} dimension, leading to the emergence of high level behaviors or \textit{archetypes}.
+These archetypes are selected by the designer 
+% Antonio - explicar cómo y cuándo se seleccionan. ;)
+of the videogame depending of the setting needs. 
+That work showed that sensible non-evolutionary parameters as the number of agents, the world size, the execution time, or the source of conflicts affect dramatically to the quality of the solution yielded by the EC-ABM approach.
+% Antonio - Explicar qué se considera la calidad de una solución.
+Thus, the appearance of conflicts promotes the appearance of archetypes, \textit{ergo}, better solutions.
+% Antonio - Esto no se ha comentado antes. Es decir, no se deja claro que la presencia de más arquetipos es mejor. ¿Por qué lo es?
+% Esto de 'ergo' queda muy de Matrix Reloaded. XD
 
-In the other hand, promoting different archetypes relies in an appropriate fitness function for a virtual world. In this paper we propose and test different approaches based in the archetypes of the agents that inhabit the world, their speed of apparition, their distribution, etc, selecting those that generate better solutions in the experiments performed.
+In this paper, we focus on these conflict-based archetypes and classify them based on their relation to the source of conflict, allowing the creator of a story to predict their appearance when certain parameters of the world are 
+% Antonio - más que 'predict' quizá fuese mejor 'promote', ¿no? ;D
+established. 
+
+Also, different conflict-based patterns extracted from classical literature are proposed, described and designed.
+% Antonio - ¿'proposed' por qué o con qué objetivo?¿'designed' en que sentido?
+In order to implement these archetypes, the MADE open source simulator is used.
+% Antonio - URL o referencia
+ MADE works as follows: every individual in the evolutionary algorithm is modelled with a chromosome that represents the parameters of one (or several kinds of) finite state machine (FSM) \cite{FSM_Booth} that is set to \textit{live} (interact) in a simulated environment.
+% Antonio - Yo explicaría más de MADE, o quitaría lo de works as follows, que predece a una explicación 'extensa'. :D
+
+On the other hand, promoting different archetypes relies in an appropriate fitness function for a virtual world. 
+% Antonio - referencia que indique esto
+% Anotnio - yo discrepo en todo caso. El fitness puede diseñarse para eso, pero no es la ñunica forma de que surjan arquetipos diferentes. Se puede jugar con los operadores (cruce, mutación, por ejemplo) o con los parámetros, como se indicó antes.
+In this paper we propose and test different approaches 
+% Antonio - aclarar de qué son los 'approaches'. ;D
+based in 
+% Antonio - ¿properties of?
+the archetypes of the agents that inhabit the world, their speed of apparition, their distribution, etc, 
+% Antonio - decir exáctamente las que se usen. Lo de ETC no queda nada bien, pero es que aquí es importante señalar las que se hayan considerado y justificarlas, claro. ;)
+selecting those that generate better solutions in the experiments performed.
+% Antonio - ¿Estos experimentos se refieren a los del artículo anterior o a este? Si es a este, deberías dar más énfasis a ese 'selecting'. ¿En base a qué se seleccionarán? ¿qué son 'better solutions'? Se hará algo más que seleccionarlas, ya que se justificarán y se analizarán, supongo. ;)
+
+% Antonio - En general hay que darle más bombo al 'selling point', justificarlo mejor (por qué es este el siguiente paso y no otro, por ejemplo) y explicar mejor lo que se va a hacer (que es una metodología, que pretende falicitar las cosas a tales personas y por tal medio, etc). ;)
 
 The rest of the paper is organized as follows. Coming up next, we present the state of the art in the definition, classification and evaluation
-of conflict-based archetypes. The next section \ref{sec:met} presents the methodology,followed by the experimental setup in Section \ref{sec:exp}, whose results are shown in Section \ref{sec:res}. Finally, we present our conclusions to finish the paper.
+of conflict-based archetypes. 
+% Antonio - ¿Hay un estado del arte ta específico? Es una duda, si lo hay, estupendo.
+The next section \ref{sec:met} presents the methodology, 
+% Antonio - ¿La metodología para hacer qué?
+followed by the experimental setup in Section \ref{sec:exp}, whose results are shown and analysed in Section \ref{sec:res}. Finally, we present our conclusions in the last section.
 
 
 %In the very competitive cultural industry, that includes videogame
