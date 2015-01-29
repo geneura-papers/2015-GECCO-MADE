@@ -200,6 +200,49 @@ followed by the experimental setup in Section \ref{sec:exp}, whose results are s
 \section{Methodology} %Issue #12
 \label{sec:met}
 
+According to the work by \cite{ANON}, systematic tests on the parameters of the virtual world show that conflicts are essential for the drama
+emergence. For this reason, in this paper we propose a methodology to formally define a conflict and under witch circumstances a virtual world can offer it.
+This study will lead us to define fitness functions (evaluation layer) that rely in the definition of abstract archetypes (abstract archetypes layer) expressed as logical predicates. These archetypes don't depend on the world implementation, but in base or primitive predicates that the virtual world may implement (implementation layer).
+
+This approach allows us to classify the virtual worlds in terms of the base predicates they offer, and thus, in terms of the archetypes that could emerge with an hybrid EC-ABM approach.
+
+We will use Predicate logic to present the abstract archetypes layer and the implementation layer. Following the definition by \cite{wikipedia} In mathematical logic, predicate logic is the generic term for symbolic formal systems like first-order logic, second-order logic, many-sorted logic, or infinitary logic. This formal system is distinguished from other systems in that its formulae contain variables which can be quantified.
+
+In this paper, the conflict, as element of vital importance for the drama generation, is studied through the monomyth. Joseph Campbell's monomyth, or the hero's journey as described by Vogler in \cite{vogler}, is a basic pattern that its proponents argue is found in many narratives from around the world. This widely distributed pattern was described by Campbell in The Hero with a Thousand Faces \cite{hero}. Vogler defines the following archetypes:
+%TODO summaries from http://www.thewritersjourney.com/hero%27s_journey.htm
+\begin{enumerate}
+\item Heroes: Central figures in stories.  Everyone is the hero of his or her own myth.
+\item Shadows: Villains and enemies, perhaps the enemy within.  The dark side of the Force, the repressed possibilities of the hero, his or her potential for evil.  Can be other kinds of repression, such as repressed grief, anger, frustration or creativity that is dangerous if it doesn?t have an outlet.
+\item Mentors: The hero?s guide or guiding principles.  Yoda, Merlin, a great coach or teacher.
+\item Herald: One who brings the Call to Adventure.  Could be a person or an event.
+\item Threshold guardians: The forces that stand in the way at important turning points, including jealous enemies, professional gatekeepers, or your own fears and doubts.
+\item Shapeshifters: In stories, creatures like vampires or werewolves who change shape.  In life, the shapeshifter represents change.  The way other people (or our perceptions of them) keep changing.  The opposite sex, the way people can be two-faced.
+\item Tricksters: Clowns and mischief-makers, Bugs Bunny and Daffy Duck, Richard Pryor and Eddie Murphy.  Our own mischievous subconscious, urging us to change.
+\item Allies: Characters who help the hero through the change.  Sidekicks, buddies, girlfriends who advise the hero through the transitions of life.
+\end{enumerate}
+
+We propose The following base predicates that the implementation layer may provide:
+\begin{enumerate} 
+\item $Element(i)$: $true$ if $i$ is an element of the virtual world. Conceptually, an element can be an agent, a thing or a concept.
+\item $Time(t)$: $true$ if $t$ is moment in the life of the virtual world.
+\item $Conflict (i_1, i_2, t)$: $true$ if a conflict between the element $i_1$ (the victorious) and the element $i_2$ (the loser) occurs in an specified moment $t$.
+\item $Before(t_1,t_2)$: $true$ if the moment $t_1$ comes before the moment $t_2$.
+\item $ShortPeriod(t_1,t_2)$: $true$ if the difference between the moments $t_1$ and $t_2$ is short (this value will depend on the world passage of time).
+\item $MoreEvil(i_1, i_2, t)$: $true$ if the element $i_1$ if considered as ``more evil'' than the element $i_2$ in the moment $t$. AS we will see, after the journey, the hero has to overcome the shadow, and in our design, the shadow has to be more ``evil'' than the hero in any way. Other designs may let the final reader decide the moral lineup of the shadow character, reaching situations where the hero could be seen as the evil and the shadow as the good one.
+\item $Wiser(i_1, i_2, t)$: $true$ if the element $i_1$ if considered as ``wiser'' than the element $i_2$ in the moment $t$.
+\item $Helps(i_1,i_2,t)$: $true$ if the element $i_1$ guides or helps someway the element $i_2$ in the moment $t$.
+\item $Encourages(i_1,i_2,i_3,t)$: $true$ if the element $i_1$ encourages the element $i_2$ to fight against the element $i_3$ in a moment $y$.
+\item $Accompanies (i_1,i_2,t_1,t_2)$: $true$ if the element $i_1$ stays near the element $i_2$ from the moment $t_1$ to the moment $t_2$.
+\item $Trickier(i_1, i_2 ,t)$: $true$ if the element $i_1$ if considered as ``trikier'' or ``funnier'' than the element $i_2$ in the moment $t$.
+\end{enumerate}
+
+%TODO Agnadir una imagen que ilustre lo de las 3 capas
+%TODO continuar con las capas 2 y 3
+
+
+Once the archetypes are provided, three types of fitness functions are provided. The first one will consist on %TODO
+
+
 %As mentioned in section \ref{sec:sota}, the proposed technique for generating fictional worlds 
 %relies in the use of a a combined EC-ABM approach (a GA in this case).
 %The fitness function is configurable to fit the story needs.
