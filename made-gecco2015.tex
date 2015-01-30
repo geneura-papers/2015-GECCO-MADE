@@ -390,9 +390,57 @@ Once the archetypes are provided, three types of fitness functions are provided.
 %TODO Nº de ejecuciones: 30
 %TODO Análisis que se realizarán sobre los datos
 
+As the objective of this paper is to demonstrate that a conflict-based archetypes TODO, we propose an experimental setup that applies the proposed methodology to generate a virtual world following the BLABLA. We also propose a metric to measure the ``interest'' of a story. 
 
-Following the analysis available in \ref{RomeoJuliet_tvtropes}, Romeo and Juliette present
-at least 12 tropes. The summary plot is provided in terms of tropes: ``\textit{Boy Meets Girl}. It's \textit{Love at First Sight}. But Boy and Girl are members of \textit{Feuding Families}. \textit{Boy secretly marries Girl}. Boy's friend is murdered by Girl's cousin, so \textit{Boy kills Girl's cousin}, then skips town. Girl agrees to \textit{dangerous plot} to avoid an \textit{Arranged Marriage} set up by her parents. Plot \textit{goes horribly right}. Boy, hearing of Girl's "death," returns to town and \textit{kills self} at her grave. Girl, \textit{waking and discovering this}, \textit{kills self} in turn. \textit{Grief-stricken families reconcile}. \textit{The End}!''.
+\subsection{Fitness comparison and metric of interest} %TODO buscar un nombre guay para la métrica
+As it is difficult to measure the ``interest'' of a story using a function we propose of use the metric, called COMOSELLAMA, based in the number of conflicts by agent. Note that this metric is used to measure the quality of the fitness functions used, and it does not make sense to use it directly as a fitness function, as it can not distinguish between different archetypes.
+
+We are going to compare three different fitness:
+\begin{itemize}
+\item \textit{Number of archetypes} (NA): This function just counts the number of archetypes of the world after their execution.
+\item \textit{Distribution of Archetypes} (DA): Takes into account the presence of different archetypes. For example, generating 1 Villain and 1 Hero is better than generate 2 villains.
+\item \textit{Distribution of Archetypes in different agents} (DDA): As the architecture of MADE allows that an agent can be different archetypes at the same time we will prioritize the appearance of different archetypes in different agents. For example, is better to generate ``Fred the Hero'' and ``Bob the Villain'' than ``Fred the Hero and Villain'' and ``just Bob''.
+\end{itemize}
+
+
+
+The example to model in this study is the classic literary story ``Romeo and Juliette'', by William Shakespeare.
+Following the analysis available in \ref{RomeoJuliet_tvtropes}, this story present
+at least 12 tropes. The summary plot is provided in terms of tropes: ``\textit{Boy Meets Girl}. It's \textit{Love at First Sight}. But Boy and Girl are members of \textit{Feuding Families}. \textit{Boy secretly marries Girl}. Boy's friend is murdered by Girl's cousin, so \textit{Boy kills Girl's cousin}, then skips town. Girl agrees to \textit{dangerous plot} to avoid an \textit{Arranged Marriage} set up by her parents. Plot \textit{goes horribly right}. Boy, hearing of Girl's `death', returns to town and \textit{kills self} at her grave. Girl, \textit{waking and discovering this}, \textit{kills self} in turn. \textit{Grief-stricken families reconcile}. \textit{The End}!''.
+
+\subsection{Environment, algorithm and parameter configuration}
+
+The MADE environment \cite{garcia14my}, described in the State of the Art, will be used. TODO EXPLICAR MAS MADE As explained in that paper the evaluation of an individual in the GA implies the execution of every agent and the evaluation of each backstory. 
+
+In this paper we will use the MADE world's parameter configuration that obtained the best results in terms of archetype generation in the study presented in \cite{garcia14evostar}. The best combination of parameters was the smallest map size (5x5), the bigger number of virtual days (256), the fewer rate of food (1/8 of the number of cells), the lower number of profiles (1) and the bigger population size of the GA (256). The same GA used in that paper will be used to test the different fitness functions. The parameters to use are shown in Table \ref{tab:parameters}.
+
+\begin{table*}
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+{\em Parameter} & {\em Values} \\\hline \hline
+%\multicolumn{2}{|c|}{Parameters under study} \\ \hline \hline
+Number of profiles (P) & 1, 3 or 6 \\\hline %TODO si da tiempo
+Number of virtual days (D) &   256 \\ \hline
+World dimension (W) &  5x5\\ \hline
+Food (F) & 1/8 \\ \hline
+GA population size &  256 \\ \hline
+%\multicolumn{2}{|c|}{Fixed parameters} \\ \hline \hline
+Mutation probability & 1/12 per gene \\ \hline
+Parent pool size & Same as pool size \\ \hline
+Selection method & Binary tournament \\ \hline 
+Elite & 10\%  \\ \hline
+Replacement method & Generational\\ \hline
+Re-evaluation of individuals & yes \\ \hline
+Stop condition & 30 generations without improving the best individual found\\ \hline
+Runs per configuration & 30 \\  \hline
+Initial world population & 15 \\ \hline
+\end{tabular}
+\caption{Parameters used in the experiments.}
+\label{tab:parameters}
+\end{center}
+\end{table*}
+
 
 %As explained in subsection \ref{subsec:params}, the parameters 
 %whose effect will be studied are the number of profiles (P), the world size (W),
@@ -438,32 +486,9 @@ at least 12 tropes. The summary plot is provided in terms of tropes: ``\textit{B
 %Table \ref{tab:parameters} summarizes all the configuration parameters that will be compared (with their acronyms used in this paper),
 %and the rest of the (fixed) parameters of the algorithm. The rest of the parameters of the MADE environment, such as the initial number of agents in the world, and the agent's parameters (such as the lifespan) are described in \cite{garcia14my}. In this paper we will use their default values as, in principle, they are not related with the aspects that model a story.
 %
-%\begin{table*}
-%\begin{center}
-%\begin{tabular}{|c|c|}
-%\hline
-%{\em Parameter} & {\em Values} \\\hline \hline
-%\multicolumn{2}{|c|}{Parameters under study} \\ \hline \hline
-%Number of profiles (P) & 1, 2, 4 and 8 \\\hline
-%Number of virtual days (D) &  64, 128 and 256 \\ \hline
-%World dimension (W) &  5x5, 10x10 and 20x20 \\ \hline
-%Food (F) & 1/2, 1/4, 1/8 \\ \hline
-%GA population size & 64, 128 and 256 \\ \hline
-%\multicolumn{2}{|c|}{Fixed parameters} \\ \hline \hline
-%Mutation probability & 1/12 per gene \\ \hline
-%Parent pool size & Same as pool size \\ \hline
-%Selection method & Binary tournament \\ \hline 
-%Elite & 10\%  \\ \hline
-%Replacement method & Generational\\ \hline
-%Re-evaluation of individuals & yes \\ \hline
-%Stop condition & 30 generations without improving the best individual found\\ \hline
-%Runs per configuration & 30 \\  \hline
-%Initial world population & 15 \\ \hline
-%\end{tabular}
-%\caption{Parameters used in the experiments.}
-%\label{tab:parameters}
-%\end{center}
-%\end{table*}
+
+
+
 
 
 
