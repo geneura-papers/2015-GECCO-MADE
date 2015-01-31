@@ -71,7 +71,7 @@ these conflicts for a particular virtual world.
 In the last few years, procedural content generation (PGC for further references) 
 is attracting more and more interest in the area of videogames development.
 Different productions, where PGC is applied, are winning international awards for the first time, proving that this methodology can also be an added value due to the re-playability and richness of the result, attributes very appreciated by the videogames players.
-To give an example, No man's sky, an adventure videogame where planets, fauna and flora are created procedurally, won several Game Critics Awards in the past E3 2014\footnote{http://www.gamecriticsawards.com/winners.html}.
+To give an example, No man's sky, an adventure videogame where planets, fauna and flora are created procedurally, won several Game Critics Awards in the past E3 2014\footnote{\url{http://www.gamecriticsawards.com/winners.html}}.
 
 According to the classification by Hendrikx et Al. \cite{Hendrikx:2013:PCG:2422956.2422957}, PGC can be applied to many different areas in videogames, such as derived content, design, scenarios, systems, space or game units. This paper is focused in the creation of scenarios, and more specifically in the backstories of the non-player characters (for further references, NPC) in massive worlds, that would be used to provide realism, create an interesting atmosphere and allow the appearance of possible secondary goals supported at the NPCs' actions in the past.
 
@@ -201,27 +201,45 @@ followed by the experimental setup in Section \ref{sec:exp}, whose results are s
 \label{sec:met}
 
 According to the work by \cite{ANON}, systematic tests on the parameters of the virtual world show that conflicts are essential for the drama
-emergence. For this reason, in this paper we propose a methodology to formally define a conflict and under witch circumstances a virtual world can offer it.
-This study will lead us to define fitness functions (evaluation layer) that rely in the definition of abstract archetypes (abstract archetypes layer) expressed as logical predicates. These archetypes don't depend on the world implementation, but in base or primitive predicates that the virtual world may implement (implementation layer).
+emergence. For this reason, in this paper we propose a methodology to formally define a conflict and under which circumstances a virtual world can offer it.
+
+%FERGU: hablas de las capas y todavía no las has definido bien, hazlo aquí (y pon la figurica que estabas haciendo).
+
+We propose a layered model that takes into account... are built in the previous ones... whatever
+\begin{itemize}
+\item Implementation layer: This is the base layer, as it provides the mechanisms for...
+\item Abstract archetypes layer: Built in the previous one, the archetypes are...
+\item Evaluation layer: this layer...
+\end{itemize}
+
+%FERGU: This study will lead us no me gusta para introducir el párrafo
+This study will lead us to define fitness functions (evaluation layer) that rely in the definition of abstract archetypes (abstract archetypes layer) expressed as logical predicates. These archetypes do not depend on the world implementation, but in base or primitive predicates that the virtual world may implement (implementation layer). %FERGU: no usar don't ni contracciones
 
 This approach allows us to classify the virtual worlds in terms of the base predicates they offer, and thus, in terms of the archetypes that could emerge with an hybrid EC-ABM approach.
 
-We will use Predicate logic to present the abstract archetypes layer and the implementation layer. Following the definition by \cite{wikipedia} In mathematical logic, predicate logic is the generic term for symbolic formal systems like first-order logic, second-order logic, many-sorted logic, or infinitary logic. This formal system is distinguished from other systems in that its formulae contain variables which can be quantified.
+We will use Predicate Logic to present the abstract archetypes layer and the implementation layer. %FERGU: Y por qué la usamos? This is interesting because PEPICO says that... por ejemplo
+
+
+Following the definition by \cite{wikipedia} in mathematical logic, predicate logic is the generic term for symbolic formal systems like first-order logic, second-order logic, many-sorted logic, or infinitary logic. This formal system is distinguished from other systems in that its formulae contain variables which can be quantified. %FERGU: AGH, no copies párrafos tal cual, queda feísimo xD. Además, creo que hay artículos científicos del tema que estamos tratando que son mejor cita que la wikipedia (lo que te he dicho arriba). Este párrafo fuera, que no dice nada interesante.
+
+%FERGU: Resumiendo, hay que vender lo de los predicados bien y con referencias chulas
 
 In this paper, the conflict, as element of vital importance for the drama generation, is studied through the monomyth. Joseph Campbell's monomyth, or the hero's journey as described by Vogler in \cite{vogler}, is a basic pattern that its proponents argue is found in many narratives from around the world. This widely distributed pattern was described by Campbell in The Hero with a Thousand Faces \cite{hero}. Vogler defines the following archetypes:
 %TODO summaries from http://www.thewritersjourney.com/hero%27s_journey.htm
 \begin{enumerate}
 \item Heroes: Central figures in stories.  Everyone is the hero of his or her own myth.
-\item Shadows: Villains and enemies, perhaps the enemy within.  The dark side of the Force, the repressed possibilities of the hero, his or her potential for evil.  Can be other kinds of repression, such as repressed grief, anger, frustration or creativity that is dangerous if it doesn?t have an outlet.
-\item Mentors: The hero?s guide or guiding principles.  Yoda, Merlin, a great coach or teacher.
+\item Shadows: Villains and enemies, perhaps the enemy within.  The dark side of the Force, the repressed possibilities of the hero, his or her potential for evil.  Can be other kinds of repression, such as repressed grief, anger, frustration or creativity that is dangerous if it does not have an outlet. %FERGU: no usar "doesn't". Todas estas movidas de las cosas oscuras sirven para el paper?
+\item Mentors: The hero's guide or guiding principles.  Yoda, Merlin, a great coach or teacher.
 \item Herald: One who brings the Call to Adventure.  Could be a person or an event.
-\item Threshold guardians: The forces that stand in the way at important turning points, including jealous enemies, professional gatekeepers, or your own fears and doubts.
+\item Threshold guardians: The forces that stand in the way at important turning points, including jealous enemies, professional gatekeepers, or your own fears and doubts. %FERGU: your own?
 \item Shapeshifters: In stories, creatures like vampires or werewolves who change shape.  In life, the shapeshifter represents change.  The way other people (or our perceptions of them) keep changing.  The opposite sex, the way people can be two-faced.
 \item Tricksters: Clowns and mischief-makers, Bugs Bunny and Daffy Duck, Richard Pryor and Eddie Murphy.  Our own mischievous subconscious, urging us to change.
 \item Allies: Characters who help the hero through the change.  Sidekicks, buddies, girlfriends who advise the hero through the transitions of life.
 \end{enumerate}
 
-We propose The following base predicates that the implementation layer may provide:
+%FERGU: enlaza la lista anterior con lo siguiente: Ejemplo: This amount of archetypes need to be represented as PATATIN as possible POR TAL y TAL, therefore we propose...
+
+We propose the following base predicates that the implementation layer may provide:
 \begin{enumerate} 
 \item $Element(i)$: $true$ if $i$ is an element of the virtual world. Conceptually, an element can be an agent, a thing or a concept.
 \item $Time(t)$: $true$ if $t$ is moment in the life of the virtual world.
@@ -233,14 +251,14 @@ We propose The following base predicates that the implementation layer may provi
 \item $Helps(i_1,i_2,t)$: $true$ if the element $i_1$ guides or helps someway the element $i_2$ in the moment $t$.
 \item $Encourages(i_1,i_2,i_3,t)$: $true$ if the element $i_1$ encourages the element $i_2$ to fight against the element $i_3$ in a moment $y$.
 \item $Accompanies (i_1,i_2,t_1,t_2)$: $true$ if the element $i_1$ stays near the element $i_2$ from the moment $t_1$ to the moment $t_2$.
-\item $Trickier(i_1, i_2 ,t)$: $true$ if the element $i_1$ if considered as ``trikier'' or ``funnier'' than the element $i_2$ in the moment $t$.
+\item $Trickier(i_1, i_2 ,t)$: $true$ if the element $i_1$ if considered as ``trickier'' or ``funnier'' than the element $i_2$ in the moment $t$.
 \end{enumerate}
 
 %TODO Agnadir una imagen que ilustre lo de las 3 capas
 %TODO continuar con las capas 2 y 3
 
 
-Once the archetypes are provided, three types of fitness functions are provided. The first one will consist on %TODO
+Once the archetypes are provided, three types of fitness functions are provided. The first one will consist on %TODO FERGU: qué quiere decir "provided"? quien las provee? Por qué? Prefiero quitar este párrafo y explicar las funciones fitness en general, cómo se define una función fitness, como saber si una función fitness es de calidad y luego en el experimental setup describirlas (vamos, las estaba describiendo yo ahora abajo xD)
 
 
 %As mentioned in section \ref{sec:sota}, the proposed technique for generating fictional worlds 
@@ -393,6 +411,8 @@ Once the archetypes are provided, three types of fitness functions are provided.
 As the objective of this paper is to demonstrate that a conflict-based archetypes TODO, we propose an experimental setup that applies the proposed methodology to generate a virtual world following the BLABLA. We also propose a metric to measure the ``interest'' of a story. 
 
 \subsection{Fitness comparison and metric of interest} %TODO buscar un nombre guay para la métrica
+In previous section we defined the fitness function as... %TODO terminar cuando @raiben defina lo del fitness arriba 
+
 As it is difficult to measure the ``interest'' of a story using a function we propose of use the metric, called COMOSELLAMA, based in the number of conflicts by agent. Note that this metric is used to measure the quality of the fitness functions used, and it does not make sense to use it directly as a fitness function, as it can not distinguish between different archetypes.
 
 We are going to compare three different fitness:
@@ -402,17 +422,19 @@ We are going to compare three different fitness:
 \item \textit{Distribution of Archetypes in different agents} (DDA): As the architecture of MADE allows that an agent can be different archetypes at the same time we will prioritize the appearance of different archetypes in different agents. For example, is better to generate ``Fred the Hero'' and ``Bob the Villain'' than ``Fred the Hero and Villain'' and ``just Bob''.
 \end{itemize}
 
-
+These fitness functions have different behaviors, and it is 
 
 The example to model in this study is the classic literary story ``Romeo and Juliette'', by William Shakespeare.
 Following the analysis available in \ref{RomeoJuliet_tvtropes}, this story present
 at least 12 tropes. The summary plot is provided in terms of tropes: ``\textit{Boy Meets Girl}. It's \textit{Love at First Sight}. But Boy and Girl are members of \textit{Feuding Families}. \textit{Boy secretly marries Girl}. Boy's friend is murdered by Girl's cousin, so \textit{Boy kills Girl's cousin}, then skips town. Girl agrees to \textit{dangerous plot} to avoid an \textit{Arranged Marriage} set up by her parents. Plot \textit{goes horribly right}. Boy, hearing of Girl's `death', returns to town and \textit{kills self} at her grave. Girl, \textit{waking and discovering this}, \textit{kills self} in turn. \textit{Grief-stricken families reconcile}. \textit{The End}!''.
 
-\subsection{Environment, algorithm and parameter configuration}
+\subsection{Methodology application, environment, algorithm and parameter configuration}
+
+
 
 The MADE environment \cite{garcia14my}, described in the State of the Art, will be used. TODO EXPLICAR MAS MADE As explained in that paper the evaluation of an individual in the GA implies the execution of every agent and the evaluation of each backstory. 
 
-In this paper we will use the MADE world's parameter configuration that obtained the best results in terms of archetype generation in the study presented in \cite{garcia14evostar}. The best combination of parameters was the smallest map size (5x5), the bigger number of virtual days (256), the fewer rate of food (1/8 of the number of cells), the lower number of profiles (1) and the bigger population size of the GA (256). The same GA used in that paper will be used to test the different fitness functions. The parameters to use are shown in Table \ref{tab:parameters}.
+In this paper we will use the MADE world's parameter configuration that obtained the best results in terms of archetype generation in the study presented in \cite{garcia14evostar}. The best combination of parameters was the smallest map size (5x5), the bigger number of virtual days (256), the fewer rate of food (1/8 of the number of cells), the lower number of profiles (1) and the bigger population size of the GA (256). The same GA used in that paper will be used to test the different fitness functions. A summary of the parameters to use are shown in Table \ref{tab:parameters}.
 
 \begin{table*}
 \begin{center}
@@ -668,7 +690,7 @@ Initial world population & 15 \\ \hline
 \section{Conclusions}
 
 
-\section*{Acknowledgements}
+\section*{Acknowledgments}
 
 %This work has been supported in part by SIPESCA (Programa Operativo FEDER de Andalucía 2007-2013), TIN2011-28627-C04-02 (Spanish Ministry of Economy and Competitivity), SPIP2014-01437 (Dirección General de Tráfico), PRY142/14 (Fundación Pública Andaluza Centro de Estudios Andaluces en la IX Convocatoria de Proyectos de Investigación) and PYR-2014-17 GENIL project (CEI-BIOTIC Granada).
 \bibliographystyle{abbrv}
