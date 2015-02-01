@@ -9,6 +9,30 @@
 
 \usepackage{url}
 
+%TODO REMOVE FROM HERE -------------------->
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{todonotes}
+\usepackage{soul}
+\newcommand{\notajj}[1]{\todo[inline,size=\small,linecolor=green,backgroundcolor=green!90!white,bordercolor=purple]{#1 \\ -- \footnotesize \color{purple} JJ}}
+\newcommand{\notapedro}[1]{\todo[inline,size=\small,linecolor=blue,backgroundcolor=blue!20!white,bordercolor=blue]{#1 \\ -- \footnotesize \color{blue} Pedro}}
+\newcommand{\notaantonio}[1]{\todo[inline,size=\small,linecolor=red,backgroundcolor=orange!20!white,bordercolor=red]{#1 \\ -- \footnotesize \color{orange} Antonio}}
+\newcommand{\notamaribel}[1]{\todo[inline,size=\small,linecolor=red,backgroundcolor=orange!20!white,bordercolor=red]{#1 \\ -- \footnotesize \color{red} Maribel}}
+\definecolor{cvrivas}{rgb}{0.9,0.4,0.4}
+\newcommand{\notavrivas}[1]{\todo[inline,size=\small,linecolor=cvrivas,backgroundcolor=cvrivas!20!white,bordercolor=white]{#1 \\ -- \footnotesize \color{cvrivas} Victor}}
+\definecolor{cfergu}{rgb}{0.2,0.5,0.9}
+\newcommand{\notafergu}[1]{\todo[inline,size=\small,linecolor=cfergu,backgroundcolor=cfergu!20!white,bordercolor=black]{#1 \\ -- \footnotesize \color{cfergu} Fergu}}
+\definecolor{cpaloma}{RGB}{152,251,152}
+\definecolor{cbpaloma}{RGB}{0,100,0}
+\newcommand{\notapaloma}[1]{\todo[inline,size=\small,linecolor=cbpaloma,backgroundcolor=cpaloma!20!white,bordercolor=cbpaloma]{#1 \\ -- \footnotesize \color{cbpaloma} Paloma}}
+\definecolor{cgus}{RGB}{239,255,18}
+\newcommand{\notagus}[1]{\todo[inline,size=\small,backgroundcolor=cgus,bordercolor=cgus,linecolor=cgus]{#1 \\ -- \footnotesize Gustavo}}
+\definecolor{ctares}{rgb}{0.1,0.1,0.1}
+\newcommand{\notantares}[1]{\todo[inline,fancyline,size=\small,linecolor=gray,backgroundcolor=gray!30!white,bordercolor=black]{#1 \\ -- \footnotesize \color{orange} Antares}}
+\newcommand{\notaruben}[1]{\todo[inline,fancyline,size=\small,linecolor=PineGreen,backgroundcolor=SeaGreen!30!white,bordercolor=PineGreen]{#1 \\ -- \footnotesize \color{PineGreen} Ruben}}
+\newcommand{\notaimportante}[1]{\todo[inline,fancyline,size=\large,linecolor=PineGreen,backgroundcolor=SeaGreen!30!white,bordercolor=PineGreen]{#1 \\ -- \footnotesize \color{PineGreen} Ruben}}
+%TODO TO HERE <--------------------------------------------
+
+
 \begin{document}
 
 \title{This means war: exploring the sources of conflict in virtual worlds} 
@@ -60,7 +84,7 @@ need different types of conflicts and, in many cases, conflicts are also
 emergent, so in this paper we will present a general methodology for
 setting the parameters and conditions of the actions that influence 
 these conflicts for a particular virtual world.
-% Antonio - decir qué se va a probar exactamente: fitness, operadores, parámetros. ;)
+\notaantonio{decir qué se va a probar exactamente: fitness, operadores, parámetros. ;)}
 \end{abstract}
 
 \keywords{Games, Plot, Content generation, Evolutionary algorithms, Agent Based Models}
@@ -75,65 +99,46 @@ To give an example, No man's sky, an adventure videogame where planets, fauna an
 
 According to the classification by Hendrikx et Al. \cite{Hendrikx:2013:PCG:2422956.2422957}, PGC can be applied to many different areas in videogames, such as derived content, design, scenarios, systems, space or game units. This paper is focused in the creation of scenarios, and more specifically in the backstories of the non-player characters (for further references, NPC) in massive worlds, that would be used to provide realism, create an interesting atmosphere and allow the appearance of possible secondary goals supported at the NPCs' actions in the past.
 
-% Antonio - ¿qué quiere decir esto de los objetivos secundarios?. Aclararlo
-% Rubén - Básicamente que esas backstories también podrían usarse para
-% generar objetivos secundarios del juego
+\notaantonio{¿qué quiere decir esto de los objetivos secundarios?. Aclararlo}
+\notaruben{Básicamente que esas backstories también podrían usarse para generar objetivos secundarios del juego. Si queda claro, eliminar comentario y si no, proponer}
 
-In this context, and following the work by Garc\'ia-Ortega et Al. \cite{garcia14my}, 
-% Antonio - Si nos vamos a ¡apoyar' en conclusiones o cosas hechas en artículos anteriores, mejor anonimizarlo y usarlo así. ;)
+In this context, and following the work by Garc\'ia-Ortega et Al. \cite{garcia14my},
+\notaantonio{Si nos vamos a ¡apoyar' en conclusiones o cosas hechas en artículos anteriores, mejor anonimizarlo y usarlo así. ;)}
+\notaruben{El tema es que no estamos diciendo que sea trabajo así que el doble ciego no queda invalidado... ¿Qué opináis?}
 creating backstories using a hybrid \textit{Evolutionary Computation - Agent-Based Model} approach (for further references EC-ABM) have proved to work in virtual words where agents with particular personalities or \textit{profiles} live in a \textit{map} and interact in a \textit{space-time} dimension, leading to the emergence of high level behaviors or \textit{archetypes}.
 These archetypes are selected by the designer  
-% Antonio - explicar cómo y cuándo se seleccionan. ;)
+\notaantonio{explicar cómo y cuándo se seleccionan. ;)}
 of the videogame depending of the setting needs, before the evolutionary
 algorithm is executed. The solution obtained encodes the profile of the agents whose lives would show the desirable archetypes when they are placed in the virtual world.
 
 That work showed that sensible non-evolutionary parameters as the number of agents, the world size, the execution time, or the source of conflicts affect dramatically to the quality of the solution yielded by the EC-ABM approach.
 We will say that the quality of a solution is directly proportional to the emergence of archetypes, although this asseveration will be discussed in Section \ref{sec:exp}.
-% Antonio - Explicar qué se considera la calidad de una solución.
-% RUbén - OK
 Thus, the appearance of conflicts promotes the appearance of archetypes, hence, better solutions.
-% Antonio - Esto no se ha comentado antes. Es decir, no se deja claro que la presencia de más arquetipos es mejor. ¿Por qué lo es?
-% Rubén - Lo explicaré en el exprimental setup, pero aun debo buscar algunas referencias
-% Esto de 'ergo' queda muy de Matrix Reloaded. XD
-% Rubén - Cambiado por hence
 
 In this paper, we focus on these conflict-based archetypes and classify them based on their relation to the source of conflict, allowing the creator of a story to promote their appearance by tuning the parameters of the evolutive algorithm (EA).
-% Antonio - más que 'predict' quizá fuese mejor 'promote', ¿no? ;D
-% Rubén - Sí :-)
 Also, different conflict-based patterns extracted from classical literature are described, designed and used in the experiments. 
 
-% Antonio - ¿'proposed' por qué o con qué objetivo?¿'designed' en que sentido?
-% Rubén - Para poder usarlos en los experimentos. Añadido.
-In order to implement these archetypes, the MADE open source simulator\footnote{http://made.velonuboso.com} is used.
-% Antonio - URL o referencia
+In order to implement these archetypes, the MADE open source simulator\footnote{\url{http://made.velonuboso.com}} is used.
+
 In MADE, every individual of the evolutionary algorithm is modeled with a chromosome that represents the parameters of one (or several kinds of) finite state machine (FSM) \cite{FSM_Booth} that is set to \textit{live} (interact) in a simulated environment.
-% Antonio - Yo explicaría más de MADE, o quitaría lo de works as follows, que predece a una explicación 'extensa'. :D
-% Rubén - Ok
 
 On the other hand, promoting different archetypes relies in an appropriate fitness function for a virtual world, but also in the operators and the EA parameters chosen.
-% Antonio - referencia que indique esto
-% Anotnio - yo discrepo en todo caso. El fitness puede diseñarse para eso, pero no es la ñunica forma de que surjan arquetipos diferentes. Se puede jugar con los operadores (cruce, mutación, por ejemplo) o con los parámetros, como se indicó antes.
-% Rubén - Añadida la nota
 In this paper we propose and test different approaches 
-% Antonio - aclarar de qué son los 'approaches'. ;D
-% Rubén - TODO
-based in 
-% Antonio - ¿properties of?
+based in
+\notaantonio{aclarar de qué son los 'approaches'. ;D}
+\notaantonio{¿properties of?}
 the archetypes of the agents that inhabit the world, their speed of apparition and their distribution,
-% Antonio - decir exáctamente las que se usen. Lo de ETC no queda nada bien, pero es que aquí es importante señalar las que se hayan considerado y justificarlas, claro. ;)
-% Rubén - Ok y TODO
+\notaantonio{decir exáctamente las que se usen. Lo de ETC no queda nada bien, pero es que aquí es importante señalar las que se hayan considerado y justificarlas, claro. ;)}
 selecting those that generate better solutions in the experiments performed.
-% Antonio - ¿Estos experimentos se refieren a los del artículo anterior o a este? Si es a este, deberías dar más énfasis a ese 'selecting'. ¿En base a qué se seleccionarán? ¿qué son 'better solutions'? Se hará algo más que seleccionarlas, ya que se justificarán y se analizarán, supongo. ;)
-
-% Antonio - En general hay que darle más bombo al 'selling point', justificarlo mejor (por qué es este el siguiente paso y no otro, por ejemplo) y explicar mejor lo que se va a hacer (que es una metodología, que pretende falicitar las cosas a tales personas y por tal medio, etc). ;)
+\notaantonio{Antonio - ¿Estos experimentos se refieren a los del artículo anterior o a este? Si es a este, deberías dar más énfasis a ese 'selecting'. ¿En base a qué se seleccionarán? ¿qué son 'better solutions'? Se hará algo más que seleccionarlas, ya que se justificarán y se analizarán, supongo. ;)}
+\notaantonio{En general hay que darle más bombo al 'selling point', justificarlo mejor (por qué es este el siguiente paso y no otro, por ejemplo) y explicar mejor lo que se va a hacer (que es una metodología, que pretende falicitar las cosas a tales personas y por tal medio, etc). ;)}
 
 The rest of the paper is organized as follows. Coming up next, we present the state of the art in the definition, classification and evaluation
-of conflict-based archetypes. 
-% Antonio - ¿Hay un estado del arte ta específico? Es una duda, si lo hay, estupendo.
-% Rubén - Era la idea pero aun no tengo claro
+of conflict-based archetypes.
+
 The next section \ref{sec:met} presents the methodology, 
-% Antonio - ¿La metodología para hacer qué?
-followed by the experimental setup in Section \ref{sec:exp}, whose results are shown and analysed in Section \ref{sec:res}. Finally, we present our conclusions in the last section.
+\notaantonio{La metodología para hacer qué?}
+followed by the experimental setup in Section \ref{sec:exp}, whose results are shown and analyzed in Section \ref{sec:res}. Finally, we present our conclusions in the last section.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -200,11 +205,12 @@ followed by the experimental setup in Section \ref{sec:exp}, whose results are s
 \section{Methodology} %Issue #12
 \label{sec:met}
 
+% IMPORTANTE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+\notaimportante{Importante, esta sección está WIP. Salvo que sean dudas, no leer ni revisar. Cuando la tenga lista (hoy), asignaré revisor}
+
 According to the work by \cite{ANON}, systematic tests on the parameters of the virtual world show that conflicts are essential for the drama
 emergence. For this reason, in this paper we propose a methodology to formally define a conflict and under which circumstances a virtual world can offer it.
-
-%FERGU: hablas de las capas y todavía no las has definido bien, hazlo aquí (y pon la figurica que estabas haciendo).
-
+\notaruben{WIP: Aquí hablaré del modelo de capas que dibujé}
 We propose a layered model that takes into account... are built in the previous ones... whatever
 \begin{itemize}
 \item Implementation layer: This is the base layer, as it provides the mechanisms for...
@@ -212,23 +218,24 @@ We propose a layered model that takes into account... are built in the previous 
 \item Evaluation layer: this layer...
 \end{itemize}
 
-%FERGU: This study will lead us no me gusta para introducir el párrafo
-This study will lead us to define fitness functions (evaluation layer) that rely in the definition of abstract archetypes (abstract archetypes layer) expressed as logical predicates. These archetypes do not depend on the world implementation, but in base or primitive predicates that the virtual world may implement (implementation layer). %FERGU: no usar don't ni contracciones
+This study will lead us to define fitness functions (evaluation layer) that rely in the definition of abstract archetypes (abstract archetypes layer) expressed as logical predicates. These archetypes do not depend on the world implementation, but in base or primitive predicates that the virtual world may implement (implementation layer).
 
 This approach allows us to classify the virtual worlds in terms of the base predicates they offer, and thus, in terms of the archetypes that could emerge with an hybrid EC-ABM approach.
 
-We will use Predicate Logic to present the abstract archetypes layer and the implementation layer. %FERGU: Y por qué la usamos? This is interesting because PEPICO says that... por ejemplo
+We will use Predicate Logic to present the abstract archetypes layer and the implementation layer.
+\notafergu{Por qué la usamos? This is interesting because PEPICO says that... por ejemplo}
 
+\notaruben{WIP: Pendiente buscar una referencia a esto y reescribirlo. Lo que hay es de la wikipedia}
+Following the definition by \cite{wikipedia} in mathematical logic, predicate logic is the generic term for symbolic formal systems like first-order logic, second-order logic, many-sorted logic, or infinitary logic. This formal system is distinguished from other systems in that its formulae contain variables which can be quantified.
 
-Following the definition by \cite{wikipedia} in mathematical logic, predicate logic is the generic term for symbolic formal systems like first-order logic, second-order logic, many-sorted logic, or infinitary logic. This formal system is distinguished from other systems in that its formulae contain variables which can be quantified. %FERGU: AGH, no copies párrafos tal cual, queda feísimo xD. Además, creo que hay artículos científicos del tema que estamos tratando que son mejor cita que la wikipedia (lo que te he dicho arriba). Este párrafo fuera, que no dice nada interesante.
-
-%FERGU: Resumiendo, hay que vender lo de los predicados bien y con referencias chulas
-
+\notafergu{Resumiendo, hay que vender lo de los predicados bien y con referencias chulas}
 In this paper, the conflict, as element of vital importance for the drama generation, is studied through the monomyth. Joseph Campbell's monomyth, or the hero's journey as described by Vogler in \cite{vogler}, is a basic pattern that its proponents argue is found in many narratives from around the world. This widely distributed pattern was described by Campbell in The Hero with a Thousand Faces \cite{hero}. Vogler defines the following archetypes:
-%TODO summaries from http://www.thewritersjourney.com/hero%27s_journey.htm
+
+\notaruben{Reeescribir esto, que está sacado de www.thewritersjourney.com} %http://www.thewritersjourney.com/hero %27s_journey.htm
+
 \begin{enumerate}
 \item Heroes: Central figures in stories.  Everyone is the hero of his or her own myth.
-\item Shadows: Villains and enemies, perhaps the enemy within.  The dark side of the Force, the repressed possibilities of the hero, his or her potential for evil.  Can be other kinds of repression, such as repressed grief, anger, frustration or creativity that is dangerous if it does not have an outlet. %FERGU: no usar "doesn't". Todas estas movidas de las cosas oscuras sirven para el paper?
+\item Shadows: Villains and enemies, perhaps the enemy within.  The dark side of the Force, the repressed possibilities of the hero, his or her potential for evil.  Can be other kinds of repression, such as repressed grief, anger, frustration or creativity that is dangerous if it does not have an outlet. \notafergu{Todas estas movidas de las cosas oscuras sirven para el paper?}
 \item Mentors: The hero's guide or guiding principles.  Yoda, Merlin, a great coach or teacher.
 \item Herald: One who brings the Call to Adventure.  Could be a person or an event.
 \item Threshold guardians: The forces that stand in the way at important turning points, including jealous enemies, professional gatekeepers, or your own fears and doubts. %FERGU: your own?
@@ -237,7 +244,7 @@ In this paper, the conflict, as element of vital importance for the drama genera
 \item Allies: Characters who help the hero through the change.  Sidekicks, buddies, girlfriends who advise the hero through the transitions of life.
 \end{enumerate}
 
-%FERGU: enlaza la lista anterior con lo siguiente: Ejemplo: This amount of archetypes need to be represented as PATATIN as possible POR TAL y TAL, therefore we propose...
+\notafergu{enlaza la lista anterior con lo siguiente: Ejemplo: This amount of archetypes need to be represented as PATATIN as possible POR TAL y TAL, therefore we propose}
 
 We propose the following base predicates that the implementation layer may provide:
 \begin{enumerate} 
@@ -254,11 +261,8 @@ We propose the following base predicates that the implementation layer may provi
 \item $Trickier(i_1, i_2 ,t)$: $true$ if the element $i_1$ if considered as ``trickier'' or ``funnier'' than the element $i_2$ in the moment $t$.
 \end{enumerate}
 
-%TODO Agnadir una imagen que ilustre lo de las 3 capas
-%TODO continuar con las capas 2 y 3
-
-
-Once the archetypes are provided, three types of fitness functions are provided. The first one will consist on %TODO FERGU: qué quiere decir "provided"? quien las provee? Por qué? Prefiero quitar este párrafo y explicar las funciones fitness en general, cómo se define una función fitness, como saber si una función fitness es de calidad y luego en el experimental setup describirlas (vamos, las estaba describiendo yo ahora abajo xD)
+\notafergu{explicar las funciones fitness en general, cómo se define una función fitness, como saber si una función fitness es de calidad y luego en el experimental setup describirlas (vamos, las estaba describiendo yo ahora abajo xD)}
+\notaruben{ok, WIP}
 
 
 %As mentioned in section \ref{sec:sota}, the proposed technique for generating fictional worlds 
