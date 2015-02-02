@@ -92,12 +92,12 @@ these conflicts for a particular virtual world.
 \section{Introduction}
 
 
-In the last few years, procedural content generation (PGC for further references) 
+In the last few years, procedural content generation (PGC) 
 is attracting more and more interest in the area of videogames development.
 Different productions, where PGC is applied, are winning international awards for the first time, proving that this methodology can also be an added value due to the re-playability and richness of the result, attributes very appreciated by the videogames players.
 To give an example, No man's sky, an adventure videogame where planets, fauna and flora are created procedurally, won several Game Critics Awards in the past E3 2014\footnote{\url{http://www.gamecriticsawards.com/winners.html}}.
 
-According to the classification by Hendrikx et Al. \cite{Hendrikx:2013:PCG:2422956.2422957}, PGC can be applied to many different areas in videogames, such as derived content, design, scenarios, systems, space or game units. This paper is focused in the creation of scenarios, and more specifically in the backstories of the non-player characters (for further references, NPC) in massive worlds, that would be used to provide realism, create an interesting atmosphere and allow the appearance of possible secondary goals supported at the NPCs' actions in the past.
+According to the classification by Hendrikx et Al. \cite{Hendrikx:2013:PCG:2422956.2422957}, PGC can be applied to many different areas in videogames, such as derived content, design, scenarios, systems, space or game units. This paper is focused in the creation of scenarios, and more specifically in the backstories of the non-player characters (NPC) in massive worlds, that would be used to provide realism, create an interesting atmosphere and allow the appearance of possible secondary goals supported at the NPCs' actions in the past.
 
 \notaantonio{¿qué quiere decir esto de los objetivos secundarios?. Aclararlo}
 \notaruben{Básicamente que esas backstories también podrían usarse para generar objetivos secundarios del juego. Si queda claro, eliminar comentario y si no, proponer}
@@ -105,7 +105,7 @@ According to the classification by Hendrikx et Al. \cite{Hendrikx:2013:PCG:24229
 In this context, and following the work by Garc\'ia-Ortega et Al. \cite{garcia14my},
 \notaantonio{Si nos vamos a ¡apoyar' en conclusiones o cosas hechas en artículos anteriores, mejor anonimizarlo y usarlo así. ;)}
 \notaruben{El tema es que no estamos diciendo que sea trabajo así que el doble ciego no queda invalidado... ¿Qué opináis?}
-creating backstories using a hybrid \textit{Evolutionary Computation - Agent-Based Model} approach (for further references EC-ABM) have proved to work in virtual words where agents with particular personalities or \textit{profiles} live in a \textit{map} and interact in a \textit{space-time} dimension, leading to the emergence of high level behaviors or \textit{archetypes}.
+creating backstories using a hybrid \textit{Evolutionary Computation - Agent-Based Model} approach (EC-ABM) have proved to work in virtual words where agents with particular personalities or \textit{profiles} live in a \textit{map} and interact in a \textit{space-time} dimension, leading to the emergence of high level behaviors or \textit{archetypes}.
 These archetypes are selected by the designer  
 \notaantonio{explicar cómo y cuándo se seleccionan. ;)}
 of the videogame depending of the setting needs, before the evolutionary
@@ -113,14 +113,13 @@ algorithm is executed. The solution obtained encodes the profile of the agents w
 
 That work showed that sensible non-evolutionary parameters as the number of agents, the world size, the execution time, or the source of conflicts affect dramatically to the quality of the solution yielded by the EC-ABM approach.
 We will say that the quality of a solution is directly proportional to the emergence of archetypes, although this asseveration will be discussed in Section \ref{sec:exp}.
+\notafergu{Intenta no mandar al lector al futuro}
 Thus, the appearance of conflicts promotes the appearance of archetypes, hence, better solutions.
 
-In this paper, we focus on these conflict-based archetypes and classify them based on their relation to the source of conflict, allowing the creator of a story to promote their appearance by tuning the parameters of the evolutive algorithm (EA).
+In this paper, we focus on these conflict-based archetypes and classify them based on their relation to the source of conflict, allowing the creator of a story to promote their appearance by tuning the parameters of the evolutionary algorithm (EA).
 Also, different conflict-based patterns extracted from classical literature are described, designed and used in the experiments. 
 
-In order to implement these archetypes, the MADE open source simulator\footnote{\url{http://made.velonuboso.com}} is used.
-
-In MADE, every individual of the evolutionary algorithm is modeled with a chromosome that represents the parameters of one (or several kinds of) finite state machine (FSM) \cite{FSM_Booth} that is set to \textit{live} (interact) in a simulated environment.
+In order to implement these archetypes, the MADE open source simulator\footnote{\url{http://made.velonuboso.com}} is used. In MADE, every individual of the evolutionary algorithm is modeled with a chromosome that represents the parameters of one (or several kinds of) finite state machine (FSM) \cite{FSM_Booth} that is set to \textit{live} (interact) in a simulated environment.
 
 On the other hand, promoting different archetypes relies in an appropriate fitness function for a virtual world, but also in the operators and the EA parameters chosen.
 In this paper we propose and test different approaches 
@@ -133,12 +132,19 @@ selecting those that generate better solutions in the experiments performed.
 \notaantonio{Antonio - ¿Estos experimentos se refieren a los del artículo anterior o a este? Si es a este, deberías dar más énfasis a ese 'selecting'. ¿En base a qué se seleccionarán? ¿qué son 'better solutions'? Se hará algo más que seleccionarlas, ya que se justificarán y se analizarán, supongo. ;)}
 \notaantonio{En general hay que darle más bombo al 'selling point', justificarlo mejor (por qué es este el siguiente paso y no otro, por ejemplo) y explicar mejor lo que se va a hacer (que es una metodología, que pretende falicitar las cosas a tales personas y por tal medio, etc). ;)}
 
-The rest of the paper is organized as follows. Coming up next, we present the state of the art in the definition, classification and evaluation
-of conflict-based archetypes.
+Summarizing, in this work a EC-ABM system has been used to give an answer to the following questions:
+\begin{itemize}
+ \item Is it possible to describe sources of conflicts using a formal predicates logic? %Demostrar que la metodología funciona
+ \item How the distribution of archetypes affect the quality of a story? %Lo de las distintas funciones fitness para ver cual es mejor
+ \item Is there any difference between ...? %Algo más que queramos demostrar?
 
-The next section \ref{sec:met} presents the methodology, 
+\end{itemize}
+\notafergu{@raiben mira a ver si estas preguntas nos sirven para demostrar lo que queremos en este artículo, reescríbelas y dejarlo claro claro. Luego podemos usarlas en las conclusiones}
+
+The rest of the paper is organized as follows. Coming up next, we present the state of the art in the definition, classification and evaluation
+of conflict-based archetypes. The next section (Section \ref{sec:met}) presents the methodology, 
 \notaantonio{La metodología para hacer qué?}
-followed by the experimental setup in Section \ref{sec:exp}, whose results are shown and analyzed in Section \ref{sec:res}. Finally, we present our conclusions in the last section.
+followed by the experimental setup in Section \ref{sec:exp}, whose results are shown and analyzed in Section \ref{sec:res}. Finally, we present our conclusions and future work.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -205,7 +211,9 @@ followed by the experimental setup in Section \ref{sec:exp}, whose results are s
 \section{Methodology} %Issue #12
 \label{sec:met}
 
-The importance of finding a proper way of detecting the archetypes in a virtual world relies in the fact that it is the basis of the fitness function in a Genetic algorithm that promotes the appearance of them. According to the work by Garc\'ia-Ortega in \cite{garcia15how}, systematic tests on the parameters of the virtual world show that conflicts are essential for the drama emergence. On this basis, we propose a methodology to formally define a conflict and under which circumstances a virtual world can offer it. Then, this formal definition inspire a 3-layered EC-ABM model for archetypes that is implemented following the experimental setup in section~\ref{sec:exp}.
+The importance of finding a proper way of detecting the archetypes in a virtual world relies in the fact that it is the basis of the fitness function in a Genetic algorithm that promotes the appearance of them.
+\notafergu{Quién dice esto, por qué es importante?} 
+According to the work by Garc\'ia-Ortega in \cite{garcia15how}, systematic tests on the parameters of the virtual world show that conflicts are essential for the drama emergence. On this basis, we propose a methodology to formally define a conflict and under which circumstances a virtual world can offer it. Then, this formal definition inspire a 3-layered EC-ABM model for archetypes that is implemented following the experimental setup in section~\ref{sec:exp}.
 
 In the present paper, the conflict, as element of vital importance for the drama generation, is studied through the \textit{monomyth}, a basic pattern that its proponents argue is found in many narratives from around the world. Joseph Campbell in \textit{The Hero with a Thousand Faces}~\cite{faces} summarizes it as ``A hero ventures forth from the world of common day into a region of supernatural wonder: fabulous forces are there encountered and a decisive victory is won: the hero comes back from this mysterious adventure with the power to bestow boons on his fellow man''. Vogler in \textit{The hero's journey}~\cite{journey} defines the following archetypes present in the \textit{monomith}:
 
@@ -222,7 +230,7 @@ In the present paper, the conflict, as element of vital importance for the drama
 \item Allies: Characters who help the hero through the change.  Sidekicks, buddies, girlfriends who advise the hero through the transitions of life.
 \end{enumerate}
 
-Using basic textual analysis, we can observe that three elements are essential for the journey to be present: the \textit{hero}, the goal (the conflict with the \textit{shadow}) and the \textit{pass of time}. All the other roles exist in the story only to interact this the hero in some way.
+Using basic textual analysis, we can observe that three elements are essential for the journey to be present: the \textit{hero}, the \textit{goal} (the conflict with the \textit{shadow}) and the \textit{pass of time}. All the other roles exist in the story only to interact this the hero in some way.
 
 A virtual world may provide information about the agents or elements that exist in it and the different events that have occurred, but from the point of view of the archetype search, we are not interested in what kind of events are considered \textit{conflicts}: we only need the world to provide what elements had a conflict in a given moment, in other words, to provide basic facts in a formal way. Later on, in an upper layer, we can create a logic that use these facts to reason and find archetypes that are independent to the world implementation. To formalize this logical reasoning we will use predicate logic, a formal system based in predicates and quantified variables that can be programmed with a declarative paradigm. The figure~\ref{fig:predicates} illustrates the reasoning structure for the archetypes present in \textit{The Hero's Journey}. 
 
@@ -236,6 +244,7 @@ We propose the following set of base predicates that the implementation of the v
 \item $Conflict (i_1, i_2, t)$: $true$ if a conflict between the element $i_1$ (the victorious) and the element $i_2$ (the loser) occurs in an specified moment $t$.
 \item $Before(t_1,t_2)$: $true$ if the moment $t_1$ comes before the moment $t_2$.
 \item $Immediate(t_1,t_2)$: $true$ if the difference between the moments $t_1$ and $t_2$ is short (this value will depend on the world passage of time).
+\notafergu{Como se define la inmediatez en este predicado?}
 \item $MoreEvil(i_1, i_2, t)$: $true$ if the element $i_1$ if considered as ``more evil'' than the element $i_2$ in the moment $t$. AS we will see, after the journey, the hero has to overcome the shadow, and in our design, the shadow has to be more ``evil'' than the hero in any way. Other designs may let the final reader decide the moral lineup of the shadow character, reaching situations where the hero could be seen as the evil and the shadow as the good one.
 \item $Wiser(i_1, i_2, t)$: $true$ if the element $i_1$ if considered as ``wiser'' than the element $i_2$ in the moment $t$.
 \item $Helps(i_1,i_2,t)$: $true$ if the element $i_1$ guides or helps someway the element $i_2$ in the moment $t$.
@@ -328,7 +337,7 @@ $
 $
 \end{enumerate}
 
-
+\notafergu{Afu, es un poco complicao esto del shapeshifter, no? Explica si puedes cada arquetipo por separado o ponlo como figura para hacerle referencia}
 
 
 
@@ -343,7 +352,7 @@ $
 
 
 
-As an evolution of the methodology described in \cite{A methodology} and \cite{garcia14my}, we present a 3-layered model, shown in figure~\ref{fig:3layers}, based in the hybrid EC-ABM approach where imperative an declarative paradigms are applied:
+As an evolution of the methodology described in \cite{Amethodology} and \cite{garcia14my}, we present a 3-layered model, shown in figure~\ref{fig:3layers}, based in the hybrid EC-ABM approach where imperative an declarative paradigms are applied:
 
 \begin{figure}
         \centering
@@ -351,6 +360,8 @@ As an evolution of the methodology described in \cite{A methodology} and \cite{g
         \label{fig:3layers}
         \caption{3-layered model}
 \end{figure}
+
+\notafergu{Explica cada caja. Puedes usar listas si quieres xD}
 
 \begin{itemize}
 \item Implementation layer: This is the base layer, as it provides the mechanisms for...
@@ -514,7 +525,7 @@ As the objective of this paper is to demonstrate that a conflict-based archetype
 \subsection{Fitness comparison and metric of interest} %TODO buscar un nombre guay para la métrica
 In previous section we defined the fitness function as... %TODO terminar cuando @raiben defina lo del fitness arriba 
 
-As it is difficult to measure the ``interest'' of a story using a function we propose of use the metric, called COMOSELLAMA, based in the number of conflicts by agent. Note that this metric is used to measure the quality of the fitness functions used, and it does not make sense to use it directly as a fitness function, as it can not distinguish between different archetypes.
+As it is difficult to measure the ``interest'' of a story using a function we propose of use the metric, called COMOSELLAMA, based in the number of conflicts by agent. Note that this metric is used to measure the quality of the proposed fitness functions, and it does not make sense to use it directly as a fitness function, as it can not distinguish between different archetypes.
 
 We are going to compare three different fitness:
 \begin{itemize}
@@ -522,12 +533,14 @@ We are going to compare three different fitness:
 \item \textit{Distribution of Archetypes} (DA): Takes into account the presence of different archetypes. For example, generating 1 Villain and 1 Hero is better than generate 2 villains.
 \item \textit{Distribution of Archetypes in different agents} (DDA): As the architecture of MADE allows that an agent can be different archetypes at the same time we will prioritize the appearance of different archetypes in different agents. For example, is better to generate ``Fred the Hero'' and ``Bob the Villain'' than ``Fred the Hero and Villain'' and ``just Bob''.
 \end{itemize}
+\notafergu{Donde está lo del tiempo de aparición aquí?}
 
 These fitness functions have different behaviors, and it is 
 
 The example to model in this study is the classic literary story ``Romeo and Juliette'', by William Shakespeare.
 Following the analysis available in \ref{RomeoJuliet_tvtropes}, this story present
 at least 12 tropes. The summary plot is provided in terms of tropes: ``\textit{Boy Meets Girl}. It's \textit{Love at First Sight}. But Boy and Girl are members of \textit{Feuding Families}. \textit{Boy secretly marries Girl}. Boy's friend is murdered by Girl's cousin, so \textit{Boy kills Girl's cousin}, then skips town. Girl agrees to \textit{dangerous plot} to avoid an \textit{Arranged Marriage} set up by her parents. Plot \textit{goes horribly right}. Boy, hearing of Girl's `death', returns to town and \textit{kills self} at her grave. Girl, \textit{waking and discovering this}, \textit{kills self} in turn. \textit{Grief-stricken families reconcile}. \textit{The End}!''.
+\notafergu{Esto es un poco follón, lo pondría sin tantos cambios de formato}
 
 \subsection{Methodology application, environment, algorithm and parameter configuration}
 
