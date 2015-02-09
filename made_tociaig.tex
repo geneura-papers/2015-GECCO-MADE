@@ -1,5 +1,7 @@
-\documentclass{sig-alternate}
-
+\documentclass[conference]{IEEEtran}
+% If the IEEEtran.cls has not been installed into the LaTeX system files,
+% manually specify the path to it: e.g.,
+% \documentclass[conference]{../sty/IEEEtran}
 
 \usepackage[latin1]{inputenc}
 \usepackage{amssymb}
@@ -32,44 +34,36 @@
 \newcommand{\notaimportante}[1]{\todo[inline,fancyline,size=\large,linecolor=PineGreen,backgroundcolor=SeaGreen!30!white,bordercolor=PineGreen]{#1 \\ -- \footnotesize \color{PineGreen} Ruben}}
 %TODO TO HERE <--------------------------------------------
 
+% correct bad hyphenation here
+\hyphenation{}
+
+\IEEEoverridecommandlockouts    % to create the author's affliation portion
+                % using \thanks
+
+\textwidth 178mm    % <------ These are the adjustments we made 10/18/2005
+\textheight 239mm   % You may or may not need to adjust these numbes again
+\oddsidemargin -7mm
+\evensidemargin -7mm
+\topmargin -6mm
+\columnsep 5mm
+
+\setlength{\textfloatsep}{8pt plus 2pt minus 2pt}
+\setlength{\intextsep}{8pt plus 2pt minus 2pt}
 
 \begin{document}
 
-\title{This means war: exploring the sources of conflict in virtual worlds} 
 
-\numberofauthors{1} %  in this sample file, there are a *total*
-% of EIGHT authors. SIX appear on the 'first-page' (for formatting
-% reasons) and the remaining two appear in the \additionalauthors section.
-%
-\author{
-% You can go ahead and credit any number of authors here,
-% e.g. one 'row of three' or two rows (consisting of one row of three
-% and a second row of one, two or three).
-%
-% The command \alignauthor (no curly braces needed) should
-% precede each author name, affiliation/snail-mail address and
-% e-mail address. Additionally, tag each line of
-% affiliation/address with \affaddr, and tag the
-% e-mail address with \email.
-%
-% 1st. author
-\alignauthor
-Ben Trovato\titlenote{Dr.~Trovato insisted his name be first.}\\
-       \affaddr{Institute for Clarity in Documentation}\\
-       \affaddr{1932 Wallamaloo Lane}\\
-       \affaddr{Wallamaloo, New Zealand}\\
-       \email{trovato@corporation.com}
-}
-%\author{A. N. Onymouse%
-%\thanks{Anonymous Institute}}
-%
+% paper title: Must keep \ \\ \LARGE\bf in it to leave enough margin.
 
-%\author{R.~H. Garc\'ia-Ortega \and P. Garc\'ia-S\'anchez \and J.~J. Merelo \and M.~G. Arenas \and  P.~A.~ Castillo \and A.~M. Mora}
+\title{\ \\ \LARGE\bf MADE and the Monomith}
 
-%\authorrunning{R.~H. Garc\'ia Ortega et al.}
+\author{R.H. García-Ortega, P. Garc\'ia-S\'anchez, ... \thanks{Department of Computer Architecture and Computer Technology, University of Granada, Spain, {\tt \{raiben,pablogarcia\}@ugr.es}}}
+% avoiding spaces at the end of the author lines is not a problem with
+% conference papers because we don't use \thanks or \IEEEmembership
+% use only for invited papers
+%\specialpapernotice{(Invited Paper)}
 
-%\institute{Dept. of Computer Architecture and Technology, University of Granada, Spain}
-
+% make the title area
 \maketitle
 
 \begin{abstract}
@@ -87,8 +81,13 @@ these conflicts for a particular virtual world.
 \notaantonio{decir qué se va a probar exactamente: fitness, operadores, parámetros. ;)}
 \end{abstract}
 
-\keywords{Games, Plot, Content generation, Evolutionary algorithms, Agent Based Models}
 
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   INTRODUCTION   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\section{Introduction}
+\label{sec:intro}
+%
 \section{Introduction}
 
 
@@ -803,11 +802,12 @@ Initial world population & 15 \\ \hline
 
 \section{Conclusions}
 
-
-\section*{Acknowledgments}
+%ACKNOWLEDGMENTS are optional
+\section{Acknowledgments}
 
 %This work has been supported in part by SIPESCA (Programa Operativo FEDER de Andalucía 2007-2013), TIN2011-28627-C04-02 (Spanish Ministry of Economy and Competitivity), SPIP2014-01437 (Dirección General de Tráfico), PRY142/14 (Fundación Pública Andaluza Centro de Estudios Andaluces en la IX Convocatoria de Proyectos de Investigación) and PYR-2014-17 GENIL project (CEI-BIOTIC Granada).
-\bibliographystyle{abbrv}
+
+\bibliographystyle{IEEEtran}
 \bibliography{garcia_ortega}
 
 \end{document}
