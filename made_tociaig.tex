@@ -11,29 +11,6 @@
 
 \usepackage{url}
 
-%TODO REMOVE FROM HERE -------------------->
-\usepackage[usenames,dvipsnames]{xcolor}
-\usepackage{todonotes}
-\usepackage{soul}
-\newcommand{\notajj}[1]{\todo[inline,size=\small,linecolor=green,backgroundcolor=green!90!white,bordercolor=purple]{#1 \\ -- \footnotesize \color{purple} JJ}}
-\newcommand{\notapedro}[1]{\todo[inline,size=\small,linecolor=blue,backgroundcolor=blue!20!white,bordercolor=blue]{#1 \\ -- \footnotesize \color{blue} Pedro}}
-\newcommand{\notaantonio}[1]{\todo[inline,size=\small,linecolor=red,backgroundcolor=orange!20!white,bordercolor=red]{#1 \\ -- \footnotesize \color{orange} Antonio}}
-\newcommand{\notamaribel}[1]{\todo[inline,size=\small,linecolor=red,backgroundcolor=orange!20!white,bordercolor=red]{#1 \\ -- \footnotesize \color{red} Maribel}}
-\definecolor{cvrivas}{rgb}{0.9,0.4,0.4}
-\newcommand{\notavrivas}[1]{\todo[inline,size=\small,linecolor=cvrivas,backgroundcolor=cvrivas!20!white,bordercolor=white]{#1 \\ -- \footnotesize \color{cvrivas} Victor}}
-\definecolor{cfergu}{rgb}{0.2,0.5,0.9}
-\newcommand{\notafergu}[1]{\todo[inline,size=\small,linecolor=cfergu,backgroundcolor=cfergu!20!white,bordercolor=black]{#1 \\ -- \footnotesize \color{cfergu} Fergu}}
-\definecolor{cpaloma}{RGB}{152,251,152}
-\definecolor{cbpaloma}{RGB}{0,100,0}
-\newcommand{\notapaloma}[1]{\todo[inline,size=\small,linecolor=cbpaloma,backgroundcolor=cpaloma!20!white,bordercolor=cbpaloma]{#1 \\ -- \footnotesize \color{cbpaloma} Paloma}}
-\definecolor{cgus}{RGB}{239,255,18}
-\newcommand{\notagus}[1]{\todo[inline,size=\small,backgroundcolor=cgus,bordercolor=cgus,linecolor=cgus]{#1 \\ -- \footnotesize Gustavo}}
-\definecolor{ctares}{rgb}{0.1,0.1,0.1}
-\newcommand{\notantares}[1]{\todo[inline,fancyline,size=\small,linecolor=gray,backgroundcolor=gray!30!white,bordercolor=black]{#1 \\ -- \footnotesize \color{orange} Antares}}
-\newcommand{\notaruben}[1]{\todo[inline,fancyline,size=\small,linecolor=PineGreen,backgroundcolor=SeaGreen!30!white,bordercolor=PineGreen]{#1 \\ -- \footnotesize \color{PineGreen} Ruben}}
-\newcommand{\notaimportante}[1]{\todo[inline,fancyline,size=\large,linecolor=PineGreen,backgroundcolor=SeaGreen!30!white,bordercolor=PineGreen]{#1 \\ -- \footnotesize \color{PineGreen} Ruben}}
-%TODO TO HERE <--------------------------------------------
-
 % correct bad hyphenation here
 \hyphenation{}
 
@@ -49,6 +26,52 @@
 
 \setlength{\textfloatsep}{8pt plus 2pt minus 2pt}
 \setlength{\intextsep}{8pt plus 2pt minus 2pt}
+
+
+%TODO remove this to back to the original format
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+\usepackage{soul}
+
+
+\newcommand{\notajj}[1]{\todo[size=\small,linecolor=green,backgroundcolor=green!90!white,bordercolor=purple,]{#1 \\ -- \footnotesize \color{purple} JJ}}
+
+\newcommand{\notapedro}[1]{\todo[size=\small,linecolor=blue,backgroundcolor=blue!20!white,bordercolor=blue]{#1 \\ -- \footnotesize \color{blue} Pedro}}
+
+\newcommand{\notaantonio}[1]{\todo[size=\small,linecolor=red,backgroundcolor=orange!20!white,bordercolor=red]{#1 \\ -- \footnotesize \color{orange} Antonio}}
+
+\newcommand{\notamaribel}[1]{\todo[size=\small,linecolor=red,backgroundcolor=orange!20!white,bordercolor=red]{#1 \\ -- \footnotesize \color{red} Maribel}}
+
+\definecolor{cvrivas}{rgb}{0.9,0.4,0.4}
+\newcommand{\notavrivas}[1]{\todo[size=\small,linecolor=cvrivas,backgroundcolor=cvrivas!20!white,bordercolor=white]{#1 \\ -- \footnotesize \color{cvrivas} Victor}}
+
+\definecolor{cfergu}{rgb}{0.2,0.5,0.9}
+\newcommand{\notafergu}[1]{\todo[size=\small,linecolor=cfergu,backgroundcolor=cfergu!20!white,bordercolor=black]{#1 \\ -- \footnotesize \color{cfergu} Fergu}}
+
+\definecolor{cpaloma}{RGB}{152,251,152}
+\definecolor{cbpaloma}{RGB}{0,100,0}
+\newcommand{\notapaloma}[1]{\todo[size=\small,linecolor=cbpaloma,backgroundcolor=cpaloma!20!white,bordercolor=cbpaloma]{#1 \\ -- \footnotesize \color{cbpaloma} Paloma}}
+
+\definecolor{cgus}{RGB}{239,255,18}
+\newcommand{\notagus}[1]{\todo[size=\small,backgroundcolor=cgus,bordercolor=cgus,linecolor=cgus]{#1 \\ -- \footnotesize Gustavo}}
+
+\definecolor{ctares}{rgb}{0.1,0.1,0.1}
+\newcommand{\notantares}[1]{\todo[size=\small,linecolor=gray,backgroundcolor=gray!30!white,bordercolor=black]{#1 \\ -- \footnotesize \color{orange} Antares}}
+
+\newcommand{\notaruben}[1]{\todo[size=\small,linecolor=PineGreen,backgroundcolor=SeaGreen!30!white,bordercolor=PineGreen]{#1 \\ -- \footnotesize \color{PineGreen} Ruben}}
+
+\newcommand{\notaimportante}[1]{\todo[size=\large,linecolor=PineGreen,backgroundcolor=SeaGreen!30!white,bordercolor=PineGreen]{#1 \\ -- \footnotesize \color{PineGreen} Ruben}}
+
+\usepackage[paperwidth=297mm,
+            paperheight=297mm,
+            left=60mm,
+            top=50pt,
+            textwidth=178mm,
+            marginparsep=10pt,
+            marginparwidth=50mm,
+            textheight=239mm,
+            footskip=50mm]
+           {geometry}
 
 \begin{document}
 
@@ -69,9 +92,9 @@
 \begin{abstract}
 
 The content industry needs a way to procedurally design interesting stories that
-act as backstories for characters or as background for a massive
-multiplayer world. MADE is a framework that uses genetic algorithms to evolve worlds in which
-user-defined archetypes arise. In previous papers we have found that 
+act as backstories for characters or as background for a massive multiplayer world. MADE is a framework that uses genetic algorithms to evolve worlds in which user-defined archetypes arise.
+
+In previous papers we have found that 
 the existence of conflicts is essential
 for the emergence of most archetypes. However, different archetypes
 need different types of conflicts and, in many cases, conflicts are also
@@ -87,9 +110,6 @@ these conflicts for a particular virtual world.
 %
 \section{Introduction}
 \label{sec:intro}
-%
-\section{Introduction}
-
 
 In the last few years, procedural content generation (PGC) 
 is attracting more and more interest in the area of videogames development.
@@ -809,5 +829,8 @@ Initial world population & 15 \\ \hline
 
 \bibliographystyle{IEEEtran}
 \bibliography{garcia_ortega}
+
+\newpage
+\listoftodos[Notes]
 
 \end{document}
