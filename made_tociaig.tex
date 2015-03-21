@@ -79,10 +79,9 @@
 % paper title: Must keep \ \\ \LARGE\bf in it to leave enough margin.
 
 \title{\ \\ \LARGE\bf Massive emergence of monomyths in non-player
-  characters} \notajj{Quito el genitivo y además open worlds
-  entero. No se entiende en el contexto}
+  characters}
 
-\author{R.H. García-Ortega, P. Garc\'ia-S\'anchez, ... \thanks{Department of Computer Architecture and Computer Technology, University of Granada, Spain, {\tt \{raiben,pablogarcia\}@ugr.es}}}
+\author{R.H. Garc\'ia-Ortega, P. Garc\'ia-S\'anchez, ... \thanks{Department of Computer Architecture and Computer Technology, University of Granada, Spain, {\tt \{raiben,pablogarcia\}@ugr.es}}}
 % avoiding spaces at the end of the author lines is not a problem with
 % conference papers because we don't use \thanks or \IEEEmembership
 % use only for invited papers
@@ -93,51 +92,27 @@
 
 \begin{abstract}
 
-In videogames, non-player characters usually interact with the main
-players in order to combat, offer information to complete goals or
-provide realism and aliveness to the virtual world. In open worlds
-where thousand of characters coexist, a procedural method to generate
-them is mandatory, and the realism of the world will be affected
-drastically by it. \notajj{This is getting really old. What is the
-  point of this particular paper}
 In the present work, we design and evaluate a method to procedurally
 create coherent backstories for non-player characters where
-\textit{the monomyth}, a complex behavior pattern that links different
-characters and archetypes and which is also called \textit{the hero's journey}, has
-to emerge. We formally analyze the archetypes present in \textit{the
-  monomyth} using predicate logic and provide the basis to model facts
+\textit{the monomyth}, also called \textit{the hero's journey}, has to emerge.
+The \textit{monomyth} is a template that conforms to myths, ancient and modern, from cultures across the world and links different characters and archetypes. It is present in novels\notaruben{Lovecraft, por ejemplo http://digitalcommons.liberty.edu/ masters/277/}, films\notaruben{The Monomyth in American Science Fiction Films: 28 Visions of the Hero's Journey} and videogames\notaruben{skyrim, mass effect (http://ses.library.usyd.edu.au/ handle/2123/8902), zelda, etc}, and different researches use it to model interesting plots in virtual worlds\notaruben{por ejemplo este http://mud.co.uk/richard/ CGAIDE94.pdf}, thus we use it a metric of interest in backstories.
+We formally analyze the archetypes present in \textit{the monomyth} using predicate logic and provide the basis to model facts
 of the world in a declarative paradigm. Then, general constraints for
 future implementations are defined. On this basis, we model the
 characters as intelligent agents using deterministic finite
-automatons, and fitness functions using logical deductions on the
+automata, and fitness functions using logical deductions on the
 world's facts, in a hybrid three-layered \textit{Evolutionary
   Computation - Agent Based Model} approach that optimally
-parametrizes the agents. 
-
-The analysis of the results show that we are able to obtain the
-parameters of characters that, after the execution in a massive
+parametrizes the agents. The analysis of the results show that we are able to obtain the parameters of the agents that, after the execution in a massive
 multi-agent virtual simulation, better allow the emergence of the
-complex patterns present in \textit{the monomyth}. The agents
-\notajj{Characters or agents?}
- generated in each execution can be used as characters that populate
- an open world in a videogame, providing backstories that the user may
- perceive as interesting and unique. \notajj{May or may not? You have
-   to do strong claims in the abstract. Will you prove that or not?
-   What makes something interesting or unique?} 
-This method can also be applied to different game settings or
+complex patterns present in \textit{the monomyth}.
+Then, the facts of the world inhabited by these agents can be used as the backstories of the characters that populate an open world videogame. The present paper will provide as example a literary narration of a backstory created with the best parameters found.
+The method described can also be applied to different game settings or
 characters' nature by re-implementing the Agent's layer using the
-rules provided in this paper.\notaruben{Quiza me enrollo mucho en las
-  implicaciones, aunque creo que resume los objetivos desde el punto
-  de vista de aplicacion. Por supuesto, tambien hablo de los
-  resultados, asi que estaría bien revisarlo cuando los tengamos para
-  ver si es verdad} \notajj{Efectivamente, esto no pertenece al abstract}
+rules provided in this paper. 
 
 \end{abstract}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\notaruben{Titulo provisional... muchos genitivos sajones... Que alguien creativo haga un titulo impactante :-)}
-\notajj{Quitados genitivos por lo pronto. {\em Open world} tiene un
-  significado particular, que no sé si habría que poner aquí}
 
 \section{Introduction}
 \label{sec:intro}
@@ -156,6 +131,13 @@ Awards, including Best Original Game and the Special Commendation for
 Innovation, in the past Electronic Entertainment Expo 2014, a
 reference annual trade show for the video game
 industry\footnote{\url{http://www.gamecriticsawards.com/winners.html}}. 
+
+In videogames, non-player characters usually interact with the main
+players in order to combat, offer information to complete goals or
+provide realism and aliveness to the virtual world. In open worlds
+where thousand of characters coexist, a procedural method to generate
+them is mandatory, and the realism of the world will be affected
+drastically by it.
 
 
 
