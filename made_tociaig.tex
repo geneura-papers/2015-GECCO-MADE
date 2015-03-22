@@ -96,8 +96,10 @@
 Our objective in this paper is to describe the  design and evaluation of a method to procedurally
 create coherent backstories for non-player characters where
 \textit{the monomyth}, also called \textit{the hero's journey}, has to emerge.
-The \textit{monomyth} is a template that conforms to myths, ancient and modern, from cultures across the world and links different characters and archetypes. It is present in novels\notaruben{Lovecraft, por ejemplo http://digitalcommons.liberty.edu/ masters/277/}, films\notaruben{The Monomyth in American Science Fiction Films: 28 Visions of the Hero's Journey} and videogames\notaruben{skyrim, mass effect (http://ses.library.usyd.edu.au/ handle/2123/8902), zelda, etc}, and different researches use it to model interesting plots in virtual worlds\notaruben{por ejemplo este http://mud.co.uk/richard/ CGAIDE94.pdf}, thus we use it a metric of interest in backstories.
-We formally analyze the archetypes present in \textit{the monomyth} using predicate logic and provide the basis to model facts
+The \textit{monomyth} is a template that conforms to ancient
+and modern myths from cultures all over the world and links different characters and archetypes. It is present in novels\notaruben{Lovecraft, por ejemplo http://digitalcommons.liberty.edu/ masters/277/}, films\notaruben{The Monomyth in American Science Fiction Films: 28 Visions of the Hero's Journey} and videogames\notaruben{skyrim, mass effect (http://ses.library.usyd.edu.au/ handle/2123/8902), zelda, etc}, and different researchers use it to model interesting plots in virtual worlds\notaruben{por ejemplo este http://mud.co.uk/richard/ CGAIDE94.pdf}, thus we use it a metric of interest in backstories.
+We formally analyze the archetypes present in \textit{the monomyth}
+using predicate logic and provide the basis to model facts 
 of the world in a declarative paradigm. Then, general constraints for
 future implementations are defined. On this basis, we model the
 characters as intelligent agents using deterministic finite
@@ -147,18 +149,23 @@ achieve the emergence of archetypes. In \cite{garcia14my} we proposed
 the use of simple agents and behavior patterns and proved that a
 Genetic Algorithm could lead to a parametrization of the agents that
 made different archetypes emerge. In \cite{garcia2015world} we
-analyzed the effect of the genetic and non-genetic parameters (such as
+analyzed the effect of the model parameters such as
 the map size available food per virtual day or initial number of
-agents), and found out that the existence of conflicts is essential
+agents and found out that the existence of conflicts is essential
 for the emergence of most of our archetypes, that different archetypes
 need different types of conflicts and that, in many cases, conflicts
-are also emergent. However, these works didn't use formal models to
-define the archetypes or the facts of the virtual world and no rules
+are also emergent. However, this methodology for the emergence of
+backstories  did not use formal models to
+define the archetypes or the facts \notajj{No me gusta facts. Actions?}
+ of the virtual world and no {\em a priori} rules
 could be provided to establish whether or not a design of an agent
-could lead to the appearance of the archetypes. For this reason in the
+could lead to the appearance of the archetypes. \notajj{Explica, con
+  un ejemplo, quizá}
+ For this reason in the
 present paper we formally model the archetypes using predicate
 logic. A logical model allows us to describe the archetypes in a way
-close to the natural language, provides the formalism and syntax of
+that is 
+close to natural language, provides the formalism and syntax of
 the mathematical language and is easily transformable to a computer
 program in a declarative paradigm. This logical model also allows us
 to define requirements of the ABM layer and, following them, design a
@@ -167,6 +174,7 @@ archetypes needs. It is important to remark that these requirements or
 rules can also help to know what archetypes cannot emerge in a world
 inhabited by actually designed agent for a videogame. 
  
+\notajj{The rest of the paper is organized as follows}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
