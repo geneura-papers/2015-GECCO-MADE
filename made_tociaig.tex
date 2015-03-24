@@ -91,7 +91,7 @@
 \maketitle
 
 \begin{abstract}
-Designing backstories for all the non-player characters in Open World videogames and make them different, coherent and interesting for each game is a goal that has not been reached by the state-of-the-art methodologies and technologies. Our objective in this paper is to describe the  design and evaluation of a method to procedurally
+Designing backstories for all the non-player characters (NPCs) in Open World videogames and make them different, coherent and interesting for each game is a goal that has not been reached by the state-of-the-art methodologies and technologies. Our objective in this paper is to describe the  design and evaluation of a method to procedurally
 create coherent massive backstories for non-player characters where
 \textit{the monomyth}, also called \textit{the hero's journey}, has to emerge.
 The \textit{monomyth} is a template that conforms to ancient
@@ -142,34 +142,36 @@ industry\footnote{\url{http://www.gamecriticsawards.com/winners.html}}.
 In videogames, non-player characters usually interact with the main
 players in order to challenge him, offer information to complete their
 goals or
-provide life-likeness to the virtual world. In open worlds, a type of videogame where a player can roam freely through a virtual world and thousand of characters coexist, a procedural method to generate
-them is mandatory, and the realism of the world will be affected
+provide life-likeness to the virtual world. In open worlds, a type of videogame where a player can roam freely through a virtual world and thousands of characters coexist, a procedural method to generate
+them becomes mandatory, and the realism of the world will be affected
 drastically by it.
+
+Archetypes are behaviors and patterns universally accepted and present in the
+collective imaginary \cite{garry2005archetypes}. In videogames, archetypes are classically related to the nature of the characters (for example, \textit{thief}, \textit{warrior} or \textit{mage}), which reminds to the concept of \textit{stereotype}, the unfair belief that all people or things with a particular characteristic are the same. On our point of view, an archetype is a role that a character plays a given moment or period, regardless of the nature of characteristics of him/her. Following this reasoning, a character could play many different archetypes in his/her life, even at the same time. But, what could be the minimum set of archetypes to design if we want to create interesting backstories? The \textit{monomyth} or \textit{the hero's journey} is a set of archetypes that constantly repeat in literature, films, and videogames, as described in section \ref{sec:sota}. It is the story of someone who is considered a \textit{hero}, that has to deal with his/her \textit{shadow}, who is waiting at the end of a journey (physical or psychical), where different characters appear (\textit{mentors}, \textit{allies}, \textit{obstacles}). The \textit{monomyth} was studied by Joseph Campbell in \textit{The Hero with a Thousand Faces}~\cite{joseph1949hero}, and later by Vogler in \textit{The writer's journey}~\cite{vogler2007writer}. In videogames, the \textit{monomyth} has been used as a frame to design the main plots that the player can empathize with, as explained by Bartle in~\cite{bartle2004multihero}. Our work uses the monomyth as a frame for backstories in videogames and our goal is to make its archetypes massively emerge in a coherent virtual world. The methodology for the generation of massive backstories using the archetypes, modeled in predicate logic, and the hybrid EC-ABM approach is described in section~\ref{sec:met}. 
 
 Our previous work has confirmed that a hybrid \textit{Evolutionary
   Computation - Agent Based Model} (EC-ABM) methodology can be used to
 achieve the emergence of archetypes. In \cite{garcia14my} we proposed
 the use of simple agents and behavior patterns and proved that a
-Genetic Algorithm could lead to a parametrization of the agents that
+Genetic Algorithm application leads to of the agents that
 made different archetypes emerge. In \cite{garcia2015world} we
-analyzed the effect of the model parameters such as
+analyzed the effect of some of the model parameters such as
 the map size, available food per virtual day or initial number of
 agents.
 Several conclusions were attained: the existence of conflicts is essential for the emergence of most of our archetypes, different archetypes need different types of conflicts and, in many cases, conflicts are also emergent.
 However, the main problem of this methodology for the emergence of
 backstories was that no {\em a priori} rules
 could be provided to establish whether or not a design of an agent
-could lead to the appearance of the archetypes, since no formal models to define the archetypes or the events in the virtual world were used. For example, if the agent has no actions that fire events related to \textit{encouraging}, no archetype \textit{herald} could ever emerge, as we discuss on section~\ref{sec:met}. For this reason, in this paper, we formally model the archetypes using predicate logic. 
+could lead to the appearance of the archetypes, since no formal models to define the archetypes or the events in the virtual world were used. For example, if the agent has no action that fire events related to \textit{encouraging}, no archetype \textit{herald} could ever emerge, as we discuss on section~\ref{sec:met}.
+
+For this reason, in this paper, we formally model the archetypes using predicate logic. 
 A logical model allows us to describe the archetypes in a way that is 
 close to natural language, provides the formalism and syntax of
 the mathematical language and is easily transformable to a computer
 program in a declarative paradigm. This logical model also allows us
 to define the requirements of the ABM layer and, following them, design a
 new more complex finite state automaton that better fits the
-archetypes needs, such as generate events or facts that could deduce the base predicates designed for \textit{the monomyth} in section~\ref{sec:met}.
-
-Archetypes are behaviors and patterns universally accepted and present in the
-collective imaginary \cite{garry2005archetypes}. In videogames, archetypes are classically related to the nature of the characters (for example, \textit{thief}, \textit{warrior} or \textit{mage}), which reminds to the concept of \textit{stereotype}, the unfair belief that all people or things with a particular characteristic are the same. On our point of view, an archetype is a role that a character plays a given moment or period, regardless of the nature of characteristics of him/her. Following this reasoning, a character could play many different archetypes in his/her life, even at the same time. But, what could be the minimum set of archetypes to design if we want to create interesting backstories? The \textit{monomyth} or \textit{the hero's journey} is a set of archetypes that constantly repeat in literature, films, and videogames, as described in section \ref{sec:sota}. It is the story of someone who is considered a \textit{hero}, that has to deal with his/her \textit{shadow}, who is waiting at the end of a journey (physical or psychical), where different characters appear (\textit{mentors}, \textit{allies}, \textit{obstacles}). The \textit{monomyth} was studied by Joseph Campbell in \textit{The Hero with a Thousand Faces}~\cite{joseph1949hero}, and later by Vogler in \textit{The writer's journey}~\cite{vogler2007writer}. In videogames, the \textit{monomyth} has been used as a frame to design the main plots that the player can empathize with, as explained by Bartle in~\cite{bartle2004multihero}. Our work uses the monomyth as a frame for backstories in videogames and our goal is to make its archetypes massively emerge in a coherent virtual world. The methodology for the generation of massive backstories using the archetypes, modeled in predicate logic, and the hybrid EC-ABM approach is described in section~\ref{sec:met}. 
+archetypes  generation/emergence requirements, such as generate events or facts that could deduce the base predicates designed for \textit{the monomyth}.
  
 
 %una última frase (antes de comentar la estructura del paper) diciendo qué esperamos obtener al modelar formalmente los arquetipos con lógica de predicados. Una especie de síntesis un una frase para que al lector le quede claro lo que pretendemos hacer y para qué.
