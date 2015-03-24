@@ -103,8 +103,7 @@ future implementations are defined. On this basis, we model the
 characters as intelligent agents using deterministic finite
 automata, and fitness functions using logical deductions on the
 world's facts, in a hybrid three-layered \textit{Evolutionary
-  Computation - Agent Based Model} approach that optimally
-parametrizes the agents. The analysis of the results show that we are
+  Computation - Agent Based Model} approach that optimizes the parameters of the agents. The analysis of the results shows that we are
 able to obtain the parameters of the agents that, after the execution
 in a massive 
 multi-agent virtual simulation, better allow the emergence of the
@@ -114,7 +113,7 @@ the backstories of the characters that populate an open world
 videogame. The present paper will provide as example a literary
 narration of a backstory created with the best parameters found. 
 The method described can also be applied to different game settings or
-characters' nature by re-implementing the Agent's layer using the
+characters' nature by implementing an adaptation layer using the
 rules provided in this paper. 
 
 \end{abstract}
@@ -149,11 +148,11 @@ drastically by it.
 Archetypes are behaviors and patterns universally accepted and present in the
 collective imaginary \cite{garry2005archetypes}. In videogames, archetypes are classically related to the nature of the characters (for example, \textit{thief}, \textit{warrior} or \textit{mage}), which reminds to the concept of \textit{stereotype}, the unfair belief that all people or things with a particular characteristic are the same. From our point of view, an archetype is a role that a character plays a given moment or period, regardless of the nature of characteristics of him/her. Following this reasoning, a character could play many different archetypes in his/her life, even at the same time. But, what could be the minimum set of archetypes to design if we want to create interesting backstories? The \textit{monomyth} or \textit{the hero's journey} is a set of archetypes that constantly repeat in literature, films, and videogames, as described in section \ref{sec:sota}. It is the story of someone who is considered a \textit{hero}, that has to deal with his/her \textit{shadow}, who is waiting at the end of a journey (physical or psychical), where different characters appear (\textit{mentors}, \textit{allies}, \textit{obstacles}). The \textit{monomyth} was studied by Joseph Campbell in \textit{The Hero with a Thousand Faces}~\cite{joseph1949hero}, and later by Vogler in \textit{The writer's journey}~\cite{vogler2007writer}. In videogames, the \textit{monomyth} has been used as a frame to design the main plots that the player can empathize with, as explained by Bartle in~\cite{bartle2004multihero}. Our work uses the monomyth as a frame for backstories in videogames, since it provides a basic but omnipresent set of high level behaviors that can be found in the daily life but also in the biggest adventures. Our goal is to make these archetypes massively emerge in a coherent virtual world. The methodology for the generation of massive backstories using the archetypes, modeled in predicate logic, and the hybrid EC-ABM approach is described in section~\ref{sec:met}. 
 
-Our previous work has confirmed that a hybrid \textit{Evolutionary
+Our previous work has reinforced that a hybrid \textit{Evolutionary
   Computation - Agent Based Model} (EC-ABM) methodology can be used to
 achieve the emergence of archetypes. In \cite{garcia14my} we proposed
 the use of simple agents and behavior patterns and proved that a
-Genetic Algorithm application leads to of the agents that
+Genetic Algorithm (GA) application leads to of the agents that
 made different archetypes emerge. In \cite{garcia2015world} we
 analyzed the effect of some of the model parameters such as
 the map size, available food per virtual day or initial number of
